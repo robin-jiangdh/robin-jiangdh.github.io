@@ -4,13 +4,53 @@
 	<title>Robin Log</title>
 	<link rel="self" href="http://blog.robinjiang.com/" />
 	<rights>2020</rights>
-	<updated>2020-04-04T10:13:58Z</updated>
+	<updated>2020-04-04T10:49:25Z</updated>
 	<subtitle>Live In an awesome life!</subtitle>
 	<entry>
-		<id>http://blog.robinjiang.com/posts/2020/03/carbon-codetools</id>
+		<id>http://blog.robinjiang.com/posts/2020/03/2020-03-19-carbon-codetools</id>
 		<title>carbon-一个能生成漂亮的代码截图工具</title>
-		<link href="http://blog.robinjiang.com/posts/2020/03/carbon-codetools" />
+		<link href="http://blog.robinjiang.com/posts/2020/03/2020-03-19-carbon-codetools" />
 		<updated>2020-03-24T00:00:00Z</updated>
+	</entry>
+	<entry>
+		<id>http://blog.robinjiang.com/posts/2020/03/2020-03-10-wyam-static-content-generator-and-toolkit</id>
+		<title>折腾一个新的静态内容生成器wyam</title>
+		<link href="http://blog.robinjiang.com/posts/2020/03/2020-03-10-wyam-static-content-generator-and-toolkit" />
+		<updated>2020-03-10T00:00:00Z</updated>
+		<content>&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;vps到期了，然后疫情原因，一直没时间去管，去续费的时候才发现之前写的东西全丢了，现在只能挨个找之前的备份，痛定思痛，准备找个大概率不会挂机的服务商了，然后就盯上了github-page,用于托管点博客是够了，而且咱这种也不靠博客盈利的，纯粹就是找个垃圾桶写文章而已，够了够了&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;劝退指南，目前作者团队已经放弃wyam去开发另外一个项目了&lt;a href="https://github.com/statiqdev"&gt;statiq&lt;/a&gt;,也是一个静态内容生成器，目前该项目还不完整，demo都还不完善&lt;/p&gt;
+&lt;p&gt;目前本博就是基于wyam的，如果需要demo的话，可以去这里看&lt;/p&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;本博客 &lt;a href="https://github.com/robin-jiangdh/robin-jiangdh.github.io"&gt;https://github.com/robin-jiangdh/robin-jiangdh.github.io&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;官方网站： &lt;a href="https://github.com/Wyamio/Wyam.web"&gt;https://github.com/Wyamio/Wyam.web&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/blockquote&gt;
+&lt;h2 id="wyam"&gt;Wyam的介绍&lt;/h2&gt;
+&lt;p&gt;Wyam.io官网上的自我介绍基本上把Wyam是什么说的很清楚了，我就简单在这里翻译一下。&lt;/p&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Wyam是与众不同的。它不是Jekyll的克隆（并不代表Jekyll有任何问题），它不是设计来生成博客的（虽然也能很好的胜任此任务）。Waym是一个静态内容生成器，可以用于生成网站、文档、电子书和其他更多的内容。由于它的所有东西都是通过很多灵活的模块（你也可以编写自己的模块）串在一起，所以唯一的限制是你的想象力。&lt;/p&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;自带吐槽技能啊，这个Wyam对标的有点像docfx，不过目标跨的太大，扯着蛋了，后面又另起炉灶了，不过如果你只是用blog功能的话还是可以的，目前算是功能完善&lt;/p&gt;
+&lt;p&gt;update 2020-03-24:&lt;/p&gt;
+&lt;p&gt;用了两周，目前图片，标签系统或多或少有点bug，tags真心一团糟，我fork了一份自己在维护&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;在它的特性当中，尤其让我看中的是：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://wyam.io/getting-started/configuration"&gt;配置文件&lt;/a&gt;使用C#脚本写就，这完全是得益于Roslyn的强大&lt;/li&gt;
+&lt;li&gt;简单直接的&lt;a href="http://wyam.io/modules/meta"&gt;元数据&lt;/a&gt;使用方式&lt;/li&gt;
+&lt;li&gt;支持多种模板引擎和语言，尤其直接内置&lt;a href="http://wyam.io/modules/razor"&gt;Razor&lt;/a&gt;的支持（且Razor的支持是基于ASP.NET MVC 6的源代码的，未来会支持TagHelper） 。当然也有Markdown支持或者扩展自己的模板语言支持。&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://wyam.io/getting-started/usage"&gt;集成Web Server&lt;/a&gt;方便在编写模板的时候进行预览&lt;/li&gt;
+&lt;li&gt;完全&lt;a href="http://wyam.io/getting-started/configuration#nuget"&gt;支持Nuget&lt;/a&gt;，可以在执行生成的过程中，自动下载依赖的Nuget包&lt;/li&gt;
+&lt;li&gt;更为重要的，它支持&lt;a href="http://wyam.io/knowledgebase/embedded-use"&gt;嵌入运行&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;相对完整清晰的文档&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Waym其实借鉴了现有其他静态内容生成器的优点和设计，比如FrontMatter的支持（通过Yaml实现）。目前还只是&lt;a href="https://github.com/Wyamio/Wyam/releases/tag/v2.2.9"&gt;v2.2.9&lt;/a&gt;，但是功能完成度还是比较高了，并且你也可以直接pull request参与贡献。源代码地址是：https://github.com/Wyamio/Wyam&lt;/p&gt;
+</content>
+		<summary>&lt;p&gt;vps到期了，然后疫情原因，一直没时间去管，去续费的时候才发现之前写的东西全丢了，现在只能挨个找之前的备份，痛定思痛，准备找个大概率不会挂机的服务商了，然后就盯上了github-page,用于托管点博客是够了，而且咱这种也不靠博客盈利的，纯粹就是找个垃圾桶写文章而已，够了够了&lt;/p&gt;</summary>
 	</entry>
 	<entry>
 		<id>http://blog.robinjiang.com/posts/2019/10/2017-06-10-use-mailkit-with-mimekit-to-send-email</id>
@@ -178,27 +218,27 @@ Query Optimizer 根据优化规则(Pluggable Rules)对Operator Expressions进行
 		<updated>2018-04-24T00:00:00Z</updated>
 	</entry>
 	<entry>
-		<id>http://blog.robinjiang.com/posts/2018/04/Serilog</id>
-		<title>另外一个日志组件</title>
-		<link href="http://blog.robinjiang.com/posts/2018/04/Serilog" />
-		<updated>2018-04-10T00:00:00Z</updated>
-	</entry>
-	<entry>
 		<id>http://blog.robinjiang.com/posts/2018/04/seq</id>
 		<title>轻量级日志分析工具</title>
 		<link href="http://blog.robinjiang.com/posts/2018/04/seq" />
 		<updated>2018-04-10T00:00:00Z</updated>
 	</entry>
 	<entry>
-		<id>http://blog.robinjiang.com/posts/2018/04/GELF</id>
-		<title>GELF，别的世界的日志规范</title>
-		<link href="http://blog.robinjiang.com/posts/2018/04/GELF" />
+		<id>http://blog.robinjiang.com/posts/2018/04/Serilog</id>
+		<title>另外一个日志组件</title>
+		<link href="http://blog.robinjiang.com/posts/2018/04/Serilog" />
 		<updated>2018-04-10T00:00:00Z</updated>
 	</entry>
 	<entry>
 		<id>http://blog.robinjiang.com/posts/2018/04/Splunk</id>
 		<title>elk的一个企业级替代品Splunk</title>
 		<link href="http://blog.robinjiang.com/posts/2018/04/Splunk" />
+		<updated>2018-04-10T00:00:00Z</updated>
+	</entry>
+	<entry>
+		<id>http://blog.robinjiang.com/posts/2018/04/GELF</id>
+		<title>GELF，别的世界的日志规范</title>
+		<link href="http://blog.robinjiang.com/posts/2018/04/GELF" />
 		<updated>2018-04-10T00:00:00Z</updated>
 	</entry>
 	<entry>
