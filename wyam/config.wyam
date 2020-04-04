@@ -1,0 +1,21 @@
+#recipe Blog
+#r blog
+#t /theme/
+//#t Phantom
+//#t CleanBlog
+//#t Stellar
+//#t Trophy
+// Customize your settings and add new ones here
+Settings[Keys.Host] = "blog.robinjiang.com";
+Settings[BlogKeys.Title] = "Robin Log";
+Settings[BlogKeys.Description] = "Live In an awesome life!";
+Settings[BlogKeys.IncludeDateInPostPath] = true;
+// Add any pipeline customizations here
+
+ Pipelines.Add("ray_sass",
+         ReadFiles("theme/**/{!_,}*.scss"),
+         Sass()
+             .WithCompactOutputStyle(),
+         WriteFiles((doc, ctx) => $"assets/sass/main.css")
+             .UseWriteMetadata(false)
+     );
