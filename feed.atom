@@ -4,7 +4,7 @@
 	<title>Robin Log</title>
 	<link rel="self" href="http://blog.robinjiang.com/" />
 	<rights>2020</rights>
-	<updated>2020-04-07T05:41:49Z</updated>
+	<updated>2020-04-07T06:01:23Z</updated>
 	<subtitle>Live In an awesome life!</subtitle>
 	<entry>
 		<id>http://blog.robinjiang.com/posts/2020/03/2020-03-19-carbon-codetools</id>
@@ -261,7 +261,7 @@ OpenZipkin, OpenTracing, Instana, Datadog, Librato，以及其他更多组织的
 		<updated>2016-03-15T00:00:00Z</updated>
 		<content>&lt;blockquote class="blockquote"&gt;
 &lt;p&gt;如何阅读一本书
-&lt;img src="s1670978.jpg" class="img-fluid" alt="如何阅读一本书" /&gt;
+&lt;img src="http://blog.robinjiang.com/posts/asset/2016-03-15-How-to-Read-a-Book/s1670978.jpg" class="img-fluid" alt="如何阅读一本书" /&gt;
 如何阅读一本书作者: [美] 莫提默·J. 艾德勒 / 查尔斯·范多伦
 出版社: 商务印书馆
 原作名: How to Read a Book
@@ -300,7 +300,7 @@ ISBN: 9787100040945&lt;/p&gt;
 &lt;/ul&gt;
 </content>
 		<summary>&lt;p&gt;如何阅读一本书
-&lt;img src="s1670978.jpg" class="img-fluid" alt="如何阅读一本书"&gt;
+&lt;img src="http://blog.robinjiang.com/posts/asset/2016-03-15-How-to-Read-a-Book/s1670978.jpg" class="img-fluid" alt="如何阅读一本书"&gt;
 如何阅读一本书作者: [美] 莫提默·J. 艾德勒 / 查尔斯·范多伦
 出版社: 商务印书馆
 原作名: How to Read a Book
