@@ -4,7 +4,7 @@
 	<title>Robin Log</title>
 	<link rel="self" href="http://blog.robinjiang.com/" />
 	<rights>2020</rights>
-	<updated>2020-04-07T07:15:01Z</updated>
+	<updated>2020-04-07T07:22:13Z</updated>
 	<subtitle>Live In an awesome life!</subtitle>
 	<entry>
 		<id>http://blog.robinjiang.com/posts/2020/03/2020-03-19-carbon-codetools</id>
@@ -70,6 +70,49 @@
 装帧: 平装
 ISBN: 9787100040945&lt;/p&gt;
 &lt;/blockquote&gt;
+&lt;p&gt;最近一直在读分布相关的paper，毕业好多年，分布式的领域水真的太深了~，然后读paper各种卡壳，没办法重新翻出这本经典稳固一遍，然后根据stanford的文献整理了这篇博客&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://web.stanford.edu/class/cs245/readings/how-to-read-a-paper.pdf"&gt;how-to-read-a-paper&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;介绍了一种阅读paper方法，帮助大家提高读paper的速度和效率。&lt;/p&gt;
+&lt;h2 id="the-three-pass-approach"&gt;三遍阅读法(THE THREE-PASS APPROACH)&lt;/h2&gt;
+&lt;p&gt;paper需要读三遍，每一遍都有不同的目标。 第一遍建立一个大体的印象，第二遍把握重要内容，第三遍深入理解。&lt;/p&gt;
+&lt;h3 id="the-first-pass"&gt;第一遍(The first pass)&lt;/h3&gt;
+&lt;p&gt;第一遍的重点是要快，花五到十分钟快速浏览一遍，获得一个全景印象。 关注如下几个方面：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;仔细阅读标题、摘要、简介(the title, abstract, and introduction)&lt;/li&gt;
+&lt;li&gt;阅读章节和子章节的标题(the section and sub-section headings)&lt;/li&gt;
+&lt;li&gt;扫一眼数学内容(the mathematical content)，了解理论基础&lt;/li&gt;
+&lt;li&gt;阅读结论(the conclusions)&lt;/li&gt;
+&lt;li&gt;浏览参考文献(the references)，勾选读过的paper&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;结束之后，回答5个问题：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;类型(Category): 评估(measurement)、系统分析(analysis)、研究原型(research prototype)&lt;/li&gt;
+&lt;li&gt;上下文(Context): 相关论文、理论基础&lt;/li&gt;
+&lt;li&gt;正确性(Correctness): 假设都成立吗？&lt;/li&gt;
+&lt;li&gt;贡献(Contributions)&lt;/li&gt;
+&lt;li&gt;清晰度(Clarity): 写的好吗？&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;这个时候要决定是否继续阅读？是否感兴趣，是否关注这个研究领域，作者是否做了无效的假设。 同样的，如果你自己写paper，也要写好摘要和章节标题，如果读者在五分钟内找不到要点，可能就不会继续阅读了。&lt;/p&gt;
+&lt;h3 id="the-second-pass"&gt;第二遍(The second pass)&lt;/h3&gt;
+&lt;p&gt;第二遍的重点是要精，仔细阅读每一部分内容，但是注意不要陷入细节。 把自己当成评审员，记下要点、不理解的内容、想问作者的问题，在空白处写下评论。 重点关注图表和插图是否存在错误，这往往是决定一篇paper是否真正优秀的关键。 标注没有读过的参考文献，以便进一步阅读。&lt;/p&gt;
+&lt;p&gt;这一遍通常要花费一个小时以上，这个时候应该掌握了paper的内容，可以有足够的论据总结出paper的主旨。 如果这篇paper只是有兴趣，但不是重点研究的领域，到这个程度就可以了。&lt;/p&gt;
+&lt;p&gt;有时也有可能没有读懂，这有可能是因为不熟悉这个领域，也可能是论文本身写的不好，也可能是累了。 这个是时候可以有三种选择：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;暂时搁置&lt;/li&gt;
+&lt;li&gt;了解背景材料后重新阅读&lt;/li&gt;
+&lt;li&gt;坚持继续读&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id="the-third-pass"&gt;第三遍(The third pass)&lt;/h3&gt;
+&lt;p&gt;第三遍的关键是尝试重新实现一遍(virtually reimplement the paper)。 按照作者的假设，提出自己的想法，重新设计实现方案，并与原文的方案进行比较。 关注每一个细节，挑战每一个假设，记录下整个思路，并将有用的证明和技术加入到自己的工具库中。&lt;/p&gt;
+&lt;p&gt;通过这样的方式，能够自己从头重建整个系统。 同时可以发现原文存在的问题：能指出隐含的假设，遗漏的实验和潜在的问题。&lt;/p&gt;
+&lt;h2 id="literature-survey"&gt;文献分析(literature survey)&lt;/h2&gt;
+&lt;p&gt;想深入了解一个领域，仅仅阅读一篇paper是不够的，可能需要读数十篇。 这时需要通过文献分析的方法找到合适的paper，也有三个步骤。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;选择合适的关键词，使用&lt;a href="https://link.zhihu.com/?target=https%3A//scholar.google.com/"&gt;Google Scholar&lt;/a&gt;或&lt;a href="https://link.zhihu.com/?target=https%3A//citeseerx.ist.psu.edu/index"&gt;CiteSeer&lt;/a&gt; 找到该领域最近被引用最多的三到五篇paper&lt;/li&gt;
+&lt;li&gt;找到参考文献中引用量最多的作者，他们是这个领域最重要的研究人员，关注他们的最近发布的paper和conferences&lt;/li&gt;
+&lt;li&gt;访问这些top conferences的网站，找到最近的高质量paper&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;反复重复这几个步骤，不断找出这个领域的最重要paper并阅读，不断总结归纳。&lt;/p&gt;
 </content>
 		<summary>&lt;p&gt;如何阅读一本书
 &lt;img src="http://blog.robinjiang.com/posts/asset/2016-03-15-How-to-Read-a-Book/s1670978.jpg" class="img-fluid" alt="如何阅读一本书"&gt;&lt;/p&gt;</summary>
@@ -350,7 +393,7 @@ ISBN: 9787100040945&lt;/p&gt;
 	</entry>
 	<entry>
 		<id>http://blog.robinjiang.com/posts/2016/03/2016-03-15-How-to-Read-a-Book</id>
-		<title>《如何阅读一本书》读书笔记-2017年版</title>
+		<title>《如何阅读一本书》读书笔记-2016年版</title>
 		<link href="http://blog.robinjiang.com/posts/2016/03/2016-03-15-How-to-Read-a-Book" />
 		<updated>2016-03-15T00:00:00Z</updated>
 		<content>&lt;blockquote class="blockquote"&gt;
