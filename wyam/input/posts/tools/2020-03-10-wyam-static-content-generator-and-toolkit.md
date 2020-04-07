@@ -1,8 +1,7 @@
 ---
-layout: post
-title: 折腾一个新的静态内容生成器wyam
+title: wyam:基于dotnet的静态内容生成器
 Published: 03/10/2020
-tags: ['wyam','静态内容生成器','jekyII','hexo','github-page','blog-system','markdown'] 
+tags: ['wyam','静态内容生成器'] 
 ---
 
 
