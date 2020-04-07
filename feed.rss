@@ -5,8 +5,8 @@
 		<link>http://blog.robinjiang.com/</link>
 		<description>Live In an awesome life!</description>
 		<copyright>2020</copyright>
-		<pubDate>Tue, 07 Apr 2020 07:40:36 GMT</pubDate>
-		<lastBuildDate>Tue, 07 Apr 2020 07:40:36 GMT</lastBuildDate>
+		<pubDate>Tue, 07 Apr 2020 08:08:16 GMT</pubDate>
+		<lastBuildDate>Tue, 07 Apr 2020 08:08:16 GMT</lastBuildDate>
 		<item>
 			<title>折腾一个新的静态内容生成器wyam</title>
 			<link>http://blog.robinjiang.com/posts/2020/03/2020-03-10-wyam-static-content-generator-and-toolkit</link>
@@ -222,6 +222,32 @@ ISBN: 9787100040945&lt;/p&gt;
 &lt;li&gt;绝大部分书不如官方文档详尽，嗯，之前手贱买过一本aspnet mvc5的书，作者把几篇blog+官方源码贴出来就发表了，然后全网灌水，从此这个系列一生黑&lt;/li&gt;
 &lt;li&gt;关于贴代码的书，代码超过三成以上的书，都不建议购买，纯粹是骗钱的&lt;/li&gt;
 &lt;/ul&gt;
+</content:encoded>
+		</item>
+		<item>
+			<title>gitlab ci与Powershell 乱码</title>
+			<link>http://blog.robinjiang.com/posts/2017/08/2017-08-11-gitlab-ci-powershell-bugs</link>
+			<description>&lt;p&gt;存在多种情况下的乱码，应用级别的乱码和控制台乱码
+应用级别的乱码类似如下：&lt;/p&gt;</description>
+			<guid>http://blog.robinjiang.com/posts/2017/08/2017-08-11-gitlab-ci-powershell-bugs</guid>
+			<pubDate>Fri, 11 Aug 2017 00:00:00 GMT</pubDate>
+			<content:encoded>&lt;p&gt;存在多种情况下的乱码，应用级别的乱码和控制台乱码
+应用级别的乱码类似如下：&lt;/p&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;error MSB1009: ��Ŀ�ļ������ڡ�&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;这类需要配置应用的中文输出&lt;/p&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;修改cmd的代码页即可。
+一种方法是在cmd的属性中修改默认代码页为437，第二种是用chcp 437命令修改。
+不过这两种解决方法的副作用是msbuild的输出会变为英文。
+更好的解决方法暂时还没倒腾出来。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;第二种，控制台乱码，这个难治，而且原因千奇百怪&lt;/p&gt;
+&lt;p&gt;参考方案如下：&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://blog.csdn.net/weixin_43426860/article/details/83348284"&gt;解决windowspowershell中文显示问号及乱码问题&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://www.cnblogs.com/weihanli/p/fix-Chinese-characters-display-abnormal.html"&gt;Windows 10 powershell 中文乱码解决方案&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;如果以上两种方案都不适用与你的化，那么放大招了，gitlab-ci的宿主系统切换成windows server2016, 实测有效&lt;/p&gt;
 </content:encoded>
 		</item>
 		<item>

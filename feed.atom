@@ -4,7 +4,7 @@
 	<title>Robin Log</title>
 	<link rel="self" href="http://blog.robinjiang.com/" />
 	<rights>2020</rights>
-	<updated>2020-04-07T07:40:36Z</updated>
+	<updated>2020-04-07T08:08:16Z</updated>
 	<subtitle>Live In an awesome life!</subtitle>
 	<entry>
 		<id>http://blog.robinjiang.com/posts/2020/03/2020-03-10-wyam-static-content-generator-and-toolkit</id>
@@ -222,6 +222,32 @@ ISBN: 9787100040945&lt;/p&gt;
 </content>
 		<summary>&lt;p&gt;如何阅读一本书
 &lt;img src="http://blog.robinjiang.com/posts/asset/2016-03-15-How-to-Read-a-Book/s1670978.jpg" class="img-fluid" alt="如何阅读一本书"&gt;&lt;/p&gt;</summary>
+	</entry>
+	<entry>
+		<id>http://blog.robinjiang.com/posts/2017/08/2017-08-11-gitlab-ci-powershell-bugs</id>
+		<title>gitlab ci与Powershell 乱码</title>
+		<link href="http://blog.robinjiang.com/posts/2017/08/2017-08-11-gitlab-ci-powershell-bugs" />
+		<updated>2017-08-11T00:00:00Z</updated>
+		<content>&lt;p&gt;存在多种情况下的乱码，应用级别的乱码和控制台乱码
+应用级别的乱码类似如下：&lt;/p&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;error MSB1009: ��Ŀ�ļ������ڡ�&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;这类需要配置应用的中文输出&lt;/p&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;修改cmd的代码页即可。
+一种方法是在cmd的属性中修改默认代码页为437，第二种是用chcp 437命令修改。
+不过这两种解决方法的副作用是msbuild的输出会变为英文。
+更好的解决方法暂时还没倒腾出来。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;第二种，控制台乱码，这个难治，而且原因千奇百怪&lt;/p&gt;
+&lt;p&gt;参考方案如下：&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://blog.csdn.net/weixin_43426860/article/details/83348284"&gt;解决windowspowershell中文显示问号及乱码问题&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://www.cnblogs.com/weihanli/p/fix-Chinese-characters-display-abnormal.html"&gt;Windows 10 powershell 中文乱码解决方案&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;如果以上两种方案都不适用与你的化，那么放大招了，gitlab-ci的宿主系统切换成windows server2016, 实测有效&lt;/p&gt;
+</content>
+		<summary>&lt;p&gt;存在多种情况下的乱码，应用级别的乱码和控制台乱码
+应用级别的乱码类似如下：&lt;/p&gt;</summary>
 	</entry>
 	<entry>
 		<id>http://blog.robinjiang.com/posts/2017/06/2017-06-12-about-gelf</id>
