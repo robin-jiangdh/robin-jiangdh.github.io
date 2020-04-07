@@ -5,13 +5,19 @@
 		<link>http://blog.robinjiang.com/</link>
 		<description>Live In an awesome life!</description>
 		<copyright>2020</copyright>
-		<pubDate>Tue, 07 Apr 2020 05:18:04 GMT</pubDate>
-		<lastBuildDate>Tue, 07 Apr 2020 05:18:04 GMT</lastBuildDate>
+		<pubDate>Tue, 07 Apr 2020 05:41:49 GMT</pubDate>
+		<lastBuildDate>Tue, 07 Apr 2020 05:41:49 GMT</lastBuildDate>
 		<item>
 			<title>carbon-一个能生成漂亮的代码截图工具</title>
 			<link>http://blog.robinjiang.com/posts/2020/03/2020-03-19-carbon-codetools</link>
 			<guid>http://blog.robinjiang.com/posts/2020/03/2020-03-19-carbon-codetools</guid>
 			<pubDate>Tue, 24 Mar 2020 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title>《如何阅读一本书》读书笔记-2020年版</title>
+			<link>http://blog.robinjiang.com/posts/2020/03/2020-03-10-How-to-Read-a-Book</link>
+			<guid>http://blog.robinjiang.com/posts/2020/03/2020-03-10-How-to-Read-a-Book</guid>
+			<pubDate>Tue, 10 Mar 2020 00:00:00 GMT</pubDate>
 		</item>
 		<item>
 			<title>折腾一个新的静态内容生成器wyam</title>
@@ -119,6 +125,12 @@ Monica and I were going to go play some paintball, you in?
 			}
 &lt;/code&gt;&lt;/pre&gt;
 </content:encoded>
+		</item>
+		<item>
+			<title>《如何阅读一本书》读书笔记-2018年版</title>
+			<link>http://blog.robinjiang.com/posts/2018/08/2018-08-16-How-to-Read-a-Book</link>
+			<guid>http://blog.robinjiang.com/posts/2018/08/2018-08-16-How-to-Read-a-Book</guid>
+			<pubDate>Thu, 16 Aug 2018 00:00:00 GMT</pubDate>
 		</item>
 		<item>
 			<title>GELF日志格式漫谈</title>
@@ -235,6 +247,69 @@ OpenZipkin, OpenTracing, Instana, Datadog, Librato，以及其他更多组织的
 而 Trace 可能处于他们两的中间位置&lt;/p&gt;
 &lt;p&gt;&lt;img src="https://blog.robinjiang.com/posts/asset/2017-12-04-metrics-tracing-logging/03.png" class="img-fluid" alt="带有梯度的维恩图" /&gt;&lt;/p&gt;
 &lt;p&gt;也许，这不是最完美的方式描述这三者的管理，但我从会议现场收到的反馈来看，这个分类还是相当不错的：随着三者的关系越清晰，我们越容易建设性的讨论其他问题。如果你尝试对产品的功能进行定位，你可能也需要这张图。&lt;/p&gt;
+</content:encoded>
+		</item>
+		<item>
+			<title>《如何阅读一本书》读书笔记-2017年版</title>
+			<link>http://blog.robinjiang.com/posts/2017/02/2017-02-21-How-to-Read-a-Book</link>
+			<guid>http://blog.robinjiang.com/posts/2017/02/2017-02-21-How-to-Read-a-Book</guid>
+			<pubDate>Tue, 21 Feb 2017 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title>《如何阅读一本书》读书笔记-2016年</title>
+			<link>http://blog.robinjiang.com/posts/2016/03/2016-03-15-How-to-Read-a-Book</link>
+			<description>&lt;p&gt;如何阅读一本书
+&lt;img src="s1670978.jpg" class="img-fluid" alt="如何阅读一本书"&gt;
+如何阅读一本书作者: [美] 莫提默·J. 艾德勒 / 查尔斯·范多伦
+出版社: 商务印书馆
+原作名: How to Read a Book
+译者: 郝明义 / 朱衣
+出版年: 2004-1
+页数: 376
+定价: 38.00元
+装帧: 平装
+ISBN: 9787100040945&lt;/p&gt;</description>
+			<guid>http://blog.robinjiang.com/posts/2016/03/2016-03-15-How-to-Read-a-Book</guid>
+			<pubDate>Tue, 15 Mar 2016 00:00:00 GMT</pubDate>
+			<content:encoded>&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;如何阅读一本书
+&lt;img src="s1670978.jpg" class="img-fluid" alt="如何阅读一本书" /&gt;
+如何阅读一本书作者: [美] 莫提默·J. 艾德勒 / 查尔斯·范多伦
+出版社: 商务印书馆
+原作名: How to Read a Book
+译者: 郝明义 / 朱衣
+出版年: 2004-1
+页数: 376
+定价: 38.00元
+装帧: 平装
+ISBN: 9787100040945&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id="section"&gt;为什么读&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;提高阅读效率&lt;/li&gt;
+&lt;li&gt;从更高的层次审阅自己的阅读方式，以期获得更具实用性的阅读技巧&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="section-1"&gt;读了什么&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;阅读的四个层次：基础阅读，检视阅读，分析阅读，主题阅读&lt;/li&gt;
+&lt;li&gt;轻重缓急：对于不同的内容需要审时度势，以判定花费的时间和精力，并非所有的内容都需要一字一句的逐个分析&lt;/li&gt;
+&lt;li&gt;大部分文本阅读无需达到分析阅读的程度&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="section-2"&gt;理解了什么&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;如果是获取技能或者认知类增长的情况下，主题阅读更有效率&lt;/li&gt;
+&lt;li&gt;对于娱乐类型的阅读，建议无脑阅读&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="section-3"&gt;如何做&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;按主题的方式对过往的认知进行归类，并考虑输出成思维导图或技术图谱&lt;/li&gt;
+&lt;li&gt;放弃一部分消遣式的阅读&lt;/li&gt;
+&lt;li&gt;有必要审视自己的碎片化阅读&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="section-4"&gt;综合评价&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;就这本书而言，翻译有点糟心，考虑继续深读或理解的化，有必要准备英文版本的读&lt;/li&gt;
+&lt;/ul&gt;
 </content:encoded>
 		</item>
 	</channel>
