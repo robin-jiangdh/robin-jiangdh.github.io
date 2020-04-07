@@ -23,9 +23,11 @@ Title: 博客迁移
 - 日志收集与分析系统 
   - 轻量级日志分析工具SEQ
   - 自建ELK Stack（Elastic/Logstash/Kibana），以及为什么我不推荐自建服务
-  - Exceptionless 点评
-  - ELK的一个企业级替代品SPLUNK
+  - 基于ELK实践日志采集的若干知识点
+  - Exceptionless 是否可以胜任我的需求
+  - ELK的一个企业级替代品SPLUNK 
   - GrayLog的架构设计
+  - 评价一个日志采集适用性的标准
 - 关于日志体系的若干思考
 
 ## 应用性能相关：
