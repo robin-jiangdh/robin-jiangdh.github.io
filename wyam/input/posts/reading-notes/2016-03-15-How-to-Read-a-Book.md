@@ -4,7 +4,7 @@ Published: 03/15/2016
 tags: ['如何阅读一本书','读书笔记','阅读技巧'] 
 ---
 >如何阅读一本书
-![如何阅读一本书](s1670978.jpg)
+![如何阅读一本书](http://blog.robinjiang.com/asset/2016-03-15-How-to-Read-a-Book/s1670978.jpg)
 如何阅读一本书作者: [美] 莫提默·J. 艾德勒 / 查尔斯·范多伦
 出版社: 商务印书馆
 原作名: How to Read a Book
