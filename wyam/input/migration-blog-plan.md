@@ -4,7 +4,11 @@ Title: 博客迁移
 博客正在迁移中，迁移目录如下：
 ## 读书
 - 笔记
-  - 如何阅读一本书
+  - [x] 如何阅读一本书
+    -  《如何阅读一本书》读书笔记:关于PAPER的阅读-2020年版
+    -  《如何阅读一本书》读书笔记:关于计算机应用类书籍的阅读-2018年版
+    -  《如何阅读一本书》读书笔记：关于碎片化阅读与主题阅读 -2017年版
+    -  《如何阅读一本书》读书笔记-2016年版
 - 思考与实践
   - 阅读的目的 
   - 如何构建自己的阅读体系(主题阅读清单)
@@ -16,12 +20,12 @@ Title: 博客迁移
 ## 日志体系相关：
 
 - 日志系统概述以及参考
-- GELF日志格式漫谈 
+- [x] GELF日志格式漫谈
 - 日志抽象组件
 - 基于NLOG的日志实践
 - 另外一个日志组件Serilog
 - 日志收集与分析系统 
-  - 轻量级日志分析工具SEQ
+  - 轻量级日志分析工具Seq
   - 自建ELK Stack（Elastic/Logstash/Kibana），以及为什么我不推荐自建服务
   - 基于ELK实践日志采集的若干知识点
   - Exceptionless 是否可以胜任我的需求
@@ -32,7 +36,7 @@ Title: 博客迁移
 
 ## 应用性能相关：
 
-- [关于METRICS，TRACING和LOGGING](http://blog.robinjiang.com/posts/2017/04/2017-12-04-metrics-tracing-logging)
+- [x]  [关于METRICS，TRACING和LOGGING](http://blog.robinjiang.com/posts/2017/04/2017-12-04-metrics-tracing-logging)
 - 关于Appmetrics和Metrics.NET
 - 关于statsD+graphite+grafana的实践
 - 
