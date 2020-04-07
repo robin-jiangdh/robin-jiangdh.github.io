@@ -4,14 +4,8 @@
 	<title>Robin Log</title>
 	<link rel="self" href="http://blog.robinjiang.com/" />
 	<rights>2020</rights>
-	<updated>2020-04-07T07:24:13Z</updated>
+	<updated>2020-04-07T07:28:57Z</updated>
 	<subtitle>Live In an awesome life!</subtitle>
-	<entry>
-		<id>http://blog.robinjiang.com/posts/2020/03/2020-03-19-carbon-codetools</id>
-		<title>carbon-一个能生成漂亮的代码截图工具</title>
-		<link href="http://blog.robinjiang.com/posts/2020/03/2020-03-19-carbon-codetools" />
-		<updated>2020-03-24T00:00:00Z</updated>
-	</entry>
 	<entry>
 		<id>http://blog.robinjiang.com/posts/2020/03/2020-03-10-wyam-static-content-generator-and-toolkit</id>
 		<title>折腾一个新的静态内容生成器wyam</title>
