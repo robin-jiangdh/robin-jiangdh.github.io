@@ -4,7 +4,7 @@
 	<title>Robin Log</title>
 	<link rel="self" href="http://blog.robinjiang.com/" />
 	<rights>2020</rights>
-	<updated>2020-04-07T05:06:48Z</updated>
+	<updated>2020-04-07T05:18:04Z</updated>
 	<subtitle>Live In an awesome life!</subtitle>
 	<entry>
 		<id>http://blog.robinjiang.com/posts/2020/03/2020-03-19-carbon-codetools</id>
@@ -192,7 +192,7 @@ Monica and I were going to go play some paintball, you in?
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id="gelfserilogtemplate"&gt;GELF+Serilog+template实践&lt;/h2&gt;
-&lt;p&gt;repo在github上&lt;/p&gt;
+&lt;p&gt;repo近期会迁入github&lt;/p&gt;
 </content>
 		<summary>&lt;p&gt;Graylog扩展日志格式（GELF）是一种日志格式。&lt;/p&gt;</summary>
 	</entry>

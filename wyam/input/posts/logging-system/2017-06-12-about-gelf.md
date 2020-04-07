@@ -81,5 +81,5 @@ Graylog扩展日志格式（GELF）是一种日志格式。
 
 ## GELF+Serilog+template实践
 
- repo在github上
+ repo近期会迁入github
 
