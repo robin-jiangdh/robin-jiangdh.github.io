@@ -5,8 +5,8 @@
 		<link>http://blog.robinjiang.com/</link>
 		<description>Live In an awesome life!</description>
 		<copyright>2020</copyright>
-		<pubDate>Tue, 07 Apr 2020 08:08:16 GMT</pubDate>
-		<lastBuildDate>Tue, 07 Apr 2020 08:08:16 GMT</lastBuildDate>
+		<pubDate>Tue, 07 Apr 2020 08:42:49 GMT</pubDate>
+		<lastBuildDate>Tue, 07 Apr 2020 08:42:49 GMT</lastBuildDate>
 		<item>
 			<title>折腾一个新的静态内容生成器wyam</title>
 			<link>http://blog.robinjiang.com/posts/2020/03/2020-03-10-wyam-static-content-generator-and-toolkit</link>
@@ -177,6 +177,46 @@ Monica and I were going to go play some paintball, you in?
            client.Disconnect (true);
 			}
 &lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id="section-3"&gt;常见邮件服务提供商及端口&lt;/h2&gt;
+&lt;p&gt;【sina.com】
+POP3服务器地址:pop3.sina.com.cn（端口：110）
+SMTP服务器地址:smtp.sina.com.cn（端口：25）&lt;/p&gt;
+&lt;p&gt;【sinaVIP】&lt;/p&gt;
+&lt;p&gt;POP3服务器:pop3.vip.sina.com （端口：110）&lt;/p&gt;
+&lt;p&gt;SMTP服务器:smtp.vip.sina.com （端口：25）&lt;/p&gt;
+&lt;p&gt;【sohu.com】&lt;/p&gt;
+&lt;p&gt;POP3服务器地址:pop3.sohu.com（端口：110）
+SMTP服务器地址:smtp.sohu.com（端口：25）&lt;/p&gt;
+&lt;p&gt;【126邮箱】&lt;/p&gt;
+&lt;p&gt;POP3服务器地址:pop.126.com（端口：110）&lt;/p&gt;
+&lt;p&gt;SMTP服务器地址:smtp.126.com（端口：25）&lt;/p&gt;
+&lt;p&gt;【139邮箱】&lt;/p&gt;
+&lt;p&gt;POP3服务器地址：POP.139.com（端口：110）&lt;/p&gt;
+&lt;p&gt;SMTP服务器地址：SMTP.139.com(端口：25)&lt;/p&gt;
+&lt;p&gt;【163.com】&lt;/p&gt;
+&lt;p&gt;POP3服务器地址:pop.163.com（端口：110）
+SMTP服务器地址:smtp.163.com（端口：25）&lt;/p&gt;
+&lt;p&gt;【QQ邮箱】&lt;/p&gt;
+&lt;p&gt;POP3服务器地址：pop.qq.com（端口：110）&lt;/p&gt;
+&lt;p&gt;SMTP服务器地址：smtp.qq.com（端口：25）&lt;/p&gt;
+&lt;p&gt;【QQ企业邮箱】&lt;/p&gt;
+&lt;p&gt;POP3服务器地址：pop.exmail.qq.com （SSL启用 端口：995）&lt;/p&gt;
+&lt;p&gt;SMTP服务器地址：smtp.exmail.qq.com（SSL启用 端口：587/465）&lt;/p&gt;
+&lt;p&gt;【yahoo.com】&lt;/p&gt;
+&lt;p&gt;POP3服务器地址:pop.mail.yahoo.com（端口：995）
+SMTP服务器地址:smtp.mail.yahoo.com（端口：587)&lt;/p&gt;
+&lt;p&gt;【HotMail】&lt;/p&gt;
+&lt;p&gt;POP3服务器地址：pop3.live.com（端口：995）&lt;/p&gt;
+&lt;p&gt;SMTP服务器地址：smtp.live.com（端口：587）&lt;/p&gt;
+&lt;p&gt;【Gmail】
+POP3服务器地址:pop.gmail.com（SSL启用端口：995）
+SMTP服务器地址:smtp.gmail.com（SSL启用 端口：587）&lt;/p&gt;
+&lt;p&gt;【263.net】&lt;/p&gt;
+&lt;p&gt;POP3服务器地址:pop3.263.net（端口：110）
+SMTP服务器地址:smtp.263.net（端口：25）&lt;/p&gt;
+&lt;p&gt;【Foxmail】&lt;/p&gt;
+&lt;p&gt;POP3服务器地址:POP.foxmail.com（端口：110）&lt;/p&gt;
+&lt;p&gt;SMTP服务器地址:SMTP.foxmail.com（端口：25）&lt;/p&gt;
 </content:encoded>
 		</item>
 		<item>
