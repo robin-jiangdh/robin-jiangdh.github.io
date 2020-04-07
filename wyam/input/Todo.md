@@ -2,8 +2,18 @@ Title: 博客迁移
 ---
 
 博客正在迁移中，迁移目录如下：
+## 读书
+- 笔记
+  - 如何阅读一本书
+- 思考与实践
+  - 阅读的目的 
+  - 如何构建自己的阅读体系(主题阅读清单)
+## 随笔系列
+- 关于平庸
+- 关于幸福
+- 
 
-日志体系相关：
+## 日志体系相关：
 
 - 日志系统概述以及参考
 - GELF日志格式漫谈 
@@ -18,14 +28,14 @@ Title: 博客迁移
   - GrayLog的架构设计
 - 关于日志体系的若干思考
 
-应用性能相关：
+## 应用性能相关：
 
 - [关于METRICS，TRACING和LOGGING](http://blog.robinjiang.com/posts/2017/04/2017-12-04-metrics-tracing-logging)
 - 关于Appmetrics和Metrics.NET
 - 关于statsD+graphite+grafana的实践
 - 
 
-持续集成相关：
+## 持续集成相关：
 
 - 源码管理体系溯源
 
@@ -36,14 +46,14 @@ Title: 博客迁移
 - ci的若干概念
 - 为什么持续交付和持续部署应该同时进行
 
-开发组件相关：
+## 开发组件相关：
 
-翻译资源：
+## 翻译资源：
 
 - nginx网关译文合集
 - 
 
-软件工程实践相关：
+## 软件工程实践相关：
 
 - 最佳工程实践为什么不是最合适的工程实践
 - 三人组织和十五分组织的交付效率问题
@@ -51,11 +61,11 @@ Title: 博客迁移
 - scrum的上下文是什么
 - 完成一场基于Agilelife的生活实践
 
-开源解析：
+## 开源解析：
 
 - 深入wyam的结构分析
 
-第三方工具/软件：
+## 第三方工具/软件：
 
 - abp相关
 
@@ -73,7 +83,7 @@ Title: 博客迁移
   - 关于hangfire的storage
 - [使用MAILKIT 和MIMEKIT来发送邮件](http://blog.robinjiang.com/posts/2019/10/2017-06-10-use-mailkit-with-mimekit-to-send-email)
 
-项目实践：
+## 项目实践：
 - mycat 在生产环境二三事
 
 - kong与apigateway
@@ -86,6 +96,8 @@ Title: 博客迁移
   - 为什么说websocket是对网关的一个极大考验
   - 关于ssl和网关
   - 一个优秀网关的诞生
+
+  
 
   
 
