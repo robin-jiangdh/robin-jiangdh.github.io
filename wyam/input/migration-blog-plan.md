@@ -4,11 +4,11 @@ Title: 博客迁移
 博客正在迁移中，迁移目录如下：
 ## 读书
 - 笔记
-  - [x] 如何阅读一本书
-    -  《如何阅读一本书》读书笔记:关于PAPER的阅读-2020年版
-    -  《如何阅读一本书》读书笔记:关于计算机应用类书籍的阅读-2018年版
-    -  《如何阅读一本书》读书笔记：关于碎片化阅读与主题阅读 -2017年版
-    -  《如何阅读一本书》读书笔记-2016年版
+  - ~~如何阅读一本书~~
+    -  ~~《如何阅读一本书》读书笔记:关于PAPER的阅读-2020年版~~
+    -  ~~《如何阅读一本书》读书笔记:关于计算机应用类书籍的阅读-2018年版~~
+    -  ~~《如何阅读一本书》读书笔记：关于碎片化阅读与主题阅读 -2017年版~~
+    -  ~~《如何阅读一本书》读书笔记-2016年版~~
 - 思考与实践
   - 阅读的目的 
   - 如何构建自己的阅读体系(主题阅读清单)
@@ -20,8 +20,9 @@ Title: 博客迁移
 ## 日志体系相关：
 
 - 日志系统概述以及参考
-- [x] GELF日志格式漫谈
-- 抽象日志组件
+- ~~GELF日志格式漫谈~~
+- ~~抽象日志组件~~
+- ~~生产环境的日志实践~~
 - 基于NLOG的日志实践
 - 另外一个日志组件Serilog
 - 日志收集与分析系统 
@@ -36,7 +37,7 @@ Title: 博客迁移
 
 ## 应用性能相关：
 
-- [x]  [关于METRICS，TRACING和LOGGING](http://blog.robinjiang.com/posts/2017/04/2017-12-04-metrics-tracing-logging)
+- ~~ [关于METRICS，TRACING和LOGGING](http://blog.robinjiang.com/posts/2017/04/2017-12-04-metrics-tracing-logging)~~
 - 关于Appmetrics和Metrics.NET
 - 关于statsD+graphite+grafana的实践
 - 
@@ -46,7 +47,7 @@ Title: 博客迁移
 - 源码管理体系溯源
 
 - gitlab ci 入坑
-- gitlab ci与Powershell 乱码
+- ~~gitlab ci与Powershell 乱码~~
 - docker上gitlab ci实例
 - Jekins为什么不能满足我的需求
 - ci的若干概念
@@ -75,7 +76,7 @@ Title: 博客迁移
 
 - abp相关
 
-  - [ABP 入门二三事](http://blog.robinjiang.com/posts/2018/04/ABP-Intro)
+  - ABP 入门二三事
   - ABP 的docker化
   - ABP 为什么这么设计
   - ABP 扫盲全流程
@@ -87,7 +88,7 @@ Title: 博客迁移
   - 关于hangfire+redis实践的若干问题
   - 为什么不建议使用mysql作为hangfire的storage
   - 关于hangfire的storage
-- [使用MAILKIT 和MIMEKIT来发送邮件](http://blog.robinjiang.com/posts/2019/10/2017-06-10-use-mailkit-with-mimekit-to-send-email)
+- ~~使用MAILKIT 和MIMEKIT来发送邮件~~
 
 ## 项目实践：
 - mycat 在生产环境二三事
