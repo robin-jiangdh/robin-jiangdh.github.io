@@ -5,10 +5,10 @@
 		<link>http://blog.robinjiang.com/</link>
 		<description>Live In an awesome life!</description>
 		<copyright>2020</copyright>
-		<pubDate>Tue, 07 Apr 2020 08:42:49 GMT</pubDate>
-		<lastBuildDate>Tue, 07 Apr 2020 08:42:49 GMT</lastBuildDate>
+		<pubDate>Wed, 08 Apr 2020 02:31:19 GMT</pubDate>
+		<lastBuildDate>Wed, 08 Apr 2020 02:31:19 GMT</lastBuildDate>
 		<item>
-			<title>折腾一个新的静态内容生成器wyam</title>
+			<title>wyam:基于dotnet的静态内容生成器</title>
 			<link>http://blog.robinjiang.com/posts/2020/03/2020-03-10-wyam-static-content-generator-and-toolkit</link>
 			<description>&lt;p&gt;vps到期了，然后疫情原因，一直没时间去管，去续费的时候才发现之前写的东西全丢了，现在只能挨个找之前的备份，痛定思痛，准备找个大概率不会挂机的服务商了，然后就盯上了github-page,用于托管点博客是够了，而且咱这种也不靠博客盈利的，纯粹就是找个垃圾桶写文章而已，够了够了&lt;/p&gt;</description>
 			<guid>http://blog.robinjiang.com/posts/2020/03/2020-03-10-wyam-static-content-generator-and-toolkit</guid>
@@ -220,6 +220,22 @@ SMTP服务器地址:smtp.263.net（端口：25）&lt;/p&gt;
 </content:encoded>
 		</item>
 		<item>
+			<title>生成环境的若干日志实践</title>
+			<link>http://blog.robinjiang.com/posts/2018/12/2018-12-20-how-to-logging-in-production-enviroment</link>
+			<guid>http://blog.robinjiang.com/posts/2018/12/2018-12-20-how-to-logging-in-production-enviroment</guid>
+			<pubDate>Thu, 20 Dec 2018 00:00:00 GMT</pubDate>
+			<content:encoded>&lt;ul&gt;
+&lt;li&gt;只记录你需要的日志数据；&lt;/li&gt;
+&lt;li&gt;关于日志数据数据中的敏感信息记录问题，账户名可以保留，但银行卡/密码等敏感信息，必须要在源头过滤掉，严禁在日志生成后使用文本处理的方式处理这些字段。&lt;strong&gt;推荐的方式是使用日志模板+关键字过滤的方式来在开发阶段就将这些不规范的日志暴露出来&lt;/strong&gt;。&lt;/li&gt;
+&lt;li&gt;生产环境的日志应该需要包含你的业务细节，而不是流水线日志。如果你的开发框架支持AOP拦截日志的话，先确定你知道如何在生产环境中关闭这些日志，大部分情况下，AOP日志有且仅用于开发环境的debug，生产环境如果用这种方式记录日志的话，那么大部分业务日志都会被这类日志冲垮；&lt;/li&gt;
+&lt;li&gt;除了常见的日志级别外，日志系统需要支持简单模式和完整模式的日志；&lt;/li&gt;
+&lt;li&gt;日志要尽可能做到不干扰业务正常允许，但允许例外，特定情况下，日志可能是你最后的灾备恢复手段。&lt;/li&gt;
+&lt;li&gt;记录日志是一个高IO的操作，条件允许的情况下，不要干扰主业务的io操作。&lt;/li&gt;
+&lt;li&gt;善用日志模板，提高日志可读性以及降低日志大小&lt;/li&gt;
+&lt;/ul&gt;
+</content:encoded>
+		</item>
+		<item>
 			<title>《如何阅读一本书》读书笔记:关于计算机应用类书籍的阅读-2018年版</title>
 			<link>http://blog.robinjiang.com/posts/2018/08/2018-08-16-How-to-Read-a-Book</link>
 			<description>&lt;p&gt;如何阅读一本书
@@ -365,6 +381,38 @@ ISBN: 9787100040945&lt;/p&gt;
 &lt;/ul&gt;
 &lt;h2 id="gelfserilogtemplate"&gt;GELF+Serilog+template实践&lt;/h2&gt;
 &lt;p&gt;repo近期会迁入github&lt;/p&gt;
+</content:encoded>
+		</item>
+		<item>
+			<title>抽象日志组件</title>
+			<link>http://blog.robinjiang.com/posts/2017/05/2017-05-10-about-liblog</link>
+			<description>&lt;p&gt;本篇是基于&lt;a href="https://github.com/damianh/LibLog"&gt;Liblog&lt;/a&gt; 的结构分析，同时我提倡在非netcore项目中使用此类库，正常情况下只需要在基础组件库中生成单个文件即可，同时一次安装，终身有效。&lt;/p&gt;</description>
+			<guid>http://blog.robinjiang.com/posts/2017/05/2017-05-10-about-liblog</guid>
+			<pubDate>Wed, 10 May 2017 00:00:00 GMT</pubDate>
+			<content:encoded>&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;本篇是基于&lt;a href="https://github.com/damianh/LibLog"&gt;Liblog&lt;/a&gt; 的结构分析，同时我提倡在非netcore项目中使用此类库，正常情况下只需要在基础组件库中生成单个文件即可，同时一次安装，终身有效。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;日志核心功能以接口的方式进行定义，简单有效：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt; interface ILog{
+    bool Log(LogLevel logLevel, Func&amp;lt;string&amp;gt; messageFunc, Exception exception = null,
+            params object[] formatParameters);
+ }
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Liblog的核心是使用提供者模式(Provider Pattern)来实现对各种具体日志实现支持的。调用方面通过 LogProvider.GetCurrentClassLogger() 或者 LogProvider.For() 来获取Ilog的实例。其中GetCurrentClassLogger() 适用与所有静态类或者扩展方法，For()主要用于可实例化的内部。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;private static readonly ILog logger = LogProvider.GetCurrentClassLogger()
+ 
+private static readonly ILog Logger = LogProvider.For()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;h3 id="section"&gt;两个小问题&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;日志缓存策略，即生成的日志在本地存在buffer中，后续一次性提交，或者出现了整个日志内容过大，导致无法一次性提交的情况；那么Logproverider.For() 获取的日志实例会出现无法释放的问题，最后只能通过强制GC来释放。解决方案，尽可能控制你的日志文本大小。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;LogProvider.GetCurrentClassLogger()并非是一个线程安全方法，如果需要在Parallel和Task中使用的话，一定要在外部获取实例后传递进去；&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;关于多线程下的日志实践，这个问题比较头大，会单独开一章来描述我的方案&lt;/p&gt;
+&lt;/blockquote&gt;
 </content:encoded>
 		</item>
 		<item>

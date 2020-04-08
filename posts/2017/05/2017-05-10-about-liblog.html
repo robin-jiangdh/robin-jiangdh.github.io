@@ -8,7 +8,7 @@
 -->
 <html>
 	<head>
-		<title>Robin Log - All Tags</title>
+		<title>Robin Log - &#x62BD;&#x8C61;&#x65E5;&#x5FD7;&#x7EC4;&#x4EF6;</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<!--[if lte IE 8]><script src="/assets/js/ie/html5shiv.js"></script><![endif]-->
@@ -48,37 +48,50 @@
 					</div>
 				</nav>
 
+
+    
 <section id="banner">
   <div class="inner">
-      <h2>All Tags</h2>
+    <h2>&#x62BD;&#x8C61;&#x65E5;&#x5FD7;&#x7EC4;&#x4EF6;</h2>
+            <p><em>Published on 10 May 2017</em></p>
+                    <a role="button" href="/tags/LibLog.html" class="button small">LibLog</a>
+                <a role="button" href="/tags/Logging.html" class="button small">Logging</a>
+                <a role="button" href="/tags/LoggingSystem.html" class="button small">LoggingSystem</a>
   </div>
-</section>  
+</section>
+
 				<!-- Main -->
 				<section id="wrapper">
 					<section class="wrapper style2">
 						<div class="inner">
-							    <a role="button" href="/tags/&#x9605;&#x8BFB;&#x6280;&#x5DE7;.html" class="button small">&#x9605;&#x8BFB;&#x6280;&#x5DE7; (4)</a>
-    <a role="button" href="/tags/&#x5982;&#x4F55;&#x9605;&#x8BFB;&#x4E00;&#x672C;&#x4E66;.html" class="button small">&#x5982;&#x4F55;&#x9605;&#x8BFB;&#x4E00;&#x672C;&#x4E66; (4)</a>
-    <a role="button" href="/tags/&#x8BFB;&#x4E66;&#x7B14;&#x8BB0;.html" class="button small">&#x8BFB;&#x4E66;&#x7B14;&#x8BB0; (4)</a>
-    <a role="button" href="/tags/Logging.html" class="button small">Logging (3)</a>
-    <a role="button" href="/tags/LoggingSystem.html" class="button small">LoggingSystem (3)</a>
-    <a role="button" href="/tags/LibLog.html" class="button small">LibLog (2)</a>
-    <a role="button" href="/tags/gitlab-ci.html" class="button small">gitlab-ci (1)</a>
-    <a role="button" href="/tags/&#x9759;&#x6001;&#x5185;&#x5BB9;&#x751F;&#x6210;&#x5668;.html" class="button small">&#x9759;&#x6001;&#x5185;&#x5BB9;&#x751F;&#x6210;&#x5668; (1)</a>
-    <a role="button" href="/tags/&#x5DE5;&#x5177;&#x5E93;.html" class="button small">&#x5DE5;&#x5177;&#x5E93; (1)</a>
-    <a role="button" href="/tags/mailkit .html" class="button small">mailkit  (1)</a>
-    <a role="button" href="/tags/msbuild.html" class="button small">msbuild (1)</a>
-    <a role="button" href="/tags/GrayLog.html" class="button small">GrayLog (1)</a>
-    <a role="button" href="/tags/Metrics.html" class="button small">Metrics (1)</a>
-    <a role="button" href="/tags/logging.html" class="button small">logging (1)</a>
-    <a role="button" href="/tags/mimekit.html" class="button small">mimekit (1)</a>
-    <a role="button" href="/tags/GELF .html" class="button small">GELF  (1)</a>
-    <a role="button" href="/tags/Tracing.html" class="button small">Tracing (1)</a>
-    <a role="button" href="/tags/Pop3.html" class="button small">Pop3 (1)</a>
-    <a role="button" href="/tags/wyam.html" class="button small">wyam (1)</a>
-    <a role="button" href="/tags/powershell.html" class="button small">powershell (1)</a>
-    <a role="button" href="/tags/smtp.html" class="button small">smtp (1)</a>
-    <a role="button" href="/tags/loggingsystem.html" class="button small">loggingsystem (1)</a>
+							
+
+<blockquote class="blockquote">
+<p>本篇是基于<a href="https://github.com/damianh/LibLog">Liblog</a> 的结构分析，同时我提倡在非netcore项目中使用此类库，正常情况下只需要在基础组件库中生成单个文件即可，同时一次安装，终身有效。</p>
+</blockquote>
+<p>日志核心功能以接口的方式进行定义，简单有效：</p>
+<pre><code> interface ILog{
+    bool Log(LogLevel logLevel, Func&lt;string&gt; messageFunc, Exception exception = null,
+            params object[] formatParameters);
+ }
+</code></pre>
+<p>Liblog的核心是使用提供者模式(Provider Pattern)来实现对各种具体日志实现支持的。调用方面通过 LogProvider.GetCurrentClassLogger() 或者 LogProvider.For() 来获取Ilog的实例。其中GetCurrentClassLogger() 适用与所有静态类或者扩展方法，For()主要用于可实例化的内部。</p>
+<pre><code>private static readonly ILog logger = LogProvider.GetCurrentClassLogger()
+ 
+private static readonly ILog Logger = LogProvider.For()
+</code></pre>
+<blockquote class="blockquote">
+<h3 id="section">两个小问题</h3>
+<ul>
+<li><p>日志缓存策略，即生成的日志在本地存在buffer中，后续一次性提交，或者出现了整个日志内容过大，导致无法一次性提交的情况；那么Logproverider.For() 获取的日志实例会出现无法释放的问题，最后只能通过强制GC来释放。解决方案，尽可能控制你的日志文本大小。</p>
+</li>
+<li><p>LogProvider.GetCurrentClassLogger()并非是一个线程安全方法，如果需要在Parallel和Task中使用的话，一定要在外部获取实例后传递进去；</p>
+</li>
+</ul>
+<p>关于多线程下的日志实践，这个问题比较头大，会单独开一章来描述我的方案</p>
+</blockquote>
+
+
 
 						</div>
 					</section>

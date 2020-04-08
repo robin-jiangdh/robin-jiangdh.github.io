@@ -8,7 +8,7 @@
 -->
 <html>
 	<head>
-		<title>Robin Log - All Tags</title>
+		<title>Robin Log - &#x751F;&#x6210;&#x73AF;&#x5883;&#x7684;&#x82E5;&#x5E72;&#x65E5;&#x5FD7;&#x5B9E;&#x8DF5;</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<!--[if lte IE 8]><script src="/assets/js/ie/html5shiv.js"></script><![endif]-->
@@ -48,37 +48,35 @@
 					</div>
 				</nav>
 
+
+    
 <section id="banner">
   <div class="inner">
-      <h2>All Tags</h2>
+    <h2>&#x751F;&#x6210;&#x73AF;&#x5883;&#x7684;&#x82E5;&#x5E72;&#x65E5;&#x5FD7;&#x5B9E;&#x8DF5;</h2>
+            <p><em>Published on 20 December 2018</em></p>
+                    <a role="button" href="/tags/LibLog.html" class="button small">LibLog</a>
+                <a role="button" href="/tags/Logging.html" class="button small">Logging</a>
+                <a role="button" href="/tags/LoggingSystem.html" class="button small">LoggingSystem</a>
   </div>
-</section>  
+</section>
+
 				<!-- Main -->
 				<section id="wrapper">
 					<section class="wrapper style2">
 						<div class="inner">
-							    <a role="button" href="/tags/&#x9605;&#x8BFB;&#x6280;&#x5DE7;.html" class="button small">&#x9605;&#x8BFB;&#x6280;&#x5DE7; (4)</a>
-    <a role="button" href="/tags/&#x5982;&#x4F55;&#x9605;&#x8BFB;&#x4E00;&#x672C;&#x4E66;.html" class="button small">&#x5982;&#x4F55;&#x9605;&#x8BFB;&#x4E00;&#x672C;&#x4E66; (4)</a>
-    <a role="button" href="/tags/&#x8BFB;&#x4E66;&#x7B14;&#x8BB0;.html" class="button small">&#x8BFB;&#x4E66;&#x7B14;&#x8BB0; (4)</a>
-    <a role="button" href="/tags/Logging.html" class="button small">Logging (3)</a>
-    <a role="button" href="/tags/LoggingSystem.html" class="button small">LoggingSystem (3)</a>
-    <a role="button" href="/tags/LibLog.html" class="button small">LibLog (2)</a>
-    <a role="button" href="/tags/gitlab-ci.html" class="button small">gitlab-ci (1)</a>
-    <a role="button" href="/tags/&#x9759;&#x6001;&#x5185;&#x5BB9;&#x751F;&#x6210;&#x5668;.html" class="button small">&#x9759;&#x6001;&#x5185;&#x5BB9;&#x751F;&#x6210;&#x5668; (1)</a>
-    <a role="button" href="/tags/&#x5DE5;&#x5177;&#x5E93;.html" class="button small">&#x5DE5;&#x5177;&#x5E93; (1)</a>
-    <a role="button" href="/tags/mailkit .html" class="button small">mailkit  (1)</a>
-    <a role="button" href="/tags/msbuild.html" class="button small">msbuild (1)</a>
-    <a role="button" href="/tags/GrayLog.html" class="button small">GrayLog (1)</a>
-    <a role="button" href="/tags/Metrics.html" class="button small">Metrics (1)</a>
-    <a role="button" href="/tags/logging.html" class="button small">logging (1)</a>
-    <a role="button" href="/tags/mimekit.html" class="button small">mimekit (1)</a>
-    <a role="button" href="/tags/GELF .html" class="button small">GELF  (1)</a>
-    <a role="button" href="/tags/Tracing.html" class="button small">Tracing (1)</a>
-    <a role="button" href="/tags/Pop3.html" class="button small">Pop3 (1)</a>
-    <a role="button" href="/tags/wyam.html" class="button small">wyam (1)</a>
-    <a role="button" href="/tags/powershell.html" class="button small">powershell (1)</a>
-    <a role="button" href="/tags/smtp.html" class="button small">smtp (1)</a>
-    <a role="button" href="/tags/loggingsystem.html" class="button small">loggingsystem (1)</a>
+							
+
+<ul>
+<li>只记录你需要的日志数据；</li>
+<li>关于日志数据数据中的敏感信息记录问题，账户名可以保留，但银行卡/密码等敏感信息，必须要在源头过滤掉，严禁在日志生成后使用文本处理的方式处理这些字段。<strong>推荐的方式是使用日志模板+关键字过滤的方式来在开发阶段就将这些不规范的日志暴露出来</strong>。</li>
+<li>生产环境的日志应该需要包含你的业务细节，而不是流水线日志。如果你的开发框架支持AOP拦截日志的话，先确定你知道如何在生产环境中关闭这些日志，大部分情况下，AOP日志有且仅用于开发环境的debug，生产环境如果用这种方式记录日志的话，那么大部分业务日志都会被这类日志冲垮；</li>
+<li>除了常见的日志级别外，日志系统需要支持简单模式和完整模式的日志；</li>
+<li>日志要尽可能做到不干扰业务正常允许，但允许例外，特定情况下，日志可能是你最后的灾备恢复手段。</li>
+<li>记录日志是一个高IO的操作，条件允许的情况下，不要干扰主业务的io操作。</li>
+<li>善用日志模板，提高日志可读性以及降低日志大小</li>
+</ul>
+
+
 
 						</div>
 					</section>
