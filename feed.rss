@@ -1,12 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <rss xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0">
 	<channel>
-		<title>Robin Log</title>
+		<title>知行志</title>
 		<link>http://blog.robinjiang.com/</link>
-		<description>Live In an awesome life!</description>
+		<description>知行合一!</description>
 		<copyright>2020</copyright>
-		<pubDate>Wed, 08 Apr 2020 02:38:02 GMT</pubDate>
-		<lastBuildDate>Wed, 08 Apr 2020 02:38:02 GMT</lastBuildDate>
+		<pubDate>Fri, 10 Apr 2020 09:08:46 GMT</pubDate>
+		<lastBuildDate>Fri, 10 Apr 2020 09:08:46 GMT</lastBuildDate>
+		<item>
+			<title>关于静态内容生成器和托管环境</title>
+			<link>http://blog.robinjiang.com/posts/2020/03/2020-01-10-about-static-content-generator</link>
+			<guid>http://blog.robinjiang.com/posts/2020/03/2020-01-10-about-static-content-generator</guid>
+			<pubDate>Tue, 10 Mar 2020 00:00:00 GMT</pubDate>
+			<content:encoded>&lt;h2 id="section"&gt;如何选用适用的静态内容生成器&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</content:encoded>
+		</item>
 		<item>
 			<title>wyam:基于dotnet的静态内容生成器</title>
 			<link>http://blog.robinjiang.com/posts/2020/03/2020-03-10-wyam-static-content-generator-and-toolkit</link>
@@ -546,6 +557,240 @@ ISBN: 9787100040945&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;就这本书而言，翻译有点糟心，考虑继续深读或理解的化，有必要准备英文版本的读&lt;/li&gt;
 &lt;/ul&gt;
+</content:encoded>
+		</item>
+		<item>
+			<title>MySQL索引原理</title>
+			<link>http://blog.robinjiang.com/posts/2016/01/2016-01-15-mysql-index</link>
+			<description>&lt;p&gt;我们可以在创建上述索引的时候，为其指定索引类型，分两类：&lt;/p&gt;</description>
+			<guid>http://blog.robinjiang.com/posts/2016/01/2016-01-15-mysql-index</guid>
+			<pubDate>Wed, 13 Jan 2016 00:00:00 GMT</pubDate>
+			<content:encoded>&lt;ul&gt;
+&lt;li&gt;基本概念
+&lt;ul&gt;
+&lt;li&gt;索引的功能就是加速查找&lt;/li&gt;
+&lt;li&gt;mysql中的primary key，unique，联合唯一也都是索引，这些索引除了加速查找以外，还有约束的功能&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;常用索引
+&lt;ul&gt;
+&lt;li&gt;普通索引INDEX：加速查找&lt;/li&gt;
+&lt;li&gt;唯一索引：
+&lt;ul&gt;
+&lt;li&gt;主键索引PRIMARY KEY：加速查找+约束（不为空、不能重复）&lt;/li&gt;
+&lt;li&gt;唯一索引UNIQUE:加速查找+约束（不能重复）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;联合索引：
+&lt;ul&gt;
+&lt;li&gt;PRIMARY KEY(id,name):联合主键索引&lt;/li&gt;
+&lt;li&gt;UNIQUE(id,name):联合唯一索引&lt;/li&gt;
+&lt;li&gt;INDEX(id,name):联合普通索引&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;索引的两大类型hash与btree
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;我们可以在创建上述索引的时候，为其指定索引类型，分两类：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;hash类型的索引：查询单条快，范围查询慢&lt;/li&gt;
+&lt;li&gt;btree类型的索引：b+树，层数越多，数据量指数级增长（我们就用它，因为innodb默认支持它）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;不同的存储引擎支持的索引类型也不一样：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;InnoDB 支持事务，支持行级别锁定，支持 B-tree、Full-text 等索引，不支持 Hash 索引；&lt;/li&gt;
+&lt;li&gt;MyISAM 不支持事务，支持表级别锁定，支持 B-tree、Full-text 等索引，不支持 Hash 索引；&lt;/li&gt;
+&lt;li&gt;Memory 不支持事务，支持表级别锁定，支持 B-tree、Hash 等索引，不支持 Full-text 索引；&lt;/li&gt;
+&lt;li&gt;NDB 支持事务，支持行级别锁定，支持 Hash 索引，不支持 B-tree、Full-text 等索引；&lt;/li&gt;
+&lt;li&gt;Archive 不支持事务，支持表级别锁定，不支持 B-tree、Hash、Full-text 等索引；&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+</content:encoded>
+		</item>
+		<item>
+			<title>索引优化原则</title>
+			<link>http://blog.robinjiang.com/posts/2016/01/2018-04-11-mysql-index-optimization</link>
+			<description>&lt;p&gt;联合索引，mysql会从做向右匹配直到遇到范围查询(&amp;gt;、&amp;lt;、between、like)就停止匹配，比如a = 1 and b = 2 and c &amp;gt; 3 and d = 4 如果建立(a,b,c,d)顺序的索引，d是用不到索引的，如果建立(a,b,d,c)的索引则都可以用到，a,b,d的顺序可以任意调整&lt;/p&gt;</description>
+			<guid>http://blog.robinjiang.com/posts/2016/01/2018-04-11-mysql-index-optimization</guid>
+			<pubDate>Wed, 13 Jan 2016 00:00:00 GMT</pubDate>
+			<content:encoded>&lt;ul&gt;
+&lt;li&gt;最左前缀匹配原则&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;联合索引，mysql会从做向右匹配直到遇到范围查询(&amp;gt;、&amp;lt;、between、like)就停止匹配，比如a = 1 and b = 2 and c &amp;gt; 3 and d = 4 如果建立(a,b,c,d)顺序的索引，d是用不到索引的，如果建立(a,b,d,c)的索引则都可以用到，a,b,d的顺序可以任意调整&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;=和in可以乱序，比如a = 1 and b = 2 and c = 3 建立(a,b,c)索引可以任意顺序，mysql的查询优化器会帮你优化成索引可以识别的形式&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;索引列不能参与计算，保持列“干净”，比如from_unixtime(create_time) = ’2014-05-29’就不能使用到索引，原因很简单，b+树中存的都是数据表中的字段值，但进行检索时，需要把所有元素都应用函数才能比较，显然成本太大。所以语句应该写成create_time = unix_timestamp(’2014-05-29’)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;使用索引时，索引字段最好小而且唯一，避免select * 的情况&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;不冗余原则&lt;/strong&gt;：尽量的扩展索引，不要新建索引。比如表中已经有a的索引，现在要加(a,b)的索引，那么只需要修改原来的索引即可，建立不必要索引会增加MySQL空间。&lt;strong&gt;基于刚才的最左匹配原则，尽量在原有基础上扩展索引，不要新增索引。 能用单索引，不用联合索引；能用窄索引，不用宽索引；能复用索引，不新建索引&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;如果确定有多少条数据，使用 limit 限制一下，MySQL在查找到对应条数的数据的时候，会停止继续查找&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;利用查询缓存，很多时候MySQL会对查询结果进行cache，但是对应“动态”的数据会不cache，例如：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;无法使用cache
+1 SELECT username FROM user WHERE signup_date &amp;gt;= CURDATE() 
+可以cache
+2 SELECT username FROM user WHERE signup_date &amp;gt;= '2017-05-06' 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;当使用了MySQL的一写函数之后，MySQL无法确定结果是易变的，所以不会cache，还有now(),rand()也一样不开启cache&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;join 语法，尽量将小的表放在前面，在需要on的字段上，数据类型保持一致，并设置对应的索引，否则MySQL无法使用索引来join查询&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;在大表上做大量更新时，如果会锁全表，则需要拆分执行，避免长时间锁住表，导致其他请求积累太多（InnoDB 支持行锁，但前提是Where子句需要建立索引，没有索引也一样是锁全表）&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code&gt;  while (1) {
+      //每次只做1000条
+     mysql_query(&amp;quot;DELETE FROM logs WHERE log_date &amp;lt;= '2009-11-01' LIMIT 1000&amp;quot;);
+     if (mysql_affected_rows() == 0) {
+          // 没得可删了，退出！
+          break;
+      }
+      // 每次都要休息一会儿
+      usleep(50000);
+  }
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;最大选择性原则
+选择区分度高列做索引 什么是区分度高的字段呢？ 一般两种情况不建议建索引： 1、一两千条甚至几百条，没必要建索引，让查询做全表扫描就好了。 因为不是你建了就一定会走索引，执行计划会选择一个最优的方式，msql辅助索引的叶子节点并不直接存储实际数据，只是主建ID，再通过主键索引二次查找。这么一来全表可能很有可能效率更高。 2、索引选择性较低的情况。 所谓选择性（Selectivity），是指不重复的索引值（也叫基数，Cardinality）与表记录数（#T）的比值。&lt;/li&gt;
+&lt;/ul&gt;
+</content:encoded>
+		</item>
+		<item>
+			<title>索引原理</title>
+			<link>http://blog.robinjiang.com/posts/2016/01/2016-01-13-about-index</link>
+			<description>&lt;p&gt;对于通用系统而言，大部分数据读操作比例远高于写入操作，针对查询进行优化的时候，优先需要考虑索引优化。&lt;/p&gt;</description>
+			<guid>http://blog.robinjiang.com/posts/2016/01/2016-01-13-about-index</guid>
+			<pubDate>Wed, 13 Jan 2016 00:00:00 GMT</pubDate>
+			<content:encoded>&lt;h1 id="section"&gt;简介&lt;/h1&gt;
+&lt;h2 id="section-1"&gt;为什么要有索引？&lt;/h2&gt;
+&lt;p&gt;对于通用系统而言，大部分数据读操作比例远高于写入操作，针对查询进行优化的时候，优先需要考虑索引优化。&lt;/p&gt;
+&lt;h2 id="section-2"&gt;什么是索引？&lt;/h2&gt;
+&lt;p&gt;索引在MySQL中也叫是一种“键”，是存储引擎用于快速找到记录的一种&lt;strong&gt;数据结构&lt;/strong&gt;。索引对于良好的性能非常关键，尤其是当表中的数据量越来越大时，索引对于性能的影响愈发重要。
+索引优化应该是对查询性能优化最有效的手段了。&lt;/p&gt;
+&lt;h2 id="section-3"&gt;常见误区&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;索引是不是越多越好？X&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;ul&gt;
+&lt;li&gt;索引会增加数据库服务器写入操作的成本（INNODB对这个 做了一个优化：插入缓存 将多次插入合并成一次插入）&lt;/li&gt;
+&lt;li&gt;太多的索引会影响mysql查询优化器的选择时间（影响查询效率）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;索引的过度设计问题&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;ul&gt;
+&lt;li&gt;索引应该属于专事专办，大部分情况下是&amp;quot;&lt;strong&gt;私人定制&lt;/strong&gt;&amp;quot;款，针对特定sql的索引优化未必适用于其他sql，针对特定业务的索引优化未必适合其他业务；&lt;/li&gt;
+&lt;li&gt;** 索引不是万能的，使用索引的初衷是解决查询问题，如果存在其他方案解决的话，应该优先考虑方案的可用性，而不是一定要把问题限制在db内解决**&lt;/li&gt;
+&lt;li&gt;索引的适用性问题，blob,img,text这些数据类型不适合用来做索引；&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;h1 id="section-4"&gt;索引原理&lt;/h1&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;索引是一种利用某种规则的数据结构与实际数据的关系加快数据查找的功能；
+索引数据节点中有着实际文件的位置，因为索引是根据特定的规则和算法构建的,在查找的时候遵循索引的规则可以快速查找到对应数据的节点，从而达到快速查找数据的效果；其实宏观来说索引其实是一种概念而不是具体的某项技术，只是我们在某个技术中运用得比较广泛和鲜明（比如说数据库）渐渐的有了特定领域的标签，其实在生活中索引的使用无处不在，比如说：书本里的目录；读书时的座位号，考试编号都有类似索引的功能;
+总结来所有通过某规则数据结构和实际目标关联，根据特定规则算法快速寻址的功能都可以称之为索引；&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;索引通过特定的数据结构来实现快速数据查找。&lt;/p&gt;
+&lt;h2 id="section-5"&gt;索引的数据结构&lt;/h2&gt;
+&lt;h3 id="btree"&gt;BTree&lt;/h3&gt;
+&lt;p&gt;可以被用在=,&amp;gt;,&amp;gt;=,&amp;lt;,&amp;lt;=和between这些比较操作符上，而且还可以用于like操作符，只要它的查询条件是一个不以通配符开头的常量&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;B-Tree&lt;/li&gt;
+&lt;li&gt;B+Tree&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="hash"&gt;Hash&lt;/h3&gt;
+&lt;p&gt;Hash索引只能用于对等比较，例如=,&amp;lt;=&amp;gt;（相当于=）操作符。由于是一次定位数据，不像BTree索引需要从根节点到枝节点，最后才能访问到页节点这样多次IO访问，所以检索效率远高于BTree索引。&lt;/p&gt;
+&lt;h4 id="section-6"&gt;弊端&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Hash索引仅仅能满足“=”,“IN”,“&amp;lt;=&amp;gt;”查询，不能使用范围查询。&lt;/li&gt;
+&lt;li&gt;联合索引中，Hash索引不能利用部分索引键查询。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;对于联合索引中的多个列，Hash是要么全部使用，要么全部不使用，并不支持BTree支持的联合索引的最优前缀，也就是联合索引的前面一个或几个索引键进行查询时，Hash索引无法被利用。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;Hash索引无法避免数据的排序操作&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;由于Hash索引中存放的是经过Hash计算之后的Hash值，而且Hash值的大小关系并不一定和Hash运算前的键值完全一样，所以数据库无法利用索引的数据来避免任何排序运算。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;Hash索引任何时候都不能避免表扫描&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Hash索引是将索引键通过Hash运算之后，将Hash运算结果的Hash值和所对应的行指针信息存放于一个Hash表中，由于不同索引键存在相同Hash值，所以即使满足某个Hash键值的数据的记录条数，也无法从Hash索引中直接完成查询，还是要通过访问表中的实际数据进行比较，并得到相应的结果。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;Hash索引遇到大量Hash值相等的情况后性能并不一定会比BTree高&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;对于选择性比较低的索引键，如果创建Hash索引，那么将会存在大量记录指针信息存于同一个Hash值相关联。这样要定位某一条记录时就会非常麻烦，会浪费多次表数据访问，而造成整体性能底下。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id="hash-1"&gt;关于hash索引&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;hash索引查找数据基本上能一次定位数据，当然有大量碰撞的话性能也会下降。而btree索引就得在节点上挨着查找了，很明显在数据精确查找方面hash索引的效率是要高于btree的；&lt;/li&gt;
+&lt;li&gt;那么不精确查找呢，也很明显，因为hash算法是基于等值计算的，所以对于“like”等范围查找hash索引无效，不支持；&lt;/li&gt;
+&lt;li&gt;对于btree支持的联合索引的最优前缀，hash也是无法支持的，联合索引中的字段要么全用要么全不用。&lt;/li&gt;
+&lt;li&gt;hash不支持索引排序，索引值和计算出来的hash值大小并不一定一致。&lt;/li&gt;
+&lt;/ol&gt;
+</content:encoded>
+		</item>
+		<item>
+			<title>MySQL 执行计划</title>
+			<link>http://blog.robinjiang.com/posts/2016/01/2017-01-11-mysql-explain-or-desc</link>
+			<description>&lt;p&gt;一直在使用Explain，今天被扫盲，专业名词叫执行计划~，野生码农误国啊~&lt;/p&gt;</description>
+			<guid>http://blog.robinjiang.com/posts/2016/01/2017-01-11-mysql-explain-or-desc</guid>
+			<pubDate>Wed, 13 Jan 2016 00:00:00 GMT</pubDate>
+			<content:encoded>&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;一直在使用Explain，今天被扫盲，专业名词叫执行计划~，野生码农误国啊~&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://dev.mysql.com/doc/refman/5.7/en/execution-plan-information.html"&gt;官方文档地址&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;MySQL提供&lt;a href="https://dev.mysql.com/doc/refman/5.7/en/execution-plan-information.html"&gt;&lt;strong&gt;explain/desc&lt;/strong&gt;&lt;/a&gt;命令输出执行计划，我们通过执行计划优化SQL语句&lt;/p&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;根据表，列，索引的详细信息以及&lt;code&gt;WHERE&lt;/code&gt;子句中的条件，MySQL优化器考虑了许多技术来有效执行SQL查询中涉及的查找。无需读取所有行即可执行对巨大表的查询；可以执行涉及多个表的联接，而无需比较行的每个组合。优化器选择执行最有效查询的一组操作称为“ 查询执行计划 ”，也称为 &lt;a href="https://dev.mysql.com/doc/refman/5.7/en/explain.html"&gt;&lt;code&gt;EXPLAIN&lt;/code&gt;&lt;/a&gt;计划。您的目标是认识到 &lt;a href="https://dev.mysql.com/doc/refman/5.7/en/explain.html"&gt;&lt;code&gt;EXPLAIN&lt;/code&gt;&lt;/a&gt; 表示查询优化的计划，如果发现一些低效的操作，则可以学习SQL语法和索引技术来改进计划。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id="explain"&gt;使用Explain优化查询&lt;/h1&gt;
+&lt;p&gt;该&lt;a href="https://dev.mysql.com/doc/refman/5.7/en/explain.html"&gt;&lt;code&gt;EXPLAIN&lt;/code&gt;&lt;/a&gt;语句提供有关MySQL如何执行语句的信息：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://dev.mysql.com/doc/refman/5.7/en/explain.html"&gt;&lt;code&gt;EXPLAIN&lt;/code&gt;&lt;/a&gt;作品有 &lt;a href="https://dev.mysql.com/doc/refman/5.7/en/select.html"&gt;&lt;code&gt;SELECT&lt;/code&gt;&lt;/a&gt;， &lt;a href="https://dev.mysql.com/doc/refman/5.7/en/delete.html"&gt;&lt;code&gt;DELETE&lt;/code&gt;&lt;/a&gt;， &lt;a href="https://dev.mysql.com/doc/refman/5.7/en/insert.html"&gt;&lt;code&gt;INSERT&lt;/code&gt;&lt;/a&gt;， &lt;a href="https://dev.mysql.com/doc/refman/5.7/en/replace.html"&gt;&lt;code&gt;REPLACE&lt;/code&gt;&lt;/a&gt;，和 &lt;a href="https://dev.mysql.com/doc/refman/5.7/en/update.html"&gt;&lt;code&gt;UPDATE&lt;/code&gt;&lt;/a&gt;语句。&lt;/li&gt;
+&lt;li&gt;当&lt;a href="https://dev.mysql.com/doc/refman/5.7/en/explain.html"&gt;&lt;code&gt;EXPLAIN&lt;/code&gt;&lt;/a&gt;与可解释的语句一起使用时，MySQL将显示来自优化器的有关语句执行计划的信息。也就是说，MySQL解释了它将如何处理该语句，包括有关如何连接表以及以何种顺序连接表的信息。&lt;/li&gt;
+&lt;li&gt;当&lt;a href="https://dev.mysql.com/doc/refman/5.7/en/explain.html"&gt;&lt;code&gt;EXPLAIN&lt;/code&gt;&lt;/a&gt;与 &lt;code&gt;FOR CONNECTION *&lt;/code&gt;connection_id&lt;code&gt;*&lt;/code&gt;而不是可解释的语句一起使用时，它将显示在名为这个“connetction_id”的连接中正在执行的语句的执行计划。&lt;/li&gt;
+&lt;li&gt;对于&lt;a href="https://dev.mysql.com/doc/refman/5.7/en/select.html"&gt;&lt;code&gt;SELECT&lt;/code&gt;&lt;/a&gt;语句， 在&lt;a href="https://dev.mysql.com/doc/refman/5.7/en/show-warnings.html"&gt;&lt;code&gt;SHOW WARNINGS&lt;/code&gt;&lt;/a&gt;模式下，&lt;a href="https://dev.mysql.com/doc/refman/5.7/en/explain.html"&gt;&lt;code&gt;EXPLAIN&lt;/code&gt;&lt;/a&gt;可以输出更多的执行计划信息。&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://dev.mysql.com/doc/refman/5.7/en/explain.html"&gt;&lt;code&gt;EXPLAIN&lt;/code&gt;&lt;/a&gt;对于检查涉及分区表的查询很有用。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;FORMAT&lt;/code&gt;选项可用于设置输出格式。&lt;code&gt;TRADITIONAL&lt;/code&gt;以表格格式显示输出。默认情况下不需要提供&lt;code&gt;FORMAT&lt;/code&gt;设置 。 format设置为&lt;code&gt;JSON&lt;/code&gt;时，以JSON格式显示信息。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id="explain-1"&gt;Explain输出格式&lt;/h1&gt;
+&lt;p&gt;&lt;a href="https://dev.mysql.com/doc/refman/5.7/en/explain.html"&gt;&lt;code&gt;EXPLAIN&lt;/code&gt;&lt;/a&gt;语句提供有关MySQL如何执行语句的信息。 &lt;a href="https://dev.mysql.com/doc/refman/5.7/en/explain.html"&gt;&lt;code&gt;EXPLAIN&lt;/code&gt;&lt;/a&gt;支持 &lt;a href="https://dev.mysql.com/doc/refman/5.7/en/select.html"&gt;&lt;code&gt;SELECT&lt;/code&gt;&lt;/a&gt;， &lt;a href="https://dev.mysql.com/doc/refman/5.7/en/delete.html"&gt;&lt;code&gt;DELETE&lt;/code&gt;&lt;/a&gt;， &lt;a href="https://dev.mysql.com/doc/refman/5.7/en/insert.html"&gt;&lt;code&gt;INSERT&lt;/code&gt;&lt;/a&gt;， &lt;a href="https://dev.mysql.com/doc/refman/5.7/en/replace.html"&gt;&lt;code&gt;REPLACE&lt;/code&gt;&lt;/a&gt;和 &lt;a href="https://dev.mysql.com/doc/refman/5.7/en/update.html"&gt;&lt;code&gt;UPDATE&lt;/code&gt;&lt;/a&gt;语句。&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://dev.mysql.com/doc/refman/5.7/en/explain.html"&gt;&lt;code&gt;EXPLAIN&lt;/code&gt;&lt;/a&gt;为&lt;a href="https://dev.mysql.com/doc/refman/5.7/en/select.html"&gt;&lt;code&gt;SELECT&lt;/code&gt;&lt;/a&gt;语句中使用的每个表返回一行信息 。它按照MySQL在处理语句时读取它们的顺序列出了输出中的表。MySQL使用嵌套循环连接方法解析所有连接。这意味着MySQL从第一个表中读取一行，然后在第二个表，第三个表中找到匹配的行，依此类推。处理完所有表后，MySQL将通过表列表输出选定的列和回溯，直到找到一个表，其中存在更多匹配的行。从该表中读取下一行，然后继续下一个表。&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://dev.mysql.com/doc/refman/5.7/en/explain.html"&gt;&lt;code&gt;EXPLAIN&lt;/code&gt;&lt;/a&gt;输出包括分区信息。此外，对于&lt;a href="https://dev.mysql.com/doc/refman/5.7/en/select.html"&gt;&lt;code&gt;SELECT&lt;/code&gt;&lt;/a&gt; 语句，&lt;a href="https://dev.mysql.com/doc/refman/5.7/en/explain.html"&gt;&lt;code&gt;EXPLAIN&lt;/code&gt;&lt;/a&gt;产生可与被显示扩展信息 &lt;a href="https://dev.mysql.com/doc/refman/5.7/en/show-warnings.html"&gt;&lt;code&gt;SHOW WARNINGS&lt;/code&gt;&lt;/a&gt;之后的 &lt;a href="https://dev.mysql.com/doc/refman/5.7/en/explain.html"&gt;&lt;code&gt;EXPLAIN&lt;/code&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id="explain-2"&gt;扩展的EXPLAIN输出格式&lt;/h3&gt;
+&lt;p&gt;对于&lt;a href="https://dev.mysql.com/doc/refman/5.7/en/select.html"&gt;&lt;code&gt;SELECT&lt;/code&gt;&lt;/a&gt;语句，该 &lt;a href="https://dev.mysql.com/doc/refman/5.7/en/explain.html"&gt;&lt;code&gt;EXPLAIN&lt;/code&gt;&lt;/a&gt;语句会产生额外的（“ 扩展 ”）信息，这些信息不属于 &lt;a href="https://dev.mysql.com/doc/refman/5.7/en/explain.html"&gt;&lt;code&gt;EXPLAIN&lt;/code&gt;&lt;/a&gt;输出，但可以通过在&lt;a href="https://dev.mysql.com/doc/refman/5.7/en/show-warnings.html"&gt;&lt;code&gt;SHOW WARNINGS&lt;/code&gt;&lt;/a&gt; 以下语句发出来查看&lt;a href="https://dev.mysql.com/doc/refman/5.7/en/explain.html"&gt;&lt;code&gt;EXPLAIN&lt;/code&gt;&lt;/a&gt;。输出中的 &lt;code&gt;Message&lt;/code&gt;值&lt;a href="https://dev.mysql.com/doc/refman/5.7/en/show-warnings.html"&gt;&lt;code&gt;SHOW WARNINGS&lt;/code&gt;&lt;/a&gt;显示优化器如何限定&lt;a href="https://dev.mysql.com/doc/refman/5.7/en/select.html"&gt;&lt;code&gt;SELECT&lt;/code&gt;&lt;/a&gt;语句 中的表名和列名， &lt;a href="https://dev.mysql.com/doc/refman/5.7/en/select.html"&gt;&lt;code&gt;SELECT&lt;/code&gt;&lt;/a&gt;应用重写和优化规则后的外观以及有关优化过程的其他注释。&lt;/p&gt;
+&lt;p&gt;可在&lt;a href="https://dev.mysql.com/doc/refman/5.7/en/show-warnings.html"&gt;&lt;code&gt;SHOW WARNINGS&lt;/code&gt;&lt;/a&gt;语句后面 显示的扩展信息 &lt;a href="https://dev.mysql.com/doc/refman/5.7/en/explain.html"&gt;&lt;code&gt;EXPLAIN&lt;/code&gt;&lt;/a&gt;仅针对 &lt;a href="https://dev.mysql.com/doc/refman/5.7/en/select.html"&gt;&lt;code&gt;SELECT&lt;/code&gt;&lt;/a&gt;语句生成。 &lt;a href="https://dev.mysql.com/doc/refman/5.7/en/show-warnings.html"&gt;&lt;code&gt;SHOW WARNINGS&lt;/code&gt;&lt;/a&gt;显示其他可解释语句空结果（&lt;a href="https://dev.mysql.com/doc/refman/5.7/en/delete.html"&gt;&lt;code&gt;DELETE&lt;/code&gt;&lt;/a&gt;， &lt;a href="https://dev.mysql.com/doc/refman/5.7/en/insert.html"&gt;&lt;code&gt;INSERT&lt;/code&gt;&lt;/a&gt;， &lt;a href="https://dev.mysql.com/doc/refman/5.7/en/replace.html"&gt;&lt;code&gt;REPLACE&lt;/code&gt;&lt;/a&gt;，和 &lt;a href="https://dev.mysql.com/doc/refman/5.7/en/update.html"&gt;&lt;code&gt;UPDATE&lt;/code&gt;&lt;/a&gt;）。&lt;/p&gt;
+&lt;h1 id="section"&gt;获取命名连接的执行计划信息&lt;/h1&gt;
+&lt;pre&gt;&lt;code&gt;EXPLAIN [options] FOR CONNECTION connection_id;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;a href="https://dev.mysql.com/doc/refman/5.7/en/explain-for-connection.html"&gt;&lt;code&gt;EXPLAIN FOR CONNECTION&lt;/code&gt;&lt;/a&gt;返回&lt;a href="https://dev.mysql.com/doc/refman/5.7/en/explain.html"&gt;&lt;code&gt;EXPLAIN&lt;/code&gt;&lt;/a&gt;当前在给定连接中用于执行查询的信息。由于数据（和支持统计数据）的更改，它可能会产生与&lt;a href="https://dev.mysql.com/doc/refman/5.7/en/explain.html"&gt;&lt;code&gt;EXPLAIN&lt;/code&gt;&lt;/a&gt;在等效查询文本上运行不同的结果 。行为上的这种差异对于诊断更多瞬时性能问题很有用。例如，如果您在一个需要很长时间才能完成的会话中运行语句，则&lt;a href="https://dev.mysql.com/doc/refman/5.7/en/explain-for-connection.html"&gt;&lt;code&gt;EXPLAIN FOR CONNECTION&lt;/code&gt;&lt;/a&gt;在另一会话中使用该语句可能会产生有关延迟原因的有用信息。&lt;/p&gt;
+&lt;p&gt;*&lt;code&gt;connection_id&lt;/code&gt;*是从&lt;code&gt;INFORMATION_SCHEMA&lt;/code&gt; &lt;a href="https://dev.mysql.com/doc/refman/5.7/en/processlist-table.html"&gt;&lt;code&gt;PROCESSLIST&lt;/code&gt;&lt;/a&gt;表或 &lt;a href="https://dev.mysql.com/doc/refman/5.7/en/show-processlist.html"&gt;&lt;code&gt;SHOW PROCESSLIST&lt;/code&gt;&lt;/a&gt;语句获得的连接标识符 。如果有&lt;a href="https://dev.mysql.com/doc/refman/5.7/en/privileges-provided.html#priv_process"&gt;&lt;code&gt;PROCESS&lt;/code&gt;&lt;/a&gt;特权，则可以为任何连接指定标识符。否则，您只能为自己的连接指定标识符。&lt;/p&gt;
+&lt;p&gt;如果命名连接未执行语句，则结果为空。否则，&lt;code&gt;EXPLAIN FOR CONNECTION&lt;/code&gt; 仅当在命名连接中执行的语句是可解释的时才适用。这包括 &lt;a href="https://dev.mysql.com/doc/refman/5.7/en/select.html"&gt;&lt;code&gt;SELECT&lt;/code&gt;&lt;/a&gt;， &lt;a href="https://dev.mysql.com/doc/refman/5.7/en/delete.html"&gt;&lt;code&gt;DELETE&lt;/code&gt;&lt;/a&gt;， &lt;a href="https://dev.mysql.com/doc/refman/5.7/en/insert.html"&gt;&lt;code&gt;INSERT&lt;/code&gt;&lt;/a&gt;， &lt;a href="https://dev.mysql.com/doc/refman/5.7/en/replace.html"&gt;&lt;code&gt;REPLACE&lt;/code&gt;&lt;/a&gt;，和 &lt;a href="https://dev.mysql.com/doc/refman/5.7/en/update.html"&gt;&lt;code&gt;UPDATE&lt;/code&gt;&lt;/a&gt;。（但是， &lt;code&gt;EXPLAIN FOR CONNECTION&lt;/code&gt;不适用于预备语句，甚至不适用于这些类型的预备语句。）&lt;/p&gt;
+&lt;h1 id="section-1"&gt;估计查询性能&lt;/h1&gt;
+&lt;p&gt;在大多数情况下，您可以通过计算磁盘搜索次数来估计查询性能。对于小型表，通常可以在一个磁盘搜索中找到一行（因为索引可能已缓存）。对于更大的表，您可以估计，使用B树索引，您需要进行许多查找才能找到行： 。 &lt;code&gt;log(*&lt;/code&gt;row_count&lt;code&gt;*) / log(*&lt;/code&gt;index_block_length&lt;code&gt;* / 3 * 2 / (*&lt;/code&gt;index_length&lt;code&gt;* + *&lt;/code&gt;data_pointer_length&lt;code&gt;*)) + 1&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;在MySQL中，索引块通常为1,024字节，数据指针通常为四个字节。对于一个键值长度为三个字节（大小为&lt;a href="https://dev.mysql.com/doc/refman/5.7/en/integer-types.html"&gt;&lt;code&gt;MEDIUMINT&lt;/code&gt;&lt;/a&gt;）的500,000行表 ，该公式表示 &lt;code&gt;log(500,000)/log(1024/3*2/(3+4)) + 1&lt;/code&gt;=搜索 &lt;code&gt;4&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;该索引将需要大约500,000 * 7 * 3/2 = 5.2MB的存储空间（假设典型的索引缓冲区填充率为2/3），因此您可能在内存中拥有很多索引，因此只需要一个或两个调用即可读取数据以查找行。&lt;/p&gt;
+&lt;p&gt;但是，对于写操作，您需要四个搜索请求来查找在何处放置新索引值，通常需要两个搜索来更新索引并写入行。&lt;/p&gt;
+&lt;p&gt;前面的讨论并不意味着您的应用程序性能会因log缓慢下降 &lt;em&gt;&lt;code&gt;N&lt;/code&gt;&lt;/em&gt;。只要所有内容都由OS或MySQL服务器缓存，随着表的增加，事情只会变得稍微慢一些。在数据变得太大而无法缓存之后，事情开始变得缓慢得多，直到您的应用程序仅受磁盘搜索约束（随日志增长 &lt;em&gt;&lt;code&gt;N&lt;/code&gt;&lt;/em&gt;）。为避免这种情况，请随着数据的增长而增加密钥缓存的大小。对于&lt;code&gt;MyISAM&lt;/code&gt; 表，键缓存大小由&lt;a href="https://dev.mysql.com/doc/refman/5.7/en/server-system-variables.html#sysvar_key_buffer_size"&gt;&lt;code&gt;key_buffer_size&lt;/code&gt;&lt;/a&gt;系统变量控制&lt;/p&gt;
 </content:encoded>
 		</item>
 	</channel>

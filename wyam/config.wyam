@@ -7,8 +7,8 @@
 //#t Trophy
 // Customize your settings and add new ones here
 Settings[Keys.Host] = "blog.robinjiang.com";
-Settings[BlogKeys.Title] = "Robin Log";
-Settings[BlogKeys.Description] = "Live In an awesome life!";
+Settings[BlogKeys.Title] = "知行志";
+Settings[BlogKeys.Description] = "知行合一!";
 Settings[BlogKeys.IncludeDateInPostPath] = true;
 // Add any pipeline customizations here
 

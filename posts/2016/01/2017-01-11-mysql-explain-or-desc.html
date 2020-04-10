@@ -1,0 +1,146 @@
+﻿
+
+<!DOCTYPE HTML>
+<!--
+	Solid State by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>&#x77E5;&#x884C;&#x5FD7; - MySQL &#x6267;&#x884C;&#x8BA1;&#x5212;</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="/assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="/assets/sass/main.css" />
+		<!--[if lte IE 9]><link rel="stylesheet" href="/assets/sass/ie9.css" /><![endif]-->
+		<!--[if lte IE 8]><link rel="stylesheet" href="/assets/sass/ie8.css" /><![endif]-->
+        
+
+	</head>
+	<body>
+
+		<!-- Page Wrapper -->
+			<div id="page-wrapper">
+				
+				<!-- Header -->
+				<header id="header">
+					<h1><a href="/">&#x77E5;&#x884C;&#x5FD7;</a></h1>
+					<nav>
+						<a href="#menu">Menu</a>
+					</nav>
+				</header>
+
+				<!-- Menu -->
+				<nav id="menu">
+					<div class="inner">
+						<h2>Menu</h2>
+						<ul class="links">
+							        <li><a href="/posts">Archive</a></li>
+        <li><a href="/tags">Tags</a></li>
+        <li><a href="/migration-blog-plan">&#x535A;&#x5BA2;&#x8FC1;&#x79FB;</a></li>
+        <li><a href="/tools">&#x5E38;&#x7528;&#x5DE5;&#x5177;</a></li>
+        <li><a href="/about">&#x5173;&#x4E8E;</a></li>
+        <li><a href="/resume">&#x7B80;&#x5386;</a></li>
+        <li><a href="/migration-repo-plan">&#x9879;&#x76EE;&#x53CA;&#x6E90;&#x7801;&#x8FC1;&#x79FB;</a></li>
+
+						</ul>
+						<a href="#" class="close">Close</a>
+					</div>
+				</nav>
+
+
+    
+<section id="banner">
+  <div class="inner">
+    <h2>MySQL &#x6267;&#x884C;&#x8BA1;&#x5212;</h2>
+            <p><em>Published on 13 January 2016</em></p>
+                    <a role="button" href="/tags/db.html" class="button small">db</a>
+                <a role="button" href="/tags/mysql.html" class="button small">mysql</a>
+                <a role="button" href="/tags/&#x6267;&#x884C;&#x8BA1;&#x5212;.html" class="button small">&#x6267;&#x884C;&#x8BA1;&#x5212;</a>
+  </div>
+</section>
+
+				<!-- Main -->
+				<section id="wrapper">
+					<section class="wrapper style2">
+						<div class="inner">
+							
+
+<blockquote class="blockquote">
+<p>一直在使用Explain，今天被扫盲，专业名词叫执行计划~，野生码农误国啊~</p>
+<p><a href="https://dev.mysql.com/doc/refman/5.7/en/execution-plan-information.html">官方文档地址</a></p>
+</blockquote>
+<p>MySQL提供<a href="https://dev.mysql.com/doc/refman/5.7/en/execution-plan-information.html"><strong>explain/desc</strong></a>命令输出执行计划，我们通过执行计划优化SQL语句</p>
+<blockquote class="blockquote">
+<p>根据表，列，索引的详细信息以及<code>WHERE</code>子句中的条件，MySQL优化器考虑了许多技术来有效执行SQL查询中涉及的查找。无需读取所有行即可执行对巨大表的查询；可以执行涉及多个表的联接，而无需比较行的每个组合。优化器选择执行最有效查询的一组操作称为“ 查询执行计划 ”，也称为 <a href="https://dev.mysql.com/doc/refman/5.7/en/explain.html"><code>EXPLAIN</code></a>计划。您的目标是认识到 <a href="https://dev.mysql.com/doc/refman/5.7/en/explain.html"><code>EXPLAIN</code></a> 表示查询优化的计划，如果发现一些低效的操作，则可以学习SQL语法和索引技术来改进计划。</p>
+</blockquote>
+<h1 id="explain">使用Explain优化查询</h1>
+<p>该<a href="https://dev.mysql.com/doc/refman/5.7/en/explain.html"><code>EXPLAIN</code></a>语句提供有关MySQL如何执行语句的信息：</p>
+<ul>
+<li><a href="https://dev.mysql.com/doc/refman/5.7/en/explain.html"><code>EXPLAIN</code></a>作品有 <a href="https://dev.mysql.com/doc/refman/5.7/en/select.html"><code>SELECT</code></a>， <a href="https://dev.mysql.com/doc/refman/5.7/en/delete.html"><code>DELETE</code></a>， <a href="https://dev.mysql.com/doc/refman/5.7/en/insert.html"><code>INSERT</code></a>， <a href="https://dev.mysql.com/doc/refman/5.7/en/replace.html"><code>REPLACE</code></a>，和 <a href="https://dev.mysql.com/doc/refman/5.7/en/update.html"><code>UPDATE</code></a>语句。</li>
+<li>当<a href="https://dev.mysql.com/doc/refman/5.7/en/explain.html"><code>EXPLAIN</code></a>与可解释的语句一起使用时，MySQL将显示来自优化器的有关语句执行计划的信息。也就是说，MySQL解释了它将如何处理该语句，包括有关如何连接表以及以何种顺序连接表的信息。</li>
+<li>当<a href="https://dev.mysql.com/doc/refman/5.7/en/explain.html"><code>EXPLAIN</code></a>与 <code>FOR CONNECTION *</code>connection_id<code>*</code>而不是可解释的语句一起使用时，它将显示在名为这个“connetction_id”的连接中正在执行的语句的执行计划。</li>
+<li>对于<a href="https://dev.mysql.com/doc/refman/5.7/en/select.html"><code>SELECT</code></a>语句， 在<a href="https://dev.mysql.com/doc/refman/5.7/en/show-warnings.html"><code>SHOW WARNINGS</code></a>模式下，<a href="https://dev.mysql.com/doc/refman/5.7/en/explain.html"><code>EXPLAIN</code></a>可以输出更多的执行计划信息。</li>
+<li><a href="https://dev.mysql.com/doc/refman/5.7/en/explain.html"><code>EXPLAIN</code></a>对于检查涉及分区表的查询很有用。</li>
+<li><code>FORMAT</code>选项可用于设置输出格式。<code>TRADITIONAL</code>以表格格式显示输出。默认情况下不需要提供<code>FORMAT</code>设置 。 format设置为<code>JSON</code>时，以JSON格式显示信息。</li>
+</ul>
+<h1 id="explain-1">Explain输出格式</h1>
+<p><a href="https://dev.mysql.com/doc/refman/5.7/en/explain.html"><code>EXPLAIN</code></a>语句提供有关MySQL如何执行语句的信息。 <a href="https://dev.mysql.com/doc/refman/5.7/en/explain.html"><code>EXPLAIN</code></a>支持 <a href="https://dev.mysql.com/doc/refman/5.7/en/select.html"><code>SELECT</code></a>， <a href="https://dev.mysql.com/doc/refman/5.7/en/delete.html"><code>DELETE</code></a>， <a href="https://dev.mysql.com/doc/refman/5.7/en/insert.html"><code>INSERT</code></a>， <a href="https://dev.mysql.com/doc/refman/5.7/en/replace.html"><code>REPLACE</code></a>和 <a href="https://dev.mysql.com/doc/refman/5.7/en/update.html"><code>UPDATE</code></a>语句。</p>
+<p><a href="https://dev.mysql.com/doc/refman/5.7/en/explain.html"><code>EXPLAIN</code></a>为<a href="https://dev.mysql.com/doc/refman/5.7/en/select.html"><code>SELECT</code></a>语句中使用的每个表返回一行信息 。它按照MySQL在处理语句时读取它们的顺序列出了输出中的表。MySQL使用嵌套循环连接方法解析所有连接。这意味着MySQL从第一个表中读取一行，然后在第二个表，第三个表中找到匹配的行，依此类推。处理完所有表后，MySQL将通过表列表输出选定的列和回溯，直到找到一个表，其中存在更多匹配的行。从该表中读取下一行，然后继续下一个表。</p>
+<p><a href="https://dev.mysql.com/doc/refman/5.7/en/explain.html"><code>EXPLAIN</code></a>输出包括分区信息。此外，对于<a href="https://dev.mysql.com/doc/refman/5.7/en/select.html"><code>SELECT</code></a> 语句，<a href="https://dev.mysql.com/doc/refman/5.7/en/explain.html"><code>EXPLAIN</code></a>产生可与被显示扩展信息 <a href="https://dev.mysql.com/doc/refman/5.7/en/show-warnings.html"><code>SHOW WARNINGS</code></a>之后的 <a href="https://dev.mysql.com/doc/refman/5.7/en/explain.html"><code>EXPLAIN</code></a></p>
+<h3 id="explain-2">扩展的EXPLAIN输出格式</h3>
+<p>对于<a href="https://dev.mysql.com/doc/refman/5.7/en/select.html"><code>SELECT</code></a>语句，该 <a href="https://dev.mysql.com/doc/refman/5.7/en/explain.html"><code>EXPLAIN</code></a>语句会产生额外的（“ 扩展 ”）信息，这些信息不属于 <a href="https://dev.mysql.com/doc/refman/5.7/en/explain.html"><code>EXPLAIN</code></a>输出，但可以通过在<a href="https://dev.mysql.com/doc/refman/5.7/en/show-warnings.html"><code>SHOW WARNINGS</code></a> 以下语句发出来查看<a href="https://dev.mysql.com/doc/refman/5.7/en/explain.html"><code>EXPLAIN</code></a>。输出中的 <code>Message</code>值<a href="https://dev.mysql.com/doc/refman/5.7/en/show-warnings.html"><code>SHOW WARNINGS</code></a>显示优化器如何限定<a href="https://dev.mysql.com/doc/refman/5.7/en/select.html"><code>SELECT</code></a>语句 中的表名和列名， <a href="https://dev.mysql.com/doc/refman/5.7/en/select.html"><code>SELECT</code></a>应用重写和优化规则后的外观以及有关优化过程的其他注释。</p>
+<p>可在<a href="https://dev.mysql.com/doc/refman/5.7/en/show-warnings.html"><code>SHOW WARNINGS</code></a>语句后面 显示的扩展信息 <a href="https://dev.mysql.com/doc/refman/5.7/en/explain.html"><code>EXPLAIN</code></a>仅针对 <a href="https://dev.mysql.com/doc/refman/5.7/en/select.html"><code>SELECT</code></a>语句生成。 <a href="https://dev.mysql.com/doc/refman/5.7/en/show-warnings.html"><code>SHOW WARNINGS</code></a>显示其他可解释语句空结果（<a href="https://dev.mysql.com/doc/refman/5.7/en/delete.html"><code>DELETE</code></a>， <a href="https://dev.mysql.com/doc/refman/5.7/en/insert.html"><code>INSERT</code></a>， <a href="https://dev.mysql.com/doc/refman/5.7/en/replace.html"><code>REPLACE</code></a>，和 <a href="https://dev.mysql.com/doc/refman/5.7/en/update.html"><code>UPDATE</code></a>）。</p>
+<h1 id="section">获取命名连接的执行计划信息</h1>
+<pre><code>EXPLAIN [options] FOR CONNECTION connection_id;
+</code></pre>
+<p><a href="https://dev.mysql.com/doc/refman/5.7/en/explain-for-connection.html"><code>EXPLAIN FOR CONNECTION</code></a>返回<a href="https://dev.mysql.com/doc/refman/5.7/en/explain.html"><code>EXPLAIN</code></a>当前在给定连接中用于执行查询的信息。由于数据（和支持统计数据）的更改，它可能会产生与<a href="https://dev.mysql.com/doc/refman/5.7/en/explain.html"><code>EXPLAIN</code></a>在等效查询文本上运行不同的结果 。行为上的这种差异对于诊断更多瞬时性能问题很有用。例如，如果您在一个需要很长时间才能完成的会话中运行语句，则<a href="https://dev.mysql.com/doc/refman/5.7/en/explain-for-connection.html"><code>EXPLAIN FOR CONNECTION</code></a>在另一会话中使用该语句可能会产生有关延迟原因的有用信息。</p>
+<p>*<code>connection_id</code>*是从<code>INFORMATION_SCHEMA</code> <a href="https://dev.mysql.com/doc/refman/5.7/en/processlist-table.html"><code>PROCESSLIST</code></a>表或 <a href="https://dev.mysql.com/doc/refman/5.7/en/show-processlist.html"><code>SHOW PROCESSLIST</code></a>语句获得的连接标识符 。如果有<a href="https://dev.mysql.com/doc/refman/5.7/en/privileges-provided.html#priv_process"><code>PROCESS</code></a>特权，则可以为任何连接指定标识符。否则，您只能为自己的连接指定标识符。</p>
+<p>如果命名连接未执行语句，则结果为空。否则，<code>EXPLAIN FOR CONNECTION</code> 仅当在命名连接中执行的语句是可解释的时才适用。这包括 <a href="https://dev.mysql.com/doc/refman/5.7/en/select.html"><code>SELECT</code></a>， <a href="https://dev.mysql.com/doc/refman/5.7/en/delete.html"><code>DELETE</code></a>， <a href="https://dev.mysql.com/doc/refman/5.7/en/insert.html"><code>INSERT</code></a>， <a href="https://dev.mysql.com/doc/refman/5.7/en/replace.html"><code>REPLACE</code></a>，和 <a href="https://dev.mysql.com/doc/refman/5.7/en/update.html"><code>UPDATE</code></a>。（但是， <code>EXPLAIN FOR CONNECTION</code>不适用于预备语句，甚至不适用于这些类型的预备语句。）</p>
+<h1 id="section-1">估计查询性能</h1>
+<p>在大多数情况下，您可以通过计算磁盘搜索次数来估计查询性能。对于小型表，通常可以在一个磁盘搜索中找到一行（因为索引可能已缓存）。对于更大的表，您可以估计，使用B树索引，您需要进行许多查找才能找到行： 。 <code>log(*</code>row_count<code>*) / log(*</code>index_block_length<code>* / 3 * 2 / (*</code>index_length<code>* + *</code>data_pointer_length<code>*)) + 1</code></p>
+<p>在MySQL中，索引块通常为1,024字节，数据指针通常为四个字节。对于一个键值长度为三个字节（大小为<a href="https://dev.mysql.com/doc/refman/5.7/en/integer-types.html"><code>MEDIUMINT</code></a>）的500,000行表 ，该公式表示 <code>log(500,000)/log(1024/3*2/(3+4)) + 1</code>=搜索 <code>4</code>。</p>
+<p>该索引将需要大约500,000 * 7 * 3/2 = 5.2MB的存储空间（假设典型的索引缓冲区填充率为2/3），因此您可能在内存中拥有很多索引，因此只需要一个或两个调用即可读取数据以查找行。</p>
+<p>但是，对于写操作，您需要四个搜索请求来查找在何处放置新索引值，通常需要两个搜索来更新索引并写入行。</p>
+<p>前面的讨论并不意味着您的应用程序性能会因log缓慢下降 <em><code>N</code></em>。只要所有内容都由OS或MySQL服务器缓存，随着表的增加，事情只会变得稍微慢一些。在数据变得太大而无法缓存之后，事情开始变得缓慢得多，直到您的应用程序仅受磁盘搜索约束（随日志增长 <em><code>N</code></em>）。为避免这种情况，请随着数据的增长而增加密钥缓存的大小。对于<code>MyISAM</code> 表，键缓存大小由<a href="https://dev.mysql.com/doc/refman/5.7/en/server-system-variables.html#sysvar_key_buffer_size"><code>key_buffer_size</code></a>系统变量控制</p>
+
+
+
+						</div>
+					</section>
+				
+				</section>
+				
+				<!-- Footer -->
+                <footer id="footer">
+                    <div class="inner">
+    <section>
+            <h2>Feeds</h2>
+            <ul class="actions">
+                <li><a href="/feed.rss" class="button small"><i class="fa fa-rss"></i> RSS Feed</a></li>
+                                <li><a href="/feed.atom" class="button small"><i class="fa fa-rss"></i> Atom Feed</a></li>
+            </ul>
+    </section>
+    <section>
+    </section>
+    <ul class="copyright">
+        <li>Copyright © 2020</li>
+        <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+        <li><a href="https://wyam.io">Generated by Wyam</a></li>
+    </ul>
+</div>
+                </footer>
+			</div>
+
+		<!-- Scripts -->
+			<script src="/assets/js/skel.min.js"></script>
+			<script src="/assets/js/jquery.min.js"></script>
+			<script src="/assets/js/jquery.scrollex.min.js"></script>
+			<script src="/assets/js/util.js"></script>
+            <!--[if lte IE 8]><script src="/assets/js/ie/respond.min.js"></script><![endif]-->
+            <script src="/assets/js/main.js"></script>
+
+	</body>
+
+</html>
