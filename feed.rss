@@ -5,8 +5,8 @@
 		<link>http://blog.robinjiang.com/</link>
 		<description>知行合一!</description>
 		<copyright>2020</copyright>
-		<pubDate>Fri, 10 Apr 2020 10:24:16 GMT</pubDate>
-		<lastBuildDate>Fri, 10 Apr 2020 10:24:16 GMT</lastBuildDate>
+		<pubDate>Fri, 10 Apr 2020 11:41:44 GMT</pubDate>
+		<lastBuildDate>Fri, 10 Apr 2020 11:41:44 GMT</lastBuildDate>
 		<item>
 			<title>关于静态内容生成器和托管环境</title>
 			<link>http://blog.robinjiang.com/posts/2020/03/2020-01-10-about-static-content-generator</link>
@@ -555,6 +555,46 @@ update  goods set stock=stock-1 where id=1 and stock=10
             return false;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;strong&gt;不管是该业务成功、失败或者异常，需要确保该锁在周期结束后能被释放&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;redis 版v1&lt;/p&gt;
+&lt;p&gt;V0版本存在的缺陷：比较致命的是可能会出现，任务还未完成，锁就超时了，导致key被回收了，那么能不能将锁的申请时间作为值进行存储呢？&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;​```
+int waitIntervalMs = 200;//间隔等待时长 毫秒 设置成足够长，至少要超过数据库的超时响应时间
+string lockKey = &amp;quot;lock_key:&amp;quot; + key; 
+DateTime begin = DateTime.Now;
+DateTime now = DateTime.Now;
+while (true)
+            {
+              //在key值存在的情况下
+               if(redisclient.ExistKey(lockKey))
+               {
+               //如果key对应的value值+超时时间后小于当前时间，则移除key值，让业务正常运行
+               if(Convert.ToDateTime(redisclient.GetKey(lockkey).Value)+TimeLimit&amp;lt;now){
+               redisclient.remove(lockkey);
+               }
+               }
+                if (redisClient.SetNX(lockKey, now.tostring()) == 1)
+                {
+                    redisClient.Expire(lockKey, expirySeconds);
+                    return true;
+                } 
+                //不等待锁则返回
+                if (waitSeconds &amp;lt;= 0)
+                    break;
+
+                if ((DateTime.Now - begin).TotalSeconds &amp;gt;= waitSeconds)//等待超时
+                    break;
+
+                System.Threading.Thread.Sleep(waitIntervalMs);
+
+
+            }
+            return false; 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h1 id="section-2"&gt;遗留的问题&lt;/h1&gt;
+&lt;p&gt;在单个redis实例下，上述代码工作都ok，如果存在redis集群，且master挂掉的情况，那么这个锁一定锁不住&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
 </content:encoded>
 		</item>
 		<item>
@@ -659,59 +699,6 @@ ISBN: 9787100040945&lt;/p&gt;
 </content:encoded>
 		</item>
 		<item>
-			<title>索引优化原则</title>
-			<link>http://blog.robinjiang.com/posts/2016/01/2018-04-11-mysql-index-optimization</link>
-			<description>&lt;p&gt;联合索引，mysql会从做向右匹配直到遇到范围查询(&amp;gt;、&amp;lt;、between、like)就停止匹配，比如a = 1 and b = 2 and c &amp;gt; 3 and d = 4 如果建立(a,b,c,d)顺序的索引，d是用不到索引的，如果建立(a,b,d,c)的索引则都可以用到，a,b,d的顺序可以任意调整&lt;/p&gt;</description>
-			<guid>http://blog.robinjiang.com/posts/2016/01/2018-04-11-mysql-index-optimization</guid>
-			<pubDate>Wed, 13 Jan 2016 00:00:00 GMT</pubDate>
-			<content:encoded>&lt;ul&gt;
-&lt;li&gt;最左前缀匹配原则&lt;/li&gt;
-&lt;/ul&gt;
-&lt;blockquote class="blockquote"&gt;
-&lt;p&gt;联合索引，mysql会从做向右匹配直到遇到范围查询(&amp;gt;、&amp;lt;、between、like)就停止匹配，比如a = 1 and b = 2 and c &amp;gt; 3 and d = 4 如果建立(a,b,c,d)顺序的索引，d是用不到索引的，如果建立(a,b,d,c)的索引则都可以用到，a,b,d的顺序可以任意调整&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;=和in可以乱序，比如a = 1 and b = 2 and c = 3 建立(a,b,c)索引可以任意顺序，mysql的查询优化器会帮你优化成索引可以识别的形式&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;索引列不能参与计算，保持列“干净”，比如from_unixtime(create_time) = ’2014-05-29’就不能使用到索引，原因很简单，b+树中存的都是数据表中的字段值，但进行检索时，需要把所有元素都应用函数才能比较，显然成本太大。所以语句应该写成create_time = unix_timestamp(’2014-05-29’)&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;使用索引时，索引字段最好小而且唯一，避免select * 的情况&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;不冗余原则&lt;/strong&gt;：尽量的扩展索引，不要新建索引。比如表中已经有a的索引，现在要加(a,b)的索引，那么只需要修改原来的索引即可，建立不必要索引会增加MySQL空间。&lt;strong&gt;基于刚才的最左匹配原则，尽量在原有基础上扩展索引，不要新增索引。 能用单索引，不用联合索引；能用窄索引，不用宽索引；能复用索引，不新建索引&lt;/strong&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;如果确定有多少条数据，使用 limit 限制一下，MySQL在查找到对应条数的数据的时候，会停止继续查找&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;利用查询缓存，很多时候MySQL会对查询结果进行cache，但是对应“动态”的数据会不cache，例如：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;无法使用cache
-1 SELECT username FROM user WHERE signup_date &amp;gt;= CURDATE() 
-可以cache
-2 SELECT username FROM user WHERE signup_date &amp;gt;= '2017-05-06' 
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;当使用了MySQL的一写函数之后，MySQL无法确定结果是易变的，所以不会cache，还有now(),rand()也一样不开启cache&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;join 语法，尽量将小的表放在前面，在需要on的字段上，数据类型保持一致，并设置对应的索引，否则MySQL无法使用索引来join查询&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;在大表上做大量更新时，如果会锁全表，则需要拆分执行，避免长时间锁住表，导致其他请求积累太多（InnoDB 支持行锁，但前提是Where子句需要建立索引，没有索引也一样是锁全表）&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre&gt;&lt;code&gt;  while (1) {
-      //每次只做1000条
-     mysql_query(&amp;quot;DELETE FROM logs WHERE log_date &amp;lt;= '2009-11-01' LIMIT 1000&amp;quot;);
-     if (mysql_affected_rows() == 0) {
-          // 没得可删了，退出！
-          break;
-      }
-      // 每次都要休息一会儿
-      usleep(50000);
-  }
-&lt;/code&gt;&lt;/pre&gt;
-&lt;ul&gt;
-&lt;li&gt;最大选择性原则
-选择区分度高列做索引 什么是区分度高的字段呢？ 一般两种情况不建议建索引： 1、一两千条甚至几百条，没必要建索引，让查询做全表扫描就好了。 因为不是你建了就一定会走索引，执行计划会选择一个最优的方式，msql辅助索引的叶子节点并不直接存储实际数据，只是主建ID，再通过主键索引二次查找。这么一来全表可能很有可能效率更高。 2、索引选择性较低的情况。 所谓选择性（Selectivity），是指不重复的索引值（也叫基数，Cardinality）与表记录数（#T）的比值。&lt;/li&gt;
-&lt;/ul&gt;
-</content:encoded>
-		</item>
-		<item>
 			<title>索引原理</title>
 			<link>http://blog.robinjiang.com/posts/2016/01/2016-01-13-about-index</link>
 			<description>&lt;p&gt;对于通用系统而言，大部分数据读操作比例远高于写入操作，针对查询进行优化的时候，优先需要考虑索引优化。&lt;/p&gt;</description>
@@ -795,6 +782,59 @@ ISBN: 9787100040945&lt;/p&gt;
 </content:encoded>
 		</item>
 		<item>
+			<title>索引优化原则</title>
+			<link>http://blog.robinjiang.com/posts/2016/01/2018-04-11-mysql-index-optimization</link>
+			<description>&lt;p&gt;联合索引，mysql会从做向右匹配直到遇到范围查询(&amp;gt;、&amp;lt;、between、like)就停止匹配，比如a = 1 and b = 2 and c &amp;gt; 3 and d = 4 如果建立(a,b,c,d)顺序的索引，d是用不到索引的，如果建立(a,b,d,c)的索引则都可以用到，a,b,d的顺序可以任意调整&lt;/p&gt;</description>
+			<guid>http://blog.robinjiang.com/posts/2016/01/2018-04-11-mysql-index-optimization</guid>
+			<pubDate>Wed, 13 Jan 2016 00:00:00 GMT</pubDate>
+			<content:encoded>&lt;ul&gt;
+&lt;li&gt;最左前缀匹配原则&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;联合索引，mysql会从做向右匹配直到遇到范围查询(&amp;gt;、&amp;lt;、between、like)就停止匹配，比如a = 1 and b = 2 and c &amp;gt; 3 and d = 4 如果建立(a,b,c,d)顺序的索引，d是用不到索引的，如果建立(a,b,d,c)的索引则都可以用到，a,b,d的顺序可以任意调整&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;=和in可以乱序，比如a = 1 and b = 2 and c = 3 建立(a,b,c)索引可以任意顺序，mysql的查询优化器会帮你优化成索引可以识别的形式&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;索引列不能参与计算，保持列“干净”，比如from_unixtime(create_time) = ’2014-05-29’就不能使用到索引，原因很简单，b+树中存的都是数据表中的字段值，但进行检索时，需要把所有元素都应用函数才能比较，显然成本太大。所以语句应该写成create_time = unix_timestamp(’2014-05-29’)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;使用索引时，索引字段最好小而且唯一，避免select * 的情况&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;不冗余原则&lt;/strong&gt;：尽量的扩展索引，不要新建索引。比如表中已经有a的索引，现在要加(a,b)的索引，那么只需要修改原来的索引即可，建立不必要索引会增加MySQL空间。&lt;strong&gt;基于刚才的最左匹配原则，尽量在原有基础上扩展索引，不要新增索引。 能用单索引，不用联合索引；能用窄索引，不用宽索引；能复用索引，不新建索引&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;如果确定有多少条数据，使用 limit 限制一下，MySQL在查找到对应条数的数据的时候，会停止继续查找&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;利用查询缓存，很多时候MySQL会对查询结果进行cache，但是对应“动态”的数据会不cache，例如：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;无法使用cache
+1 SELECT username FROM user WHERE signup_date &amp;gt;= CURDATE() 
+可以cache
+2 SELECT username FROM user WHERE signup_date &amp;gt;= '2017-05-06' 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;当使用了MySQL的一写函数之后，MySQL无法确定结果是易变的，所以不会cache，还有now(),rand()也一样不开启cache&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;join 语法，尽量将小的表放在前面，在需要on的字段上，数据类型保持一致，并设置对应的索引，否则MySQL无法使用索引来join查询&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;在大表上做大量更新时，如果会锁全表，则需要拆分执行，避免长时间锁住表，导致其他请求积累太多（InnoDB 支持行锁，但前提是Where子句需要建立索引，没有索引也一样是锁全表）&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code&gt;  while (1) {
+      //每次只做1000条
+     mysql_query(&amp;quot;DELETE FROM logs WHERE log_date &amp;lt;= '2009-11-01' LIMIT 1000&amp;quot;);
+     if (mysql_affected_rows() == 0) {
+          // 没得可删了，退出！
+          break;
+      }
+      // 每次都要休息一会儿
+      usleep(50000);
+  }
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;最大选择性原则
+选择区分度高列做索引 什么是区分度高的字段呢？ 一般两种情况不建议建索引： 1、一两千条甚至几百条，没必要建索引，让查询做全表扫描就好了。 因为不是你建了就一定会走索引，执行计划会选择一个最优的方式，msql辅助索引的叶子节点并不直接存储实际数据，只是主建ID，再通过主键索引二次查找。这么一来全表可能很有可能效率更高。 2、索引选择性较低的情况。 所谓选择性（Selectivity），是指不重复的索引值（也叫基数，Cardinality）与表记录数（#T）的比值。&lt;/li&gt;
+&lt;/ul&gt;
+</content:encoded>
+		</item>
+		<item>
 			<title>MySQL 执行计划</title>
 			<link>http://blog.robinjiang.com/posts/2016/01/2017-01-11-mysql-explain-or-desc</link>
 			<description>&lt;p&gt;一直在使用Explain，今天被扫盲，专业名词叫执行计划~，野生码农误国啊~&lt;/p&gt;</description>
@@ -837,6 +877,30 @@ ISBN: 9787100040945&lt;/p&gt;
 &lt;p&gt;该索引将需要大约500,000 * 7 * 3/2 = 5.2MB的存储空间（假设典型的索引缓冲区填充率为2/3），因此您可能在内存中拥有很多索引，因此只需要一个或两个调用即可读取数据以查找行。&lt;/p&gt;
 &lt;p&gt;但是，对于写操作，您需要四个搜索请求来查找在何处放置新索引值，通常需要两个搜索来更新索引并写入行。&lt;/p&gt;
 &lt;p&gt;前面的讨论并不意味着您的应用程序性能会因log缓慢下降 &lt;em&gt;&lt;code&gt;N&lt;/code&gt;&lt;/em&gt;。只要所有内容都由OS或MySQL服务器缓存，随着表的增加，事情只会变得稍微慢一些。在数据变得太大而无法缓存之后，事情开始变得缓慢得多，直到您的应用程序仅受磁盘搜索约束（随日志增长 &lt;em&gt;&lt;code&gt;N&lt;/code&gt;&lt;/em&gt;）。为避免这种情况，请随着数据的增长而增加密钥缓存的大小。对于&lt;code&gt;MyISAM&lt;/code&gt; 表，键缓存大小由&lt;a href="https://dev.mysql.com/doc/refman/5.7/en/server-system-variables.html#sysvar_key_buffer_size"&gt;&lt;code&gt;key_buffer_size&lt;/code&gt;&lt;/a&gt;系统变量控制&lt;/p&gt;
+</content:encoded>
+		</item>
+		<item>
+			<title>MySQL中select * for update锁表的范围</title>
+			<link>http://blog.robinjiang.com/posts/2016/01/2019-11-15-mysql-lock</link>
+			<description>&lt;p&gt;由于InnoDB预设是Row-Level Lock，所以只有「明确」的指定主键，MySQL才会执行Row lock (只锁住被选取的资料例) ，否则MySQL将会执行Table&lt;/p&gt;</description>
+			<guid>http://blog.robinjiang.com/posts/2016/01/2019-11-15-mysql-lock</guid>
+			<pubDate>Wed, 13 Jan 2016 00:00:00 GMT</pubDate>
+			<content:encoded>&lt;p&gt;由于InnoDB预设是Row-Level Lock，所以只有「明确」的指定主键，MySQL才会执行Row lock (只锁住被选取的资料例) ，否则MySQL将会执行Table&lt;/p&gt;
+&lt;p&gt;Lock (将整个资料表单给锁住)。 举个例子: 假设有个表单products ，里面有id跟name二个栏位，id是主键。&lt;/p&gt;
+&lt;p&gt;例1: (明确指定主键，并且有此笔资料，row lock)&lt;/p&gt;
+&lt;p&gt;SELECT * FROM products WHERE id='3' FOR UPDATE;&lt;/p&gt;
+&lt;p&gt;SELECT * FROM products WHERE id='3' and type=1 FOR UPDATE;&lt;/p&gt;
+&lt;p&gt;例2: (明确指定主键，若查无此笔资料，无lock)&lt;/p&gt;
+&lt;p&gt;SELECT * FROM products WHERE id='-1' FOR UPDATE;&lt;/p&gt;
+&lt;p&gt;例2: (无主键，table lock)&lt;/p&gt;
+&lt;p&gt;SELECT * FROM products WHERE name='Mouse' FOR UPDATE;&lt;/p&gt;
+&lt;p&gt;例3: (主键不明确，table lock)&lt;/p&gt;
+&lt;p&gt;SELECT * FROM products WHERE id&amp;lt;&amp;gt;'3' FOR UPDATE;&lt;/p&gt;
+&lt;p&gt;例4: (主键不明确，table lock)&lt;/p&gt;
+&lt;p&gt;SELECT * FROM products WHERE id LIKE '3' FOR UPDATE;
+注1: &lt;strong&gt;FOR UPDATE仅适用于InnoDB，且必须在交易区块(BEGIN/COMMIT)中才能生效&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;注2: &lt;strong&gt;要测试锁定的状况，可以利用MySQL的Command Mode ，开两个个视窗来做测试&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;注3：Myisam 只支持表级锁，InnerDB支持行级锁 添加了(行级锁/表级锁)锁的数据不能被其它事务再锁定，也不被其它事务修改修改、删除） 。是表级锁时，不管是否查询到记录，都会锁定表。&lt;/p&gt;
 </content:encoded>
 		</item>
 	</channel>

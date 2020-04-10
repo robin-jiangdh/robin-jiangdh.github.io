@@ -105,6 +105,46 @@ update  goods set stock=stock-1 where id=1 and stock=10
             return false;
 </code></pre>
 <p><strong>不管是该业务成功、失败或者异常，需要确保该锁在周期结束后能被释放</strong></p>
+<ul>
+<li><p>redis 版v1</p>
+<p>V0版本存在的缺陷：比较致命的是可能会出现，任务还未完成，锁就超时了，导致key被回收了，那么能不能将锁的申请时间作为值进行存储呢？</p>
+<pre><code>​```
+int waitIntervalMs = 200;//间隔等待时长 毫秒 设置成足够长，至少要超过数据库的超时响应时间
+string lockKey = &quot;lock_key:&quot; + key; 
+DateTime begin = DateTime.Now;
+DateTime now = DateTime.Now;
+while (true)
+            {
+              //在key值存在的情况下
+               if(redisclient.ExistKey(lockKey))
+               {
+               //如果key对应的value值+超时时间后小于当前时间，则移除key值，让业务正常运行
+               if(Convert.ToDateTime(redisclient.GetKey(lockkey).Value)+TimeLimit&lt;now){
+               redisclient.remove(lockkey);
+               }
+               }
+                if (redisClient.SetNX(lockKey, now.tostring()) == 1)
+                {
+                    redisClient.Expire(lockKey, expirySeconds);
+                    return true;
+                } 
+                //不等待锁则返回
+                if (waitSeconds &lt;= 0)
+                    break;
+
+                if ((DateTime.Now - begin).TotalSeconds &gt;= waitSeconds)//等待超时
+                    break;
+
+                System.Threading.Thread.Sleep(waitIntervalMs);
+
+
+            }
+            return false; 
+</code></pre>
+<h1 id="section-2">遗留的问题</h1>
+<p>在单个redis实例下，上述代码工作都ok，如果存在redis集群，且master挂掉的情况，那么这个锁一定锁不住</p>
+</li>
+</ul>
 
 
 
