@@ -1,6 +1,6 @@
 ---
 title: C#中是否可以继承String类?
-Published: 01/13/2016
+Published: 04/13/2020
 tags: ['C#','string','sealed'] 
 ---
 
