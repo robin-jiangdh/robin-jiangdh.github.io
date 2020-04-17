@@ -4,7 +4,7 @@
 	<title>知行志</title>
 	<link rel="self" href="http://blog.robinjiang.com/" />
 	<rights>2020</rights>
-	<updated>2020-04-13T13:43:56Z</updated>
+	<updated>2020-04-17T05:03:05Z</updated>
 	<subtitle>知行合一!</subtitle>
 	<entry>
 		<id>http://blog.robinjiang.com/posts/2020/04/2020-04-13-string-class-sealed</id>
@@ -135,6 +135,78 @@ ISBN: 9787100040945&lt;/p&gt;
 </content>
 		<summary>&lt;p&gt;如何阅读一本书
 &lt;img src="http://blog.robinjiang.com/posts/asset/2016-03-15-How-to-Read-a-Book/s1670978.jpg" class="img-fluid" alt="如何阅读一本书"&gt;&lt;/p&gt;</summary>
+	</entry>
+	<entry>
+		<id>http://blog.robinjiang.com/posts/2019/12/2019-12-22-aspnetcore-middleware-and-pipeline</id>
+		<title>ASP.NET CORE 管道模型和中间件</title>
+		<link href="http://blog.robinjiang.com/posts/2019/12/2019-12-22-aspnetcore-middleware-and-pipeline" />
+		<updated>2019-12-22T00:00:00Z</updated>
+		<content>&lt;h2 id="asp.net"&gt;ASP.NET 管道模型&lt;/h2&gt;
+&lt;p&gt;请求进入ASP.NET 工作进程后，由进程创建HttpWorkRequest 对象，封装此次请求有关的所有信息，然后进入HttpRuntime 类进行进一步的处理。HttpRuntime 通过请求信息创建HttpContext 上下文对象，此对象将贯穿整个管道，直到响应结束。同时创建或从应用程序池里初始化一个HttpApplication对象，由此对象开始处理之前注册的多个HttpModule。之后调用HandlerFactory 创建Handler处理程序，最终处理此次请求内容，生存响应返回。
+&lt;img src="https://blog.robinjiang.com/posts/asset/2019-12-22-aspnetcore-middleware-and-pipeline/aspnet-pipeline.jpg" class="img-fluid" alt="ASP.NET 管道模型.png" /&gt;&lt;/p&gt;
+&lt;p&gt;管道架构异常复杂，同时不具备热插拔的功能。由于这套流程相对固定，对于特定的业务场景优化难度加大。&lt;/p&gt;
+&lt;h2 id="aspnetcore"&gt;aspnetcore下的管道模型&lt;/h2&gt;
+&lt;p&gt;&lt;img src="https://blog.robinjiang.com/posts/asset/2019-12-22-aspnetcore-middleware-and-pipeline/aspnetcore-request-pipeline.png" class="img-fluid" alt="request-pipeline" /&gt;&lt;/p&gt;
+&lt;p&gt;回归web的本质，就是请求与响应而已。
+中间件本质上就是一个类型为 Func&amp;lt;RequestDelegate, RequestDelegate&amp;gt; 的委托对象；
+简单来说，中间件就是一个处理http请求和响应的组件，多个中间件构成了请求处理管道，每个中间件都可以选择处理结束，还是继续传递给管道中的下一个中间件，以此串联形成请求管道。&lt;/p&gt;
+&lt;p&gt;实际编码实现上，提供了一个Imiddleware的接口定义&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;public interface IMiddleware
+{
+    Task InvokeAsync(HttpContext context, RequestDelegate next);
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id="usemiddleware"&gt;UseMiddleware&lt;/h3&gt;
+&lt;p&gt;使用UseMiddleware扩展方法使用IMiddleware时，需要注意你的IMiddleware中间件需要注册到DI中&lt;/p&gt;
+</content>
+		<summary>&lt;p&gt;请求进入ASP.NET 工作进程后，由进程创建HttpWorkRequest 对象，封装此次请求有关的所有信息，然后进入HttpRuntime 类进行进一步的处理。HttpRuntime 通过请求信息创建HttpContext 上下文对象，此对象将贯穿整个管道，直到响应结束。同时创建或从应用程序池里初始化一个HttpApplication对象，由此对象开始处理之前注册的多个HttpModule。之后调用HandlerFactory 创建Handler处理程序，最终处理此次请求内容，生存响应返回。
+&lt;img src="https://blog.robinjiang.com/posts/asset/2019-12-22-aspnetcore-middleware-and-pipeline/aspnet-pipeline.jpg" class="img-fluid" alt="ASP.NET 管道模型.png"&gt;&lt;/p&gt;</summary>
+	</entry>
+	<entry>
+		<id>http://blog.robinjiang.com/posts/2019/12/2019-12-21-netcore-start-process</id>
+		<title>AspNetCore启动流程概述</title>
+		<link href="http://blog.robinjiang.com/posts/2019/12/2019-12-21-netcore-start-process" />
+		<updated>2019-12-21T00:00:00Z</updated>
+		<content>&lt;p&gt;aspnetcore 应用程序，是一个拥有内置的Self-hosted的WebServer,用于处理外部请求。大部分情况下以控制台应用的方式实现子托管（Self-Hosted）。
+相对于传统的aspnet 提供的大而全的设计，aspnetcore以最小化抽象设计为原则，以扩展(中间件)方式提供的易用性扩展来实现更高程度的按需使用。
+在ASP.NET Core应用中通过配置并启动一个Host来完成应用程序的启动和其生命周期的管理。而Host的主要的职责就是Web Server的配置和Pilpeline（请求处理管道）的构建。
+在应用中主要通过 构造一个IHostBuilder 的抽象对象来负责(通过build()方法)创建一个Ihost实例。并最终通过Ihost下的run()方法来启动这个实例。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;IHostBuilder &amp;gt; IHost&amp;gt;Run()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;期间设计两个核心的概念IHostbuilder和Ihost&lt;/p&gt;
+&lt;h1 id="ihostbuilder"&gt;IHostBuilder&lt;/h1&gt;
+&lt;p&gt;可以理解为为了启动host而准备的一些配置文件或行为，提供默认注册行为CreateDefaultBuilder和相关扩展ConfigureWebHostDefaults，以及其他一些配置入口。&lt;/p&gt;
+&lt;h3 id="createdefaultbuilder"&gt;CreateDefaultBuilder相关&lt;/h3&gt;
+&lt;p&gt;大部分都是配置系统相关的api&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;UseContentRoot&lt;/li&gt;
+&lt;li&gt;ConfigureHostConfiguration&lt;/li&gt;
+&lt;li&gt;ConfigureAppConfiguration&lt;/li&gt;
+&lt;li&gt;ConfigureLogging&lt;/li&gt;
+&lt;li&gt;UseDefaultServiceProvider&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="configurewebhostdefaults"&gt;ConfigureWebHostDefaults&lt;/h3&gt;
+&lt;p&gt;配置webserver的默认行为&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;UseStaticWebAssets&lt;/li&gt;
+&lt;li&gt;UseKestrel/UseIIS&lt;/li&gt;
+&lt;li&gt;ConfigureServices 服务中间件的注册，包括路由中间件&lt;/li&gt;
+&lt;li&gt;UseStartup 程序Startup 启动，该启动类中可以注册中间件、扩展第三方中间件，以及相关应用程序配置的处理等&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id="build"&gt;Build()&lt;/h1&gt;
+&lt;p&gt;核心要素&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;BuildHostConfiguration();-&amp;gt;围绕ConfigureHostConfiguration的一系列配置回调-&amp;gt;执行ConfigureHostConfiguration&lt;/li&gt;
+&lt;li&gt;CreateHostingEnvironment();-&amp;gt; HostingEnvironment环境相关配置&lt;/li&gt;
+&lt;li&gt;CreateHostBuilderContext();-&amp;gt; HostBuilder 上下文构建，这个略复杂&lt;/li&gt;
+&lt;li&gt;BuildAppConfiguration();-&amp;gt;围绕ConfigureAppConfiguration的一系列回调-&amp;gt;执行ConfigureAppConfiguration；&lt;/li&gt;
+&lt;li&gt;CreateServiceProvider();&amp;gt;服务注册添加，并执行ConfigureServices添加的一系列回调-&amp;gt;执行ConfigureServices；&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+		<summary>&lt;p&gt;aspnetcore 应用程序，是一个拥有内置的Self-hosted的WebServer,用于处理外部请求。大部分情况下以控制台应用的方式实现子托管（Self-Hosted）。
+相对于传统的aspnet 提供的大而全的设计，aspnetcore以最小化抽象设计为原则，以扩展(中间件)方式提供的易用性扩展来实现更高程度的按需使用。
+在ASP.NET Core应用中通过配置并启动一个Host来完成应用程序的启动和其生命周期的管理。而Host的主要的职责就是Web Server的配置和Pilpeline（请求处理管道）的构建。
+在应用中主要通过 构造一个IHostBuilder 的抽象对象来负责(通过build()方法)创建一个Ihost实例。并最终通过Ihost下的run()方法来启动这个实例。&lt;/p&gt;</summary>
 	</entry>
 	<entry>
 		<id>http://blog.robinjiang.com/posts/2019/10/2017-06-10-use-mailkit-with-mimekit-to-send-email</id>
@@ -659,28 +731,49 @@ ISBN: 9787100040945&lt;/p&gt;
 &lt;img src="http://blog.robinjiang.com/posts/asset/2016-03-15-How-to-Read-a-Book/s1670978.jpg" class="img-fluid" alt="如何阅读一本书"&gt;&lt;/p&gt;</summary>
 	</entry>
 	<entry>
-		<id>http://blog.robinjiang.com/posts/2016/01/2019-11-15-mysql-lock</id>
-		<title>MySQL中select * for update锁表的范围</title>
-		<link href="http://blog.robinjiang.com/posts/2016/01/2019-11-15-mysql-lock" />
+		<id>http://blog.robinjiang.com/posts/2016/01/2017-01-11-mysql-explain-or-desc</id>
+		<title>MySQL 执行计划</title>
+		<link href="http://blog.robinjiang.com/posts/2016/01/2017-01-11-mysql-explain-or-desc" />
 		<updated>2016-01-13T00:00:00Z</updated>
-		<content>&lt;p&gt;由于InnoDB预设是Row-Level Lock，所以只有「明确」的指定主键，MySQL才会执行Row lock (只锁住被选取的资料例) ，否则MySQL将会执行Table&lt;/p&gt;
-&lt;p&gt;Lock (将整个资料表单给锁住)。 举个例子: 假设有个表单products ，里面有id跟name二个栏位，id是主键。&lt;/p&gt;
-&lt;p&gt;例1: (明确指定主键，并且有此笔资料，row lock)&lt;/p&gt;
-&lt;p&gt;SELECT * FROM products WHERE id='3' FOR UPDATE;&lt;/p&gt;
-&lt;p&gt;SELECT * FROM products WHERE id='3' and type=1 FOR UPDATE;&lt;/p&gt;
-&lt;p&gt;例2: (明确指定主键，若查无此笔资料，无lock)&lt;/p&gt;
-&lt;p&gt;SELECT * FROM products WHERE id='-1' FOR UPDATE;&lt;/p&gt;
-&lt;p&gt;例2: (无主键，table lock)&lt;/p&gt;
-&lt;p&gt;SELECT * FROM products WHERE name='Mouse' FOR UPDATE;&lt;/p&gt;
-&lt;p&gt;例3: (主键不明确，table lock)&lt;/p&gt;
-&lt;p&gt;SELECT * FROM products WHERE id&amp;lt;&amp;gt;'3' FOR UPDATE;&lt;/p&gt;
-&lt;p&gt;例4: (主键不明确，table lock)&lt;/p&gt;
-&lt;p&gt;SELECT * FROM products WHERE id LIKE '3' FOR UPDATE;
-注1: &lt;strong&gt;FOR UPDATE仅适用于InnoDB，且必须在交易区块(BEGIN/COMMIT)中才能生效&lt;/strong&gt;。&lt;/p&gt;
-&lt;p&gt;注2: &lt;strong&gt;要测试锁定的状况，可以利用MySQL的Command Mode ，开两个个视窗来做测试&lt;/strong&gt;。&lt;/p&gt;
-&lt;p&gt;注3：Myisam 只支持表级锁，InnerDB支持行级锁 添加了(行级锁/表级锁)锁的数据不能被其它事务再锁定，也不被其它事务修改修改、删除） 。是表级锁时，不管是否查询到记录，都会锁定表。&lt;/p&gt;
+		<content>&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;一直在使用Explain，今天被扫盲，专业名词叫执行计划~，野生码农误国啊~&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://dev.mysql.com/doc/refman/5.7/en/execution-plan-information.html"&gt;官方文档地址&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;MySQL提供&lt;a href="https://dev.mysql.com/doc/refman/5.7/en/execution-plan-information.html"&gt;&lt;strong&gt;explain/desc&lt;/strong&gt;&lt;/a&gt;命令输出执行计划，我们通过执行计划优化SQL语句&lt;/p&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;根据表，列，索引的详细信息以及&lt;code&gt;WHERE&lt;/code&gt;子句中的条件，MySQL优化器考虑了许多技术来有效执行SQL查询中涉及的查找。无需读取所有行即可执行对巨大表的查询；可以执行涉及多个表的联接，而无需比较行的每个组合。优化器选择执行最有效查询的一组操作称为“ 查询执行计划 ”，也称为 &lt;a href="https://dev.mysql.com/doc/refman/5.7/en/explain.html"&gt;&lt;code&gt;EXPLAIN&lt;/code&gt;&lt;/a&gt;计划。您的目标是认识到 &lt;a href="https://dev.mysql.com/doc/refman/5.7/en/explain.html"&gt;&lt;code&gt;EXPLAIN&lt;/code&gt;&lt;/a&gt; 表示查询优化的计划，如果发现一些低效的操作，则可以学习SQL语法和索引技术来改进计划。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id="explain"&gt;使用Explain优化查询&lt;/h1&gt;
+&lt;p&gt;该&lt;a href="https://dev.mysql.com/doc/refman/5.7/en/explain.html"&gt;&lt;code&gt;EXPLAIN&lt;/code&gt;&lt;/a&gt;语句提供有关MySQL如何执行语句的信息：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://dev.mysql.com/doc/refman/5.7/en/explain.html"&gt;&lt;code&gt;EXPLAIN&lt;/code&gt;&lt;/a&gt;作品有 &lt;a href="https://dev.mysql.com/doc/refman/5.7/en/select.html"&gt;&lt;code&gt;SELECT&lt;/code&gt;&lt;/a&gt;， &lt;a href="https://dev.mysql.com/doc/refman/5.7/en/delete.html"&gt;&lt;code&gt;DELETE&lt;/code&gt;&lt;/a&gt;， &lt;a href="https://dev.mysql.com/doc/refman/5.7/en/insert.html"&gt;&lt;code&gt;INSERT&lt;/code&gt;&lt;/a&gt;， &lt;a href="https://dev.mysql.com/doc/refman/5.7/en/replace.html"&gt;&lt;code&gt;REPLACE&lt;/code&gt;&lt;/a&gt;，和 &lt;a href="https://dev.mysql.com/doc/refman/5.7/en/update.html"&gt;&lt;code&gt;UPDATE&lt;/code&gt;&lt;/a&gt;语句。&lt;/li&gt;
+&lt;li&gt;当&lt;a href="https://dev.mysql.com/doc/refman/5.7/en/explain.html"&gt;&lt;code&gt;EXPLAIN&lt;/code&gt;&lt;/a&gt;与可解释的语句一起使用时，MySQL将显示来自优化器的有关语句执行计划的信息。也就是说，MySQL解释了它将如何处理该语句，包括有关如何连接表以及以何种顺序连接表的信息。&lt;/li&gt;
+&lt;li&gt;当&lt;a href="https://dev.mysql.com/doc/refman/5.7/en/explain.html"&gt;&lt;code&gt;EXPLAIN&lt;/code&gt;&lt;/a&gt;与 &lt;code&gt;FOR CONNECTION *&lt;/code&gt;connection_id&lt;code&gt;*&lt;/code&gt;而不是可解释的语句一起使用时，它将显示在名为这个“connetction_id”的连接中正在执行的语句的执行计划。&lt;/li&gt;
+&lt;li&gt;对于&lt;a href="https://dev.mysql.com/doc/refman/5.7/en/select.html"&gt;&lt;code&gt;SELECT&lt;/code&gt;&lt;/a&gt;语句， 在&lt;a href="https://dev.mysql.com/doc/refman/5.7/en/show-warnings.html"&gt;&lt;code&gt;SHOW WARNINGS&lt;/code&gt;&lt;/a&gt;模式下，&lt;a href="https://dev.mysql.com/doc/refman/5.7/en/explain.html"&gt;&lt;code&gt;EXPLAIN&lt;/code&gt;&lt;/a&gt;可以输出更多的执行计划信息。&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://dev.mysql.com/doc/refman/5.7/en/explain.html"&gt;&lt;code&gt;EXPLAIN&lt;/code&gt;&lt;/a&gt;对于检查涉及分区表的查询很有用。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;FORMAT&lt;/code&gt;选项可用于设置输出格式。&lt;code&gt;TRADITIONAL&lt;/code&gt;以表格格式显示输出。默认情况下不需要提供&lt;code&gt;FORMAT&lt;/code&gt;设置 。 format设置为&lt;code&gt;JSON&lt;/code&gt;时，以JSON格式显示信息。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id="explain-1"&gt;Explain输出格式&lt;/h1&gt;
+&lt;p&gt;&lt;a href="https://dev.mysql.com/doc/refman/5.7/en/explain.html"&gt;&lt;code&gt;EXPLAIN&lt;/code&gt;&lt;/a&gt;语句提供有关MySQL如何执行语句的信息。 &lt;a href="https://dev.mysql.com/doc/refman/5.7/en/explain.html"&gt;&lt;code&gt;EXPLAIN&lt;/code&gt;&lt;/a&gt;支持 &lt;a href="https://dev.mysql.com/doc/refman/5.7/en/select.html"&gt;&lt;code&gt;SELECT&lt;/code&gt;&lt;/a&gt;， &lt;a href="https://dev.mysql.com/doc/refman/5.7/en/delete.html"&gt;&lt;code&gt;DELETE&lt;/code&gt;&lt;/a&gt;， &lt;a href="https://dev.mysql.com/doc/refman/5.7/en/insert.html"&gt;&lt;code&gt;INSERT&lt;/code&gt;&lt;/a&gt;， &lt;a href="https://dev.mysql.com/doc/refman/5.7/en/replace.html"&gt;&lt;code&gt;REPLACE&lt;/code&gt;&lt;/a&gt;和 &lt;a href="https://dev.mysql.com/doc/refman/5.7/en/update.html"&gt;&lt;code&gt;UPDATE&lt;/code&gt;&lt;/a&gt;语句。&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://dev.mysql.com/doc/refman/5.7/en/explain.html"&gt;&lt;code&gt;EXPLAIN&lt;/code&gt;&lt;/a&gt;为&lt;a href="https://dev.mysql.com/doc/refman/5.7/en/select.html"&gt;&lt;code&gt;SELECT&lt;/code&gt;&lt;/a&gt;语句中使用的每个表返回一行信息 。它按照MySQL在处理语句时读取它们的顺序列出了输出中的表。MySQL使用嵌套循环连接方法解析所有连接。这意味着MySQL从第一个表中读取一行，然后在第二个表，第三个表中找到匹配的行，依此类推。处理完所有表后，MySQL将通过表列表输出选定的列和回溯，直到找到一个表，其中存在更多匹配的行。从该表中读取下一行，然后继续下一个表。&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://dev.mysql.com/doc/refman/5.7/en/explain.html"&gt;&lt;code&gt;EXPLAIN&lt;/code&gt;&lt;/a&gt;输出包括分区信息。此外，对于&lt;a href="https://dev.mysql.com/doc/refman/5.7/en/select.html"&gt;&lt;code&gt;SELECT&lt;/code&gt;&lt;/a&gt; 语句，&lt;a href="https://dev.mysql.com/doc/refman/5.7/en/explain.html"&gt;&lt;code&gt;EXPLAIN&lt;/code&gt;&lt;/a&gt;产生可与被显示扩展信息 &lt;a href="https://dev.mysql.com/doc/refman/5.7/en/show-warnings.html"&gt;&lt;code&gt;SHOW WARNINGS&lt;/code&gt;&lt;/a&gt;之后的 &lt;a href="https://dev.mysql.com/doc/refman/5.7/en/explain.html"&gt;&lt;code&gt;EXPLAIN&lt;/code&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id="explain-2"&gt;扩展的EXPLAIN输出格式&lt;/h3&gt;
+&lt;p&gt;对于&lt;a href="https://dev.mysql.com/doc/refman/5.7/en/select.html"&gt;&lt;code&gt;SELECT&lt;/code&gt;&lt;/a&gt;语句，该 &lt;a href="https://dev.mysql.com/doc/refman/5.7/en/explain.html"&gt;&lt;code&gt;EXPLAIN&lt;/code&gt;&lt;/a&gt;语句会产生额外的（“ 扩展 ”）信息，这些信息不属于 &lt;a href="https://dev.mysql.com/doc/refman/5.7/en/explain.html"&gt;&lt;code&gt;EXPLAIN&lt;/code&gt;&lt;/a&gt;输出，但可以通过在&lt;a href="https://dev.mysql.com/doc/refman/5.7/en/show-warnings.html"&gt;&lt;code&gt;SHOW WARNINGS&lt;/code&gt;&lt;/a&gt; 以下语句发出来查看&lt;a href="https://dev.mysql.com/doc/refman/5.7/en/explain.html"&gt;&lt;code&gt;EXPLAIN&lt;/code&gt;&lt;/a&gt;。输出中的 &lt;code&gt;Message&lt;/code&gt;值&lt;a href="https://dev.mysql.com/doc/refman/5.7/en/show-warnings.html"&gt;&lt;code&gt;SHOW WARNINGS&lt;/code&gt;&lt;/a&gt;显示优化器如何限定&lt;a href="https://dev.mysql.com/doc/refman/5.7/en/select.html"&gt;&lt;code&gt;SELECT&lt;/code&gt;&lt;/a&gt;语句 中的表名和列名， &lt;a href="https://dev.mysql.com/doc/refman/5.7/en/select.html"&gt;&lt;code&gt;SELECT&lt;/code&gt;&lt;/a&gt;应用重写和优化规则后的外观以及有关优化过程的其他注释。&lt;/p&gt;
+&lt;p&gt;可在&lt;a href="https://dev.mysql.com/doc/refman/5.7/en/show-warnings.html"&gt;&lt;code&gt;SHOW WARNINGS&lt;/code&gt;&lt;/a&gt;语句后面 显示的扩展信息 &lt;a href="https://dev.mysql.com/doc/refman/5.7/en/explain.html"&gt;&lt;code&gt;EXPLAIN&lt;/code&gt;&lt;/a&gt;仅针对 &lt;a href="https://dev.mysql.com/doc/refman/5.7/en/select.html"&gt;&lt;code&gt;SELECT&lt;/code&gt;&lt;/a&gt;语句生成。 &lt;a href="https://dev.mysql.com/doc/refman/5.7/en/show-warnings.html"&gt;&lt;code&gt;SHOW WARNINGS&lt;/code&gt;&lt;/a&gt;显示其他可解释语句空结果（&lt;a href="https://dev.mysql.com/doc/refman/5.7/en/delete.html"&gt;&lt;code&gt;DELETE&lt;/code&gt;&lt;/a&gt;， &lt;a href="https://dev.mysql.com/doc/refman/5.7/en/insert.html"&gt;&lt;code&gt;INSERT&lt;/code&gt;&lt;/a&gt;， &lt;a href="https://dev.mysql.com/doc/refman/5.7/en/replace.html"&gt;&lt;code&gt;REPLACE&lt;/code&gt;&lt;/a&gt;，和 &lt;a href="https://dev.mysql.com/doc/refman/5.7/en/update.html"&gt;&lt;code&gt;UPDATE&lt;/code&gt;&lt;/a&gt;）。&lt;/p&gt;
+&lt;h1 id="section"&gt;获取命名连接的执行计划信息&lt;/h1&gt;
+&lt;pre&gt;&lt;code&gt;EXPLAIN [options] FOR CONNECTION connection_id;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;a href="https://dev.mysql.com/doc/refman/5.7/en/explain-for-connection.html"&gt;&lt;code&gt;EXPLAIN FOR CONNECTION&lt;/code&gt;&lt;/a&gt;返回&lt;a href="https://dev.mysql.com/doc/refman/5.7/en/explain.html"&gt;&lt;code&gt;EXPLAIN&lt;/code&gt;&lt;/a&gt;当前在给定连接中用于执行查询的信息。由于数据（和支持统计数据）的更改，它可能会产生与&lt;a href="https://dev.mysql.com/doc/refman/5.7/en/explain.html"&gt;&lt;code&gt;EXPLAIN&lt;/code&gt;&lt;/a&gt;在等效查询文本上运行不同的结果 。行为上的这种差异对于诊断更多瞬时性能问题很有用。例如，如果您在一个需要很长时间才能完成的会话中运行语句，则&lt;a href="https://dev.mysql.com/doc/refman/5.7/en/explain-for-connection.html"&gt;&lt;code&gt;EXPLAIN FOR CONNECTION&lt;/code&gt;&lt;/a&gt;在另一会话中使用该语句可能会产生有关延迟原因的有用信息。&lt;/p&gt;
+&lt;p&gt;*&lt;code&gt;connection_id&lt;/code&gt;*是从&lt;code&gt;INFORMATION_SCHEMA&lt;/code&gt; &lt;a href="https://dev.mysql.com/doc/refman/5.7/en/processlist-table.html"&gt;&lt;code&gt;PROCESSLIST&lt;/code&gt;&lt;/a&gt;表或 &lt;a href="https://dev.mysql.com/doc/refman/5.7/en/show-processlist.html"&gt;&lt;code&gt;SHOW PROCESSLIST&lt;/code&gt;&lt;/a&gt;语句获得的连接标识符 。如果有&lt;a href="https://dev.mysql.com/doc/refman/5.7/en/privileges-provided.html#priv_process"&gt;&lt;code&gt;PROCESS&lt;/code&gt;&lt;/a&gt;特权，则可以为任何连接指定标识符。否则，您只能为自己的连接指定标识符。&lt;/p&gt;
+&lt;p&gt;如果命名连接未执行语句，则结果为空。否则，&lt;code&gt;EXPLAIN FOR CONNECTION&lt;/code&gt; 仅当在命名连接中执行的语句是可解释的时才适用。这包括 &lt;a href="https://dev.mysql.com/doc/refman/5.7/en/select.html"&gt;&lt;code&gt;SELECT&lt;/code&gt;&lt;/a&gt;， &lt;a href="https://dev.mysql.com/doc/refman/5.7/en/delete.html"&gt;&lt;code&gt;DELETE&lt;/code&gt;&lt;/a&gt;， &lt;a href="https://dev.mysql.com/doc/refman/5.7/en/insert.html"&gt;&lt;code&gt;INSERT&lt;/code&gt;&lt;/a&gt;， &lt;a href="https://dev.mysql.com/doc/refman/5.7/en/replace.html"&gt;&lt;code&gt;REPLACE&lt;/code&gt;&lt;/a&gt;，和 &lt;a href="https://dev.mysql.com/doc/refman/5.7/en/update.html"&gt;&lt;code&gt;UPDATE&lt;/code&gt;&lt;/a&gt;。（但是， &lt;code&gt;EXPLAIN FOR CONNECTION&lt;/code&gt;不适用于预备语句，甚至不适用于这些类型的预备语句。）&lt;/p&gt;
+&lt;h1 id="section-1"&gt;估计查询性能&lt;/h1&gt;
+&lt;p&gt;在大多数情况下，您可以通过计算磁盘搜索次数来估计查询性能。对于小型表，通常可以在一个磁盘搜索中找到一行（因为索引可能已缓存）。对于更大的表，您可以估计，使用B树索引，您需要进行许多查找才能找到行： 。 &lt;code&gt;log(*&lt;/code&gt;row_count&lt;code&gt;*) / log(*&lt;/code&gt;index_block_length&lt;code&gt;* / 3 * 2 / (*&lt;/code&gt;index_length&lt;code&gt;* + *&lt;/code&gt;data_pointer_length&lt;code&gt;*)) + 1&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;在MySQL中，索引块通常为1,024字节，数据指针通常为四个字节。对于一个键值长度为三个字节（大小为&lt;a href="https://dev.mysql.com/doc/refman/5.7/en/integer-types.html"&gt;&lt;code&gt;MEDIUMINT&lt;/code&gt;&lt;/a&gt;）的500,000行表 ，该公式表示 &lt;code&gt;log(500,000)/log(1024/3*2/(3+4)) + 1&lt;/code&gt;=搜索 &lt;code&gt;4&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;该索引将需要大约500,000 * 7 * 3/2 = 5.2MB的存储空间（假设典型的索引缓冲区填充率为2/3），因此您可能在内存中拥有很多索引，因此只需要一个或两个调用即可读取数据以查找行。&lt;/p&gt;
+&lt;p&gt;但是，对于写操作，您需要四个搜索请求来查找在何处放置新索引值，通常需要两个搜索来更新索引并写入行。&lt;/p&gt;
+&lt;p&gt;前面的讨论并不意味着您的应用程序性能会因log缓慢下降 &lt;em&gt;&lt;code&gt;N&lt;/code&gt;&lt;/em&gt;。只要所有内容都由OS或MySQL服务器缓存，随着表的增加，事情只会变得稍微慢一些。在数据变得太大而无法缓存之后，事情开始变得缓慢得多，直到您的应用程序仅受磁盘搜索约束（随日志增长 &lt;em&gt;&lt;code&gt;N&lt;/code&gt;&lt;/em&gt;）。为避免这种情况，请随着数据的增长而增加密钥缓存的大小。对于&lt;code&gt;MyISAM&lt;/code&gt; 表，键缓存大小由&lt;a href="https://dev.mysql.com/doc/refman/5.7/en/server-system-variables.html#sysvar_key_buffer_size"&gt;&lt;code&gt;key_buffer_size&lt;/code&gt;&lt;/a&gt;系统变量控制&lt;/p&gt;
 </content>
-		<summary>&lt;p&gt;由于InnoDB预设是Row-Level Lock，所以只有「明确」的指定主键，MySQL才会执行Row lock (只锁住被选取的资料例) ，否则MySQL将会执行Table&lt;/p&gt;</summary>
+		<summary>&lt;p&gt;一直在使用Explain，今天被扫盲，专业名词叫执行计划~，野生码农误国啊~&lt;/p&gt;</summary>
 	</entry>
 	<entry>
 		<id>http://blog.robinjiang.com/posts/2016/01/2018-04-11-mysql-index-optimization</id>
@@ -789,131 +882,27 @@ ISBN: 9787100040945&lt;/p&gt;
 		<summary>&lt;p&gt;我们可以在创建上述索引的时候，为其指定索引类型，分两类：&lt;/p&gt;</summary>
 	</entry>
 	<entry>
-		<id>http://blog.robinjiang.com/posts/2016/01/2017-01-11-mysql-explain-or-desc</id>
-		<title>MySQL 执行计划</title>
-		<link href="http://blog.robinjiang.com/posts/2016/01/2017-01-11-mysql-explain-or-desc" />
+		<id>http://blog.robinjiang.com/posts/2016/01/2019-11-15-mysql-lock</id>
+		<title>MySQL中select * for update锁表的范围</title>
+		<link href="http://blog.robinjiang.com/posts/2016/01/2019-11-15-mysql-lock" />
 		<updated>2016-01-13T00:00:00Z</updated>
-		<content>&lt;blockquote class="blockquote"&gt;
-&lt;p&gt;一直在使用Explain，今天被扫盲，专业名词叫执行计划~，野生码农误国啊~&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://dev.mysql.com/doc/refman/5.7/en/execution-plan-information.html"&gt;官方文档地址&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;MySQL提供&lt;a href="https://dev.mysql.com/doc/refman/5.7/en/execution-plan-information.html"&gt;&lt;strong&gt;explain/desc&lt;/strong&gt;&lt;/a&gt;命令输出执行计划，我们通过执行计划优化SQL语句&lt;/p&gt;
-&lt;blockquote class="blockquote"&gt;
-&lt;p&gt;根据表，列，索引的详细信息以及&lt;code&gt;WHERE&lt;/code&gt;子句中的条件，MySQL优化器考虑了许多技术来有效执行SQL查询中涉及的查找。无需读取所有行即可执行对巨大表的查询；可以执行涉及多个表的联接，而无需比较行的每个组合。优化器选择执行最有效查询的一组操作称为“ 查询执行计划 ”，也称为 &lt;a href="https://dev.mysql.com/doc/refman/5.7/en/explain.html"&gt;&lt;code&gt;EXPLAIN&lt;/code&gt;&lt;/a&gt;计划。您的目标是认识到 &lt;a href="https://dev.mysql.com/doc/refman/5.7/en/explain.html"&gt;&lt;code&gt;EXPLAIN&lt;/code&gt;&lt;/a&gt; 表示查询优化的计划，如果发现一些低效的操作，则可以学习SQL语法和索引技术来改进计划。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h1 id="explain"&gt;使用Explain优化查询&lt;/h1&gt;
-&lt;p&gt;该&lt;a href="https://dev.mysql.com/doc/refman/5.7/en/explain.html"&gt;&lt;code&gt;EXPLAIN&lt;/code&gt;&lt;/a&gt;语句提供有关MySQL如何执行语句的信息：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="https://dev.mysql.com/doc/refman/5.7/en/explain.html"&gt;&lt;code&gt;EXPLAIN&lt;/code&gt;&lt;/a&gt;作品有 &lt;a href="https://dev.mysql.com/doc/refman/5.7/en/select.html"&gt;&lt;code&gt;SELECT&lt;/code&gt;&lt;/a&gt;， &lt;a href="https://dev.mysql.com/doc/refman/5.7/en/delete.html"&gt;&lt;code&gt;DELETE&lt;/code&gt;&lt;/a&gt;， &lt;a href="https://dev.mysql.com/doc/refman/5.7/en/insert.html"&gt;&lt;code&gt;INSERT&lt;/code&gt;&lt;/a&gt;， &lt;a href="https://dev.mysql.com/doc/refman/5.7/en/replace.html"&gt;&lt;code&gt;REPLACE&lt;/code&gt;&lt;/a&gt;，和 &lt;a href="https://dev.mysql.com/doc/refman/5.7/en/update.html"&gt;&lt;code&gt;UPDATE&lt;/code&gt;&lt;/a&gt;语句。&lt;/li&gt;
-&lt;li&gt;当&lt;a href="https://dev.mysql.com/doc/refman/5.7/en/explain.html"&gt;&lt;code&gt;EXPLAIN&lt;/code&gt;&lt;/a&gt;与可解释的语句一起使用时，MySQL将显示来自优化器的有关语句执行计划的信息。也就是说，MySQL解释了它将如何处理该语句，包括有关如何连接表以及以何种顺序连接表的信息。&lt;/li&gt;
-&lt;li&gt;当&lt;a href="https://dev.mysql.com/doc/refman/5.7/en/explain.html"&gt;&lt;code&gt;EXPLAIN&lt;/code&gt;&lt;/a&gt;与 &lt;code&gt;FOR CONNECTION *&lt;/code&gt;connection_id&lt;code&gt;*&lt;/code&gt;而不是可解释的语句一起使用时，它将显示在名为这个“connetction_id”的连接中正在执行的语句的执行计划。&lt;/li&gt;
-&lt;li&gt;对于&lt;a href="https://dev.mysql.com/doc/refman/5.7/en/select.html"&gt;&lt;code&gt;SELECT&lt;/code&gt;&lt;/a&gt;语句， 在&lt;a href="https://dev.mysql.com/doc/refman/5.7/en/show-warnings.html"&gt;&lt;code&gt;SHOW WARNINGS&lt;/code&gt;&lt;/a&gt;模式下，&lt;a href="https://dev.mysql.com/doc/refman/5.7/en/explain.html"&gt;&lt;code&gt;EXPLAIN&lt;/code&gt;&lt;/a&gt;可以输出更多的执行计划信息。&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://dev.mysql.com/doc/refman/5.7/en/explain.html"&gt;&lt;code&gt;EXPLAIN&lt;/code&gt;&lt;/a&gt;对于检查涉及分区表的查询很有用。&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;FORMAT&lt;/code&gt;选项可用于设置输出格式。&lt;code&gt;TRADITIONAL&lt;/code&gt;以表格格式显示输出。默认情况下不需要提供&lt;code&gt;FORMAT&lt;/code&gt;设置 。 format设置为&lt;code&gt;JSON&lt;/code&gt;时，以JSON格式显示信息。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1 id="explain-1"&gt;Explain输出格式&lt;/h1&gt;
-&lt;p&gt;&lt;a href="https://dev.mysql.com/doc/refman/5.7/en/explain.html"&gt;&lt;code&gt;EXPLAIN&lt;/code&gt;&lt;/a&gt;语句提供有关MySQL如何执行语句的信息。 &lt;a href="https://dev.mysql.com/doc/refman/5.7/en/explain.html"&gt;&lt;code&gt;EXPLAIN&lt;/code&gt;&lt;/a&gt;支持 &lt;a href="https://dev.mysql.com/doc/refman/5.7/en/select.html"&gt;&lt;code&gt;SELECT&lt;/code&gt;&lt;/a&gt;， &lt;a href="https://dev.mysql.com/doc/refman/5.7/en/delete.html"&gt;&lt;code&gt;DELETE&lt;/code&gt;&lt;/a&gt;， &lt;a href="https://dev.mysql.com/doc/refman/5.7/en/insert.html"&gt;&lt;code&gt;INSERT&lt;/code&gt;&lt;/a&gt;， &lt;a href="https://dev.mysql.com/doc/refman/5.7/en/replace.html"&gt;&lt;code&gt;REPLACE&lt;/code&gt;&lt;/a&gt;和 &lt;a href="https://dev.mysql.com/doc/refman/5.7/en/update.html"&gt;&lt;code&gt;UPDATE&lt;/code&gt;&lt;/a&gt;语句。&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://dev.mysql.com/doc/refman/5.7/en/explain.html"&gt;&lt;code&gt;EXPLAIN&lt;/code&gt;&lt;/a&gt;为&lt;a href="https://dev.mysql.com/doc/refman/5.7/en/select.html"&gt;&lt;code&gt;SELECT&lt;/code&gt;&lt;/a&gt;语句中使用的每个表返回一行信息 。它按照MySQL在处理语句时读取它们的顺序列出了输出中的表。MySQL使用嵌套循环连接方法解析所有连接。这意味着MySQL从第一个表中读取一行，然后在第二个表，第三个表中找到匹配的行，依此类推。处理完所有表后，MySQL将通过表列表输出选定的列和回溯，直到找到一个表，其中存在更多匹配的行。从该表中读取下一行，然后继续下一个表。&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://dev.mysql.com/doc/refman/5.7/en/explain.html"&gt;&lt;code&gt;EXPLAIN&lt;/code&gt;&lt;/a&gt;输出包括分区信息。此外，对于&lt;a href="https://dev.mysql.com/doc/refman/5.7/en/select.html"&gt;&lt;code&gt;SELECT&lt;/code&gt;&lt;/a&gt; 语句，&lt;a href="https://dev.mysql.com/doc/refman/5.7/en/explain.html"&gt;&lt;code&gt;EXPLAIN&lt;/code&gt;&lt;/a&gt;产生可与被显示扩展信息 &lt;a href="https://dev.mysql.com/doc/refman/5.7/en/show-warnings.html"&gt;&lt;code&gt;SHOW WARNINGS&lt;/code&gt;&lt;/a&gt;之后的 &lt;a href="https://dev.mysql.com/doc/refman/5.7/en/explain.html"&gt;&lt;code&gt;EXPLAIN&lt;/code&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id="explain-2"&gt;扩展的EXPLAIN输出格式&lt;/h3&gt;
-&lt;p&gt;对于&lt;a href="https://dev.mysql.com/doc/refman/5.7/en/select.html"&gt;&lt;code&gt;SELECT&lt;/code&gt;&lt;/a&gt;语句，该 &lt;a href="https://dev.mysql.com/doc/refman/5.7/en/explain.html"&gt;&lt;code&gt;EXPLAIN&lt;/code&gt;&lt;/a&gt;语句会产生额外的（“ 扩展 ”）信息，这些信息不属于 &lt;a href="https://dev.mysql.com/doc/refman/5.7/en/explain.html"&gt;&lt;code&gt;EXPLAIN&lt;/code&gt;&lt;/a&gt;输出，但可以通过在&lt;a href="https://dev.mysql.com/doc/refman/5.7/en/show-warnings.html"&gt;&lt;code&gt;SHOW WARNINGS&lt;/code&gt;&lt;/a&gt; 以下语句发出来查看&lt;a href="https://dev.mysql.com/doc/refman/5.7/en/explain.html"&gt;&lt;code&gt;EXPLAIN&lt;/code&gt;&lt;/a&gt;。输出中的 &lt;code&gt;Message&lt;/code&gt;值&lt;a href="https://dev.mysql.com/doc/refman/5.7/en/show-warnings.html"&gt;&lt;code&gt;SHOW WARNINGS&lt;/code&gt;&lt;/a&gt;显示优化器如何限定&lt;a href="https://dev.mysql.com/doc/refman/5.7/en/select.html"&gt;&lt;code&gt;SELECT&lt;/code&gt;&lt;/a&gt;语句 中的表名和列名， &lt;a href="https://dev.mysql.com/doc/refman/5.7/en/select.html"&gt;&lt;code&gt;SELECT&lt;/code&gt;&lt;/a&gt;应用重写和优化规则后的外观以及有关优化过程的其他注释。&lt;/p&gt;
-&lt;p&gt;可在&lt;a href="https://dev.mysql.com/doc/refman/5.7/en/show-warnings.html"&gt;&lt;code&gt;SHOW WARNINGS&lt;/code&gt;&lt;/a&gt;语句后面 显示的扩展信息 &lt;a href="https://dev.mysql.com/doc/refman/5.7/en/explain.html"&gt;&lt;code&gt;EXPLAIN&lt;/code&gt;&lt;/a&gt;仅针对 &lt;a href="https://dev.mysql.com/doc/refman/5.7/en/select.html"&gt;&lt;code&gt;SELECT&lt;/code&gt;&lt;/a&gt;语句生成。 &lt;a href="https://dev.mysql.com/doc/refman/5.7/en/show-warnings.html"&gt;&lt;code&gt;SHOW WARNINGS&lt;/code&gt;&lt;/a&gt;显示其他可解释语句空结果（&lt;a href="https://dev.mysql.com/doc/refman/5.7/en/delete.html"&gt;&lt;code&gt;DELETE&lt;/code&gt;&lt;/a&gt;， &lt;a href="https://dev.mysql.com/doc/refman/5.7/en/insert.html"&gt;&lt;code&gt;INSERT&lt;/code&gt;&lt;/a&gt;， &lt;a href="https://dev.mysql.com/doc/refman/5.7/en/replace.html"&gt;&lt;code&gt;REPLACE&lt;/code&gt;&lt;/a&gt;，和 &lt;a href="https://dev.mysql.com/doc/refman/5.7/en/update.html"&gt;&lt;code&gt;UPDATE&lt;/code&gt;&lt;/a&gt;）。&lt;/p&gt;
-&lt;h1 id="section"&gt;获取命名连接的执行计划信息&lt;/h1&gt;
-&lt;pre&gt;&lt;code&gt;EXPLAIN [options] FOR CONNECTION connection_id;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;a href="https://dev.mysql.com/doc/refman/5.7/en/explain-for-connection.html"&gt;&lt;code&gt;EXPLAIN FOR CONNECTION&lt;/code&gt;&lt;/a&gt;返回&lt;a href="https://dev.mysql.com/doc/refman/5.7/en/explain.html"&gt;&lt;code&gt;EXPLAIN&lt;/code&gt;&lt;/a&gt;当前在给定连接中用于执行查询的信息。由于数据（和支持统计数据）的更改，它可能会产生与&lt;a href="https://dev.mysql.com/doc/refman/5.7/en/explain.html"&gt;&lt;code&gt;EXPLAIN&lt;/code&gt;&lt;/a&gt;在等效查询文本上运行不同的结果 。行为上的这种差异对于诊断更多瞬时性能问题很有用。例如，如果您在一个需要很长时间才能完成的会话中运行语句，则&lt;a href="https://dev.mysql.com/doc/refman/5.7/en/explain-for-connection.html"&gt;&lt;code&gt;EXPLAIN FOR CONNECTION&lt;/code&gt;&lt;/a&gt;在另一会话中使用该语句可能会产生有关延迟原因的有用信息。&lt;/p&gt;
-&lt;p&gt;*&lt;code&gt;connection_id&lt;/code&gt;*是从&lt;code&gt;INFORMATION_SCHEMA&lt;/code&gt; &lt;a href="https://dev.mysql.com/doc/refman/5.7/en/processlist-table.html"&gt;&lt;code&gt;PROCESSLIST&lt;/code&gt;&lt;/a&gt;表或 &lt;a href="https://dev.mysql.com/doc/refman/5.7/en/show-processlist.html"&gt;&lt;code&gt;SHOW PROCESSLIST&lt;/code&gt;&lt;/a&gt;语句获得的连接标识符 。如果有&lt;a href="https://dev.mysql.com/doc/refman/5.7/en/privileges-provided.html#priv_process"&gt;&lt;code&gt;PROCESS&lt;/code&gt;&lt;/a&gt;特权，则可以为任何连接指定标识符。否则，您只能为自己的连接指定标识符。&lt;/p&gt;
-&lt;p&gt;如果命名连接未执行语句，则结果为空。否则，&lt;code&gt;EXPLAIN FOR CONNECTION&lt;/code&gt; 仅当在命名连接中执行的语句是可解释的时才适用。这包括 &lt;a href="https://dev.mysql.com/doc/refman/5.7/en/select.html"&gt;&lt;code&gt;SELECT&lt;/code&gt;&lt;/a&gt;， &lt;a href="https://dev.mysql.com/doc/refman/5.7/en/delete.html"&gt;&lt;code&gt;DELETE&lt;/code&gt;&lt;/a&gt;， &lt;a href="https://dev.mysql.com/doc/refman/5.7/en/insert.html"&gt;&lt;code&gt;INSERT&lt;/code&gt;&lt;/a&gt;， &lt;a href="https://dev.mysql.com/doc/refman/5.7/en/replace.html"&gt;&lt;code&gt;REPLACE&lt;/code&gt;&lt;/a&gt;，和 &lt;a href="https://dev.mysql.com/doc/refman/5.7/en/update.html"&gt;&lt;code&gt;UPDATE&lt;/code&gt;&lt;/a&gt;。（但是， &lt;code&gt;EXPLAIN FOR CONNECTION&lt;/code&gt;不适用于预备语句，甚至不适用于这些类型的预备语句。）&lt;/p&gt;
-&lt;h1 id="section-1"&gt;估计查询性能&lt;/h1&gt;
-&lt;p&gt;在大多数情况下，您可以通过计算磁盘搜索次数来估计查询性能。对于小型表，通常可以在一个磁盘搜索中找到一行（因为索引可能已缓存）。对于更大的表，您可以估计，使用B树索引，您需要进行许多查找才能找到行： 。 &lt;code&gt;log(*&lt;/code&gt;row_count&lt;code&gt;*) / log(*&lt;/code&gt;index_block_length&lt;code&gt;* / 3 * 2 / (*&lt;/code&gt;index_length&lt;code&gt;* + *&lt;/code&gt;data_pointer_length&lt;code&gt;*)) + 1&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;在MySQL中，索引块通常为1,024字节，数据指针通常为四个字节。对于一个键值长度为三个字节（大小为&lt;a href="https://dev.mysql.com/doc/refman/5.7/en/integer-types.html"&gt;&lt;code&gt;MEDIUMINT&lt;/code&gt;&lt;/a&gt;）的500,000行表 ，该公式表示 &lt;code&gt;log(500,000)/log(1024/3*2/(3+4)) + 1&lt;/code&gt;=搜索 &lt;code&gt;4&lt;/code&gt;。&lt;/p&gt;
-&lt;p&gt;该索引将需要大约500,000 * 7 * 3/2 = 5.2MB的存储空间（假设典型的索引缓冲区填充率为2/3），因此您可能在内存中拥有很多索引，因此只需要一个或两个调用即可读取数据以查找行。&lt;/p&gt;
-&lt;p&gt;但是，对于写操作，您需要四个搜索请求来查找在何处放置新索引值，通常需要两个搜索来更新索引并写入行。&lt;/p&gt;
-&lt;p&gt;前面的讨论并不意味着您的应用程序性能会因log缓慢下降 &lt;em&gt;&lt;code&gt;N&lt;/code&gt;&lt;/em&gt;。只要所有内容都由OS或MySQL服务器缓存，随着表的增加，事情只会变得稍微慢一些。在数据变得太大而无法缓存之后，事情开始变得缓慢得多，直到您的应用程序仅受磁盘搜索约束（随日志增长 &lt;em&gt;&lt;code&gt;N&lt;/code&gt;&lt;/em&gt;）。为避免这种情况，请随着数据的增长而增加密钥缓存的大小。对于&lt;code&gt;MyISAM&lt;/code&gt; 表，键缓存大小由&lt;a href="https://dev.mysql.com/doc/refman/5.7/en/server-system-variables.html#sysvar_key_buffer_size"&gt;&lt;code&gt;key_buffer_size&lt;/code&gt;&lt;/a&gt;系统变量控制&lt;/p&gt;
+		<content>&lt;p&gt;由于InnoDB预设是Row-Level Lock，所以只有「明确」的指定主键，MySQL才会执行Row lock (只锁住被选取的资料例) ，否则MySQL将会执行Table&lt;/p&gt;
+&lt;p&gt;Lock (将整个资料表单给锁住)。 举个例子: 假设有个表单products ，里面有id跟name二个栏位，id是主键。&lt;/p&gt;
+&lt;p&gt;例1: (明确指定主键，并且有此笔资料，row lock)&lt;/p&gt;
+&lt;p&gt;SELECT * FROM products WHERE id='3' FOR UPDATE;&lt;/p&gt;
+&lt;p&gt;SELECT * FROM products WHERE id='3' and type=1 FOR UPDATE;&lt;/p&gt;
+&lt;p&gt;例2: (明确指定主键，若查无此笔资料，无lock)&lt;/p&gt;
+&lt;p&gt;SELECT * FROM products WHERE id='-1' FOR UPDATE;&lt;/p&gt;
+&lt;p&gt;例2: (无主键，table lock)&lt;/p&gt;
+&lt;p&gt;SELECT * FROM products WHERE name='Mouse' FOR UPDATE;&lt;/p&gt;
+&lt;p&gt;例3: (主键不明确，table lock)&lt;/p&gt;
+&lt;p&gt;SELECT * FROM products WHERE id&amp;lt;&amp;gt;'3' FOR UPDATE;&lt;/p&gt;
+&lt;p&gt;例4: (主键不明确，table lock)&lt;/p&gt;
+&lt;p&gt;SELECT * FROM products WHERE id LIKE '3' FOR UPDATE;
+注1: &lt;strong&gt;FOR UPDATE仅适用于InnoDB，且必须在交易区块(BEGIN/COMMIT)中才能生效&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;注2: &lt;strong&gt;要测试锁定的状况，可以利用MySQL的Command Mode ，开两个个视窗来做测试&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;注3：Myisam 只支持表级锁，InnerDB支持行级锁 添加了(行级锁/表级锁)锁的数据不能被其它事务再锁定，也不被其它事务修改修改、删除） 。是表级锁时，不管是否查询到记录，都会锁定表。&lt;/p&gt;
 </content>
-		<summary>&lt;p&gt;一直在使用Explain，今天被扫盲，专业名词叫执行计划~，野生码农误国啊~&lt;/p&gt;</summary>
-	</entry>
-	<entry>
-		<id>http://blog.robinjiang.com/posts/2016/01/2016-01-13-about-index</id>
-		<title>索引原理</title>
-		<link href="http://blog.robinjiang.com/posts/2016/01/2016-01-13-about-index" />
-		<updated>2016-01-13T00:00:00Z</updated>
-		<content>&lt;h1 id="section"&gt;简介&lt;/h1&gt;
-&lt;h2 id="section-1"&gt;为什么要有索引？&lt;/h2&gt;
-&lt;p&gt;对于通用系统而言，大部分数据读操作比例远高于写入操作，针对查询进行优化的时候，优先需要考虑索引优化。&lt;/p&gt;
-&lt;h2 id="section-2"&gt;什么是索引？&lt;/h2&gt;
-&lt;p&gt;索引在MySQL中也叫是一种“键”，是存储引擎用于快速找到记录的一种&lt;strong&gt;数据结构&lt;/strong&gt;。索引对于良好的性能非常关键，尤其是当表中的数据量越来越大时，索引对于性能的影响愈发重要。
-索引优化应该是对查询性能优化最有效的手段了。&lt;/p&gt;
-&lt;h2 id="section-3"&gt;常见误区&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;索引是不是越多越好？X&lt;/li&gt;
-&lt;/ul&gt;
-&lt;blockquote class="blockquote"&gt;
-&lt;ul&gt;
-&lt;li&gt;索引会增加数据库服务器写入操作的成本（INNODB对这个 做了一个优化：插入缓存 将多次插入合并成一次插入）&lt;/li&gt;
-&lt;li&gt;太多的索引会影响mysql查询优化器的选择时间（影响查询效率）&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/blockquote&gt;
-&lt;ul&gt;
-&lt;li&gt;索引的过度设计问题&lt;/li&gt;
-&lt;/ul&gt;
-&lt;blockquote class="blockquote"&gt;
-&lt;ul&gt;
-&lt;li&gt;索引应该属于专事专办，大部分情况下是&amp;quot;&lt;strong&gt;私人定制&lt;/strong&gt;&amp;quot;款，针对特定sql的索引优化未必适用于其他sql，针对特定业务的索引优化未必适合其他业务；&lt;/li&gt;
-&lt;li&gt;** 索引不是万能的，使用索引的初衷是解决查询问题，如果存在其他方案解决的话，应该优先考虑方案的可用性，而不是一定要把问题限制在db内解决**&lt;/li&gt;
-&lt;li&gt;索引的适用性问题，blob,img,text这些数据类型不适合用来做索引；&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/blockquote&gt;
-&lt;h1 id="section-4"&gt;索引原理&lt;/h1&gt;
-&lt;blockquote class="blockquote"&gt;
-&lt;p&gt;索引是一种利用某种规则的数据结构与实际数据的关系加快数据查找的功能；
-索引数据节点中有着实际文件的位置，因为索引是根据特定的规则和算法构建的,在查找的时候遵循索引的规则可以快速查找到对应数据的节点，从而达到快速查找数据的效果；其实宏观来说索引其实是一种概念而不是具体的某项技术，只是我们在某个技术中运用得比较广泛和鲜明（比如说数据库）渐渐的有了特定领域的标签，其实在生活中索引的使用无处不在，比如说：书本里的目录；读书时的座位号，考试编号都有类似索引的功能;
-总结来所有通过某规则数据结构和实际目标关联，根据特定规则算法快速寻址的功能都可以称之为索引；&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;索引通过特定的数据结构来实现快速数据查找。&lt;/p&gt;
-&lt;h2 id="section-5"&gt;索引的数据结构&lt;/h2&gt;
-&lt;h3 id="btree"&gt;BTree&lt;/h3&gt;
-&lt;p&gt;可以被用在=,&amp;gt;,&amp;gt;=,&amp;lt;,&amp;lt;=和between这些比较操作符上，而且还可以用于like操作符，只要它的查询条件是一个不以通配符开头的常量&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;B-Tree&lt;/li&gt;
-&lt;li&gt;B+Tree&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id="hash"&gt;Hash&lt;/h3&gt;
-&lt;p&gt;Hash索引只能用于对等比较，例如=,&amp;lt;=&amp;gt;（相当于=）操作符。由于是一次定位数据，不像BTree索引需要从根节点到枝节点，最后才能访问到页节点这样多次IO访问，所以检索效率远高于BTree索引。&lt;/p&gt;
-&lt;h4 id="section-6"&gt;弊端&lt;/h4&gt;
-&lt;ul&gt;
-&lt;li&gt;Hash索引仅仅能满足“=”,“IN”,“&amp;lt;=&amp;gt;”查询，不能使用范围查询。&lt;/li&gt;
-&lt;li&gt;联合索引中，Hash索引不能利用部分索引键查询。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;blockquote class="blockquote"&gt;
-&lt;p&gt;对于联合索引中的多个列，Hash是要么全部使用，要么全部不使用，并不支持BTree支持的联合索引的最优前缀，也就是联合索引的前面一个或几个索引键进行查询时，Hash索引无法被利用。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;ul&gt;
-&lt;li&gt;Hash索引无法避免数据的排序操作&lt;/li&gt;
-&lt;/ul&gt;
-&lt;blockquote class="blockquote"&gt;
-&lt;p&gt;由于Hash索引中存放的是经过Hash计算之后的Hash值，而且Hash值的大小关系并不一定和Hash运算前的键值完全一样，所以数据库无法利用索引的数据来避免任何排序运算。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;ul&gt;
-&lt;li&gt;Hash索引任何时候都不能避免表扫描&lt;/li&gt;
-&lt;/ul&gt;
-&lt;blockquote class="blockquote"&gt;
-&lt;p&gt;Hash索引是将索引键通过Hash运算之后，将Hash运算结果的Hash值和所对应的行指针信息存放于一个Hash表中，由于不同索引键存在相同Hash值，所以即使满足某个Hash键值的数据的记录条数，也无法从Hash索引中直接完成查询，还是要通过访问表中的实际数据进行比较，并得到相应的结果。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;ul&gt;
-&lt;li&gt;Hash索引遇到大量Hash值相等的情况后性能并不一定会比BTree高&lt;/li&gt;
-&lt;/ul&gt;
-&lt;blockquote class="blockquote"&gt;
-&lt;p&gt;对于选择性比较低的索引键，如果创建Hash索引，那么将会存在大量记录指针信息存于同一个Hash值相关联。这样要定位某一条记录时就会非常麻烦，会浪费多次表数据访问，而造成整体性能底下。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h3 id="hash-1"&gt;关于hash索引&lt;/h3&gt;
-&lt;ol&gt;
-&lt;li&gt;hash索引查找数据基本上能一次定位数据，当然有大量碰撞的话性能也会下降。而btree索引就得在节点上挨着查找了，很明显在数据精确查找方面hash索引的效率是要高于btree的；&lt;/li&gt;
-&lt;li&gt;那么不精确查找呢，也很明显，因为hash算法是基于等值计算的，所以对于“like”等范围查找hash索引无效，不支持；&lt;/li&gt;
-&lt;li&gt;对于btree支持的联合索引的最优前缀，hash也是无法支持的，联合索引中的字段要么全用要么全不用。&lt;/li&gt;
-&lt;li&gt;hash不支持索引排序，索引值和计算出来的hash值大小并不一定一致。&lt;/li&gt;
-&lt;/ol&gt;
-</content>
-		<summary>&lt;p&gt;对于通用系统而言，大部分数据读操作比例远高于写入操作，针对查询进行优化的时候，优先需要考虑索引优化。&lt;/p&gt;</summary>
+		<summary>&lt;p&gt;由于InnoDB预设是Row-Level Lock，所以只有「明确」的指定主键，MySQL才会执行Row lock (只锁住被选取的资料例) ，否则MySQL将会执行Table&lt;/p&gt;</summary>
 	</entry>
 </feed>
