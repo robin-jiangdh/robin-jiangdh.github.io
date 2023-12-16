@@ -1,5 +1,4 @@
----
-title: "assumeNotNull and friends"
+#assumeNotNull and friends
 linkTitle: "assumeNotNull and friends"
 description: >
     assumeNotNull and friends

@@ -1,5 +1,4 @@
----
-title: "Part names & MVCC"
+#Part names & MVCC
 linkTitle: "Part names & MVCC"
 weight: 100
 description: >-

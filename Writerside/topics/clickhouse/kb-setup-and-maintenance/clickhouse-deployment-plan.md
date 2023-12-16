@@ -1,5 +1,4 @@
----
-title: "Successful ClickHouse deployment plan"
+#Successful ClickHouse deployment plan
 linkTitle: "Successful ClickHouse deployment plan"
 weight: 100
 description: >-

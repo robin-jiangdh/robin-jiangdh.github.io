@@ -1,5 +1,4 @@
----
-title: "ClickHouse + Spark"
+#ClickHouse + Spark
 linkTitle: "Spark"
 weight: 100
 description: >-
@@ -55,8 +54,8 @@ Arrays, Higher-order functions, machine learning, integration with lot of differ
 ## More info + some unordered links (mostly in Chinese / Russian)
 
 * Spark + ClickHouse: not a fight, but a symbiosis https://github.com/ClickHouse/clickhouse-presentations/blob/master/meetup28/spark_and_clickhouse.pdf (russian)
-* [Using a bunch of ClickHouse and Spark in MFI Soft](https://www.youtube.com/watch?v=ID8eTnmag0s) (russian)
-* [Spark read and write ClickHouse ](https://yerias.github.io/2020/12/08/clickhouse/9/#Jdbc%\E6%93%8D%E4%BD%9Cclickhouse)
+* [Using a bunch of ClickHouse and Spark in MFI Soft](https://www.youtube.com/watch?v=ID8eTnmag0s) (russian) 
+* [Spark read and write ClickHouse ](https://yerias.github.io/2020/12/08/clickhouse/9) 
 * Spark reads and writes ClickHouse through jdbc https://blog.katastros.com/a?ID=01800-e40e1b3c-5fa4-4ea0-a3a8-f5e89ef0ce14
 * Spark JDBC write clickhouse operation summary https://www.jianshu.com/p/43f78c8a025b?hmsr=toutiao.io&utm_campaign=toutiao.io&utm_medium=toutiao.io&utm_source=toutiao.io  https://toutiao.io/posts/m63yw89/preview
 * Spark-sql is based on Clickhouse's DataSourceV2 data source extension (russian)

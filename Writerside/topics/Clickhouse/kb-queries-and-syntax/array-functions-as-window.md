@@ -1,5 +1,4 @@
----
-title: "Using array functions to mimic window-functions alike behavior"
+#Using array functions to mimic window-functions alike behavior
 linkTitle: "Using array functions to mimic window-functions alike behavior"
 weight: 100
 description: >-

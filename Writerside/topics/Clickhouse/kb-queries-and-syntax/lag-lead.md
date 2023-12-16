@@ -1,5 +1,4 @@
----
-title: "Lag / Lead"
+#Lag / Lead
 linkTitle: "Lag / Lead"
 description: >
     Lag / Lead

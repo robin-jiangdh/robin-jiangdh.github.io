@@ -1,5 +1,4 @@
----
-title: "How to check the list of watches"
+#How to check the list of watches
 linkTitle: "How to check the list of watches"
 description: >
     How to check the list of watches

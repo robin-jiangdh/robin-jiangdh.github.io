@@ -1,5 +1,4 @@
----
-title: "Pre-Aggregation approaches"
+#Pre-Aggregation approaches
 linkTitle: "Pre-Aggregation approaches"
 weight: 100
 description: >-

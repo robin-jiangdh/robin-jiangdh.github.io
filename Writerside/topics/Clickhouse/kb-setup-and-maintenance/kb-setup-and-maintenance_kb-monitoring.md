@@ -1,5 +1,4 @@
----
-title: "ClickHouse Monitoring"
+#ClickHouse Monitoring
 linkTitle: "ClickHouse Monitoring"
 description: >
     ClickHouse Monitoring

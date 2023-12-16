@@ -1,5 +1,4 @@
----
-title: "BI Tools"
+#BI Tools
 linkTitle: "BI Tools"
 description: >
     Business Intelligence Tools

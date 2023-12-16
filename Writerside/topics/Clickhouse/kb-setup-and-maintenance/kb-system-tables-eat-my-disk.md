@@ -1,5 +1,4 @@
----
-title: "System tables ate my disk"
+#System tables ate my disk
 linkTitle: "System tables ate my disk"
 description: >
     System tables ate my disk

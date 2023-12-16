@@ -1,5 +1,4 @@
----
-title: "Settings to adjust"
+#Settings to adjust
 linkTitle: "Settings to adjust"
 description: >
     Settings to adjust

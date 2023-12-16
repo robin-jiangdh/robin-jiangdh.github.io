@@ -1,5 +1,4 @@
----
-title: "Compatibility layer for clickhouse-operator metric exporter"
+#Compatibility layer for clickhouse-operator metric exporter
 linkTitle: "clickhouse-operator metrics names from clickhouse-server"
 weight: 100
 description: >-

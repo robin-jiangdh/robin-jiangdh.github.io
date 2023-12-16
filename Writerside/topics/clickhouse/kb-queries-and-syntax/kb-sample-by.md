@@ -1,5 +1,4 @@
----
-title: "SAMPLE by"
+#SAMPLE by
 linkTitle: "SAMPLE by"
 description: >
     SAMPLE by

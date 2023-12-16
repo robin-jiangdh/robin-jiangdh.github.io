@@ -1,6 +1,5 @@
 #Atomic Database Engine
----
-title: "Atomic Database Engine"
+#Atomic Database Engine
 linkTitle: "Atomic Database Engine"
 description: >
     Atomic Database Engine
@@ -154,8 +153,7 @@ But some external tools - backup tools, things involving other kinds of direct m
 ## Using Ordinary by default instead of Atomic
 
 ```
----
-title: "cat /etc/clickhouse-server/users.d/disable_atomic_database.xml "
+#cat /etc/clickhouse-server/users.d/disable_atomic_database.xml 
 linkTitle: "cat /etc/clickhouse-server/users.d/disable_atomic_database.xml "
 description: >
     cat /etc/clickhouse-server/users.d/disable_atomic_database.xml

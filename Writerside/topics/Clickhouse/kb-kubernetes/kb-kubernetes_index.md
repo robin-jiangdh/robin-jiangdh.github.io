@@ -1,5 +1,4 @@
----
-title: "Kubernetes"
+#Kubernetes
 linkTitle: "Kubernetes"
 keywords:
 - clickhouse in kubernetes

@@ -1,5 +1,4 @@
----
-title: "Useful settings to turn on/Defaults that should be reconsidered"
+#Useful settings to turn on/Defaults that should be reconsidered
 linkTitle: "Useful settings to turn on"
 weight: 100
 description: >-

@@ -1,5 +1,4 @@
----
-title: "rsync"
+#rsync
 linkTitle: "rsync"
 description: >
     rsync

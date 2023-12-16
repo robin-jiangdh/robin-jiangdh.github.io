@@ -1,5 +1,4 @@
----
-title: "Imprecise parsing of literal Decimal or Float64"
+#Imprecise parsing of literal Decimal or Float64
 linkTitle: "Imprecise literal Decimal or Float64 values"
 weight: 100
 description: >-

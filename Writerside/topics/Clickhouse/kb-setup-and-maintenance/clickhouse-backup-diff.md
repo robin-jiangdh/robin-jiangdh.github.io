@@ -1,5 +1,4 @@
----
-title: "differential backups using clickhouse-backup"
+#differential backups using clickhouse-backup
 linkTitle: "differential backups using clickhouse-backup"
 description: >
     differential backups using clickhouse-backup
@@ -27,8 +26,7 @@ rm -rf clickhouse-backup clickhouse-backup.tar.gz
 ```   
 
 2. Create a runner script for the crontab
-
-<code-block ignore-vars="true">
+``` 
 mkdir /opt/clickhouse-backup-diff/
 
 cat << 'END' > /opt/clickhouse-backup-diff/clickhouse-backup-cron.sh
@@ -53,7 +51,8 @@ fi
 END
 
 chmod +x /opt/clickhouse-backup-diff/clickhouse-backup-cron.sh
-</code-block>
+```
+{ignore-vars=true}
 
 3. Create confuguration for clickhouse-backup 
 

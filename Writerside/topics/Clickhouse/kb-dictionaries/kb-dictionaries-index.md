@@ -1,5 +1,4 @@
----
-title: "Dictionaries"
+#Dictionaries
 linkTitle: "Dictionaries"
 keywords:
 - clickhouse dictionaries

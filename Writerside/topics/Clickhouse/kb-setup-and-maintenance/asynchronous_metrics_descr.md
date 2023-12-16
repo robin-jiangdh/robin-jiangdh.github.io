@@ -1,5 +1,4 @@
----
-title: "Description of asynchronous_metrics"
+#Description of asynchronous_metrics
 linkTitle: "Description of asynchronous_metrics"
 weight: 100
 description: >-

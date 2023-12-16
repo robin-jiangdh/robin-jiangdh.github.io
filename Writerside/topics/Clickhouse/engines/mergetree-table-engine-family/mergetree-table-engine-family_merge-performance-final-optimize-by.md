@@ -1,5 +1,4 @@
----
-title: "Merge performance and OPTIMIZE FINAL"
+#Merge performance and OPTIMIZE FINAL
 linkTitle: "Merge performance and OPTIMIZE FINAL"
 description: >
     Merge performance and OPTIMIZE FINAL DEDUPLICATE BY expr
@@ -15,8 +14,7 @@ Main things affecting the merge speed are:
   * Vertical = first read columns from order by, do merge sort, write them to disk, remember permutation, then process the rest of columns on by one, applying permutation.
 * compact vs wide parts
 * Other things like server load, concurrent merges...
-
-<code-block ignore-vars="true" lang="sql">
+``` 
 SELECT name, value
 FROM system.merge_tree_settings
 WHERE name LIKE '%vert%';
@@ -24,7 +22,8 @@ WHERE name LIKE '%vert%';
 │ enable_vertical_merge_algorithm                  │ 1      
 │ vertical_merge_algorithm_min_rows_to_activate    │ 131072
 │ vertical_merge_algorithm_min_columns_to_activate │ 11
-</code-block>
+```
+{ignore-vars=true}
 
 * **Vertical merge** will be used if part has more than 131072 rows and more than 11 columns in the table.
   

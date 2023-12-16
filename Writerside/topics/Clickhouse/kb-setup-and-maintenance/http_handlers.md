@@ -1,5 +1,4 @@
----
-title: "http handler example"
+#http handler example
 linkTitle: "http_handlers"
 weight: 100
 description: >-

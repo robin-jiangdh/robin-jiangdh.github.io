@@ -1,5 +1,4 @@
----
-title: "Atomic insert"
+#Atomic insert
 linkTitle: "Atomic insert"
 description: >
     Atomic insert

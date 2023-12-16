@@ -1,5 +1,4 @@
----
-title: "TTL Recompress example"
+#TTL Recompress example
 linkTitle: "TTL Recompress example"
 description: >
     TTL Recompress example

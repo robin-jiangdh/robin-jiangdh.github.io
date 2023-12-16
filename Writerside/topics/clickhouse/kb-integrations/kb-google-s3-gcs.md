@@ -1,5 +1,4 @@
----
-title: "Google S3 (GCS)"
+#Google S3 (GCS)
 linkTitle: "Google S3 (GCS)"
 description: >
     "Google S3 GCS"

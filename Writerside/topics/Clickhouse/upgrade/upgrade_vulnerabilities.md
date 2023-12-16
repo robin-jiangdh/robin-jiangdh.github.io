@@ -1,11 +1,5 @@
 # Vulnerabilities
----
-title: "Vulnerabilities"
-linkTitle: "Vulnerabilities"
-weight: 100
-description: >-
-     Vulnerabilities
----
+
 
 ## 2022-03-15: 7 vulnerabulities in ClickHouse were published.
 

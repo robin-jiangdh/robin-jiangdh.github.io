@@ -1,6 +1,5 @@
 # Removing empty parts
----
-title: "Removing empty parts"
+#Removing empty parts
 linkTitle: "Removing empty parts"
 description: >
     Removing empty parts

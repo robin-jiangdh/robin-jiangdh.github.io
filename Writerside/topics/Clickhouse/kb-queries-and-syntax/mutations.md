@@ -1,5 +1,4 @@
----
-title: "Mutations"
+#Mutations
 linkTitle: "Mutations"
 description: >
     ALTER UPDATE / DELETE
@@ -38,3 +37,4 @@ WHERE name LIKE '%mutation%'
 │ number_of_free_entries_in_pool_to_execute_mutation │ 20    │       0 │ When there is less than specified number of free entries in pool, do not execute part mutations. This is to leave free threads for regular merges and avoid "Too many parts" │ UInt64 │
 └────────────────────────────────────────────────────┴───────┴─────────┴──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┴────────┘
 ```
+{ignore-vars=true}

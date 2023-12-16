@@ -1,5 +1,4 @@
----
-title: "Example of PostgreSQL dictionary"
+#Example of PostgreSQL dictionary
 linkTitle: "Example of PostgreSQL dictionary"
 description: >
     Example of PostgreSQL dictionary

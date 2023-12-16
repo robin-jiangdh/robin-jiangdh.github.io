@@ -1,5 +1,4 @@
----
-title: "How to convert uniqExact states to approximate uniq functions states"
+#How to convert uniqExact states to approximate uniq functions states
 linkTitle: "Convert uniqExact to uniq(Combined)"
 weight: 100
 description: >-

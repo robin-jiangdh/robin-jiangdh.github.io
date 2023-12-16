@@ -1,5 +1,4 @@
----
-title: "Example: minmax"
+#Example: minmax
 linkTitle: "Example: minmax"
 description: >
     Example: minmax

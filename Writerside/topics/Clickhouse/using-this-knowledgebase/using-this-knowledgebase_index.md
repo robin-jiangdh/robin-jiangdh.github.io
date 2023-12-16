@@ -1,6 +1,5 @@
 # Using This Knowledge Base
----
-title: "Using This Knowledge Base"
+#Using This Knowledge Base
 linkTitle: "Using This Knowledge Base"
 keywords:
 - clickhouse updates
@@ -28,8 +27,7 @@ Each Markdown file provides the section's information and the title that is disp
 Each page is set in the following format that sets the page attributes:
 
 ```yaml
----
-title: "Using This Knowledge Base"
+#Using This Knowledge Base
 linkTitle: "Using This Knowledge Base"
 description: >
     How to add pages, make updates, and expand this knowledge base.

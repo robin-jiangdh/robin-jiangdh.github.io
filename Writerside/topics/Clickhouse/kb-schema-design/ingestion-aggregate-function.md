@@ -1,5 +1,4 @@
----
-title: "Ingestion of AggregateFunction"
+#Ingestion of AggregateFunction
 linkTitle: "Ingestion of AggregateFunction"
 weight: 100
 description: >-

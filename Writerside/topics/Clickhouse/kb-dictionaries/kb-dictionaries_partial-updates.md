@@ -1,5 +1,4 @@
----
-title: "Partial updates"
+#Partial updates
 linkTitle: "Partial updates"
 description: >
     Partial updates

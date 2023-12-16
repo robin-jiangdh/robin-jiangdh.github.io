@@ -1,6 +1,5 @@
 #Number of active parts in a partition
----
-title: "Number of active parts in a partition"
+#Number of active parts in a partition
 linkTitle: "Number of active parts in a partition"
 description: >
     Number of active parts in a partition

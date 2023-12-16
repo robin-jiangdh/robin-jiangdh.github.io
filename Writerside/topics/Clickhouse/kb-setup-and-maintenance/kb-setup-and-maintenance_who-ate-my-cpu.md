@@ -1,5 +1,4 @@
----
-title: "Who ate my CPU"
+#Who ate my CPU
 linkTitle: "Who ate my CPU"
 weight: 100
 description: >-

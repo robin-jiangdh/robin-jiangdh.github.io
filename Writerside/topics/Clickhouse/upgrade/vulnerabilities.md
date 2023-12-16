@@ -1,6 +1,5 @@
 # Vulnerabilities
----
-title: "Vulnerabilities"
+#Vulnerabilities
 linkTitle: "Vulnerabilities"
 weight: 100
 description: >-

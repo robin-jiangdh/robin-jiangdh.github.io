@@ -1,5 +1,4 @@
----
-title: "range_hashed example - open intervals"
+#range_hashed example - open intervals
 linkTitle: "range_hashed example - open intervals"
 description: >
     range_hashed example - open intervals

@@ -1,5 +1,4 @@
----
-title: "TTL GROUP BY Examples"
+#TTL GROUP BY Examples
 linkTitle: "TTL GROUP BY Examples"
 description: >
     TTL GROUP BY Examples

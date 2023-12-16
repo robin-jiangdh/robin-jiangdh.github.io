@@ -1,5 +1,4 @@
----
-title: "JSONExtract to parse many attributes at a time"
+#JSONExtract to parse many attributes at a time
 linkTitle: "JSONExtract to parse many attributes at a time"
 description: >
     JSONExtract to parse many attributes at a time

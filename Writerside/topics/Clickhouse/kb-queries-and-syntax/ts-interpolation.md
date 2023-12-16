@@ -1,5 +1,4 @@
----
-title: "Time-series alignment with interpolation"
+#Time-series alignment with interpolation
 linkTitle: "Time-series alignment with interpolation"
 description: >
     Time-series alignment with interpolation

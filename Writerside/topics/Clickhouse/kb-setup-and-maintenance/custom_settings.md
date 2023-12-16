@@ -1,5 +1,4 @@
----
-title: "Custom Settings"
+#Custom Settings
 linkTitle: "Custom Settings"
 weight: 100
 description: >-

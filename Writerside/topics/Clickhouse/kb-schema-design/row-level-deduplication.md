@@ -1,5 +1,4 @@
----
-title: "ClickHouse row-level deduplication"
+#ClickHouse row-level deduplication
 linkTitle: "ClickHouse row-level deduplication"
 weight: 100
 description: >-

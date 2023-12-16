@@ -1,6 +1,5 @@
 # EmbeddedRocksDB & dictionary
----
-title: "EmbeddedRocksDB & dictionary"
+#EmbeddedRocksDB & dictionary
 linkTitle: "EmbeddedRocksDB & dictionary"
 description: >
     EmbeddedRocksDB & dictionary

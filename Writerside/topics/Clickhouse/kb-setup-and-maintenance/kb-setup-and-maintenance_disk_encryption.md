@@ -1,5 +1,4 @@
----
-title: "Clickhouse data/disk encryption (at rest)"
+#Clickhouse data/disk encryption (at rest)
 linkTitle: "disk encryption"
 weight: 100
 description: >-

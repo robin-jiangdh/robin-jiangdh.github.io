@@ -1,5 +1,4 @@
----
-title: "cgroups and kubernetes cloud providers"
+#cgroups and kubernetes cloud providers
 linkTitle: "cgroups and k8s"
 weight: 100
 description: >-

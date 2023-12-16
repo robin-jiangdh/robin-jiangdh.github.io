@@ -1,5 +1,4 @@
----
-title: "Can detached parts be dropped?"
+#Can detached parts be dropped?
 linkTitle: "Can detached parts be dropped?"
 description: >
     Can detached parts be dropped?

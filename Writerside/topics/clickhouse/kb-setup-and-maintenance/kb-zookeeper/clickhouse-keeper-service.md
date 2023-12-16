@@ -1,6 +1,5 @@
 # clickhouse-keeper-service
----
-title: "clickhouse-keeper-service"
+#clickhouse-keeper-service
 linkTitle: "clickhouse-keeper-service"
 weight: 100
 description: >-
@@ -14,13 +13,14 @@ description: >-
 Need to install `clickhouse-common-static` + `clickhouse-keeper` OR `clickhouse-common-static` + `clickhouse-server`. 
 Both OK, use the first if you don't need clickhouse server locally.
 
-<code-block ignore-vars="true" lang="shell">
+``` 
  
 dpkg -i clickhouse-common-static_{%version}.deb clickhouse-keeper_{%version}.deb
  
 dpkg -i clickhouse-common-static_{%version}.deb clickhouse-server_{%version}.deb clickhouse-client_{%version}.deb
  
-</code-block>
+```
+{ignore-vars=true}
 
 
 Create directories

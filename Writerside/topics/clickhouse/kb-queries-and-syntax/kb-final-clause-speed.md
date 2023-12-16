@@ -1,5 +1,4 @@
----
-title: "FINAL clause speed"
+#FINAL clause speed
 linkTitle: "FINAL clause speed"
 description: >
     FINAL clause speed

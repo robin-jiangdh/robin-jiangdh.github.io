@@ -1,5 +1,4 @@
----
-title: "Logging"
+#Logging
 linkTitle: "Logging"
 weight: 100
 description: >-

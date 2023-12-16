@@ -1,13 +1,4 @@
 # Upgrade
----
-title: "Upgrade"
-linkTitle: "Upgrade"
-keywords:
-- clickhouse upgrade
-description: >
-    Upgrade notes.
-weight: 10
----
 
 Normally the upgrade procedure looks like that:
 1) pick the release to upgrade

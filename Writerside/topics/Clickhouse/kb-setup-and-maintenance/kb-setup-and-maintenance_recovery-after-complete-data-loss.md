@@ -1,5 +1,4 @@
----
-title: "recovery-after-complete-data-loss"
+#recovery-after-complete-data-loss
 linkTitle: "recovery-after-complete-data-loss"
 weight: 100
 description: >-

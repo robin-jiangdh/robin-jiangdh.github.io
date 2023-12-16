@@ -1,6 +1,5 @@
 # Clickhouse Function/Engines/Settings Report
----
-title: "Clickhouse Function/Engines/Settings Report"
+#Clickhouse Function/Engines/Settings Report
 linkTitle: "Clickhouse Function/Engines/Settings Report"
 description: >
     Report on ClickHouse functions, table functions, table engines, system and MergeTree settings, with availability information. 

@@ -1,5 +1,4 @@
----
-title: "Skip index"
+#Skip index
 linkTitle: "Skip index"
 description: >
     Skip index

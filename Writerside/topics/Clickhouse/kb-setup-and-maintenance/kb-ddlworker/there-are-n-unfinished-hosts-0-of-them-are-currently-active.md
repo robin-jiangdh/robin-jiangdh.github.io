@@ -1,5 +1,4 @@
----
-title: "There are N unfinished hosts (0 of them are currently active)."
+#There are N unfinished hosts (0 of them are currently active).
 linkTitle: "There are N unfinished hosts (0 of them are currently active)."
 description: >
     "There are N unfinished hosts (0 of them are currently active)."
@@ -43,8 +42,7 @@ In that case, you can just wait completion of previous task.
 ### Previous task is stuck because of some error
 
 In that case, the first step is to understand which exact task is stuck and why. There are some queries which can help with that.
-
-<code-block ignore-vars="true" lang="sql">
+``` 
 -- list of all distributed ddl queries, path can be different in your installation
 SELECT * FROM system.zookeeper WHERE path = '/clickhouse/task_queue/ddl/';
 
@@ -97,8 +95,8 @@ WHERE metric LIKE '%MaxDDLEntryID%'
 
 -- Information about task execution from logs.
 grep -C 40 "ddl_entry" /var/log/clickhouse-server/clickhouse-server*.log
-</code-block>
-
+```
+{ignore-vars=true}
 
 ### Issues that can prevent task execution
 

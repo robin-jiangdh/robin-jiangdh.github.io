@@ -1,5 +1,4 @@
----
-title: "Dictionaries vs LowCardinality"
+#Dictionaries vs LowCardinality
 linkTitle: "Dictionaries vs LowCardinality"
 description: >
     Dictionaries vs LowCardinality

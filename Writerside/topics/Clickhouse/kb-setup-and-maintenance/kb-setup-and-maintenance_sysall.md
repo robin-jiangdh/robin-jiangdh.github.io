@@ -1,5 +1,4 @@
----
-title: "sysall database (system tables on a cluster level)"
+#sysall database (system tables on a cluster level)
 linkTitle: "sysall database"
 weight: 100
 description: >-

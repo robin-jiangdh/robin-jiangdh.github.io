@@ -1,5 +1,4 @@
----
-title: "Robin packaging compatibility >21.x and earlier"
+#Robin packaging compatibility >21.x and earlier
 linkTitle: "Robin packaging compatibility >21.x and earlier"
 description: >
     Robin packaging compatibility >21.x and earlier
@@ -69,8 +68,7 @@ add `--setopt=obsoletes=0` flag to the yum call.
 ```
 version=20.8.12.2-1.el7
 yum install --setopt=obsoletes=0 clickhouse-client-${version} clickhouse-server-${version}
----
-title: "installation succeeded"
+#installation succeeded
 linkTitle: "installation succeeded"
 description: >
     installation succeeded

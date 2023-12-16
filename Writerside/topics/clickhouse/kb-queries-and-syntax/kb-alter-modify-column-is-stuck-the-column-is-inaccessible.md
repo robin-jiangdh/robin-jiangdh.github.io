@@ -1,5 +1,4 @@
----
-title: "ALTER MODIFY COLUMN is stuck, the column is inaccessible."
+#ALTER MODIFY COLUMN is stuck, the column is inaccessible.
 linkTitle: "ALTER MODIFY COLUMN is stuck, the column is inaccessible."
 description: >
     ALTER MODIFY COLUMN is stuck, the column is inaccessible.

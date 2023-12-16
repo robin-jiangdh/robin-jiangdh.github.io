@@ -1,5 +1,4 @@
----
-title: "MySQL8 source for dictionaries"
+#MySQL8 source for dictionaries
 linkTitle: "MySQL8 source for dictionaries"
 description: >
     MySQL8 source for dictionaries

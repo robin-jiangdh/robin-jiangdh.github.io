@@ -1,5 +1,4 @@
----
-title: "memory configuration settings"
+#memory configuration settings
 linkTitle: "memory configuration settings"
 description: >
     memory configuration settings

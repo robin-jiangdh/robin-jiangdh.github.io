@@ -1,6 +1,5 @@
 #Check table metadata in zookeeper
----
-title: "Check table metadata in zookeeper"
+#Check table metadata in zookeeper
 linkTitle: "Check table metadata in zookeeper"
 weight: 100
 description: >-

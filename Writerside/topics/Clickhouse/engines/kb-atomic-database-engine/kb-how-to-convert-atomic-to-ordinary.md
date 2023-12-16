@@ -1,9 +1,5 @@
----
-title: "How to Convert Atomic to Ordinary"
-linkTitle: "How to Convert Atomic to Ordinary"
-description: >
-    How to Convert Atomic to Ordinary
----
+#How to Convert Atomic to Ordinary
+
 The following instructions are an example on how to convert a database with the Engine type **Atomic** to a database with the Engine type **Ordinary**.
 
 

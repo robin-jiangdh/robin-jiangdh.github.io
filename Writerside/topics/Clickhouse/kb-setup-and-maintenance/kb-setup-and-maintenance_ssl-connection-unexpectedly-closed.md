@@ -1,5 +1,4 @@
----
-title: "SSL connection unexpectedly closed"
+#SSL connection unexpectedly closed
 linkTitle: "SSL connection unexpectedly closed"
 description: >
     SSL connection unexpectedly closed

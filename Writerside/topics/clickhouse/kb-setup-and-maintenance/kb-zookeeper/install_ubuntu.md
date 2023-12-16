@@ -1,5 +1,4 @@
----
-title: "Install standalone Zookeeper for ClickHouse on Ubuntu / Debian"
+#Install standalone Zookeeper for ClickHouse on Ubuntu / Debian
 linkTitle: "Zookeeper install on Ubuntu"
 weight: 100
 description: >-

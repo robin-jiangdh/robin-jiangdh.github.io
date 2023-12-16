@@ -1,5 +1,4 @@
----
-title: "Kafka main parsing loop"
+#Kafka main parsing loop
 linkTitle: "Kafka main parsing loop"
 description: >
     Kafka main parsing loop

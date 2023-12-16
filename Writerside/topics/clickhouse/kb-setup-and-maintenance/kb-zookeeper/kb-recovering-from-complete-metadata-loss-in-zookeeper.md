@@ -1,5 +1,4 @@
----
-title: "Recovering from complete metadata loss in ZooKeeper"
+#Recovering from complete metadata loss in ZooKeeper
 linkTitle: "Recovering from complete metadata loss in ZooKeeper"
 description: >
     Recovering from complete metadata loss in ZooKeeper

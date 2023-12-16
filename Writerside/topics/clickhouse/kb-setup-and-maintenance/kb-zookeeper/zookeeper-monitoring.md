@@ -1,5 +1,4 @@
----
-title: "ZooKeeper Monitoring"
+#ZooKeeper Monitoring
 linkTitle: "ZooKeeper Monitoring"
 description: >
     ZooKeeper Monitoring

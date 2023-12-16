@@ -1,5 +1,4 @@
----
-title: "-State & -Merge combinators"
+#-State & -Merge combinators
 linkTitle: "-State & -Merge combinators"
 description: >
     -State & -Merge combinators

@@ -1,5 +1,4 @@
----
-title: "Skip indexes examples"
+#Skip indexes examples
 linkTitle: "Skip indexes examples"
 ---
 ## bloom\_filter

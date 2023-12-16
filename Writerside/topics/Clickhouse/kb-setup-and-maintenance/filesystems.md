@@ -1,5 +1,4 @@
----
-title: "ClickHouse and different filesystems"
+#ClickHouse and different filesystems
 linkTitle: "ClickHouse and different filesystems"
 weight: 100
 description: >-

@@ -1,5 +1,4 @@
----
-title: "Idempotent inserts into a materialized view"
+#Idempotent inserts into a materialized view
 linkTitle: "Idempotent insert MV"
 weight: 100
 description: >-

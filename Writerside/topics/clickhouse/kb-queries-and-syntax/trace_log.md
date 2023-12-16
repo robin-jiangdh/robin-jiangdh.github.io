@@ -1,5 +1,4 @@
----
-title: "Collecting query execution flamegraphs using system.trace_log"
+#Collecting query execution flamegraphs using system.trace_log
 linkTitle: "trace_log"
 weight: 100
 description: >-

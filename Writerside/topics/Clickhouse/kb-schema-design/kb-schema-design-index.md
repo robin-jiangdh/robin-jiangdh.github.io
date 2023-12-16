@@ -1,5 +1,4 @@
----
-title: "Schema design"
+#Schema design
 linkTitle: "Schema design"
 keywords:
 - clickhouse schema

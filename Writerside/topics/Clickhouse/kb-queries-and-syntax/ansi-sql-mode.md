@@ -1,5 +1,4 @@
----
-title: "ANSI SQL mode"
+#ANSI SQL mode
 linkTitle: "ANSI SQL mode"
 description: >
     ANSI SQL mode

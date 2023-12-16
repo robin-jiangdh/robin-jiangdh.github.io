@@ -1,5 +1,4 @@
----
-title: "AggregateFunction(uniq, UUID) doubled after ClickHouse upgrade"
+#AggregateFunction(uniq, UUID) doubled after ClickHouse upgrade
 linkTitle: "AggregateFunction(uniq, UUID) doubled after ClickHouse upgrade"
 weight: 100
 description: >-

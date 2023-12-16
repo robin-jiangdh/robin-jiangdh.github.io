@@ -1,5 +1,4 @@
----
-title: "Multiple aligned date columns in PARTITION BY expression"
+#Multiple aligned date columns in PARTITION BY expression
 linkTitle: "Multiple aligned date columns in PARTITION BY expression"
 weight: 100
 description: >-

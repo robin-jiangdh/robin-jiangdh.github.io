@@ -1,5 +1,4 @@
----
-title: "Ingestion performance and formats"
+#Ingestion performance and formats
 linkTitle: "Ingestion performance and formats"
 ---
 ```

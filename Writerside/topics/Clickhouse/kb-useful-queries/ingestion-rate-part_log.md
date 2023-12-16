@@ -1,5 +1,4 @@
----
-title: "Ingestion metrics from system.part_log"
+#Ingestion metrics from system.part_log
 linkTitle: "Ingestion metrics from system.part_log"
 weight: 100
 description: >-

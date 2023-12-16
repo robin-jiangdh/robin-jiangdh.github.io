@@ -1,6 +1,5 @@
 #Database Size - Table - Column size
----
-title: "Database Size - Table - Column size"
+#Database Size - Table - Column size
 linkTitle: "Database Size - Table - Column size"
 description: >
     Database Size - Table - Column size

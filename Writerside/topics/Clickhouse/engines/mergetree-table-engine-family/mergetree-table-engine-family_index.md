@@ -1,5 +1,4 @@
----
-title: "MergeTree table engine family"
+#MergeTree table engine family
 linkTitle: "MergeTree table engine family"
 description: >
     MergeTree table engine family

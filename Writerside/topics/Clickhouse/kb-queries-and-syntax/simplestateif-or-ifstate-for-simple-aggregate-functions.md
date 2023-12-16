@@ -1,6 +1,5 @@
 #Simple aggregate functions & combinators
----
-title: "Simple aggregate functions & combinators"
+#Simple aggregate functions & combinators
 linkTitle: "Simple aggregate functions & combinators"
 description: >
     Simple aggregate functions & combinators

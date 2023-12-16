@@ -1,5 +1,4 @@
----
-title: "Sampling Example"
+#Sampling Example
 linkTitle: "Sampling Example"
 description: >
     Clickhouse table sampling example

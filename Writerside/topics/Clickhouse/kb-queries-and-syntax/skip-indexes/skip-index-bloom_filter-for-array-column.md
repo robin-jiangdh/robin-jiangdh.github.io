@@ -1,5 +1,4 @@
----
-title: "Skip index bloom_filter Example"
+#Skip index bloom_filter Example
 linkTitle: "Skip index bloom_filter Example"
 description: >
     Example: skip index bloom_filter & array column

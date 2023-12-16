@@ -1,5 +1,4 @@
----
-title: "How ALTER's works in ClickHouse"
+#How ALTER's works in ClickHouse
 linkTitle: "How ALTER's works in ClickHouse"
 weight: 100
 description: >-

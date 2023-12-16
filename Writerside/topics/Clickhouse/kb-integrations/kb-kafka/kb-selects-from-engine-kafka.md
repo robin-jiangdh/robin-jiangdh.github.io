@@ -1,5 +1,4 @@
----
-title: "SELECTs from engine=Kafka"
+#SELECTs from engine=Kafka
 linkTitle: "SELECTs from engine=Kafka"
 description: >
     SELECTs from engine=Kafka

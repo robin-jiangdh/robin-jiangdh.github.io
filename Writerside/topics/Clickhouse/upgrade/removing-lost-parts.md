@@ -1,6 +1,5 @@
 # Removing lost parts
----
-title: "Removing lost parts"
+#Removing lost parts
 linkTitle: "Removing lost parts"
 description: >
     Removing lost parts

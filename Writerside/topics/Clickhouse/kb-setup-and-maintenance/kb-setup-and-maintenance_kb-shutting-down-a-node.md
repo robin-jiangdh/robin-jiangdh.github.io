@@ -1,5 +1,4 @@
----
-title: "Shutting down a node"
+#Shutting down a node
 linkTitle: "Shutting down a node"
 description: >
     Shutting down a node

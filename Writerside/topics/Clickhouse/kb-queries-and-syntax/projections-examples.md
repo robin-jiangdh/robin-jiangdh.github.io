@@ -1,5 +1,4 @@
----
-title: "Projections examples"
+#Projections examples
 linkTitle: "Projections examples"
 description: >
     Projections examples

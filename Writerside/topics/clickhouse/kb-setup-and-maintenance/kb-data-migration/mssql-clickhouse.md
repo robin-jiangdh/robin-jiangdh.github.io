@@ -1,5 +1,4 @@
----
-title: "MSSQL bcp pipe to clickhouse-client"
+#MSSQL bcp pipe to clickhouse-client
 linkTitle: "Export from MSSQL to ClickHouse"
 weight: 100
 description: >-

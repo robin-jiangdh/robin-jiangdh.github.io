@@ -1,5 +1,4 @@
----
-title: "Schema migration tools for ClickHouse"
+#Schema migration tools for ClickHouse
 linkTitle: "Schema migration tools for ClickHouse"
 description: >
     Schema migration tools for ClickHouse

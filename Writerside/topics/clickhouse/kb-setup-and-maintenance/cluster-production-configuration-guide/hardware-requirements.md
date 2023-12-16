@@ -1,5 +1,4 @@
----
-title: "Hardware Requirements"
+#Hardware Requirements
 linkTitle: "Hardware Requirements"
 description: >
     Hardware Requirements

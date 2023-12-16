@@ -1,5 +1,4 @@
----
-title: "Remote table function"
+#Remote table function
 linkTitle: "Remote table function"
 description: >
   Remote table function

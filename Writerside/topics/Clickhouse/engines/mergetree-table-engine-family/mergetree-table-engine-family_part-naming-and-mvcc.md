@@ -1,9 +1,4 @@
----
-title: "Part names & MVCC"
-linkTitle: "Part names & MVCC"
-weight: 100
-description: >-
-     Part names & multiversion concurrency control.
+# Part names & MVCC 
 ---
 
 ## Part names & multiversion concurrency control

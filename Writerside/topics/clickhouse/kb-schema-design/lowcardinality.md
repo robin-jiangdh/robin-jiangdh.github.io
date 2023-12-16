@@ -1,5 +1,4 @@
----
-title: "LowCardinality"
+#LowCardinality
 linkTitle: "LowCardinality"
 description: >
     LowCardinality

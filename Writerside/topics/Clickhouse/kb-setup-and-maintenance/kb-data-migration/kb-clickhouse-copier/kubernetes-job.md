@@ -1,5 +1,4 @@
----
-title: "Kubernetes job for clickhouse-copier"
+#Kubernetes job for clickhouse-copier
 linkTitle: "Kubernetes job for clickhouse-copier"
 description: >
     Kubernetes job for clickhouse-copier

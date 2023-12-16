@@ -1,5 +1,4 @@
----
-title: "EXPLAIN query"
+#EXPLAIN query
 linkTitle: "EXPLAIN query"
 description: >
     EXPLAIN query

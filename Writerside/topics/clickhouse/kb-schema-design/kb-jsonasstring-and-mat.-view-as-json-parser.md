@@ -1,5 +1,4 @@
----
-title: "JSONAsString and Mat. View as JSON parser"
+#JSONAsString and Mat. View as JSON parser
 linkTitle: "JSONAsString and Mat. View as JSON parser"
 description: >
     JSONAsString and Mat. View as JSON parser

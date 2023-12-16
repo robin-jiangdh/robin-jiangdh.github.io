@@ -1,6 +1,5 @@
 # Upgrade
----
-title: "Upgrade"
+#Upgrade
 linkTitle: "Upgrade"
 keywords:
 - clickhouse upgrade

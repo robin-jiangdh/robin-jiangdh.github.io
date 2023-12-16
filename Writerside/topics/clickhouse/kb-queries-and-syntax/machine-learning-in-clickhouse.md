@@ -1,5 +1,4 @@
----
-title: "Machine learning in ClickHouse"
+#Machine learning in ClickHouse
 linkTitle: "Machine learning in ClickHouse"
 description: >
     Machine learning in ClickHouse

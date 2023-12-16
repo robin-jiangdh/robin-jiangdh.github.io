@@ -1,5 +1,4 @@
----
-title: "SummingMergeTree"
+#SummingMergeTree
 linkTitle: "SummingMergeTree"
 description: >
     SummingMergeTree

@@ -1,5 +1,4 @@
----
-title: "Converting MergeTree to Replicated"
+#Converting MergeTree to Replicated
 linkTitle: "Converting MergeTree to Replicated"
 description: >
     Converting MergeTree to Replicated

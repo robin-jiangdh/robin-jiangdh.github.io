@@ -1,5 +1,4 @@
----
-title: "Data types on disk and in RAM"
+#Data types on disk and in RAM
 linkTitle: "Data types on disk and in RAM"
 description: >
     Data types on disk and in RAM

@@ -1,5 +1,4 @@
----
-title: "Async INSERTs"
+#Async INSERTs
 linkTitle: "Async INSERTs"
 description: >
     Async INSERTs
@@ -36,7 +35,7 @@ It is not possible to relate `part_log/query_id` column with `asynchronous_inser
 ## Metrics
 
 
-<code-block ignore-vars="true">
+```
 SELECT *
 FROM system.metrics
 WHERE metric LIKE '%AsyncInsert%'
@@ -49,4 +48,5 @@ Query id: 7384b8c8-3d87-4059-b1c4-e9955e97232b
 └──────────────────────┴───────┴────────────────────────────────────────────────────────────┘
 
 2 rows in set. Elapsed: 0.001 sec.
-</code-block>>
+```
+{ignore-vars=true}

@@ -1,5 +1,4 @@
----
-title: "JVM sizes and garbage collector settings"
+#JVM sizes and garbage collector settings
 linkTitle: "JVM sizes and garbage collector settings"
 description: >
     JVM sizes and garbage collector settings

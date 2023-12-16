@@ -1,5 +1,4 @@
----
-title: "Can not connect to my ClickHouse server"
+#Can not connect to my ClickHouse server
 linkTitle: "Can not connect to my ClickHouse server"
 weight: 100
 description: >-

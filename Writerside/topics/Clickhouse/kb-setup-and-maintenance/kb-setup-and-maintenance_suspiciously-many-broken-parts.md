@@ -1,5 +1,4 @@
----
-title: "Suspiciously many broken parts"
+#Suspiciously many broken parts
 linkTitle: "Suspiciously many broken parts"
 description: >
     Suspiciously many broken parts error during the server startup.

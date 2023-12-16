@@ -1,5 +1,4 @@
----
-title: "Possible issues with running ClickHouse in k8s"
+#Possible issues with running ClickHouse in k8s
 linkTitle: "Possible issues with running ClickHouse in k8s"
 description: >
     Possible issues with running ClickHouse in k8s

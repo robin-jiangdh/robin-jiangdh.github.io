@@ -1,5 +1,4 @@
----
-title: "Cluster Configuration Process"
+#Cluster Configuration Process
 linkTitle: "Cluster Configuration Process"
 description: >
     Cluster Configuration Process

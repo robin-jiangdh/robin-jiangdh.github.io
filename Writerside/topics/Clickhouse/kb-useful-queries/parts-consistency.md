@@ -1,6 +1,5 @@
 #Parts consistency
----
-title: "Parts consistency"
+#Parts consistency
 linkTitle: "Parts consistency"
 ---
 ## Check if there are blocks missing

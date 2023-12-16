@@ -1,5 +1,4 @@
----
-title: "ODBC Driver for ClickHouse"
+#ODBC Driver for ClickHouse
 linkTitle: "ODBC Driver for ClickHouse"
 weight: 100
 description: >-

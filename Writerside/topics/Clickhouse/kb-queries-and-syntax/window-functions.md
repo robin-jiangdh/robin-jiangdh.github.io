@@ -1,5 +1,4 @@
----
-title: "Window functions"
+#Window functions
 linkTitle: "Window functions"
 description: >
     Window functions

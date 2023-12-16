@@ -1,5 +1,4 @@
----
-title: "GROUP BY tricks"
+#GROUP BY tricks
 linkTitle: "GROUP BY tricks"
 weight: 100
 description: >-

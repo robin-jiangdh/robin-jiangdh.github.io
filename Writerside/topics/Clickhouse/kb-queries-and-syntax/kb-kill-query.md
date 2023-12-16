@@ -1,5 +1,4 @@
----
-title: "KILL QUERY"
+#KILL QUERY
 linkTitle: "KILL QUERY"
 description: >
     KILL QUERY

@@ -1,5 +1,4 @@
----
-title: "High CPU usage"
+#High CPU usage
 linkTitle: "High CPU usage"
 description: >
     High CPU usage

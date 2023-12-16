@@ -1,10 +1,5 @@
----
-title: "How to pick an ORDER BY / PRIMARY KEY / PARTITION BY for the MergeTree-family table"
-linkTitle: "Proper ordering and partitioning the MergeTree tables"
-weight: 100
-description: >-
-     How to pick an ORDER BY / PRIMARY KEY / PARTITION BY for the MergeTree table.
----
+# How to pick an ORDER BY / PRIMARY KEY / PARTITION BY for the MergeTree-family table
+ 
 
 ## How to pick an ORDER BY / PRIMARY KEY
 

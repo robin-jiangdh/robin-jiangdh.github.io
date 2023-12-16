@@ -1,5 +1,4 @@
----
-title: "Column backfilling with alter/update using a dictionary"
+#Column backfilling with alter/update using a dictionary
 linkTitle: "Column backfilling from dictionary"
 weight: 100
 description: >-
@@ -21,7 +20,7 @@ In this case, you will need to set the setting `allow_nondeterministic_mutations
 
 Here is an example.
 
-<code-block ignore-vars="true">
+``` 
 create database test;
 use test;
 
@@ -168,4 +167,5 @@ WHERE key1 = 11111
 │ 11111 │ 90   │ 9    │ 2022-01-28 │ 11111xxx │
 │ 11111 │ 90   │ 9    │ 2021-11-30 │ 11111xxx │
 └───────┴──────┴──────┴────────────┴──────────┘
-</code-block>
+```
+{ignore-vars=true}

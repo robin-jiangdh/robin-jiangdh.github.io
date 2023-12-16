@@ -1,10 +1,5 @@
 # Removing lost parts
----
-title: "Removing lost parts"
-linkTitle: "Removing lost parts"
-description: >
-    Removing lost parts
----
+
 
 ## There might be parts left in ZooKeeper that don't exist on disk
 

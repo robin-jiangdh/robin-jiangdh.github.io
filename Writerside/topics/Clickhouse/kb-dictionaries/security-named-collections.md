@@ -1,5 +1,4 @@
----
-title: "Security named collections"
+#Security named collections
 linkTitle: "Security named collections"
 description: >
     Security named collections

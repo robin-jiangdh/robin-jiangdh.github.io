@@ -1,5 +1,4 @@
----
-title: "Queries & Syntax"
+#Queries & Syntax
 linkTitle: "Queries & Syntax"
 keywords:
 - clickhouse queries

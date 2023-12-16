@@ -1,5 +1,4 @@
----
-title: "Cumulative Anything"
+#Cumulative Anything
 linkTitle: "Cumulative Anything"
 description: >
     Cumulative Anything

@@ -1,5 +1,4 @@
----
-title: "Join with Calendar using Arrays"
+#Join with Calendar using Arrays
 linkTitle: "Join with Calendar using Arrays"
 description: >
     Join with Calendar using Arrays

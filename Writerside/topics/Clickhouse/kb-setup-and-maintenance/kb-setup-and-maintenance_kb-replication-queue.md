@@ -1,5 +1,4 @@
----
-title: "Replication queue"
+#Replication queue
 linkTitle: "Replication queue"
 description: >
     Replication queue

@@ -1,5 +1,4 @@
----
-title: "GROUP BY"
+#GROUP BY
 linkTitle: "GROUP BY"
 keywords:
 - clickhouse queries

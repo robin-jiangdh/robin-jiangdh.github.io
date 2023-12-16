@@ -1,5 +1,4 @@
----
-title: "Precreate parts using clickhouse-local"
+#Precreate parts using clickhouse-local
 linkTitle: "Precreate parts using clickhouse-local"
 weight: 100
 description: >-

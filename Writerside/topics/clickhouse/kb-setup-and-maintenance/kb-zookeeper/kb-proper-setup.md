@@ -1,5 +1,4 @@
----
-title: "Proper setup"
+#Proper setup
 linkTitle: "Proper setup"
 description: >
     Proper setup

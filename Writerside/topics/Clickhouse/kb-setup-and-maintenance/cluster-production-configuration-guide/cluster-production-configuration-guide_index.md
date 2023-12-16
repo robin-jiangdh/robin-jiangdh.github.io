@@ -1,5 +1,4 @@
----
-title: "Production Cluster Configuration Guide"
+#Production Cluster Configuration Guide
 linkTitle: "Production Cluster Configuration Guide"
 description: >
     Production Cluster Configuration Guide

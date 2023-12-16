@@ -1,5 +1,4 @@
----
-title: "Integrations"
+#Integrations
 linkTitle: "Integrations"
 keywords:
 - clickhouse integration

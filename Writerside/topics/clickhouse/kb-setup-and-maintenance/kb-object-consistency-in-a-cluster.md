@@ -1,5 +1,4 @@
----
-title: "Object consistency in a cluster"
+#Object consistency in a cluster
 linkTitle: "Object consistency in a cluster"
 description: >
     Object consistency in a cluster

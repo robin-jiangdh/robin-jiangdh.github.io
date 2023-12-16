@@ -1,10 +1,4 @@
----
-title: "Transformation Clickhouse logs to ndjson using Vector.dev"
-linkTitle: "Clickhouse logs and Vector.dev"
-weight: 100
-description: >-
-     Transformation Clickhouse logs to ndjson using Vector.dev
----
+# Transformation Clickhouse logs to ndjson using Vector.dev
 
 ### ClickHouse 22.8
 
@@ -51,7 +45,7 @@ usermod -a -G clickhouse vector
 
 ### vector config
 
-<code-block ignore-vars="true" >
+```
 # cat /etc/vector/vector.toml
 data_dir = "/var/lib/vector"
 
@@ -77,8 +71,9 @@ data_dir = "/var/lib/vector"
   path = "/var/log/clickhouse-server-json/clickhouse-server.%Y-%m-%d.ndjson"
   encoding.only_fields = ["timestamp", "thread_id", "query_id", "severity", "message" ]
   encoding.codec = "ndjson"
-<code-block ignore-vars="true">
-
+ 
+```
+{ignore-vars="true"}
 ### start 
 
 ```

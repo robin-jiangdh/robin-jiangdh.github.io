@@ -1,5 +1,4 @@
----
-title: "Parameterized views"
+#Parameterized views
 linkTitle: "Parameterized views"
 description: >
     Parameterized views

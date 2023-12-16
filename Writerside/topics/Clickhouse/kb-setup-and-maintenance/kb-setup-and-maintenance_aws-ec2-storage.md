@@ -1,5 +1,4 @@
----
-title: "AWS EC2 Storage"
+#AWS EC2 Storage
 linkTitle: "AWS EC2 Storage"
 description: >
     AWS EBS, EFS, FSx, Lustre

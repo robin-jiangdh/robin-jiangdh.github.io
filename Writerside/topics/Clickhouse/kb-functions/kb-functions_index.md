@@ -1,5 +1,4 @@
----
-title: "Functions"
+#Functions
 linkTitle: "Functions"
 keywords:
 - clickhouse functions

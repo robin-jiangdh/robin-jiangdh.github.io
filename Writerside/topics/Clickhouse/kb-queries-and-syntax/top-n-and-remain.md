@@ -1,5 +1,4 @@
----
-title: "Top N & Remain"
+#Top N & Remain
 linkTitle: "Top N & Remain"
 description: >
     Top N & Remain

@@ -1,5 +1,4 @@
----
-title: "Server config files"
+#Server config files
 linkTitle: "Server config files"
 description: >
     How to manage server config files in Clickhouse
@@ -175,7 +174,8 @@ The list of user setting which require server restart:
 * `<max_replicated_fetches_network_bandwidth_for_server>`
 * `<max_replicated_sends_network_bandwidth_for_server>`
 
-See also `select * from system.settings where description ilike '%start%'`
+
+See also `select * from system.settings where description ilike '%\start%\'`
 
 Also there are several 'long-running' user sessions which are almost never restarted and can keep the setting from the server start (it's DDLWorker, Kafka, and some other service things).
 
@@ -207,7 +207,7 @@ $ cat /etc/clickhouse-server/config.d/dictionaries.xml
 </clickhouse>
 ```
 
-**dict/\*.xml** – relative path, servers seeks files in the folder **/etc/clickhouse-server/dict**. More info in [Multiple Clickhouse instances](kb-server-config-files.md).
+**dict/\*.xml** – relative path, servers seeks files in the folder **/etc/clickhouse-server/dict**. More info in Multiple Clickhouse instances.
 
 ## incl attribute & metrica.xml
 

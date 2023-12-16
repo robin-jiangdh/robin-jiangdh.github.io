@@ -1,5 +1,4 @@
----
-title: "S3Disk"
+#S3Disk
 linkTitle: "S3Disk"
 weight: 100
 description: >-

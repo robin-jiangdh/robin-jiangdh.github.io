@@ -1,5 +1,4 @@
----
-title: "AWS S3 Recipes"
+#AWS S3 Recipes
 linkTitle: "AWS S3 Recipes"
 weight: 100
 description: >-

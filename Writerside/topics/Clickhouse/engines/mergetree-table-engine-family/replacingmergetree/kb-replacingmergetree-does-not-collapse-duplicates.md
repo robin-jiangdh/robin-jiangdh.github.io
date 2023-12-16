@@ -1,5 +1,4 @@
----
-title: "ReplacingMergeTree does not collapse duplicates"
+#ReplacingMergeTree does not collapse duplicates
 linkTitle: "ReplacingMergeTree does not collapse duplicates"
 description: >
     ReplacingMergeTree does not collapse duplicates

@@ -1,5 +1,4 @@
----
-title: "Floats vs Decimals"
+#Floats vs Decimals
 linkTitle: "Floats vs Decimals"
 description: >
     Floats vs Decimals

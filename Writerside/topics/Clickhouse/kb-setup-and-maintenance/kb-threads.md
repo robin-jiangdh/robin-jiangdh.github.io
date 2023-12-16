@@ -1,5 +1,4 @@
----
-title: "Threads"
+#Threads
 linkTitle: "Threads"
 description: >
     Threads
@@ -34,7 +33,7 @@ SELECT query, length(thread_ids) AS threads_count FROM system.processes ORDER BY
 
 ### Thread pools limits & usage
 
-<code-block ignore-vars="true" lang="sql">
+``` 
 SELECT
     name,
     value
@@ -107,11 +106,12 @@ Query id: 6acbb596-e28f-4f89-94b2-27dccfe88ee9
 │ LocalThreadActive  │     0 │ Number of threads in local thread pools running a task.                                                           │
 │ QueryThread        │     0 │ Number of query processing threads                                                                                │
 └────────────────────┴───────┴───────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
-</code-block>
+```
+{ignore-vars=true}
 
 ### Stack traces of the working threads from the pools
 
-<code-block ignore-vars="true" lang="sql">
+``` 
 SET allow_introspection_functions = 1;
 
 WITH arrayMap(x -> demangle(addressToSymbol(x)), trace) AS all
@@ -122,4 +122,5 @@ SELECT
 FROM system.stack_trace
 WHERE res ILIKE '%Pool%'
 FORMAT Vertical;
-</code-block>
+```
+{ignore-vars=true}

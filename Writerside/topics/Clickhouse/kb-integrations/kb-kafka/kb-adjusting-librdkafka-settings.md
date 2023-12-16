@@ -1,5 +1,4 @@
----
-title: "Adjusting librdkafka settings"
+#Adjusting librdkafka settings
 linkTitle: "Adjusting librdkafka settings"
 description: >
     Adjusting librdkafka settings

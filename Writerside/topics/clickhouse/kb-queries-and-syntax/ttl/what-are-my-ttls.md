@@ -1,5 +1,4 @@
----
-title: "What are my TTL settings?"
+#What are my TTL settings?
 linkTitle: "What are my TTL settings"
 weight: 100
 description: >-

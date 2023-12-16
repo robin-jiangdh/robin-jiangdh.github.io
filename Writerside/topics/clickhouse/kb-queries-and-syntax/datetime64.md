@@ -1,5 +1,4 @@
----
-title: "DateTime64"
+#DateTime64
 linkTitle: "DateTime64"
 weight: 100
 description: >-

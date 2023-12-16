@@ -1,5 +1,4 @@
----
-title: "Useful queries"
+#Useful queries
 linkTitle: "Useful queries"
 keywords:
 - clickhouse queries

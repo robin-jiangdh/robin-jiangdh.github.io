@@ -1,5 +1,4 @@
----
-title: "Dictionaries & arrays"
+#Dictionaries & arrays
 linkTitle: "Dictionaries & arrays"
 description: >
     Dictionaries & arrays

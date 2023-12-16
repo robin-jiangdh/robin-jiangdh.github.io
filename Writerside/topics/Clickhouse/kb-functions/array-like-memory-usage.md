@@ -1,5 +1,4 @@
----
-title: "arrayMap, arrayJoin or ARRAY JOIN memory usage"
+#arrayMap, arrayJoin or ARRAY JOIN memory usage
 linkTitle: "arrayMap, arrayJoin or ARRAY JOIN memory usage"
 description: >
     Why arrayMap, arrayFilter, arrayJoin use so much memory?

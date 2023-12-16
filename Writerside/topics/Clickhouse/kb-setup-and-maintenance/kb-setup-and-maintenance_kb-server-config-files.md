@@ -1,5 +1,4 @@
----
-title: "Server config files"
+#Server config files
 linkTitle: "Server config files"
 description: >
     How to manage server config files in Clickhouse

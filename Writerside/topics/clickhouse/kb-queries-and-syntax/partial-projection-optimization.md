@@ -1,5 +1,4 @@
----
-title: "Use both projection and raw data in single query"
+#Use both projection and raw data in single query
 linkTitle: "partial-projection-optimization"
 description: >
     How to write queries, which will use both data from projection and raw table.

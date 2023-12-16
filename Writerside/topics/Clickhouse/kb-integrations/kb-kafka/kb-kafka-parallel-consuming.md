@@ -1,5 +1,4 @@
----
-title: "Kafka parallel consuming"
+#Kafka parallel consuming
 linkTitle: "Kafka parallel consuming"
 description: >
     Kafka parallel consuming

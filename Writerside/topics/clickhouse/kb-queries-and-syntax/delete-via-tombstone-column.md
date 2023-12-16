@@ -1,5 +1,4 @@
----
-title: "DELETE via tombstone column"
+#DELETE via tombstone column
 linkTitle: "DELETE via tombstone column"
 description: >
     DELETE via tombstone column

@@ -1,14 +1,5 @@
 # Using This Knowledge Base
----
-title: "Using This Knowledge Base"
-linkTitle: "Using This Knowledge Base"
-keywords:
-- clickhouse updates
-- clickhouse contributions
-description: >
-    Add pages, make updates, and contribute to this ClickHouse knowledge base.
-weight: 12
----
+ 
 The Robin Knowledge Base is built on GitHub Pages, using Hugo and Docsy.  This guide provides a brief description on how to make updates and add to this knowledge base.
 
 ## Page and Section Basics
@@ -28,8 +19,7 @@ Each Markdown file provides the section's information and the title that is disp
 Each page is set in the following format that sets the page attributes:
 
 ```yaml
----
-title: "Using This Knowledge Base"
+#Using This Knowledge Base
 linkTitle: "Using This Knowledge Base"
 description: >
     How to add pages, make updates, and expand this knowledge base.

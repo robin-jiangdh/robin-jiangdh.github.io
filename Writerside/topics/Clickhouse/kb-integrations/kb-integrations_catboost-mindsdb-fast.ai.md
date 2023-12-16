@@ -1,5 +1,4 @@
----
-title: "CatBoost / MindsDB /  Fast.ai"
+#CatBoost / MindsDB /  Fast.ai
 linkTitle: "CatBoost / MindsDB /  Fast.ai"
 description: >
     CatBoost / MindsDB /  Fast.ai

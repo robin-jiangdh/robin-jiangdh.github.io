@@ -1,5 +1,4 @@
----
-title: "Cluster Configuration FAQ"
+#Cluster Configuration FAQ
 linkTitle: "Cluster Configuration FAQ"
 description: >
     Cluster Configuration FAQ

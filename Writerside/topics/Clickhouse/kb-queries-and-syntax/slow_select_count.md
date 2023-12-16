@@ -1,5 +1,4 @@
----
-title: "Why is simple `SELECT count()` Slow in ClickHouse?"
+#Why is simple `SELECT count()` Slow in ClickHouse?
 linkTitle: "Slow `SELECT count()`"
 weight: 100
 description: >-

@@ -1,5 +1,4 @@
----
-title: "ReplacingMergeTree"
+#ReplacingMergeTree
 linkTitle: "ReplacingMergeTree"
 description: >
     ReplacingMergeTree

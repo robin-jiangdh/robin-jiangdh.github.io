@@ -1,5 +1,4 @@
----
-title: "Flattened table"
+#Flattened table
 linkTitle: "Flattened table"
 description: >
     Flattened table

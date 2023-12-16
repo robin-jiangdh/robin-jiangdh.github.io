@@ -1,5 +1,4 @@
----
-title: "Replication: Can not resolve host of another clickhouse server"
+#Replication: Can not resolve host of another clickhouse server
 linkTitle: "Replication: Can not resolve host of another clickhouse server"
 weight: 100
 description: >-

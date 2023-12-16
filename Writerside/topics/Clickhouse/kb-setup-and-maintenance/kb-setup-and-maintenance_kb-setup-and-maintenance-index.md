@@ -1,5 +1,4 @@
----
-title: "Setup & maintenance"
+#Setup & maintenance
 linkTitle: "Setup & maintenance"
 keywords:
 - clickhouse setup

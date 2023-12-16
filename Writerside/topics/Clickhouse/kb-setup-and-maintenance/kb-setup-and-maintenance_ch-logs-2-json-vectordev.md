@@ -1,5 +1,4 @@
----
-title: "Transformation Clickhouse logs to ndjson using Vector.dev"
+#Transformation Clickhouse logs to ndjson using Vector.dev
 linkTitle: "Clickhouse logs and Vector.dev"
 weight: 100
 description: >-

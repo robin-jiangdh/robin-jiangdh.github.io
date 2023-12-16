@@ -1,5 +1,4 @@
----
-title: "ZooKeeper session has expired"
+#ZooKeeper session has expired
 linkTitle: "ZooKeeper session has expired"
 weight: 100
 description: >-

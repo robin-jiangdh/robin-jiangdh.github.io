@@ -1,5 +1,4 @@
----
-title: "Best schema for storing many metrics registered from the single source"
+#Best schema for storing many metrics registered from the single source
 linkTitle: "Best schema for storing many metrics registered from the single source"
 description: >
     Best schema for storing many metrics registered from the single source

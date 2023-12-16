@@ -1,6 +1,5 @@
 #Moving a table to another device.
----
-title: "Moving a table to another device."
+#Moving a table to another device.
 linkTitle: "Moving a table to another device."
 description: >
     Moving a table to another device.

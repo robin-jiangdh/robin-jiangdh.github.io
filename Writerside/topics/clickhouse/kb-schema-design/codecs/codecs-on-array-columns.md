@@ -1,5 +1,4 @@
----
-title: "Codecs on array columns"
+#Codecs on array columns
 linkTitle: "Codecs on array columns"
 description: >
     Codecs on array columns

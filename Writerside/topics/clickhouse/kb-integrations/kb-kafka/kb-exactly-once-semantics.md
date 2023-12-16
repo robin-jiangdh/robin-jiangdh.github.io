@@ -1,5 +1,4 @@
----
-title: "Exactly once semantics"
+#Exactly once semantics
 linkTitle: "Exactly once semantics"
 description: >
     Exactly once semantics

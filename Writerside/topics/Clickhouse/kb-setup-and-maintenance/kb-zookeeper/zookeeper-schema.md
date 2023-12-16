@@ -1,5 +1,4 @@
----
-title: "ZooKeeper schema"
+#ZooKeeper schema
 linkTitle: "ZooKeeper schema"
 description: >
     ZooKeeper schema

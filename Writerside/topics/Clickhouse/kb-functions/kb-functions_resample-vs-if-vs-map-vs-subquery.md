@@ -1,5 +1,4 @@
----
-title: "-Resample vs -If vs -Map vs Subquery"
+#-Resample vs -If vs -Map vs Subquery
 linkTitle: "-Resample vs -If vs -Map vs Subquery"
 ---
 ### 5 categories

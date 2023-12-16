@@ -1,5 +1,4 @@
----
-title: "index & column files"
+#index & column files
 linkTitle: "index & column files"
 description: >
     index & column files

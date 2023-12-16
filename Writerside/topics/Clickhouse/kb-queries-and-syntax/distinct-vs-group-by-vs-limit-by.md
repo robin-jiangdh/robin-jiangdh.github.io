@@ -1,5 +1,4 @@
----
-title: "DISTINCT & GROUP BY & LIMIT 1 BY what the difference"
+#DISTINCT & GROUP BY & LIMIT 1 BY what the difference
 linkTitle: "DISTINCT & GROUP BY & LIMIT 1 BY what the difference"
 weight: 100
 description: >-

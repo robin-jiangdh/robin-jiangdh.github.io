@@ -1,5 +1,4 @@
----
-title: "Insert Deduplication / Insert idempotency"
+#Insert Deduplication / Insert idempotency
 linkTitle: "insert deduplication"
 weight: 100
 description: >-

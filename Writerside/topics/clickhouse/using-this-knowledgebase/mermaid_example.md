@@ -1,6 +1,5 @@
 #Mermaid Example
----
-title: "Mermaid Example"
+#Mermaid Example
 linkTitle: "Mermaid Example"
 description: >
     A short example of using the Mermaid library to add charts.

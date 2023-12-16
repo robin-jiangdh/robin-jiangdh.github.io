@@ -1,5 +1,4 @@
----
-title: "Distributed table to Cluster"
+#Distributed table to Cluster
 linkTitle: "Distributed table to cluster"
 description: >
   Distributed table to cluster

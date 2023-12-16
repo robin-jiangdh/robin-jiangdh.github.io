@@ -1,5 +1,4 @@
----
-title: "sequenceMatch"
+#sequenceMatch
 linkTitle: "sequenceMatch"
 description: >
     sequenceMatch
@@ -8,12 +7,13 @@ description: >
 
 I expect the sequence here to only match once as a is only directly after a once - but it matches with gaps. Why is that?
 
-<code-block ignore-vars="true" lang="sql">
+``` 
 SELECT sequenceCount('(?1)(?2)')(sequence, page ILIKE '%a%', page ILIKE '%a%') AS sequences
   FROM values('page String, sequence UInt16', ('a', 1), ('a', 2), ('b', 3), ('b', 4), ('a', 5), ('b', 6), ('a', 7))
 
 2 # ??
-</code-block>
+```
+{ignore-vars=true}
 
 ## Answer
 

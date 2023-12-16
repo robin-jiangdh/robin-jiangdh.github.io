@@ -1,5 +1,4 @@
----
-title: "Network Configuration"
+#Network Configuration
 linkTitle: "Network Configuration"
 description: >
     Network Configuration

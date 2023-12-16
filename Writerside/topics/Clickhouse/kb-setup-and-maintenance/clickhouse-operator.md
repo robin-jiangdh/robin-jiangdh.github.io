@@ -1,5 +1,4 @@
----
-title: "ClickHouse operator"
+#ClickHouse operator
 linkTitle: "ClickHouse operator"
 weight: 100
 description: >-

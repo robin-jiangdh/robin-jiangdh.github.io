@@ -1,5 +1,4 @@
----
-title: "MySQL"
+#MySQL
 linkTitle: "Integration Clickhouse with MySQL"
 weight: 100
 description: >-

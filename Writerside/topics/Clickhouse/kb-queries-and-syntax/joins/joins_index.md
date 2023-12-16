@@ -1,5 +1,4 @@
----
-title: "JOINs"
+#JOINs
 linkTitle: "JOINs"
 description: >
     JOINs

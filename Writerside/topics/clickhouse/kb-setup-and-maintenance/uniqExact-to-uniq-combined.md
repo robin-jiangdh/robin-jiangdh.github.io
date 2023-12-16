@@ -1,5 +1,4 @@
----
-title: "How to convert uniqExact states to approximate uniq functions states"
+#How to convert uniqExact states to approximate uniq functions states
 linkTitle: "Convert uniqExact to uniq(Combined)"
 weight: 100
 description: >-
@@ -195,8 +194,7 @@ GROUP BY key
 ```
 
 Let's compare the data size, `uniq` won in this case, but check this article [Functions to count uniqs](uniq-functions.md), milage may vary.
-
-```
+``` 
 optimize table aggregates final;
 
 SELECT
@@ -214,3 +212,4 @@ ORDER BY size DESC;
 │ uniq         │ 38.33 MiB  │ 38.18 MiB    │
 └──────────────┴────────────┴──────────────┘
 ```
+{ignore-vars=true}

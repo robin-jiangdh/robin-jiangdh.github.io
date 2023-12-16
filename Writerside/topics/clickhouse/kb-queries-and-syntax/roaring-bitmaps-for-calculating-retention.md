@@ -1,5 +1,4 @@
----
-title: "Roaring bitmaps for calculating retention"
+#Roaring bitmaps for calculating retention
 linkTitle: "Roaring bitmaps for calculating retention"
 ---
 ```

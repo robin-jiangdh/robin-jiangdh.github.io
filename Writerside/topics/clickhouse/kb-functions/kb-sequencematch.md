@@ -1,5 +1,4 @@
----
-title: "sequenceMatch"
+#sequenceMatch
 linkTitle: "sequenceMatch"
 description: >
     sequenceMatch
