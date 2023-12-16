@@ -175,7 +175,7 @@ The list of user setting which require server restart:
 * `<max_replicated_fetches_network_bandwidth_for_server>`
 * `<max_replicated_sends_network_bandwidth_for_server>`
 
-See also `select * from system.settings where description ilike '%\start%'`
+See also `select * from system.settings where description ilike '%start%'`
 
 Also there are several 'long-running' user sessions which are almost never restarted and can keep the setting from the server start (it's DDLWorker, Kafka, and some other service things).
 

@@ -204,7 +204,7 @@ SELECT
     formatReadableSize(sum(column_data_compressed_bytes) AS size) AS compressed,
     formatReadableSize(sum(column_data_uncompressed_bytes) AS usize) AS uncompressed
 FROM system.parts_columns
-WHERE (active = 1)  AND (table LIKE 'aggregates') and column like '%\uniq%\'
+WHERE (active = 1)  AND (table LIKE 'aggregates') and column like '%uniq%'
 GROUP BY column
 ORDER BY size DESC;
 

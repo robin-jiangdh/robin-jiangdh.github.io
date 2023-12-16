@@ -51,7 +51,7 @@ usermod -a -G clickhouse vector
 
 ### vector config
 
-```
+<code-block ignore-vars="true" >
 # cat /etc/vector/vector.toml
 data_dir = "/var/lib/vector"
 
@@ -74,10 +74,10 @@ data_dir = "/var/lib/vector"
   type = "file"
   inputs = [ "clickhouse-log-text" ]
   compression = "none"
-  path = "/var/log/clickhouse-server-json/clickhouse-server.%\Y-%\m-%\d.ndjson"
+  path = "/var/log/clickhouse-server-json/clickhouse-server.%Y-%m-%d.ndjson"
   encoding.only_fields = ["timestamp", "thread_id", "query_id", "severity", "message" ]
   encoding.codec = "ndjson"
-```
+<code-block ignore-vars="true">
 
 ### start 
 

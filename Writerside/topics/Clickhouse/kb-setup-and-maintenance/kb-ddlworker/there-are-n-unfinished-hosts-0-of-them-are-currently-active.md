@@ -44,7 +44,7 @@ In that case, you can just wait completion of previous task.
 
 In that case, the first step is to understand which exact task is stuck and why. There are some queries which can help with that.
 
-```
+<code-block ignore-vars="true" lang="sql">
 -- list of all distributed ddl queries, path can be different in your installation
 SELECT * FROM system.zookeeper WHERE path = '/clickhouse/task_queue/ddl/';
 
@@ -52,11 +52,11 @@ SELECT * FROM system.zookeeper WHERE path = '/clickhouse/task_queue/ddl/';
 SELECT * FROM system.zookeeper WHERE path = '/clickhouse/task_queue/ddl/query-0000001000/';
 SELECT * FROM system.zookeeper WHERE path = '/clickhouse/task_queue/ddl/' AND name = 'query-0000001000';
 -- 22.3
-SELECT * FROM system.zookeeper WHERE path like '/clickhouse/task_queue/ddl/query-0000001000/%\' 
+SELECT * FROM system.zookeeper WHERE path like '/clickhouse/task_queue/ddl/query-0000001000/%' 
 ORDER BY ctime, path SETTINGS allow_unrestricted_reads_from_keeper='true'
 -- 22.6
 SELECT path, name, value, ctime, mtime 
-FROM system.zookeeper WHERE path like '/clickhouse/task_queue/ddl/query-0000001000/%\' 
+FROM system.zookeeper WHERE path like '/clickhouse/task_queue/ddl/query-0000001000/%' 
 ORDER BY ctime, path SETTINGS allow_unrestricted_reads_from_keeper='true'
 
 -- How many nodes executed this task
@@ -76,13 +76,13 @@ SELECT name, value, ctime, mtime FROM system.zookeeper
 WHERE path = '/clickhouse/task_queue/ddl/query-0000001000/finished/';
 
 -- Latest successfull executed tasks from query_log.
-SELECT query FROM system.query_log WHERE query LIKE '%\ddl_entry%\' AND type = 2 ORDER BY event_time DESC LIMIT 5;
+SELECT query FROM system.query_log WHERE query LIKE '%ddl_entry%' AND type = 2 ORDER BY event_time DESC LIMIT 5;
 
 SELECT
     FQDN(),
     *
 FROM clusterAllReplicas('cluster', system.metrics)
-WHERE metric LIKE '%\MaxDDLEntryID%\'
+WHERE metric LIKE '%MaxDDLEntryID%'
 
 ┌─FQDN()───────────────────┬─metric────────┬─value─┬─description───────────────────────────┐
 │ chi-ab.svc.cluster.local │ MaxDDLEntryID │  1468 │ Max processed DDL entry of DDLWorker. │
@@ -97,7 +97,7 @@ WHERE metric LIKE '%\MaxDDLEntryID%\'
 
 -- Information about task execution from logs.
 grep -C 40 "ddl_entry" /var/log/clickhouse-server/clickhouse-server*.log
-```
+</code-block>
 
 
 ### Issues that can prevent task execution

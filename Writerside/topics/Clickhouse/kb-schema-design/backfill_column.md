@@ -21,7 +21,7 @@ In this case, you will need to set the setting `allow_nondeterministic_mutations
 
 Here is an example.
 
-```
+<code-block ignore-vars="true">
 create database test;
 use test;
 
@@ -31,13 +31,13 @@ create table fact ( key1 UInt64, key2 String, key3 String, D Date, S String)
 Engine MergeTree partition by D order by (key1, key2, key3);
 
 -- example data
-insert into fact select number, toString(number%\103), toString(number%\13), today(), toString(number) from numbers(1e9);
+insert into fact select number, toString(number%103), toString(number%13), today(), toString(number) from numbers(1e9);
 0 rows in set. Elapsed: 155.066 sec. Processed 1.00 billion rows, 8.00 GB (6.45 million rows/s., 51.61 MB/s.)
 
-insert into fact select number, toString(number%\103), toString(number%\13), today() - 30, toString(number)　from numbers(1e9);
+insert into fact select number, toString(number%103), toString(number%13), today() - 30, toString(number)　from numbers(1e9);
 0 rows in set. Elapsed: 141.594 sec. Processed 1.00 billion rows, 8.00 GB (7.06 million rows/s., 56.52 MB/s.)
 
-insert into fact select number, toString(number%\103), toString(number%\13), today() - 60, toString(number)　from numbers(1e10);
+insert into fact select number, toString(number%103), toString(number%13), today() - 60, toString(number)　from numbers(1e10);
 0 rows in set. Elapsed: 1585.549 sec. Processed 10.00 billion rows, 80.01 GB (6.31 million rows/s., 50.46 MB/s.)
 
 select count() from fact;
@@ -49,7 +49,7 @@ create table dict_table ( key1 UInt64, key2 String, key3 String, S String)
 Engine MergeTree order by (key1, key2, key3);
 
 -- example data
-insert into dict_table select number, toString(number%\103), toString(number%\13), 
+insert into dict_table select number, toString(number%103), toString(number%13), 
 toString(number)||'xxx'　from numbers(1e10);
 0 rows in set. Elapsed: 1390.121 sec. Processed 10.00 billion rows, 80.01 GB (7.19 million rows/s., 57.55 MB/s.)
 
@@ -78,7 +78,7 @@ SELECT dictGetString('item_dict', 'S', (toUInt64(1111111), '50', '1'))
 
 -- Now let's lower number of simultaneous updates/mutations
 
-select value from system.settings where name like '%\background_pool_size%';
+select value from system.settings where name like '%background_pool_size%';
 ┌─value─┐
 │ 16    │
 └───────┘
@@ -168,4 +168,4 @@ WHERE key1 = 11111
 │ 11111 │ 90   │ 9    │ 2022-01-28 │ 11111xxx │
 │ 11111 │ 90   │ 9    │ 2021-11-30 │ 11111xxx │
 └───────┴──────┴──────┴────────────┴──────────┘
-```
+</code-block>

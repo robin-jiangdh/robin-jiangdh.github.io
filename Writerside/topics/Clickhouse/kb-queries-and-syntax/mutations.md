@@ -31,7 +31,7 @@ Parallelism of mutations controlled by settings:
 ```
 SELECT *
 FROM system.merge_tree_settings
-WHERE name LIKE '%\mutation%'
+WHERE name LIKE '%mutation%'
 
 ┌─name───────────────────────────────────────────────┬─value─┬─changed─┬─description──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┬─type───┐
 │ max_replicated_mutations_in_queue                  │ 8     │       0 │ How many tasks of mutating parts are allowed simultaneously in ReplicatedMergeTree queue.                                                                                    │ UInt64 │

@@ -9,7 +9,13 @@
   <component name="ChangeListManager">
     <list default="true" id="69ddd2ad-813b-49a1-b3c5-c5aaced8e76b" name="Changes" comment="修复报错问题&#10;&#10;a">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-queries-and-syntax/async-inserts.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-queries-and-syntax/async-inserts.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-schema-design/uniq-functions.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-schema-design/uniq-functions.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-setup-and-maintenance/ch-logs-2-json-vectordev.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-setup-and-maintenance/ch-logs-2-json-vectordev.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-setup-and-maintenance/kb-who-ate-my-memory.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-setup-and-maintenance/kb-who-ate-my-memory.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-setup-and-maintenance/kb-zookeeper/clickhouse-keeper-service.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-setup-and-maintenance/kb-zookeeper/clickhouse-keeper-service.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-setup-and-maintenance/uniqExact-to-uniq-combined.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-setup-and-maintenance/uniqExact-to-uniq-combined.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webHelpBLOG2-all.zip" beforeDir="false" afterPath="$PROJECT_DIR$/webHelpBLOG2-all.zip" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,6 +94,9 @@
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="ProjectErrors" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 0

@@ -7,12 +7,12 @@ description: >
 ```
 SELECT *, formatReadableSize(value) 
 FROM system.asynchronous_metrics 
-WHERE metric like '%\Cach%\' or metric like '%\Mem%\' 
+WHERE metric like '%Cach%' or metric like '%Mem%' 
 order by metric format PrettyCompactMonoBlock;
 
 SELECT event_time, metric, value, formatReadableSize(value) 
 FROM system.asynchronous_metric_log 
-WHERE event_time > now() - 600 and (metric like '%\Cach%\' or metric like '%\Mem%\') and value <> 0 
+WHERE event_time > now() - 600 and (metric like '%Cach%' or metric like '%Mem%') and value <> 0 
 order by metric, event_time format PrettyCompactMonoBlock;
 
 SELECT formatReadableSize(sum(bytes_allocated)) FROM system.dictionaries;

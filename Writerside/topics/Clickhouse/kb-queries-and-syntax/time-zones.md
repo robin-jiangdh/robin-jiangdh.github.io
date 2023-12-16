@@ -52,10 +52,10 @@ Query id: 0a9883f0-dadf-4fb1-8b42-8fe93f561430
 
 and list of available time zones
 
-```
+<code-block ignore-vars="true" lang="sql">
 SELECT *
 FROM system.time_zones
-WHERE time_zone LIKE '%\Anta%'
+WHERE time_zone LIKE '%Anta%'
 
 Query id: 855453d7-eccd-44cb-9631-f63bb02a273c
 
@@ -77,7 +77,7 @@ Query id: 855453d7-eccd-44cb-9631-f63bb02a273c
 
 13 rows in set. Elapsed: 0.002 sec.
 
-```
+</code-block>
 
 ### When the conversion using different rules happen
 

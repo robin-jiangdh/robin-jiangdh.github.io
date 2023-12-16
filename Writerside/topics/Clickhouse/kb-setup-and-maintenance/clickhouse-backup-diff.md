@@ -28,7 +28,7 @@ rm -rf clickhouse-backup clickhouse-backup.tar.gz
 
 2. Create a runner script for the crontab
 
-```
+<code-block ignore-vars="true">
 mkdir /opt/clickhouse-backup-diff/
 
 cat << 'END' > /opt/clickhouse-backup-diff/clickhouse-backup-cron.sh
@@ -37,7 +37,7 @@ cat << 'END' > /opt/clickhouse-backup-diff/clickhouse-backup-cron.sh
 set +x
 command_line_argument=$1
 
-backup_name=$(date +%\Y-%\M-%\d-%\H-%\M-%\S)
+backup_name=$(date +%Y-%M-%d-%H-%M-%S)
 
 echo "Creating local backup '${backup_name}' (full, using hardlinks)..."
 clickhouse-backup create "${backup_name}"
@@ -53,7 +53,7 @@ fi
 END
 
 chmod +x /opt/clickhouse-backup-diff/clickhouse-backup-cron.sh
-```
+</code-block>
 
 3. Create confuguration for clickhouse-backup 
 
