@@ -6,7 +6,7 @@ description: >
 ---
 Sparse_hashed and hashed_array layouts are supposed to save memory but has some downsides. We can test it with the following:
 
-```sql
+```
 create table orders(id UInt64, price Float64)
 Engine = MergeTree() order by id;
 

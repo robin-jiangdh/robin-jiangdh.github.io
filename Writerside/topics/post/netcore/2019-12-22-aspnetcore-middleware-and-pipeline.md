@@ -24,7 +24,7 @@ tags: ['AspNetCore','netcore','middleware','pipeline']
 
 实际编码实现上，提供了一个Imiddleware的接口定义
 
-```csharp
+```
 public interface IMiddleware
 {
     Task InvokeAsync(HttpContext context, RequestDelegate next);

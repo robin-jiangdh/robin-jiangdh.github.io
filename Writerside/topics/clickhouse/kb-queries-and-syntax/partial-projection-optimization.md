@@ -5,7 +5,7 @@ description: >
     How to write queries, which will use both data from projection and raw table.
 ---
 
-```sql
+```
 CREATE TABLE default.metric
 (
     `key_a` UInt8,

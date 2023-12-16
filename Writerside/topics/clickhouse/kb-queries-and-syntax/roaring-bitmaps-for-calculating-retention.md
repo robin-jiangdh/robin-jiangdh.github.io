@@ -2,7 +2,7 @@
 title: "Roaring bitmaps for calculating retention"
 linkTitle: "Roaring bitmaps for calculating retention"
 ---
-```sql
+```
 CREATE TABLE test_roaring_bitmap
 ENGINE = MergeTree
 ORDER BY h AS

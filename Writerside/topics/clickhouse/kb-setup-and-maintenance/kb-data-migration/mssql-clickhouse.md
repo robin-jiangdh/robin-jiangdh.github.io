@@ -10,7 +10,7 @@ description: >-
 
 ### Prepare tables
 
-```bash
+```
 LAPTOP.localdomain :) CREATE TABLE tbl(key UInt32) ENGINE=MergeTree ORDER BY key;
 
 root@LAPTOP:/home/user# sqlcmd -U sa -P Password78
@@ -29,7 +29,7 @@ root@LAPTOP:/home/user# sqlcmd -U sa -P Password78 -Q "SELECT count(*) FROM tbl"
 
 ### Piping
 
-```bash
+```
 root@LAPTOP:/home/user# mkfifo import_pipe
 root@LAPTOP:/home/user# bcp "SELECT * FROM tbl" queryout import_pipe -t, -c -b 200000 -U sa -P Password78 -S localhost &
 [1] 6038
@@ -80,7 +80,7 @@ Clock Time (ms.) Total     : 11540  Average : (1453831.5 rows per sec.)
 
 ### Another shell
 
-```bash
+```
 root@LAPTOP:/home/user# for i in `seq 1 600`; do clickhouse-client -q "select count() from tbl";sleep 1;  done
 0
 0

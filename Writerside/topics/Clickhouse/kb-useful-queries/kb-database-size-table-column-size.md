@@ -9,7 +9,7 @@ description: >
 
 ### Table size
 
-```sql
+```
 SELECT
     database,
     table,
@@ -28,7 +28,7 @@ ORDER BY size DESC;
 
 ### Table size + inner MatView (Atomic)
 
-```sql
+```
 SELECT
       p.database,
       if(t.name = '', p.table, p.table||' ('||t.name||')') tbl,
@@ -49,7 +49,7 @@ ORDER BY size DESC;
 
 ### Column size
 
-```sql
+```
 SELECT
     database,
     table,
@@ -72,7 +72,7 @@ ORDER BY size DESC;
 
 ### Projection size
 
-```sql
+```
 SELECT
     database,
     table,
@@ -93,7 +93,7 @@ ORDER BY size DESC;
 
 ### Projection column size
 
-```sql
+```
 SELECT
     database,
     table,
@@ -112,7 +112,7 @@ ORDER BY size DESC;
  
 ## Understanding the columns data properties:
 
-```sql
+```
 SELECT
    count(),
    * APPLY (uniq),
@@ -128,7 +128,7 @@ FORMAT Vertical;
 
 ## Understanding the ingest pattern:
 
-```sql
+```
 SELECT
     database,
     table,
@@ -152,7 +152,7 @@ ORDER BY count() DESC
 
 ## part_log
 
-```sql
+```
 WITH 30 * 60 AS frame_size
 SELECT
     toStartOfInterval(event_time, toIntervalSecond(frame_size)) AS m,
@@ -198,7 +198,7 @@ ORDER BY
 
 ## Understanding the partitioning
 
-```sql
+```
 SELECT
     database,
     table,

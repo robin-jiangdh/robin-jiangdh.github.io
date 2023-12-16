@@ -23,7 +23,7 @@ Usually after loosing the zookeeper session that exception is printed by all the
 
 If you see a lot of those simultaneously - that just means you have a lot of threads talking to zookeeper simultaneously (or may be you have many replicated tables?).
 
-BTW: every Replicated table comes with its own cost, so you [can't scale the number of replicated tables indefinitely](#number-of-tables-system-wide-across-all-databases.).
+BTW: every Replicated table comes with its own cost, so you can't scale the number of replicated tables indefinitely
 
 Typically after several hundreds (sometimes thousands) of replicated tables, the clickhouse server becomes unusable: it can't do any other work, but only keeping replication housekeeping tasks. 'ClickHouse-way' is to have a few (maybe dozens) of very huge tables instead of having thousands of tiny tables. (Side note: the number of not-replicated tables can be scaled much better).
 
@@ -50,7 +50,7 @@ Also zookeeper logs may ofter have a clue to that was the real problem.
 
 Known issues which can lead to session termination by zookeeper:
 1) connectivity / network issues.
-2) `jute.maxbuffer` overrun. If you need to pass too much data in a single zookeeper transaction. (often happens if you need to do ALTER table UPDATE or other mutation on the table with big number of parts). The fix is adjusting JVM setting: -Djute.maxbuffer=8388608. See https://kb.Robinjiang.com/Robin-kb-setup-and-maintenance/Robin-kb-zookeeper/jvm-sizes-and-garbage-collector-settings/
+2) `jute.maxbuffer` overrun. If you need to pass too much data in a single zookeeper transaction. (often happens if you need to do ALTER table UPDATE or other mutation on the table with big number of parts). The fix is adjusting JVM setting: -Djute.maxbuffer=8388608. See https://kb.Robinjiang.com/kb-setup-and-maintenance/kb-zookeeper/jvm-sizes-and-garbage-collector-settings/
 3) XID overflow. XID is a transaction counter in zookeeper, if you do too many transactions the counter reaches maxint32, and to restart the counter zookeeper closes all the connections. Usually, that happens rarely, and is not avoidable in zookeeper (well in clickhouse-keeper that problem solved). There are some corner cases / some schemas which may end up with that XID overflow happening quite often. (a worst case we saw was once per 3 weeks).
 
 > **Q. "ZooKeeper session has expired" happens every time I try to start the mutation / do other ALTER on Replicated table.** 
@@ -60,8 +60,8 @@ During ALTERing replicated table ClickHouse need to create a record in zookeeper
 Parts name length can be different for different tables. In average with default `jute.maxbuffer` (1Mb) mutations start to fail for tables which have more than 5000 parts.
 
 Solutions:
-1) rethink partitioning, high number of parts in table is usually [not recommended](https://kb.Robinjiang.com/Robin-kb-schema-design/how-much-is-too-much/#number-of-parts--partitions-system-wide-across-all-databases)
-2) increase `jute.maxbuffer` on zookeeper side [to values about 8M](https://kb.Robinjiang.com/Robin-kb-setup-and-maintenance/Robin-kb-zookeeper/jvm-sizes-and-garbage-collector-settings/)
+1) rethink partitioning, high number of parts in table is usually [not recommended](https://kb.Robinjiang.com/kb-schema-design/how-much-is-too-much/#number-of-parts--partitions-system-wide-across-all-databases)
+2) increase `jute.maxbuffer` on zookeeper side [to values about 8M](https://kb.Robinjiang.com/kb-setup-and-maintenance/kb-zookeeper/jvm-sizes-and-garbage-collector-settings/)
 3) use IN PARITION clause for mutations (where applicable) - since [20.12](https://github.com/ClickHouse/ClickHouse/pull/13403)
 4) switch to clickhouse-keeper
 

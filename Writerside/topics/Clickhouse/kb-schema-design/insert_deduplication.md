@@ -15,7 +15,7 @@ _Data blocks are deduplicated. For multiple writes of the same data block (data 
  
 ### Example
 
-```sql
+```
 create table test_insert ( A Int64 ) 
 Engine=ReplicatedMergeTree('/clickhouse/cluster_test/tables/{table}','{replica}') 
 order by A;
@@ -51,7 +51,7 @@ In `clickhouse-server.log` you may see trace messages `Block with ID ... already
 
 Deduplication checksums are stored in Zookeeper in `/blocks` table's znode for each partition separately, so when you drop partition, they could be identified and removed for this partition.
 (during `alter table delete` it's impossible to match checksums, that's why checksums stay in Zookeeper).
-```sql
+```
 SELECT name, value
 FROM system.zookeeper
 WHERE path = '/clickhouse/cluster_test/tables/test_insert/blocks'
@@ -65,7 +65,7 @@ WHERE path = '/clickhouse/cluster_test/tables/test_insert/blocks'
 Insert deduplication is controled by the [insert_deduplicate](https://clickhouse.com/docs/en/operations/settings/settings/#settings-insert-deduplicate) setting
 
 Let's disable it:
-```sql
+```
 set insert_deduplicate = 0;              -- insert_deduplicate is now disabled in this session
 
 insert into test_insert values(1);
@@ -96,7 +96,7 @@ Insert deduplication is a user-level setting, it can be disabled in a session or
 `clickhouse-client --insert_deduplicate=0 ....`
 
 How to disable `insert_deduplicate` by default for all queries:
-```xml
+```
 # cat /etc/clickhouse-server/users.d/insert_deduplicate.xml
 <?xml version="1.0"?>
 <yandex>
@@ -120,7 +120,7 @@ It can be enabled by the [merge_tree](https://clickhouse.com/docs/en/operations/
 
 Example:
 
-```sql
+```
 create table test_insert ( A Int64 ) 
 Engine=MergeTree 
 order by A
@@ -142,7 +142,7 @@ select * from test_insert format PrettyCompactMonoBlock;
 
 In case of non-replicated tables deduplication checksums are stored in files in the table's folder:
 
-```bash
+```
 cat /var/lib/clickhouse/data/default/test_insert/deduplication_logs/deduplication_log_1.txt
 1	all_1_1_0	all_7615936253566048997_747463735222236827
 1	all_4_4_0	all_636943575226146954_4277555262323907666
@@ -157,7 +157,7 @@ Insert data is separated to parts by table's partitioning.
 Parts contain rows sorted by the table's `order by` and all values of functions (i.e. `now()`) or Default/Materialized columns are expanded.
 
 ### Example with partial insertion because of partitioning:
-```sql
+```
 create table test_insert ( A Int64, B Int64 ) 
 Engine=MergeTree 
 partition by B 
@@ -176,7 +176,7 @@ select * from test_insert format PrettyCompactMonoBlock;
 ```
 
 ### Example with deduplication despite the rows order:
-```sql
+```
 drop table test_insert;
 
 create table test_insert ( A Int64, B Int64 ) 
@@ -196,7 +196,7 @@ select * from test_insert format PrettyCompactMonoBlock;
 ```
 
 ### Example to demonstrate how Default/Materialize columns are expanded:
-```sql
+```
 drop table test_insert;
 
 create table test_insert ( A Int64, B Int64 Default rand() ) 
@@ -224,7 +224,7 @@ select * from test_insert format PrettyCompactMonoBlock;
 
 
 ### Example to demonstrate how functions are expanded:
-```sql
+```
 drop table test_insert;
 create table test_insert ( A Int64, B DateTime64 ) 
 Engine=MergeTree 
@@ -247,7 +247,7 @@ select * from test_insert format PrettyCompactMonoBlock;
 Since Clikhouse 22.2 there is a new setting [insert_dedupplication_token](https://clickhouse.com/docs/en/operations/settings/settings/#insert_deduplication_token).
 This setting allows you to define an explicit token that will be used for deduplication instead of calculating a checksum from the inserted data.
 
-```sql
+```
 CREATE TABLE test_table
 ( A Int64 )
 ENGINE = MergeTree

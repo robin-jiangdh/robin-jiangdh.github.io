@@ -27,7 +27,7 @@ To add the `access_management` setting to an Robin.Cloud ClickHouse Cluster:
     1. **Filename**: `access_management.xml`
     1. **Contents**:  Enter the following to allow the `clickhouse_operator` that controls the cluster through the `clickhouse-operator` the ability to set administrative options:
 
-        ```xml
+        ```
         <yandex>
             <users>
                 <admin>
@@ -49,7 +49,7 @@ To add the `access_management` setting to an Robin.Cloud ClickHouse Cluster:
     2. **Filename**: `user_directories.xml`
     3. **Contents**:
     
-       ```xml
+       ```
        <yandex>
          <user_directories replace="replace">
            <users_xml>

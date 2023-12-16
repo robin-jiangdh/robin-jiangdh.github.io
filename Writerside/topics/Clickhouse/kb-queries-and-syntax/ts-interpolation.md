@@ -6,7 +6,7 @@ description: >
 ---
 
 
-```sql
+```
 DROP TABLE test_ts_interpolation;
 
 --- generate test data

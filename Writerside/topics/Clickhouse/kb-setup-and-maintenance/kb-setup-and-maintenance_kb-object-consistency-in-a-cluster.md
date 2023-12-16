@@ -6,7 +6,7 @@ description: >
 ---
 List of missing tables
 
-```sql
+```
 WITH (
      SELECT groupArray(FQDN()) FROM clusterAllReplicas('{cluster}',system,one)
      ) AS hosts
@@ -29,7 +29,7 @@ SETTINGS skip_unavailable_shards=1;
 
 List of inconsistent tables
 
-```sql
+```
 SELECT database, name, engine, uniqExact(create_table_query) AS ddl
 FROM clusterAllReplicas('{cluster}',system.tables)
 GROUP BY database, name, engine HAVING ddl > 1
@@ -37,7 +37,7 @@ GROUP BY database, name, engine HAVING ddl > 1
 
 List of inconsistent columns
 
-```sql
+```
 WITH (
      SELECT groupArray(FQDN()) FROM clusterAllReplicas('{cluster}',system,one)
      ) AS hosts
@@ -61,7 +61,7 @@ SETTINGS skip_unavailable_shards=1;
 
 List of inconsistent dictionaries
 
-```sql
+```
 WITH (
      SELECT groupArray(FQDN()) FROM clusterAllReplicas('{cluster}',system,one)
      ) AS hosts

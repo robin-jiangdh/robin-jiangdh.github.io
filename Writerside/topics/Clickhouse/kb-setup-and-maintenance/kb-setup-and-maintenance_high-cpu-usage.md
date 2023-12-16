@@ -22,7 +22,7 @@ These are custom settings that can be tweaked in several ways:
 
 1. by specifying them when connecting a client, for example
 
-    ```bash
+    ```
     clickhouse-client --os_thread_priority=19 -q 'SELECT max (number) from numbers (100000000)'
 
     echo 'SELECT max(number) from numbers(100000000)' | curl 'http://localhost:8123/?os_thread_priority=19' --data-binary @-
@@ -32,14 +32,14 @@ These are custom settings that can be tweaked in several ways:
 
 1. using the SQL command SET (works only within the session)
 
-    ```sql
+    ```
     SET os_thread_priority = 19;
     SELECT max(number) from numbers(100000000)
     ```
 
 1. using different profiles of settings for different users. Something like
 
-    ```xml
+    ```
     <?xml version="1.0"?>
     <yandex>
         <profiles>

@@ -11,7 +11,7 @@ These instructions apply to ClickHouse using default locations for storage.
 1. Do [FREEZE TABLE](https://clickhouse.tech/docs/en/sql-reference/statements/alter/partition/#alter_freeze-partition) on needed table, partition. It produces a consistent snapshot of table data.
 2. Run rsync command.
 
-   ```bash
+   ```
    rsync -ravlW --bwlimit=100000 /var/lib/clickhouse/data/shadow/N/database/table
        root@remote_host:/var/lib/clickhouse/data/database/table/detached
    ```

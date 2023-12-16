@@ -4,7 +4,7 @@ linkTitle: "Top N & Remain"
 description: >
     Top N & Remain
 ---
-```sql
+```
 CREATE TABLE top_with_rest
 (
     `k` String,
@@ -20,7 +20,7 @@ FROM numbers_mt(10000);
 
 ## Using UNION ALL
 
-```sql
+```
 SELECT *
 FROM
 (
@@ -65,7 +65,7 @@ ORDER BY res ASC
 
 ## Using arrays
 
-```sql
+```
 WITH toUInt64(sumIf(sum, isNull(k)) - sumIf(sum, isNotNull(k))) AS total
 SELECT
     (arrayJoin(arrayPushBack(groupArrayIf(10)((k, sum), isNotNull(k)), (NULL, total))) AS tpl).1 AS key,
@@ -100,7 +100,7 @@ ORDER BY res ASC
 
 ## Using window functions (starting from 21.1)
 
-```sql
+```
 SET allow_experimental_window_functions = 1;
 
 SELECT
@@ -140,7 +140,7 @@ ORDER BY res ASC
 └──────┴──────────┘
 ```
 
-```sql
+```
 SELECT
     k,
     sum(sum) AS res

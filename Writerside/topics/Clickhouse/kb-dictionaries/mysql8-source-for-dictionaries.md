@@ -10,7 +10,7 @@ MySQL8 used default authorization plugin `caching_sha2_password`. Unfortunately,
 
 You can fix it during create custom user with `mysql_native_password` authentication plugin.
 
-```sql
+```
 CREATE USER IF NOT EXISTS 'clickhouse'@'%'
 IDENTIFIED WITH mysql_native_password BY 'clickhouse_user_password';
 
@@ -34,6 +34,6 @@ information_schema_stats_expiry=0
 
 Or setup it via SQL query:
 
-```sql
+```
 SET GLOBAL information_schema_stats_expiry=0;
 ```

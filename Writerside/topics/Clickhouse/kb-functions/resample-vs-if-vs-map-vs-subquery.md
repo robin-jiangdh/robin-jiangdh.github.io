@@ -4,7 +4,7 @@ linkTitle: "-Resample vs -If vs -Map vs Subquery"
 ---
 ### 5 categories
 
-```sql
+```
 SELECT sumResample(0, 5, 1)(number, number % 5) AS sum
 FROM numbers_mt(1000000000)
 
@@ -66,7 +66,7 @@ FROM
 
 ### 20 categories
 
-```sql
+```
 SELECT sumResample(0, 20, 1)(number, number % 20) AS sum
 FROM numbers_mt(1000000000)
 
@@ -138,7 +138,7 @@ FROM
 ### sumMapResample
 It's also possible to combine them.
 
-```sql
+```
 SELECT
     day,
     category_id,

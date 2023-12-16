@@ -10,7 +10,7 @@ description: >-
 
 Testing dataset
 
-```sql
+```
 CREATE TABLE sessions
 (
     `app` LowCardinality(String),
@@ -58,7 +58,7 @@ All queries and datasets are unique, so in different situations different hacks 
 
 ### PreFilter values before GROUP BY
 
-```sql
+```
 SELECT
     user_id,
     sum(clicks)
@@ -101,7 +101,7 @@ toUInt64(substr('ABX 1412312312313',5))
 And you packed 17 bytes in 8, more than 2 times the improvement of size!
 
 
-```sql
+```
 SELECT
     user_id,
     sum(clicks)
@@ -198,7 +198,7 @@ It can be especially useful when you tries to do GROUP BY lc_column_1, lc_column
 
 ### Two LowCardinality Columns in GROUP BY 
 
-```sql
+```
 SELECT
     app,
     sum(clicks)
@@ -248,7 +248,7 @@ Elapsed: 1.632 sec. Processed 1.00 billion rows, 6.00 GB (612.63 million rows/s.
 
 ### Split your query in multiple smaller queries and execute them one BY one
 
-```sql
+```
 SELECT
     user_id,
     sum(clicks)
@@ -285,7 +285,7 @@ So on each shard you will have 1/N of all unique combination and this will resul
 
 Let's create 2 distributed tables with different distribution: rand() and by user_id
 
-```sql
+```
 CREATE TABLE sessions_distributed AS sessions
 ENGINE = Distributed('distr-groupby', default, sessions, rand());
 
@@ -338,7 +338,7 @@ SELECT
 FROM numbers_mt(1000000000);
 ```
 
-```sql
+```
 SELECT
     app,
     platform,
@@ -457,7 +457,7 @@ MemoryTracker: Peak memory usage (for query): 5.55 GiB.
 Query with bigger state:
 
 
-```sql
+```
 
 SELECT
     app,
@@ -625,7 +625,7 @@ MemoryTracker: Peak memory usage (for query): 10.09 GiB.
 12 rows in set. Elapsed: 9.525 sec. Processed 1.00 billion rows, 32.00 GB (104.98 million rows/s., 3.36 GB/s.)
 ```
 
-```sql
+```
 
 SELECT
     app,
@@ -730,7 +730,7 @@ MemoryTracker: Peak memory usage (for query): 14.55 GiB.
 
 Because each thread uses an independent hash table, if you lower thread amount it will reduce number of hash tables as well and lower memory usage at the cost of slower query execution.
 
-```sql
+```
 
 SELECT
     user_id,
@@ -765,7 +765,7 @@ Elapsed: 62.014 sec. Processed 1.00 billion rows, 27.00 GB (16.13 million rows/s
 ### UNION ALL
 
 
-```sql
+```
 
 SELECT
     user_id,
@@ -819,7 +819,7 @@ Elapsed: 2.852 sec. Processed 1.00 billion rows, 27.01 GB (350.74 million rows/s
 ### aggregation_in_order
 
 
-```sql
+```
 SELECT
     user_id,
     sum(clicks)
@@ -858,7 +858,7 @@ Elapsed: 4.925 sec. Processed 250.09 million rows, 6.75 GB (50.78 million rows/s
 
 One 
 
-```sql
+```
 SELECT
     user_id,
     toDate(created_at) AS day,
@@ -900,7 +900,7 @@ Elapsed: 5.191 sec. Processed 594.39 million rows, 18.46 GB (114.50 million rows
 
 Multiple
 
-```sql
+```
 
 SELECT
     user_id,
@@ -1072,18 +1072,18 @@ Peak memory usage (for query): 5.19 GiB.
 
 ARRAY JOIN can be expensive
 
-https://kb.Robinjiang.com/Robin-kb-functions/array-like-memory-usage/
+https://kb.Robinjiang.com/kb-functions/array-like-memory-usage/
 
 sumMap, *Resample
 
-https://kb.Robinjiang.com/Robin-kb-functions/resample-vs-if-vs-map-vs-subquery/
+https://kb.Robinjiang.com/kb-functions/resample-vs-if-vs-map-vs-subquery/
 
 
 ### Play with two-level
 
 Disable:
 
-```sql
+```
 SET group_by_two_level_threshold = 0, group_by_two_level_threshold_bytes = 0; 
 ```
 

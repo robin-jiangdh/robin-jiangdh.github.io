@@ -4,7 +4,7 @@ linkTitle: "DELETE via tombstone column"
 description: >
     DELETE via tombstone column
 ---
-```sql
+```
 CREATE TABLE test_delete
 (
     `key` UInt32,

@@ -27,7 +27,7 @@ https://github.com/ClickHouse/ClickHouse/issues/5148#issuecomment-487757235
 
 Text formats and Native format require different set of settings, here I want to find / demonstrate mandatory minumum of settings for any case.
 
-```bash
+```
 clickhouse-client -q \
      'SELECT toInt64(number) A, toString(number) S FROM numbers(100000000) FORMAT Native' > t.native
 clickhouse-client -q \
@@ -36,7 +36,7 @@ clickhouse-client -q \
 
 ### Insert with default settings (not atomic)
 
-```bash
+```
 DROP TABLE IF EXISTS trg;
 CREATE TABLE trg(A Int64, S String) Engine=MergeTree ORDER BY A;
 
@@ -84,7 +84,7 @@ WHERE (level = 0) AND (table = 'trg');
 
 Atomic insert use more memory because it needs 100 millions rows in memory.
 
-```bash
+```
 DROP TABLE IF EXISTS trg;
 CREATE TABLE trg(A Int64, S String) Engine=MergeTree ORDER BY A;
 

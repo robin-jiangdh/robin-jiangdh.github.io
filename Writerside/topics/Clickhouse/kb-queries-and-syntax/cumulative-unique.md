@@ -6,7 +6,7 @@ description: >
 ---
 ## Sample data
 
-```sql
+```
 CREATE TABLE events
 (
     `ts` DateTime,
@@ -22,7 +22,7 @@ FROM numbers(15);
 
 ## Using arrays
 
-```sql
+```
 WITH
     groupArray(_ts) AS ts_arr,
     groupArray(state) AS state_arr
@@ -73,7 +73,7 @@ ORDER BY ts ASC
 
 ## Using window functions (starting from Clickhouse 21.3)
 
-```sql
+```
 SELECT
     ts,
     uniqExactMerge(state) OVER (ORDER BY ts ASC ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS uniq
@@ -98,7 +98,7 @@ ORDER BY ts ASC
 
 ## Using runningAccumulate (incorrect result over blocks)
 
-```sql
+```
 SELECT
     ts,
     runningAccumulate(state) AS uniq

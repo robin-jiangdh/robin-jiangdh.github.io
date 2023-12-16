@@ -4,7 +4,7 @@ linkTitle: "Fill missing values at query time"
 description: >
     Fill missing values at query time
 ---
-```sql
+```
 CREATE TABLE event_table
 (
     `key` UInt32,

@@ -13,7 +13,7 @@ There is a clean and simple solution for that. Any IPv4 has its unique IPv6 mapp
 
 #### Find IPs matching CIDR/network mask (IPv4)
 
-```sql
+```
 WITH IPv4CIDRToRange( toIPv4('10.0.0.1'), 8 ) as range
 SELECT
   *
@@ -27,7 +27,7 @@ WHERE
 
 #### Find IPs matching CIDR/network mask (IPv6)
 
-```sql
+```
 WITH IPv6CIDRToRange
      (
        toIPv6('2001:0db8:0000:85a3:0000:0000:ac1f:8001'),

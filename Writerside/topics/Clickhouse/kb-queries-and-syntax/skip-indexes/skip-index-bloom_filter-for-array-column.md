@@ -10,7 +10,7 @@ tested with 20.8.17.25
 
 ### Let's create test data
 
-```sql
+```
 create table bftest (k Int64, x Array(Int64))
 Engine=MergeTree order by k;
 
@@ -22,7 +22,7 @@ insert into bftest select number,
 
 ### Base point (no index)
 
-```sql
+```
 select count() from bftest where has(x, 42);
 ┌─count()─┐
 │     186 │
@@ -42,7 +42,7 @@ As you can see Clickhouse read **110.00 million rows** and the query elapsed **E
 
 ### Let's add an index
 
-```sql
+```
 alter table bftest add index ix1(x) TYPE bloom_filter GRANULARITY 3;
 
 -- GRANULARITY 3 means how many table granules will be in the one index granule
@@ -63,7 +63,7 @@ optimize table bftest final;
 
 ### test bloom_filter GRANULARITY 3
 
-```sql
+```
 select count() from bftest where has(x, 42);
 ┌─count()─┐
 │     186 │
@@ -83,7 +83,7 @@ As you can see I got 10 times boost.
 
 ### Let's try to reduce GRANULARITY to drop by 1 table granule
 
-```sql
+```
 alter  table bftest drop index ix1;
 alter table bftest add index ix1(x) TYPE bloom_filter GRANULARITY 1;
 optimize table bftest final;
@@ -107,7 +107,7 @@ No improvement :(
 
 ### Let's try to change the false/true probability of the bloom_filter bloom_filter(0.05)
 
-```sql
+```
 alter  table bftest drop index ix1;
 alter table bftest add index ix1(x) TYPE bloom_filter(0.05) GRANULARITY 3;
 optimize table bftest final;
@@ -131,7 +131,7 @@ No improvement.
 
 ### bloom_filter(0.01)
 
-```sql
+```
 alter  table bftest drop index ix1;
 alter table bftest add index ix1(x) TYPE bloom_filter(0.01) GRANULARITY 3;
 optimize table bftest final;

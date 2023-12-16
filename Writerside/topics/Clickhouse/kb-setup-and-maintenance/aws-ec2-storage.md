@@ -4,7 +4,7 @@ linkTitle: "AWS EC2 Storage"
 description: >
     AWS EBS, EFS, FSx, Lustre
 aliases:
-    - "/Robin-kb-setup-and-maintenance/aws-ebs/"
+    - "/kb-setup-and-maintenance/aws-ebs/"
 ---
 
 # EBS

@@ -47,7 +47,7 @@ tags: ['mysql','db','mysql索引']
 - B-Tree
 - B+Tree
 
-### Hash
+### Hash {id="hash_1"}
 
 Hash索引只能用于对等比较，例如=,<=>（相当于=）操作符。由于是一次定位数据，不像BTree索引需要从根节点到枝节点，最后才能访问到页节点这样多次IO访问，所以检索效率远高于BTree索引。
 

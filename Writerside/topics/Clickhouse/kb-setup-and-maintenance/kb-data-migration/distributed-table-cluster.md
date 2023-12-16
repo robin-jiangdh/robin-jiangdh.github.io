@@ -20,7 +20,7 @@ https://clickhouse.com/docs/en/engines/table-engines/special/distributed/
 
 For example, we should have a `ReplicatedMergeTree` table in which all inserts are falling. This table is the first step in our pipeline:
 
-```sql
+```
 CREATE TABLE db.inserts_source ON CLUSTER 'source'
 (
     column1 String
@@ -34,7 +34,7 @@ ORDER BY (column1, column2)
 
 This table lives in the source cluster and all INSERTS go there. In order to shift all INSERTS in the source cluster to destination cluster we can create a `Distributed` table that points to another `ReplicatedMergeTree` in the destination cluster:
 
-```sql
+```
 CREATE TABLE db.inserts_source_dist ON CLUSTER 'source'
 (
     column1 String
@@ -46,7 +46,7 @@ ENGINE = Distributed('destination', db, inserts_destination)
 
 ### Create a Materialized View to shift INSERTS to destination cluster:
 
-```sql
+```
 CREATE MATERIALIZED VIEW shift_inserts ON CLUSTER 'source'
 TO db.inserts_source_dist AS
 SELECT * FROM db.inserts_source
@@ -56,7 +56,7 @@ SELECT * FROM db.inserts_source
 
 This is the table in the destination cluster that is pointed by the distributed table in the source cluster
 
-```sql
+```
 CREATE TABLE db.inserts_destination ON CLUSTER 'destination'
 (
     column1 String
@@ -72,7 +72,7 @@ ORDER BY (column1, column2)
 
 All the hostnames/FQDN from each replica/node must be accessible from both clusters. Also the remote_servers.xml from the source cluster should read like this:
 
-```xml
+```
 <clickhouse>
     <remote_servers>
         <source>   
@@ -110,7 +110,7 @@ Put this config settings on the default profile. Check for more info about the p
 
 https://clickhouse.com/docs/en/operations/settings/settings#insert_distributed_sync
 
-```xml
+```
 <clickhouse>
     ....
     <profiles>

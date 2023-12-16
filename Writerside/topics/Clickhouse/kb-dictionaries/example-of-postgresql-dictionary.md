@@ -5,7 +5,7 @@ description: >
     Example of PostgreSQL dictionary
 ---
 
-```sql
+```
 CREATE DICTIONARY postgres_dict
 (
     id UInt32,
@@ -28,6 +28,6 @@ LAYOUT(HASHED());
 
 and later do
 
-```sql
+```
 SELECT dictGetString(postgres_dict, 'value', toUInt64(1))
 ```

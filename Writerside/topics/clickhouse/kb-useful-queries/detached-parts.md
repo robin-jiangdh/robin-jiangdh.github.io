@@ -16,7 +16,7 @@ If there is another way you could confirm that there is no data loss in the affe
 
 Here is a query that can help with investigations. It looks for active parts containing the same data blocks that the detached parts:
 
-```sql
+```
 select *, 
        concat('alter table ',database,'.',table,' drop detached part ''',a.name,''' settings allow_drop_detached=1;') as drop
 from system.detached_parts a

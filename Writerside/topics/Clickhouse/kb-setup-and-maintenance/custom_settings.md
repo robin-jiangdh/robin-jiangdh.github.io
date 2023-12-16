@@ -10,7 +10,7 @@ description: >-
 
 You can not use the custom settings in config file 'as is', because clickhouse don't know which datatype should be used to parse it.
 
-```xml
+```
 cat /etc/clickhouse-server/users.d/default_profile.xml 
 <?xml version="1.0"?>
 <yandex>
@@ -47,7 +47,7 @@ That will end up with the following error:
 ```
 
 To make it work you need to change it an the following way:
-```xml
+```
 cat /etc/clickhouse-server/users.d/default_profile.xml 
 <?xml version="1.0"?>
 <yandex>
@@ -59,7 +59,7 @@ cat /etc/clickhouse-server/users.d/default_profile.xml
 </yandex>
 ```
 or
-```xml
+```
 cat /etc/clickhouse-server/users.d/default_profile.xml 
 <?xml version="1.0"?>
 <yandex>

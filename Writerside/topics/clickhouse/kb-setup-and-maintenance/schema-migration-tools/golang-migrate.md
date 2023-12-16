@@ -16,7 +16,7 @@ To store information about migrations state `migrate` creates one additional tab
 
 [download](https://github.com/golang-migrate/migrate/releases) the `migrate` executable for your platform and put it to the folder listed in your %PATH.
 
-```bash
+```
 #wget https://github.com/golang-migrate/migrate/releases/download/v3.2.0/migrate.linux-amd64.tar.gz
 wget https://github.com/golang-migrate/migrate/releases/download/v4.14.1/migrate.linux-amd64.tar.gz
 tar -xzf migrate.linux-amd64.tar.gz
@@ -27,7 +27,7 @@ rm migrate.linux-amd64.tar.gz
 
 #### Sample usage
 
-```bash
+```
 mkdir migrations
 echo 'create table test(id UInt8) Engine = Memory;' > migrations/000001_my_database_init.up.sql
 echo 'DROP TABLE test;' > migrations/000001_my_database_init.down.sql

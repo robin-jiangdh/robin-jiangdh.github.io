@@ -10,7 +10,7 @@ description: >-
 
 If ClickHouse is busy with something and you don't know what's happeing, you can easily check the stacktraces of all the thread which are working
 
-```sql
+```
 SELECT
  arrayStringConcat(arrayMap(x -> demangle(addressToSymbol(x)), trace), '\n') AS trace_functions,
  count()

@@ -6,7 +6,7 @@ description: >
 ---
 The following example shows a `range_hashed` example at open intervals.
 
-```sql
+```
 DROP TABLE IF EXISTS rates;
 
 DROP DICTIONARY IF EXISTS rates_dict;

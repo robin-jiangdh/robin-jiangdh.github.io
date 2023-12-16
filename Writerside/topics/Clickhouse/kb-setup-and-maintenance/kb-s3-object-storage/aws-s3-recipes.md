@@ -33,7 +33,7 @@ Role shall contain a policy with permissions like:
 
 Corresponding configuration of ClickHouse:
 
-```xml
+```
 <clickhouse>
     <storage_configuration>
         <disks>
@@ -58,7 +58,7 @@ Corresponding configuration of ClickHouse:
 
 Small check:
 
-```sql
+```
 CREATE TABLE table_s3 (number Int64) ENGINE=MergeTree() ORDER BY tuple() PARTITION BY tuple() SETTINGS storage_policy='policy_s3_only';
 INSERT INTO table_s3 SELECT * FROM system.numbers LIMIT 100000000;
 SELECT * FROM table_s3;

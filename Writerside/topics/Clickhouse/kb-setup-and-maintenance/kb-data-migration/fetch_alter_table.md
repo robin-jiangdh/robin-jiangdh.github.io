@@ -12,7 +12,7 @@ This is a detailed explanation on how to move data by fetching partitions or par
 
 ### Get partitions by database and table:
 
-```sql
+```
 SELECT
     hostName() AS host,
     database,
@@ -31,13 +31,13 @@ Prior starting with the fetching process it is recommended to check the ```syste
 
 To fetch a partition:
 
-```sql
+```
 ALTER TABLE <tablename> FETCH PARTITION <partition_id> FROM '/clickhouse/{cluster}/tables/{shard}/{table}'
 ```
 
 The ```FROM``` path is from the zookeeper node and you have to specify the shard from you're [fetching the partition](https://clickhouse.com/docs/en/sql-reference/statements/alter/partition#alter_fetch-partition). Next executing the DDL query:
 
-```sql
+```
 ALTER TABLE <tablename> ATTACH PARTITION <partition_id>
 ```
 
@@ -47,7 +47,7 @@ will attach the partitions to a table. Again and because the process is manual, 
 
 If needed, after moving the data and checking that everything is sound, you can detach the tables and delete the replicas.
 
-```sql
+```
 -- Required for DROP REPLICA
 DETACH TABLE <table_name>;  
 
@@ -62,7 +62,7 @@ SYSTEM DROP REPLICA 'replica_name' FROM ZKPATH '/table_path_in_zk/';
 
 With this query you can generate the DDL script that will do the fetch and attach operations for each table and partition.
 
-```sql
+```
 SELECT
     DISTINCT
     'alter table '||database||'.'||table||' FETCH PARTITION '''||partition_id||''' FROM '''||zookeeper_path||'''; '

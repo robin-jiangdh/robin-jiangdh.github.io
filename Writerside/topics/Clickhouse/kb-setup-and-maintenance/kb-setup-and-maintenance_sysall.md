@@ -12,7 +12,7 @@ The idea is that you have a macros `cluster` with cluster name.
 
 For example you have a cluster named `production` and this cluster includes all ClickHouse nodes.
 
-```xml
+```
 $ cat /etc/clickhouse-server/config.d/clusters.xml
 <?xml version="1.0" ?>
 <yandex>
@@ -37,7 +37,7 @@ cat /etc/clickhouse-server/config.d/macros.xml
 
 Now you should be able to query all nodes using `clusterAllReplicas`:
 
-```sql
+```
 SELECT
     hostName(),
     FQDN(),
@@ -55,7 +55,7 @@ SETTINGS skip_unavailable_shards = 1
 
 ## Script to create DB ojects
 
-```sql
+```
 CREATE DATABASE sysall;
 
 CREATE OR REPLACE VIEW sysall.cluster_state AS
@@ -152,7 +152,7 @@ from clusterAllReplicas('{cluster}', system.zookeeper) SETTINGS skip_unavailable
 
 ## Some examples 
 
-```sql
+```
 select * from sysall.cluster_state;
 ┌─shard_num─┬─replica_num─┬─host_name───────────┬─host_address─┬─port─┬─errors_count─┬──uptime─┬─node_state─┐
 │         1 │           1 │ chhost1.localdomain │ 10.253.86.2  │ 9000 │            0 │ 1071788 │ UP         │

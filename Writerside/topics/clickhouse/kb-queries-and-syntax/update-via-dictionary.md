@@ -4,7 +4,7 @@ linkTitle: "UPDATE via Dictionary"
 description: >
     UPDATE via Dictionary
 ---
-```sql
+```
 CREATE TABLE test_update
 (
     `key` UInt32,

@@ -38,7 +38,7 @@ On certain stages (executing scalar sub-query) the query can not be killed at al
 
 You can just use 2 commands:
 
-```sql
+```
 KILL QUERY WHERE query_id = ' ... ' ASYNC
 
 SELECT ... new query ....

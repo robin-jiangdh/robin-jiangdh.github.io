@@ -81,13 +81,13 @@ cat /etc/clickhouse-server/users.d/memory_usage.xml
 
 BTW, you can define any macro in your configuration and use them in Zookeeper paths
 
-```xml
+```
  ReplicatedMergeTree('/clickhouse/{cluster}/tables/my_table','{replica}')
 ```
 
 or in your code using function getMacro:
 
-```sql
+```
 CREATE OR REPLACE VIEW srv_server_info
 SELECT (SELECT getMacro('shard')) AS shard_num,
        (SELECT getMacro('server_name')) AS server_name,
@@ -175,7 +175,7 @@ The list of user setting which require server restart:
 * `<max_replicated_fetches_network_bandwidth_for_server>`
 * `<max_replicated_sends_network_bandwidth_for_server>`
 
-See also `select * from system.settings where description ilike '%start%'`
+See also `select * from system.settings where description ilike '%\start%'`
 
 Also there are several 'long-running' user sessions which are almost never restarted and can keep the setting from the server start (it's DDLWorker, Kafka, and some other service things).
 
@@ -207,7 +207,7 @@ $ cat /etc/clickhouse-server/config.d/dictionaries.xml
 </clickhouse>
 ```
 
-**dict/\*.xml** – relative path, servers seeks files in the folder **/etc/clickhouse-server/dict**. More info in [Multiple Clickhouse instances](Robin-kb-server-config-files.md#Multiple-Clickhouse-instances).
+**dict/\*.xml** – relative path, servers seeks files in the folder **/etc/clickhouse-server/dict**. More info in [Multiple Clickhouse instances](kb-server-config-files.md).
 
 ## incl attribute & metrica.xml
 
@@ -279,7 +279,7 @@ You can start multiple **clickhouse-server** each with own **--config-file.**
 
 For example:
 
-```bash
+```
 /usr/bin/clickhouse-server --config-file /etc/clickhouse-server-node1/config.xml
   /etc/clickhouse-server-node1/  config.xml ... users.xml
   /etc/clickhouse-server-node1/config.d/disable_open_network.xml
@@ -293,7 +293,7 @@ For example:
 
 If you need to run multiple servers for CI purposes you can combine all settings in a single fat XML file and start ClickHouse without config folders/sub-folders.
 
-```bash
+```
 /usr/bin/clickhouse-server --config-file /tmp/ch1.xml
 /usr/bin/clickhouse-server --config-file /tmp/ch2.xml
 /usr/bin/clickhouse-server --config-file /tmp/ch3.xml
@@ -303,7 +303,7 @@ Each ClickHouse instance must work with own **data-folder** and **tmp-folder**.
 
 By default ClickHouse uses **/var/lib/clickhouse/**. It can be overridden in path settings
 
-```xml
+```
 <path>/data/clickhouse-ch1/</path>
 
 <tmp_path>/data/clickhouse-ch1/tmp/</tmp_path>
@@ -324,4 +324,4 @@ You can verify that your changes are valid by checking **/var/lib/clickhouse/pre
 
 If something wrong with with your settings e.g. unclosed XML element or typo you can see alerts about this mistakes in **/var/log/clickhouse-server/clickhouse-server.log**
 
-If you see your changes in **preprocessed_configs** it does not mean that changes are applied on running server, check [Settings & restart](Robin-kb-server-config-files.md#Settings-%26--restart)
+If you see your changes in **preprocessed_configs** it does not mean that changes are applied on running server, check [Settings & restart](kb-server-config-files.md)

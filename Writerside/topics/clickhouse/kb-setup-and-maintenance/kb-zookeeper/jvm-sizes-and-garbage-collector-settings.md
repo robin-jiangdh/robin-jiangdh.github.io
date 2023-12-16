@@ -8,13 +8,13 @@ description: >
 
 use fresh Java version (11 or newer), disable swap and set up (for 4 Gb node):
 
-```bash
+```
 JAVA_OPTS="-Xms512m -Xmx3G -XX:+AlwaysPreTouch -Djute.maxbuffer=8388608 -XX:MaxGCPauseMillis=50"
 ```
 
 If you have a node with more RAM - change it accordingly, for example for 8Gb node:
 
-```bash
+```
 JAVA_OPTS="-Xms512m -Xmx7G -XX:+AlwaysPreTouch -Djute.maxbuffer=8388608 -XX:MaxGCPauseMillis=50"
 ```
 
@@ -46,7 +46,7 @@ Set the Java heap size smaller than available RAM size on the node. This is very
 
 The configuration used by Yandex ( [https://clickhouse.tech/docs/en/operations/tips/\#zookeeper](https://clickhouse.tech/docs/en/operations/tips/#zookeeper) ) - they use older JVM version (with `UseParNewGC` garbage collector), and tune GC logs heavily:
 
-```bash
+```
 JAVA_OPTS="-Xms{{ cluster.get('xms','128M') }} \
     -Xmx{{ cluster.get('xmx','1G') }} \
     -Xloggc:/var/log/$NAME/zookeeper-gc.log \

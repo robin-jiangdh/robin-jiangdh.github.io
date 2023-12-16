@@ -1,3 +1,0 @@
-# Readings
-
-Start typing here...

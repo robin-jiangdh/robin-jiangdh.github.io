@@ -4,7 +4,7 @@ linkTitle: "Replication queue"
 description: >
     Replication queue
 ---
-```sql
+```
 SELECT
     database,
     table,

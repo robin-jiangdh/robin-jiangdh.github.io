@@ -4,7 +4,7 @@ linkTitle: "Values mapping"
 description: >
     Values mapping
 ---
-```sql
+```
 SELECT count()
 FROM numbers_mt(1000000000)
 WHERE NOT ignore(transform(number % 3, [0, 1, 2, 3], ['aa', 'ab', 'ad', 'af'], 'a0'))

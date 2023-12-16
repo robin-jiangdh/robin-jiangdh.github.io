@@ -31,7 +31,7 @@ Starting from 22.8 version, ClickHouse support writing logs in JSON format:
 
 ### Installation of vector.dev
 
-```bash
+```
 # arm64
 wget https://packages.timber.io/vector/0.15.2/vector_0.15.2-1_arm64.deb
 
@@ -51,7 +51,7 @@ usermod -a -G clickhouse vector
 
 ### vector config
 
-```toml
+```
 # cat /etc/vector/vector.toml
 data_dir = "/var/lib/vector"
 
@@ -74,7 +74,7 @@ data_dir = "/var/lib/vector"
   type = "file"
   inputs = [ "clickhouse-log-text" ]
   compression = "none"
-  path = "/var/log/clickhouse-server-json/clickhouse-server.%Y-%m-%d.ndjson"
+  path = "/var/log/clickhouse-server-json/clickhouse-server.%\Y-%\m-%\d.ndjson"
   encoding.only_fields = ["timestamp", "thread_id", "query_id", "severity", "message" ]
   encoding.codec = "ndjson"
 ```
@@ -95,7 +95,7 @@ tail /var/log/clickhouse-server-json/clickhouse-server.2022-04-21.ndjson
 
 Be carefull with logging ClickHouse messages into the same ClickHouse instance, it will cause endless recursive self-logging.
 
-```sql
+```
 create table default.clickhouse_logs(
   timestamp DateTime64(3),
   host LowCardinality(String),
@@ -112,7 +112,7 @@ grant insert on default.clickhouse_logs to vector;
 create settings profile or replace profile_vector settings log_queries=0 readonly TO vector;
 ```
 
-```toml
+```
 [sinks.clickhouse-output-clickhouse]
     inputs   = ["clickhouse-log-text"]
     type     = "clickhouse"
@@ -136,7 +136,7 @@ create settings profile or replace profile_vector settings log_queries=0 readonl
     encoding.only_fields =  ["host", "timestamp", "thread_id", "query_id", "severity", "message"]
 ```
 
-```sql
+```
 select * from default.clickhouse_logs limit 10;
 ┌───────────────timestamp─┬─host───────┬─thread_id─┬─severity─┬─query_id─┬─message─────────────────────────────────────────────────────
 │ 2022-04-21 19:08:13.443 │ clickhouse │ 283155    │ Debug    │          │ HTTP-Session: 13e87050-7824-46b0-9bd5-29469a1b102f Authentic

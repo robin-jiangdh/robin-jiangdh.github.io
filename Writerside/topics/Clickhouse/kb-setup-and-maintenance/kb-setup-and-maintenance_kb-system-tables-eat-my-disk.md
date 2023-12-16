@@ -88,7 +88,7 @@ $ cat /etc/clickhouse-server/config.d/query_log_ttl.xml
 
 After that you need to restart ClickHouse and drop or rename the existing system.query_log table, then CH creates a new table with these settings.
 
-```sql
+```
 RENAME TABLE system.query_log TO system.query_log_1;
 ```
 
@@ -98,7 +98,7 @@ Usual TTL processing (when table partitioned by toYYYYMM and TTL by day) is heav
 
 You can add TTL without ClickHouse restart (and table dropping or renaming):
 
-```sql
+```
 ALTER TABLE system.query_log MODIFY TTL event_date + INTERVAL 14 DAY;
 ```
 

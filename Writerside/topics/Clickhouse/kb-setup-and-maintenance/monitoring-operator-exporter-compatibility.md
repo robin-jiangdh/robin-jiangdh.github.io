@@ -9,7 +9,7 @@ description: >-
 It's possible to expose clickhouse-server metrics in clickhouse-operator style.
 It's for clickhouse-operator grafana dashboard.
 
-```sql
+```
 CREATE VIEW system.operator_compatible_metrics
 (
     `name` String,
@@ -106,7 +106,7 @@ GROUP BY
 ORDER BY name ASC
 ```
 
-```sh
+```
 nano /etc/clickhouse-server/config.d/operator_metrics.xml
 <clickhouse>
     <http_handlers>
@@ -133,7 +133,7 @@ nano /etc/clickhouse-server/config.d/operator_metrics.xml
 </clickhouse>
 ```
 
-```sh
+```
 curl http://localhost:8123/metrics
 # HELP chi_clickhouse_metric_Query Number of executing queries
 # TYPE chi_clickhouse_metric_Query gauge

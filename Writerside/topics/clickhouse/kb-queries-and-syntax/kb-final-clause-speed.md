@@ -19,7 +19,7 @@ So it can work in the following way:
 2. After day end + some time interval during which you can get some updates - for example at 3am / 6am you do `OPTIMIZE TABLE xxx PARTITION 'prev_day' FINAL`
 3. In that case using that FINAL with `do_not_merge_across_partitions_select_final` will be cheap.
 
-```sql
+```
 DROP TABLE IF EXISTS repl_tbl;
 
 CREATE TABLE repl_tbl

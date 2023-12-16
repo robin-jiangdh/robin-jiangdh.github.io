@@ -8,7 +8,7 @@ description: >
 
 1. Download the latest clickhouse-backup for your platform https://github.com/AlexAkulov/clickhouse-backup/releases
 
-```bash
+```
 # ubuntu / debian
 
 wget https://github.com/AlexAkulov/clickhouse-backup/releases/download/v1.0.0/clickhouse-backup_1.0.0_amd64.deb 
@@ -28,7 +28,7 @@ rm -rf clickhouse-backup clickhouse-backup.tar.gz
 
 2. Create a runner script for the crontab
 
-```bash
+```
 mkdir /opt/clickhouse-backup-diff/
 
 cat << 'END' > /opt/clickhouse-backup-diff/clickhouse-backup-cron.sh
@@ -77,7 +77,7 @@ crontab -e
 
 5. Recover the last backup:
 
-```bash 
+``` 
 last_remote_backup="$(clickhouse-backup list remote | tail -n 1 | cut -d " " -f 1)"
 clickhouse-backup download "${last_remote_backup}"
 clickhouse-backup restore --rm "${last_remote_backup}"

@@ -10,7 +10,7 @@ description: >-
 
 ### Ephemeral column
 
-```sql
+```
 CREATE TABLE users (
   uid Int16, 
   updated SimpleAggregateFunction(max, DateTime),
@@ -36,7 +36,7 @@ GROUP BY uid
 
 ### Input function
 
-```sql
+```
 CREATE TABLE users (
   uid Int16, 
   updated SimpleAggregateFunction(max, DateTime),
@@ -64,7 +64,7 @@ GROUP BY uid;
 
 ### Materialized View And Null Engine
 
-```sql
+```
 CREATE TABLE users (
   uid Int16, 
   updated SimpleAggregateFunction(max, DateTime),

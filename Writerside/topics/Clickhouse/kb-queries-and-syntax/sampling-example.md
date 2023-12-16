@@ -10,7 +10,7 @@ Sampling requires `sample by expression` .  This ensures a range of sampled colu
 
 For example if all values of `transaction_id` are from 0 to 10000 sampling will be inefficient.  But `cityHash64(transaction_id)` expands the range from 0 to 18446744073709551615:
 
-```sql
+```
 SELECT cityHash64(10000)
 ┌────cityHash64(10000)─┐
 │ 14845905981091347439 │
@@ -23,7 +23,7 @@ Also you can include multiple columns into a hash function of the sampling expre
 
 ### Sampling Friendly Table
 
-```sql
+```
 CREATE TABLE table_one
 ( timestamp UInt64,
   transaction_id UInt64,
@@ -52,7 +52,7 @@ I reduced the granularity of the `timestamp` column to one hour with `toStartOfH
 
 The following shows that sampling works with the table and parameters described above.  Notice the `Elapsed` time when invoking sampling:
 
-```sql
+```
 -- Q1. No where filters.
 -- The query is 10 times faster with SAMPLE 0.01
 select banner_id, sum(value), count(value), max(value)
@@ -126,7 +126,7 @@ where value = 666 format Null;
 
 ### Non-Sampling Friendly Table
 
-```sql
+```
 CREATE TABLE table_one
 ( timestamp UInt64,
   transaction_id UInt64,
@@ -155,7 +155,7 @@ This is the same as our other table, **BUT** granularity of `timestamp` column i
 
 The following tests shows that sampling is **not** working because of the lack of `timestamp` granularity.  The `Elapsed` time is longer when sampling is used.
 
-```sql
+```
 -- Q1. No where filters.
 -- The query is 2 times SLOWER!!! with SAMPLE 0.01
 -- Because it needs to read excessive column with sampling data!

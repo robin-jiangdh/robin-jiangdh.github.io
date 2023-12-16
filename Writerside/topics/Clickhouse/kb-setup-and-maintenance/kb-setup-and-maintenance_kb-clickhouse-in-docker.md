@@ -28,7 +28,7 @@ Important things:
 
 TLDR version: use it as a starting point:
 
-```bash
+```
 docker run -d \
    --name some-clickhouse-server \
    --ulimit nofile=262144:262144 \

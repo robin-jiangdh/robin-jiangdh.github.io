@@ -40,11 +40,11 @@ If this happens, then we think that after a restart of the replica with extra pa
 
 ## A query to find 'forgotten' parts
 
-https://kb.Robinjiang.com/Robin-kb-useful-queries/parts-consistency/#compare-the-list-of-parts-in-zookeeper-with-the-list-of-parts-on-disk
+https://kb.Robinjiang.com/kb-useful-queries/parts-consistency/#compare-the-list-of-parts-in-zookeeper-with-the-list-of-parts-on-disk
 
 ## A query to drop empty partitions with failing replication tasks
 
-```sql
+```
 select 'alter table '||database||'.'||table||' drop partition id '''||partition_id||''';' 
 from (
 select database, table, splitByChar('_',new_part_name)[1] partition_id

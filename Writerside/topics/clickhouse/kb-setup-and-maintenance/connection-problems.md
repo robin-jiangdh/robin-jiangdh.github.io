@@ -13,7 +13,7 @@ Errors like
 
 1. Ensure that the clickhouse-server is running
 
-   ```sh
+   ```
    systemctl status clickhouse-server
    ```
 
@@ -38,7 +38,7 @@ Errors like
 
    How to check which interfaces / ports do clickhouse listen?
 
-   ```sh
+   ```
    sudo lsof -i -P -n | grep LISTEN
 
    echo listen_host
@@ -61,14 +61,14 @@ Errors like
 
 5. Is clickhouse able to serve some trivial tcp / http requests from localhost?
 
-   ```sh
+   ```
    curl 127.0.0.1:9200
    curl 127.0.0.1:8123
    ```
 
 6. Check number of sockets opened by clickhouse
 
-   ```sh
+   ```
    sudo lsof -i -a -p $(pidof clickhouse-server)
    
    # or (adjust 9000 / 8123 ports if needed)
@@ -81,7 +81,7 @@ Errors like
 
 7. Check also:
 
-   ```sh
+   ```
    # system overall support limited number of connections it can handle
    netstat
    

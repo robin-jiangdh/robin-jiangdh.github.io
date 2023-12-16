@@ -9,7 +9,7 @@ description: >
 2) Use on your own risk
 3) Use latest ClickHouse version if you need that.
 
-```sql
+```
 CREATE TABLE x
 (
     `a` Nullable(UInt32),

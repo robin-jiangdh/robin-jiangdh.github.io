@@ -19,7 +19,7 @@ What we can do to avoid this problem during an upgrade:
 
 1) Drop empty partitions before upgrading to decrease the number of empty parts in the system.
 
-    ```sql
+    ```
     SELECT concat('alter table ',database, '.', table, ' drop partition id ''', partition_id, ''';')
     FROM system.parts WHERE active
     GROUP BY database, table, partition_id

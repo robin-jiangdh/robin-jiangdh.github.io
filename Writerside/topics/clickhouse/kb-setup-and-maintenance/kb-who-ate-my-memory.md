@@ -4,15 +4,15 @@ linkTitle: "Who ate my memory"
 description: >
     Who ate my memory
 ---
-```sql
+```
 SELECT *, formatReadableSize(value) 
 FROM system.asynchronous_metrics 
-WHERE metric like '%Cach%' or metric like '%Mem%' 
+WHERE metric like '%\Cach%\' or metric like '%\Mem%\' 
 order by metric format PrettyCompactMonoBlock;
 
 SELECT event_time, metric, value, formatReadableSize(value) 
 FROM system.asynchronous_metric_log 
-WHERE event_time > now() - 600 and (metric like '%Cach%' or metric like '%Mem%') and value <> 0 
+WHERE event_time > now() - 600 and (metric like '%\Cach%\' or metric like '%\Mem%\') and value <> 0 
 order by metric, event_time format PrettyCompactMonoBlock;
 
 SELECT formatReadableSize(sum(bytes_allocated)) FROM system.dictionaries;
@@ -57,7 +57,7 @@ LIMIT 10;
 
 ```
 
-```bash
+```
 for i in `seq 1 600`; do clickhouse-client --empty_result_for_aggregation_by_empty_set=0 -q "select (select 'Merges: \
 '||formatReadableSize(sum(memory_usage)) from system.merges), (select \
 'Processes: '||formatReadableSize(sum(memory_usage)) from system.processes)";\
@@ -70,7 +70,7 @@ Merges: 66.49 MiB	Processes: 37.13 MiB
 Merges: 67.78 MiB	Processes: 37.13 MiB
 ```
 
-```bash
+```
 echo "         Merges      Processes       PrimaryK       TempTabs          Dicts"; \
 for i in `seq 1 600`; do clickhouse-client --empty_result_for_aggregation_by_empty_set=0  -q "select \
 (select leftPad(formatReadableSize(sum(memory_usage)),15, ' ') from system.merges)||
@@ -91,7 +91,7 @@ for i in `seq 1 600`; do clickhouse-client --empty_result_for_aggregation_by_emp
 
 ## retrospection analysis of the RAM usage based on query_log and part_log (shows peaks)
 
-```sql
+```
 WITH 
     now() - INTERVAL 24 HOUR AS min_time,  -- you can adjust that
     now() AS max_time,   -- you can adjust that
@@ -152,7 +152,7 @@ FORMAT PrettyCompactMonoBlock;
 
 ## retrospection analysis of trace_log
 
-```sql
+```
 WITH 
     now() - INTERVAL 24 HOUR AS min_time,  -- you can adjust that
     now() AS max_time,   -- you can adjust that

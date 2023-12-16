@@ -6,7 +6,7 @@ description: >
 ---
 `assumeNotNull` result is implementation specific:
 
-```sql
+```
 WITH CAST(NULL, 'Nullable(UInt8)') AS column
 SELECT
     column,
@@ -94,7 +94,7 @@ Null values in ClickHouse are stored in a separate dictionary: is this value Nul
 
 If it's possible to have Null values, it's better to use `ifNull` function instead.
 
-```sql
+```
 SELECT count()
 FROM numbers_mt(1000000000)
 WHERE NOT ignore(ifNull(toNullable(number), 0))

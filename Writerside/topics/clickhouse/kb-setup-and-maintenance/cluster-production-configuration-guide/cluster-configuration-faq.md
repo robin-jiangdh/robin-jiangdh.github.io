@@ -13,7 +13,7 @@ tail -n 10000 /var/log/clickhouse-server/clickhouse-server.log \| less
 
 ## How Do I Restrict Memory Usage?
 
-See [our knowledge base article]({{<ref "Robin-kb-memory-configuration-settings" >}})  and [official documentation](https://clickhouse.tech/docs/en/operations/settings/query-complexity/#settings_max_memory_usage) for more information.
+See [our knowledge base article]({{<ref "kb-memory-configuration-settings" >}})  and [official documentation](https://clickhouse.tech/docs/en/operations/settings/query-complexity/#settings_max_memory_usage) for more information.
 
 ## ClickHouse died during big query execution
 
@@ -31,8 +31,8 @@ Set [max_bytes_before_external_group_by](https://clickhouse.tech/docs/en/operati
 
 ## Data returned in chunks by clickhouse-client
 
-See [Robin-kb-clickhouse-client]({{<ref "Robin-kb-clickhouse-client" >}})
+See [kb-clickhouse-client]({{<ref "kb-clickhouse-client" >}})
 
 ## I Can’t Connect From Other Hosts.  What do I do?
 
-Check the <listen> settings in config.xml. Verify that the connection can connect on both IPV4 and IPV6.
+Check the "listen" settings in config.xml. Verify that the connection can connect on both IPV4 and IPV6.

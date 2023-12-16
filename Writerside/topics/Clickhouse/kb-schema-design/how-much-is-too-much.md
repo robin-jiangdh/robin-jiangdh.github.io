@@ -49,7 +49,7 @@ For the inserts are rare - up to couple of dozens.
 
 ### Number of parts in the single table
 
-More than ~ 5 thousands may lead to issues with alters in Replicated tables (caused by `jute.maxbuffer` overrun, see [details](Robin-kb-setup-and-maintenance_zookeeper-session-expired.md) ), and query speed degradation.
+More than ~ 5 thousands may lead to issues with alters in Replicated tables (caused by `jute.maxbuffer` overrun, see [details](zookeeper-session-expired.md) ), and query speed degradation.
 
 ### Disk size per shard
 

@@ -35,7 +35,7 @@ MySQL提供[**explain/desc**](https://dev.mysql.com/doc/refman/5.7/en/execution-
 - `FORMAT`选项可用于设置输出格式。`TRADITIONAL`以表格格式显示输出。默认情况下不需要提供`FORMAT`设置 。 format设置为`JSON`
   时，以JSON格式显示信息。
 
-# Explain输出格式
+# Explain输出格式 {id="explain_1"}
 
 [`EXPLAIN`](https://dev.mysql.com/doc/refman/5.7/en/explain.html)
 语句提供有关MySQL如何执行语句的信息。 [`EXPLAIN`](https://dev.mysql.com/doc/refman/5.7/en/explain.html)

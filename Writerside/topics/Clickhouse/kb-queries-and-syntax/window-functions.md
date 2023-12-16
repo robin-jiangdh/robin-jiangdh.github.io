@@ -24,7 +24,7 @@ description: >
 
 ### NTILE
 
-```sql
+```
 SELECT intDiv((num - 1) - (cnt % 3), 3) AS ntile
 FROM
 (

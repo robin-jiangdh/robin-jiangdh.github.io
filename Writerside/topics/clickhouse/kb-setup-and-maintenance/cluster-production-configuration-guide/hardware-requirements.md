@@ -38,7 +38,7 @@ The number of Zookeeper instances depends on the environment:
 See also:
 
 * [https://docs.Robinjiang.com/operationsguide/clickhouse-zookeeper/](https://docs.Robinjiang.com/operationsguide/clickhouse-zookeeper/)
-* [Robin-kb-proper-setup]({{<ref "Robin-kb-proper-setup" >}})
+* [kb-proper-setup]({{<ref "kb-proper-setup" >}})
 * [zookeeper-monitoring]({{<ref "zookeeper-monitoring" >}})
 
 #### ClickHouse Hardware Configuration

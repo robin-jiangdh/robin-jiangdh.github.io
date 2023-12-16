@@ -17,7 +17,7 @@ In case of COLUMN, ClickHouse will calculate column value on fly in query contex
 
 
 
-```sql
+```
 CREATE TABLE test_materialization
 (
     `key` UInt32,

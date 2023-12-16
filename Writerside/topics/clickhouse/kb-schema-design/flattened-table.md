@@ -6,7 +6,7 @@ description: >
 ---
 It's possible to use dictionaries for populating columns of fact table.
 
-```sql
+```
 CREATE TABLE customer
 (
     `customer_id` UInt32,

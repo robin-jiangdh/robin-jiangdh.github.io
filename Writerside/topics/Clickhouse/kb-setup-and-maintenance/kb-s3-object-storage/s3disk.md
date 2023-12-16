@@ -8,7 +8,7 @@ description: >-
 
 ## Settings
 
-```xml
+```
 <clickhouse>
   <storage_configuration>
     <disks>
@@ -39,7 +39,7 @@ Limitations:
 
 In order to restore metadata, you would need to create restore file in `metadata_path/_s3_disk_name_` directory:
 
-```bash
+```
 touch /var/lib/clickhouse/disks/_s3_disk_name_/restore
 ```
 
@@ -53,7 +53,7 @@ Limitations:
  
 If you would like to change bucket or path, you need to populate restore file with settings in key=value format:
 
-```bash
+```
 cat /var/lib/clickhouse/disks/_s3_disk_name_/restore
 
 source_bucket=s3disk

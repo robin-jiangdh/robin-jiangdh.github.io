@@ -8,7 +8,7 @@ description: >-
 
 ## Merges
 
-```sql
+```
 SELECT
     table,
     round((elapsed * (1 / progress)) - elapsed, 2) AS estimate,
@@ -23,7 +23,7 @@ ORDER BY elapsed DESC
 
 ## Mutations
 
-```sql
+```
 SELECT
     database,
     table,
@@ -40,13 +40,13 @@ GROUP BY
 
 ## Current Processes
 
-```sql
+```
 select elapsed, query from system.processes where is_initial_query and elapsed > 2
 ```
 
 ## Processes retrospectively
 
-```sql
+```
 SELECT
     normalizedQueryHash(query),
     current_database,

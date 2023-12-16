@@ -10,7 +10,7 @@ description: >
 
 ### Data for connecting to external sources can be stored in named collections
 
-```xml
+```
 <clickhouse>
     <named_collections>
         <local_host>
@@ -26,7 +26,7 @@ description: >
 
 ### Dictionary
 
-```sql
+```
 DROP DICTIONARY IF EXISTS named_coll_dict;
 CREATE DICTIONARY named_coll_dict
 (

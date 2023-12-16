@@ -22,7 +22,7 @@ Related [issue](https://github.com/ClickHouse/ClickHouse/issues/33607).
 
 You need to replace any occurrence of `uniqState(uuid)` in MATERIALIZED VIEWs with `uniqState(sipHash64(uuid))` and change data type for already saved data from `AggregateFunction(uniq, UUID)` to `AggregateFunction(uniq, UInt64)`, because result data type of sipHash64 is UInt64.
 
-```sql
+```
 -- On ClickHouse version 21.3
 
 CREATE TABLE uniq_state

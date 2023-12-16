@@ -6,9 +6,9 @@ description: >-
      How to put multiple correlated date-like columns in partition key without generating a lot of partitions in case not exact match between them.
 ---
 
-Alternative to doing that by [minmax skip index](https://kb.Robinjiang.com/Robin-kb-queries-and-syntax/skip-indexes/minmax/#multiple-datedatetime-columns-can-be-used-in-where-conditions).
+Alternative to doing that by [minmax skip index](https://kb.Robinjiang.com/kb-queries-and-syntax/skip-indexes/minmax/#multiple-datedatetime-columns-can-be-used-in-where-conditions).
 
-```sql
+```
 CREATE TABLE part_key_multiple_dates
 (
     `key` UInt32,

@@ -10,7 +10,7 @@ Every ClickHouse user experienced a loss of ZooKeeper one day. While the data is
 
 In order to restore ZooKeeper we have to solve two tasks. First, we need to restore table metadata in ZooKeeper. Currently, the only way to do it is to recreate the table with the `CREATE TABLE DDL` statement.
 
-```sql
+```
 CREATE TABLE table_name ... ENGINE=ReplicatedMergeTree('zookeeper_path','replica_name');
 ```
 
@@ -26,7 +26,7 @@ Starting from ClickHouse version 21.7 there is SYSTEM RESTORE REPLICA command
 
 Let's say we have replicated table `table_repl`.
 
-```sql
+```
 CREATE TABLE table_repl 
 (
    `number` UInt32
@@ -38,7 +38,7 @@ ORDER BY number;
 
 And populate it with some data
 
-```sql
+```
 SELECT * FROM system.zookeeper WHERE path='/clickhouse/cluster_1/tables/01/';
 
 INSERT INTO table_repl SELECT * FROM numbers(1000,2000);
@@ -48,19 +48,19 @@ SELECT partition, sum(rows) AS rows, count() FROM system.parts WHERE table='tabl
 
 Now let’s remove metadata in zookeeper using `ZkCli.sh` at ZooKeeper host:
 
-```bash
+```
 deleteall  /clickhouse/cluster_1/tables/01/table_repl
 ```
 
 And try to resync clickhouse replica state with zookeeper:
 
-```sql
+```
 SYSTEM RESTART REPLICA table_repl;
 ```
 
 If we try to insert some data in the table, error happens:
 
-```sql
+```
 INSERT INTO table_repl SELECT number AS number FROM numbers(1000,2000) WHERE number % 2 = 0;
 ```
 
@@ -70,13 +70,13 @@ And now we have an exception that we lost all metadata in zookeeper. It is time 
 
 1. Detach replicated table.
 
-   ```sql
+   ```
    DETACH TABLE table_repl;
    ```
 
 2. Save the table’s attach script and change engine of replicated table to non-replicated \*mergetree analogue. Table definition is located in the ‘metadata’ folder, ‘`/var/lib/clickhouse/metadata/default/table_repl.sql`’ in our example. Please make a backup copy and modify the file as follows:
 
-   ```sql
+   ```
    ATTACH TABLE table_repl
    (
       `number` UInt32
@@ -89,7 +89,7 @@ And now we have an exception that we lost all metadata in zookeeper. It is time 
 
    Needs to be replaced with this:
 
-   ```sql
+   ```
    ATTACH TABLE table_repl
    (
       `number` UInt32
@@ -102,19 +102,19 @@ And now we have an exception that we lost all metadata in zookeeper. It is time 
 
 3. Attach non-replicated table.
 
-   ```sql
+   ```
    ATTACH TABLE table_repl;
    ```
 
 4. Rename non-replicated table.
 
-   ```sql
+   ```
    RENAME TABLE table_repl TO table_repl_old;
    ```
 
 5. Create a new replicated table. Take the saved attach script and replace ATTACH with CREATE, and run it.
 
-   ```sql
+   ```
    CREATE TABLE table_repl
    (
       `number` UInt32
@@ -127,7 +127,7 @@ And now we have an exception that we lost all metadata in zookeeper. It is time 
 
 6. Attach parts from old table to new.
 
-   ```sql
+   ```
    ALTER TABLE table_repl ATTACH PARTITION 1 FROM table_repl_old;
 
    ALTER TABLE table_repl ATTACH PARTITION 2 FROM table_repl_old;

@@ -16,7 +16,7 @@ srv2 -- lost replica / we will restore it from srv1
 
 srv1
 
-```sql
+```
 create database testatomic on cluster '{cluster}' engine=Atomic;
 create table testatomic.test on cluster '{cluster}' (A Int64, D Date, s String)
 Engine = ReplicatedMergeTree('/clickhouse/{cluster}/tables/{database}/{table}','{replica}')
@@ -53,7 +53,7 @@ rm -rf /var/lib/clickhouse/*
 
 srv1
 
-```sql
+```
 $ cat /home/ubuntu/generate_schema.sql
 SELECT concat('CREATE DATABASE "', name, '" ENGINE = ', engine, ' COMMENT \'', comment, '\';')
 FROM system.databases
@@ -63,7 +63,7 @@ clickhouse-client < /home/denis.zhuravlev/generate_schema.sql > create_database.
 ```
 
 check the result
-```bash
+```
 $ cat create_database.sql
 CREATE DATABASE "testatomic" ENGINE = Atomic COMMENT '';
 CREATE DATABASE "testordinary" ENGINE = Ordinary COMMENT '';
@@ -75,7 +75,7 @@ transfer this create_database.sql to srv2 (scp / rsync)
 
 srv1
 
-```bash
+```
 cd /var/lib/clickhouse/
 tar -cvhf /home/ubuntu/metadata_schema.tar metadata
 ```
@@ -87,7 +87,7 @@ transfer this metadata_schema.tar to srv2 (scp / rsync)
 
 srv2
 
-```bash
+```
 /etc/init.d/clickhouse-server start
 clickhouse-client < create_database.sql
 /etc/init.d/clickhouse-server stop
@@ -97,7 +97,7 @@ clickhouse-client < create_database.sql
 
 srv2
 
-```bash
+```
 cd /var/lib/clickhouse/
 tar xkfv /home/ubuntu/metadata_schema.tar
 sudo -u clickhouse touch /var/lib/clickhouse/flags/force_restore_data
@@ -110,7 +110,7 @@ sudo -u clickhouse touch /var/lib/clickhouse/flags/force_restore_data
 
 srv2
 
-```sql
+```
 SELECT count() FROM testatomic.test;
 ┌─count()─┐
 │ 1000000 │

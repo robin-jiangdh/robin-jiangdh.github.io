@@ -18,7 +18,7 @@ It's possible to stream messages which could not be parsed, this behavior could 
 
 So you can create another Materialized View which would collect to a separate table all errors happening while parsing with all important information like offset and content of message.
 
-```sql
+```
 CREATE TABLE default.kafka_engine
 (
     `i` Int64,

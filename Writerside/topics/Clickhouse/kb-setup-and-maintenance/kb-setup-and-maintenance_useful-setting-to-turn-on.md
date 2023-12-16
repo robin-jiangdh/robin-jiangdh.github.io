@@ -35,7 +35,7 @@ Possible values:
 
 Default behaviour is not compatible with ANSI SQL (ClickHouse avoids Nullable types by perfomance reasons)
 
-```sql
+```
 select sum(x), avg(x) from (select 1 x where 0);
 ┌─sum(x)─┬─avg(x)─┐
 │      0 │    nan │

@@ -24,7 +24,7 @@ You can decrease that in some scenarios (like you need to leave more free RAM fo
 
 ### How to check what is using my RAM?
 
-[Robin-kb-who-ate-my-memory.md]({{<ref "Robin-kb-who-ate-my-memory.md" >}})
+[kb-who-ate-my-memory.md]({{<ref "kb-who-ate-my-memory.md" >}})
 
 ### Mark cache
 

@@ -9,7 +9,7 @@ description: >
 
 Some random example:
 
-```xml
+```
 <yandex>
     <kafka>
         <max_poll_interval_ms>60000</max_poll_interval_ms>
@@ -34,7 +34,7 @@ Some random example:
 
 ### Amazon MSK
 
-```xml
+```
 <yandex>
   <kafka>
     <security_protocol>sasl_ssl</security_protocol>
@@ -46,7 +46,7 @@ Some random example:
 
 ### SASL/SCRAM
 
-```xml
+```
 <yandex>
   <kafka>
     <security_protocol>sasl_ssl</security_protocol>
@@ -66,7 +66,7 @@ To connect to some Kafka cloud services you may need to use certificates.
 If needed they can be converted to pem format and inlined into ClickHouse config.xml
 Example:
 
-```xml
+```
 <kafka>
 <ssl_key_pem><![CDATA[
   RSA Private-Key: (3072 bit, 2 primes)
@@ -98,7 +98,7 @@ See [https://github.com/ClickHouse/ClickHouse/issues/12609](https://github.com/C
 * [https://clickhouse.tech/docs/en/engines/table-engines/integrations/kafka/\#kafka-kerberos-support](https://clickhouse.tech/docs/en/engines/table-engines/integrations/kafka/#kafka-kerberos-support)
 * [https://github.com/ClickHouse/ClickHouse/blob/master/tests/integration/test_storage_kerberized_kafka/configs/kafka.xml](https://github.com/ClickHouse/ClickHouse/blob/master/tests/integration/test_storage_kerberized_kafka/configs/kafka.xml)
 
-```xml
+```
   <!-- Kerberos-aware Kafka -->
   <kafka>
     <security_protocol>SASL_PLAINTEXT</security_protocol>
@@ -109,7 +109,7 @@ See [https://github.com/ClickHouse/ClickHouse/issues/12609](https://github.com/C
 
 ### confluent cloud
 
-```xml
+```
 <yandex>
   <kafka>
     <auto_offset_reset>smallest</auto_offset_reset>
@@ -132,7 +132,7 @@ See [https://github.com/ClickHouse/ClickHouse/issues/12609](https://github.com/C
 
 Use kafkacat utility - it internally uses same library to access Kafla as clickhouse itself and allows easily to test different settings.
 
-```bash
+```
 kafkacat -b my_broker:9092 -C -o -10 -t my_topic \
    -X security.protocol=SASL_SSL  \
    -X sasl.mechanisms=PLAIN \
@@ -155,13 +155,13 @@ https://github.com/ClickHouse/ClickHouse/pull/31691
  
 So you can say something like
  
-```sql
+```
 CREATE TABLE test.kafka (key UInt64, value UInt64) ENGINE = Kafka(kafka1, kafka_format='CSV');
 ```
  
 And after that in configuration:
  
-```xml
+```
 <clickhouse>
  <named_collections>
   <kafka1>

@@ -8,7 +8,7 @@ description: >-
 
 ## http handler example (how to disable /play)
 
-```xml
+```
 # cat /etc/clickhouse-server/config.d/play_disable.xml
 <?xml version="1.0" ?>
 <yandex>

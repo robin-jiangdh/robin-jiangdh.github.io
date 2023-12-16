@@ -53,7 +53,7 @@ We had webinar about that a year ago: https://www.youtube.com/watch?v=44kO3UzIDL
 
 Using that you can easily create some ETL script which will copy the data from mysql to clickhouse regularly, i.e. something like
 
-```sql
+```
 INSERT INTO clickhouse_table SELECT * FROM mysql_table WHERE id > ...
 ```
 

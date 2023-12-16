@@ -6,7 +6,7 @@ description: >
 ---
 It's possible to tune some settings which would make ClickHouse more ANSI SQL compatible(and slower):
 
-```sql
+```
 SET join_use_nulls=1; -- introduced long ago
 SET cast_keep_nullable=1; -- introduced in 20.5
 SET union_default_mode='DISTINCT'; -- introduced in 21.1

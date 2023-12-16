@@ -11,7 +11,7 @@ Suitable for moving up to hundreds of gigabytes of data.
 
 With bigger tables recommended approach is to slice the original data by some `WHERE` condition, ideally - apply the condition on partitioning key, to avoid writing data to many partitions at once.
 
-```sql
+```
 INSERT INTO staging_table SELECT * FROM remote(...) WHERE date='2021-04-13';
 INSERT INTO staging_table SELECT * FROM remote(...) WHERE date='2021-04-12';
 INSERT INTO staging_table SELECT * FROM remote(...) WHERE date='2021-04-11';
@@ -38,7 +38,7 @@ So maximum memory usage can be calculated like this: `max_insert_threads * first
 
 Default values:
 
-```sql
+```
 ┌─name────────────────────────┬─value─────┐
 │ min_insert_block_size_rows  │ 1048545   │
 │ min_insert_block_size_bytes │ 268427520 │
@@ -50,7 +50,7 @@ Tune those settings depending on your table average row size and amount of memor
 
 ### Q. I've got the error "All connection tries failed"
 
-```sql
+```
 SELECT count()
 FROM remote('server.from.remote.dc:9440', 'default.table', 'admin', 'password')
 Received exception from server (version 20.8.11):
@@ -66,7 +66,7 @@ Code: 209, e.displayText() = DB::NetException: Timeout: connect timed out: 192.0
 
 Default values:
 
-```sql
+```
 ┌─name────────────────────────────────────┬─value─┐
 │ connect_timeout_with_failover_ms        │ 50    │
 │ connect_timeout_with_failover_secure_ms │ 100   │

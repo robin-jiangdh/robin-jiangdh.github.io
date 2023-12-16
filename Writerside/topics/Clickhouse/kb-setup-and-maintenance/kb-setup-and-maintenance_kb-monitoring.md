@@ -35,7 +35,7 @@ The following metrics should be collected / monitored
   * Replication parts and queue (count)
 
 * For Zookeeper:
-  * [See separate article](zookeeper-monitoring.)
+  * [See separate article](zookeeper-monitoring.md)
 
 
 ## Monitoring tools
@@ -47,7 +47,7 @@ The following metrics should be collected / monitored
 
 ### Prometheus (embedded http handler with clickhouse-operator style metrics) + Grafana
 
-* Enable [http handler](monitoring-operator-exporter-compatibility.)
+* Enable [http handler](monitoring-operator-exporter-compatibility.md)
 * Useful, if you want to use clickhouse-operator dashboard, but do not run ClickHouse in k8s.
 
 ### Prometheus (clickhouse-operator embedded exporter) + Grafana
@@ -107,7 +107,7 @@ ClickHouse allow to access lot of internals using system tables. The main tables
 * system.events
 
 Minimum neccessary set of checks
-
+```
 <table>
   <tr>
    <td><strong>Check Name</strong>
@@ -300,7 +300,7 @@ select value from system.events where event='DataAfterMutationDiffersFromReplica
    </td>
   </tr>
 </table>
-
+```
 The following queries are recommended to be included in monitoring:
 
 * `SELECT * FROM system.replicas`

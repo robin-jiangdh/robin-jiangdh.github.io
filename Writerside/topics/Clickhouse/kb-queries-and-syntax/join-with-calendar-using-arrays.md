@@ -6,7 +6,7 @@ description: >
 ---
 ## Sample data
 
-```sql
+```
 CREATE TABLE test_metrics (counter_id Int64, timestamp DateTime, metric UInt64)
 Engine=Log;
 
@@ -35,7 +35,7 @@ ORDER BY counter_id, dt;
 
 ## Calendar
 
-```sql
+```
 WITH arrayMap(i -> (toDate('2021-01-01') + i), range(4)) AS Calendar
 SELECT arrayJoin(Calendar);
 
@@ -49,7 +49,7 @@ SELECT arrayJoin(Calendar);
 
 ## Join with Calendar using arrayJoin
 
-```sql
+```
 SELECT counter_id, tuple.2 dt, sum(tuple.1) sum FROM
   (
   WITH arrayMap(i -> (0, toDate('2021-01-01') + i), range(4)) AS Calendar
@@ -79,7 +79,7 @@ SELECT counter_id, tuple.2 dt, sum(tuple.1) sum FROM
 
 ## With fill
 
-```sql
+```
 SELECT
     counter_id,
     toDate(timestamp) AS dt,

@@ -11,7 +11,7 @@ Supported since 20.10 (PR [\#15089](https://github.com/ClickHouse/ClickHouse/pul
 `DB::Exception: Codec Delta is not applicable for Array(UInt64) because the data type is not of fixed size.`
 
 
-```sql
+```
 DROP TABLE IF EXISTS array_codec_test SYNC
 
 create table array_codec_test( number UInt64, arr Array(UInt64) ) Engine=MergeTree ORDER BY number;

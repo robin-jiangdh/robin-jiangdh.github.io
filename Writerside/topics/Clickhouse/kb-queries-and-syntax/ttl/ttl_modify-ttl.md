@@ -23,7 +23,7 @@ It can be heavy operation, because ClickHouse will read column data & recalculat
 You can disable this step completely by using `materialize_ttl_after_modify` user session setting (by default it's 1, so materialization is enabled).
 
 
-```sql
+```
 ALTER TABLE tbl MODIFY TTL .... SETTINGS materialize_ttl_after_modify=0;
 ```
 
@@ -35,7 +35,7 @@ MATERIALIZE TTL:
 
 You also can disable apply TTL substep via `materialize_ttl_recalculate_only` merge_tree setting (by default it's 0, so clickhouse will apply TTL expression)
 
-```sql
+```
 ALTER TABLE tbl MODIFY SETTINGS materialize_ttl_recalculate_only=1;
 ```
 
@@ -47,7 +47,7 @@ MATERIALIZE TTL done via Mutation:
 
 To stop materialization of TTL:
 
-```sql
+```
 SELECT * FROM system.mutations WHERE is_done=0 AND table = 'tbl';
 KILL MUTATION WHERE command LIKE '%MATERIALIZE TTL%' AND table = 'tbl'
 ```
@@ -78,7 +78,7 @@ Table parts:
 20220601    ttl: 20220631       disk: local
 ```
 
-```sql
+```
 ALTER TABLE tbl MODIFY TTL timestamp + INTERVAL 60 DAY MOVE TO DISK s3;
 ```
 
@@ -108,7 +108,7 @@ Table parts:
 20220601    ttl: 20220631       disk: local
 ```
 
-```sql
+```
 ALTER TABLE tbl MODIFY TTL timestamp + INTERVAL 14 DAY MOVE TO DISK s3;
 ```
 

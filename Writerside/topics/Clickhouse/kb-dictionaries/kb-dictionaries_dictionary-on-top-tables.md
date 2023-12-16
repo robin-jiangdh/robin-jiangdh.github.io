@@ -4,7 +4,7 @@ linkTitle: "Dictionary on the top of several tables using VIEW"
 description: >
     Dictionary on the top of several tables using VIEW
 ---
-```sql
+```
 
 DROP TABLE IF EXISTS dictionary_source_en;
 DROP TABLE IF EXISTS dictionary_source_ru;

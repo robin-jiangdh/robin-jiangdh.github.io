@@ -10,7 +10,7 @@ description: >
 
 Good example is incremental ID which increasing with time.
 
-```sql
+```
 CREATE TABLE skip_idx_corr
 (
     `key` UInt32,
@@ -51,7 +51,7 @@ WHERE id = 6000000
 
 Usually it could happen if you have separate Date and DateTime columns and different column being used in PARTITION BY expression and in WHERE condition. Another possible scenario when you have multiple DateTime columns which have pretty the same date or even time.
 
-```sql
+```
 CREATE TABLE skip_idx_multiple
 (
     `key` UInt32,
@@ -119,7 +119,7 @@ WHERE created_at > (now() + toIntervalDay(105));
 
 #### Condition in query trying to filter outlier value
 
-```sql
+```
 CREATE TABLE skip_idx_outlier
 (
     `key` UInt32,

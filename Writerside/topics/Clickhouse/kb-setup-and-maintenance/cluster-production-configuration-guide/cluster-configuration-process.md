@@ -88,7 +88,7 @@ Use ansible/puppet/salt or other systems to control the servers’ configuration
 
 Once this is complete, other queries that span nodes can be performed. For example:
 
-```sql
+```
 CREATE TABLE test_table_local ON CLUSTER '{cluster}'
 (
   id UInt8
@@ -99,7 +99,7 @@ ORDER BY (id);
 
 That will create a table on all servers in the cluster. You can insert data into this table and it will be replicated automatically to the other shards.To store the data or read the data from all shards at the same time, create a Distributed table that links to the replicatedMergeTree table.
 
-```sql
+```
 CREATE TABLE test_table ON CLUSTER '{cluster}'
 Engine=Distributed('{cluster}', 'default', '
 ```
@@ -110,7 +110,7 @@ Engine=Distributed('{cluster}', 'default', '
 
 ### Additional Settings
 
-See [Robin-kb-settings-to-adjust]({{<ref "Robin-kb-settings-to-adjust" >}})
+See [kb-settings-to-adjust]({{<ref "kb-settings-to-adjust" >}})
 
 #### Users
 
@@ -221,10 +221,10 @@ This way you have full flexibility; you’re not limited to the settings describ
 
 Other configurations that should be evaluated:
 
-* <listen> in config.xml: Determines which IP addresses and ports the ClickHouse servers listen for incoming communications.
-* <max_memory_..> and <max_bytes_before_external_...> in users.xml. These are part of the profile <default>.
-* <max_execution_time>
-* <log_queries>
+* "listen" in config.xml: Determines which IP addresses and ports the ClickHouse servers listen for incoming communications.
+* "max_memory_.." and "max_bytes_before_external_..." in users.xml. These are part of the profile "default".
+* "max_execution_time"
+* "log_queries"
 
 The following extra debug logs should be considered:
 

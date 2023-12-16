@@ -8,7 +8,7 @@ Clickhouse is able to fetch from a source only updated rows. You need to define 
 
 As an example, We have a table in an external source MySQL, PG, HTTP, ... defined with the following code sample:
 
-```sql
+```
 CREATE TABLE cities
 (
     `polygon` Array(Tuple(Float64, Float64)),
@@ -20,7 +20,7 @@ ENGINE = MergeTree ORDER BY city
 
 When you add new row and `update` some rows in this table you should update `updated_at` with the new timestamp.
 
-```sql
+```
 -- fetch updated rows every 30 seconds
 
 CREATE DICTIONARY cities_dict (

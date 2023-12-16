@@ -6,7 +6,7 @@ description: >
 ---
 ### Example with MergeTree table
 
-```sql
+```
 CREATE TABLE test_ttl_group_by
 (
     `key` UInt32,
@@ -30,7 +30,7 @@ During TTL merges Clickhouse re-calculates values of columns in the SET section.
 
 GROUP BY section should be a prefix of a table's PRIMARY KEY (the same as ORDER BY, if no separate PRIMARY KEY defined).
 
-```sql
+```
 -- stop merges to demonstrate data before / after 
 -- a rolling up
 SYSTEM STOP TTL MERGES test_ttl_group_by;
@@ -85,7 +85,7 @@ As you can see 100 rows were rolled up into 5 rows (key has 5 values) for rows o
 
 ### Example with SummingMergeTree table
 
-```sql
+```
 CREATE TABLE test_ttl_group_by
 (
     `key1` UInt32,
@@ -182,7 +182,7 @@ During merges Clickhouse re-calculates **ts** columns as **min(toStartOfDay(ts))
 
 ### Multilevel TTL Group by
 
-```sql
+```
 CREATE TABLE test_ttl_group_by
 (
     `key` UInt32,
@@ -284,7 +284,7 @@ ORDER BY d;
 
 ### TTL GROUP BY + DELETE
 
-```sql
+```
 CREATE TABLE test_ttl_group_by
 (
     `key` UInt32,

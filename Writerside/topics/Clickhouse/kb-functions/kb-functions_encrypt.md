@@ -5,7 +5,7 @@ linkTitle: "Encrypt"
 
 ## WHERE over encrypted column
 
-```sql
+```
 CREATE TABLE encrypt
 (
     `key` UInt32,

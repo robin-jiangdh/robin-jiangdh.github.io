@@ -27,7 +27,7 @@ In some cases, ClickHouse may choose the slowest counting strategy even when the
 
 2. Experimental light-weight delete feature was used on the table: If the experimental light-weight delete feature was used, ClickHouse may use the slowest counting strategy. You can check this by looking into parts_columns for the column named _row_exists. To do this, run the following query:
 
-```sql
+```
 SELECT DISTINCT database, table FROM system.parts_columns WHERE column = '_row_exists';
 ```
 

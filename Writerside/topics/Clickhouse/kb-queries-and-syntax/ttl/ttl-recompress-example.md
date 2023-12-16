@@ -8,7 +8,7 @@ description: >
 
 ## Example how to create a table and define recompression rules
 
-```sql
+```
 CREATE TABLE hits
 (
     `banner_id` UInt64,
@@ -31,7 +31,7 @@ CODEC(Delta, Default) -- **Default** means to use default compression (LZ4 -> ZS
 
 ## Example how to define recompression rules for an existing table 
 
-```sql
+```
 CREATE TABLE hits
 (
     `banner_id` UInt64,

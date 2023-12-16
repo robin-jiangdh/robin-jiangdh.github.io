@@ -10,7 +10,7 @@ The main purpose of JOIN table engine is to avoid building the right table for j
 
 It's possible to update rows with setting `join_any_take_last_row` enabled.
 
-```sql
+```
 CREATE TABLE id_val_join
 (
     `id` UInt32,

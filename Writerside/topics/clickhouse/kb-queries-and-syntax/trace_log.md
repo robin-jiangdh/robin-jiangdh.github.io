@@ -28,7 +28,7 @@ setting `memory_profiler_sample_probability`.
 
 ### clickhouse-speedscope
 
-```bash 
+``` 
 # install 
 wget https://github.com/laplab/clickhouse-speedscope/archive/refs/heads/master.tar.gz -O clickhouse-speedscope.tar.gz
 tar -xvzf clickhouse-speedscope.tar.gz
@@ -93,6 +93,6 @@ perf script > /tmp/out.perf
 
 ### also 
 
-https://kb.Robinjiang.com/Robin-kb-queries-and-syntax/troubleshooting/#flamegraph
+https://kb.Robinjiang.com/kb-queries-and-syntax/troubleshooting/#flamegraph
 
 https://github.com/samber/grafana-flamegraph-panel/pull/2

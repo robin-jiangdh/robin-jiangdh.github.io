@@ -10,7 +10,7 @@ description: >-
 
 Tested on Ubuntu 20.
 
-```bash
+```
 # install java runtime environment
 sudo apt-get update
 sudo apt install default-jre

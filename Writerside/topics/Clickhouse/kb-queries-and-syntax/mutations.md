@@ -8,7 +8,7 @@ description: >
 
 A. mutation status in system.mutations is local to each replica, so use
 
-```sql
+```
 SELECT hostname(), * FROM clusterAllReplicas('your_cluster_name', system.mutations);
 -- you can also add WHERE conditions to that query if needed.
 ```
@@ -24,14 +24,14 @@ Sometimes, it can lead to problems, when a combined expression which ClickHouse 
 
 
 Because ClickHouse stores data in independent parts, ClickHouse is able to run mutation(s) merges for each part independently and in parallel.
-It also can lead to high resource utilization, especially memory usage if you use `x IN (SELECT ... FROM big_table)` statements in mutation, because each merge will run and keep in memory its own HashSet. You can avoid this problem, if you will use [Dictionary approach](update-via-dictionary.) for such mutations.
+It also can lead to high resource utilization, especially memory usage if you use `x IN (SELECT ... FROM big_table)` statements in mutation, because each merge will run and keep in memory its own HashSet. You can avoid this problem, if you will use [Dictionary approach](update-via-dictionary.md) for such mutations.
 
 Parallelism of mutations controlled by settings:
 
-```sql
+```
 SELECT *
 FROM system.merge_tree_settings
-WHERE name LIKE '%mutation%'
+WHERE name LIKE '%\mutation%'
 
 ┌─name───────────────────────────────────────────────┬─value─┬─changed─┬─description──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┬─type───┐
 │ max_replicated_mutations_in_queue                  │ 8     │       0 │ How many tasks of mutating parts are allowed simultaneously in ReplicatedMergeTree queue.                                                                                    │ UInt64 │

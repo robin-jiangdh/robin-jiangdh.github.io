@@ -6,7 +6,7 @@ description: >
 ---
 ## Sample data
 
-```sql
+```
 CREATE TABLE llexample (
     g Int32,
     a Date )
@@ -35,7 +35,7 @@ SELECT * FROM llexample ORDER BY g,a;
 
 ## Using arrays
 
-```sql
+```
 select g, (arrayJoin(tuple_ll) as ll).1 a, ll.2 prev, ll.3 next
 from (
 select g, arrayZip( arraySort(groupArray(a)) as aa,
@@ -61,7 +61,7 @@ order by g, a;
 
 ## Using window functions (starting from Clickhouse 21.3)
 
-```sql
+```
 SET allow_experimental_window_functions = 1;
 
 SELECT
@@ -92,7 +92,7 @@ ORDER BY
 
 ## Using lagInFrame/leadInFrame (starting from ClickHouse 21.4)
 
-```sql
+```
 SELECT
     g,
     a,
@@ -121,7 +121,7 @@ ORDER BY
 
 ## Using neighbor (no grouping, incorrect result over blocks)
 
-```sql
+```
 SELECT
     g,
     a,

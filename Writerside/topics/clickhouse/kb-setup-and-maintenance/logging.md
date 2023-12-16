@@ -7,7 +7,7 @@ description: >-
 ---
 Q. I get errors:
 
-```bash
+```
 File not found: /var/log/clickhouse-server/clickhouse-server.log.0.
 File not found: /var/log/clickhouse-server/clickhouse-server.log.8.gz.
 
@@ -24,7 +24,7 @@ File not found: /var/log/clickhouse-server/clickhouse-server.log.8.gz.
 
 A. Check if you have proper permission to a log files folder, and enough disk space \(& inode numbers\) on the block device used for logging.
 
-```bash
+```
 ls -la /var/log/clickhouse-server/
 df -Th
 df -Thi

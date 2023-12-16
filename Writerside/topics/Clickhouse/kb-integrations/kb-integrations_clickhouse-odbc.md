@@ -10,11 +10,11 @@ description: >-
 
 [ODBC](https://docs.microsoft.com/en-us/sql/odbc/reference/odbc-overview) interface for [ClickHouse](https://clickhouse.yandex) RDBMS.
 
-Licensed under the [Apache 2.0](LICENSE.).
+Licensed under the Apache 2.0
 
 ## Installation and usage
 
-### Windows
+### Windows {id="windows_1"}
 
 1. Download the latest [release](https://github.com/ClickHouse/clickhouse-odbc/releases). On 64bit system you usually need both 32 bit and 64 bit drivers.
 2. Install (usually you will need ANSI driver, but better to install both versions, see below).
@@ -27,10 +27,10 @@ applications (cygwin / msys64 based) may require driver linked agains unixodbc. 
 
 1. Install [homebrew](https://brew.sh/).
 2. Install driver
-```bash
+```
 brew install https://raw.githubusercontent.com/proller/homebrew-core/chodbc/Formula/clickhouse-odbc.rb
 ```
-3. Add clickhouse DSN configuration into ~/.odbc.ini file. (altinity-kb-integrations.kb-integrations.[sample]()) 
+3. Add clickhouse DSN configuration into ~/.odbc.ini file. ([sample](sampling-example.md)) 
 
 Note: that install driver linked against iodbc (which is default for Mac), some homebrew applications
 (like python) may require unixodbc driver to work properly. In that case see Build section below.
@@ -38,7 +38,7 @@ Note: that install driver linked against iodbc (which is default for Mac), some 
 ### Linux
 
 1. DEB/RPM packaging is not provided yet, please build & install the driver from sources.
-2. Add clickhouse DSN configuration into ~/.odbc.ini file. (altinity-kb-integrations.kb-integrations.[sample]())  
+2. Add clickhouse DSN configuration into ~/.odbc.ini file. 
 
 ## Configuration
 
@@ -110,7 +110,7 @@ The general requirements for building the driver from sources are as follows:
 - SSL library (openssl)
 
 Generic build scenario:
-```sh
+```
 git clone --recursive git@github.com:ClickHouse/clickhouse-odbc.git
 cd clickhouse-odbc
 mkdir build
@@ -124,7 +124,7 @@ Additional requirements exist for each platform, which also depend on whether pa
 
 Execute the following in the terminal to install needed dependencies:
 
-```sh
+```
 # on Red Hat/CentOS (tested on CentOS 7)
 sudo yum groupinstall "Development Tools"
 sudo yum install centos-release-scl
@@ -147,13 +147,13 @@ manager it was linked to.
 
 Clone the repo with submodules:
 
-```sh
+```
 git clone --recursive git@github.com:ClickHouse/clickhouse-odbc.git
 ```
 
 Enter the cloned source tree, create a temporary build folder, and generate a Makefile for the project in it:
 
-```sh
+```
 cd clickhouse-odbc
 mkdir build
 cd build
@@ -165,14 +165,14 @@ cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo ..
 
 Build the generated solution in-place:
 
-```sh
+```
 cmake --build . -C RelWithDebInfo
 cmake --build . -C RelWithDebInfo --target package
 ```
 
 ...and, optionally, run tests (note, that for non-unit tests, preconfigured driver and DSN entries must exist, that point to the binaries generated in this build folder):
 
-```sh
+```
 cmake --build . -C RelWithDebInfo --target test
 ```
 
@@ -196,13 +196,13 @@ All of the following commands have to be issued in Visual Studio Command Prompt:
 
 Clone the repo with submodules:
 
-```sh
+```
 git clone --recursive git@github.com:ClickHouse/clickhouse-odbc.git
 ```
 
 Enter the cloned source tree, create a temporary build folder, and generate the solution and project files in it:
 
-```sh
+```
 cd clickhouse-odbc
 mkdir build
 cd build
@@ -218,20 +218,20 @@ cmake -A x64 -DCMAKE_BUILD_TYPE=RelWithDebInfo ..
 
 Build the generated solution in-place:
 
-```sh
+```
 cmake --build . -C RelWithDebInfo
 cmake --build . -C RelWithDebInfo --target package
 ```
 
 ...and, optionally, run tests (note, that for non-unit tests, preconfigured driver and DSN entries must exist, that point to the binaries generated in this build folder):
 
-```sh
+```
 cmake --build . -C RelWithDebInfo --target test
 ```
 
 ...or open the IDE and build `all`, `package`, and `test` targets manually from there:
 
-```sh
+```
 cmake --open .
 ```
 
@@ -266,7 +266,7 @@ You can just copy the library to another computer, in that case you need to
      * MDAC driver manager (preinstalled on all modern Windows systems)
      * `C++ Redistributable for Visual Studio 2017` or same for `2019`, etc.
    * Linux
-```sh
+```
 # CentOS / RedHat
 sudo yum install openssl unixODBC
 
@@ -274,7 +274,7 @@ sudo yum install openssl unixODBC
 sudo apt install openssl unixodbc
 ```
    * MacOS (assuming you have [Homebrew](https://brew.sh/) installed):
-```sh
+```
 brew install poco openssl libiodbc
 ```
 

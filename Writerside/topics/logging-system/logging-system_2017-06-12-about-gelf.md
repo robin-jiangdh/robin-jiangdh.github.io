@@ -4,7 +4,7 @@ Published: 06/12/2017
 tags: ['GELF ','GrayLog','LoggingSystem','Logging']
 ---
 
-## 什么是GELF
+## 什么是GELF {id="gelf_1"}
 
 Graylog扩展日志格式（GELF）是一种日志格式。
 
@@ -65,7 +65,7 @@ Graylog扩展日志格式（GELF）是一种日志格式。
     regular expression is: `^[\w\.\-]*$`. Libraries SHOULD not allow to send id as additional field (`_id`). Graylog
     server nodes omit this field automatically。
 
-## GELF 能解决什么问题
+## GELF 能解决什么问题 {id="gelf_2"}
 
 - 这是个格式规范，能够让绝大部分日志格式相对统一合理，提高日志可读性。
 - 这是个json规范，实现比较简单。

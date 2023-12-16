@@ -8,13 +8,13 @@ description: >
 
 You have table:
 
-```sql
+```
 CREATE TABLE modify_column(column_n String) ENGINE=MergeTree() ORDER BY tuple();
 ```
 
 Populate it with data:
 
-```sql
+```
 INSERT INTO modify_column VALUES ('key_a');
 INSERT INTO modify_column VALUES ('key_b');
 INSERT INTO modify_column VALUES ('key_c');
@@ -22,13 +22,13 @@ INSERT INTO modify_column VALUES ('key_c');
 
 Tried to apply alter table query with changing column type:
 
-```sql
+```
 ALTER TABLE modify_column MODIFY COLUMN column_n Enum8('key_a'=1, 'key_b'=2);
 ```
 
 But it didn’t succeed and you see an error in system.mutations table:
 
-```sql
+```
 SELECT *
 FROM system.mutations
 WHERE (table = 'modify_column') AND (is_done = 0)
@@ -53,7 +53,7 @@ latest_fail_reason:         Code: 36, e.displayText() = DB::Exception: Unknown e
 
 And you can’t query that column anymore:
 
-```sql
+```
 SELECT column_n
 FROM modify_column
 
@@ -76,32 +76,32 @@ You should do the following:
 
 Check which mutation is stuck and kill it:
 
-```sql
+```
 SELECT * FROM system.mutations WHERE table = 'modify_column' AND is_done=0 FORMAT Vertical;
 KILL MUTATION WHERE table = 'modify_column' AND mutation_id = 'id_of_stuck_mutation';
 ```
 
 Apply reverting modify column query to convert table to previous column type:
 
-```sql
+```
 ALTER TABLE modify_column MODIFY COLUMN column_n String;
 ```
 
 Check if column is accessible now:
 
-```sql
+```
 SELECT column_n, count() FROM modify_column GROUP BY column_n;
 ```
 
 Run fixed ALTER MODIFY COLUMN query.
 
-```sql
+```
 ALTER TABLE modify_column MODIFY COLUMN column_n Enum8('key_a'=1, 'key_b'=2, 'key_c'=3);
 ```
 
 You can monitor progress of column type change with system.mutations or system.parts_columns tables:
 
-```sql
+```
 SELECT
     command,
     parts_to_do,

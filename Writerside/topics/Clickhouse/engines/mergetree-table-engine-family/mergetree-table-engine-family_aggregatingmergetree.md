@@ -8,7 +8,7 @@ Q. What happens with columns which are nor the part of ORDER BY key, nor have th
 
 A. it picks the first value met, (similar to `any`)
 
-```sql
+```
 CREATE TABLE agg_test
 (
     `a` String,

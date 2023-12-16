@@ -23,7 +23,7 @@ graph TD;
 ```
 
 And it renders as so:
-
+```text
 {{<mermaid>}}
 graph TD;
   A-->B;
@@ -31,3 +31,4 @@ graph TD;
   B-->D;
   C-->D;
 {{</mermaid>}}
+```

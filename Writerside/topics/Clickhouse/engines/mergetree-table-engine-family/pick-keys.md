@@ -64,7 +64,7 @@ PRIMARY KEY (tenantid, site_id) -- eventid is not used for filtering, needed onl
 ### ORDER BY example
 
 
-```sql
+```
 -- col1: high Cardinality
 -- col2: low cardinality
 
@@ -85,7 +85,7 @@ SELECT count()
 
 So let’s put the highest cardinal column to the left and the least to the right in the `ORDER BY` definition. This will impact in queries like:
 
-```sql
+```
 SELECT * FROM order_test
 WHERE col1 > toDateTime('2020-10-01')
 ORDER BY col1, col2
@@ -94,7 +94,7 @@ FORMAT `Null`
 
 Here for the filtering it will use the skipping index to select the parts `WHERE col1 > xxx` and the result wont be need to be ordered because the `ORDER BY` in the query aligns with the `ORDER BY` in the table and the data is already ordered in disk. 
 
-```bash
+```
 executeQuery: (from [::ffff:192.168.11.171]:39428, user: admin) SELECT * FROM order_test WHERE col1 > toDateTime('2020-10-01') ORDER BY col1,col2 FORMAT Null; (stage: Complete)
 ContextAccess (admin): Access granted: SELECT(col1, col2) ON tests.order_test
 ContextAccess (admin): Access granted: SELECT(col1, col2) ON tests.order_test
@@ -141,7 +141,7 @@ Ok.
 
 If we change the `ORDER BY` expression in the query, Clickhouse will need to retrieve the rows and reorder them:
 
-```sql
+```
 SELECT * FROM order_test
 WHERE col1 > toDateTime('2020-10-01')
 ORDER BY col2, col1
@@ -150,7 +150,7 @@ FORMAT `Null`
 
 As seen In the `MergingSortedTransform` message, the ORDER BY in the table definition is not aligned with the ORDER BY in the query, so ClickHouse has to reorder the resultset.
 
-```bash
+```
 executeQuery: (from [::ffff:192.168.11.171]:39428, user: admin) SELECT * FROM order_test WHERE col1 > toDateTime('2020-10-01') ORDER BY col2,col1 FORMAT Null; (stage: Complete)
 ContextAccess (admin): Access granted: SELECT(col1, col2) ON tests.order_test
 ContextAccess (admin): Access granted: SELECT(col1, col2) ON tests.order_test

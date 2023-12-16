@@ -4,7 +4,7 @@ linkTitle: "Skip indexes examples"
 ---
 ## bloom\_filter
 
-```sql
+```
 create table bftest (k Int64, x Int64) Engine=MergeTree order by k;
 
 insert into bftest select number, rand64()%565656 from numbers(10000000);
@@ -31,7 +31,7 @@ select count() from bftest where x = 42;
 
 ## minmax
 
-```sql
+```
 create table bftest (k Int64, x Int64) Engine=MergeTree order by k;
 
 -- data is in x column is correlated with the primary key
@@ -46,7 +46,7 @@ select count() from bftest where x = 42;
 
 ## projection
 
-```sql
+```
 create table bftest (k Int64, x Int64, S String) Engine=MergeTree order by k;
 insert into bftest select number, rand64()%565656, '' from numbers(10000000);
 insert into bftest select number, rand64()%565656, '' from numbers(100000000);

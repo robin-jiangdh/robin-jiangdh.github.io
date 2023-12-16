@@ -9,7 +9,7 @@ description: >-
 ## DISTINCT
 
 
-```sql
+```
 
 SELECT DISTINCT number
 FROM numbers_mt(100000000)
@@ -63,7 +63,7 @@ MemoryTracker: Peak memory usage (for query): 847.05 KiB.
 
 ## GROUP BY
 
-```sql
+```
 
 SELECT number
 FROM numbers_mt(100000000)
@@ -123,7 +123,7 @@ MemoryTracker: Peak memory usage (for query): 3.77 MiB.
 
 ## LIMIT BY
 
-```sql
+```
 SELECT number
 FROM numbers_mt(100000000)
 LIMIT 1 BY number

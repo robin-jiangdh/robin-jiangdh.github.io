@@ -7,7 +7,7 @@ description: >
 
 ### EXPLAIN types
 
-```sql
+```
 EXPLAIN AST
         SYNTAX
         PLAN header = 0,

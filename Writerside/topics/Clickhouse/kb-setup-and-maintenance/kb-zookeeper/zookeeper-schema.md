@@ -8,7 +8,7 @@ description: >
 
 Table schema.
 
-```bash
+```
 date column -> legacy MergeTree partition expression.
 sampling expression -> SAMPLE BY
 index granularity -> index_granularity
@@ -44,7 +44,7 @@ Log of latest actions with table.
 
 Related settings:
 
-```sql
+```
 ┌─name────────────────────────┬─value─┬─changed─┬─description────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┬─type───┐
 │ max_replicated_logs_to_keep │ 1000  │       0 │ How many records may be in log, if there is inactive replica. Inactive replica becomes lost when when this number exceed.                                                  │ UInt64 │
 │ min_replicated_logs_to_keep │ 10    │       0 │ Keep about this number of last records in ZooKeeper log, even if they are obsolete. It doesn't affect work of tables: used only to diagnose ZooKeeper log before cleaning. │ UInt64 │

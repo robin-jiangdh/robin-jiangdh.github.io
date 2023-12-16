@@ -11,7 +11,7 @@ In order to calculate arrayMap or similar array* functions ClickHouse temporaril
 
 So for example, you have 2 columns:
 
-```sql
+```
 SELECT *
 FROM
 (
@@ -27,7 +27,7 @@ FROM
 
 Let's say we want to multiply array elements at corresponding positions.
 
-```sql
+```
 SELECT arrayMap(x -> ((array_1[x]) * (array_2[x])), arrayEnumerate(array_1)) AS multi
 FROM
 (
@@ -43,7 +43,7 @@ FROM
 
 ClickHouse create temporary structure in memory like this:
 
-```sql
+```
 SELECT
     array_1,
 	array_2,
@@ -69,7 +69,7 @@ We can roughly estimate memory usage by multiplying the size of columns particip
 
 And total memory usage will be 55 values (5(array size)*2(array count)*5(row count) + 5(unnested array size)), which is 5.5 times more than initial array size.
 
-```sql
+```
 SELECT groupArray((array_1[x]) * (array_2[x])) AS multi
 FROM
 (
@@ -93,7 +93,7 @@ ARRAY JOIN arrayEnumerate(array_1) AS x
 
 But what if we write this function in a more logical way, so we wouldn't use any unnested arrays in lambda.
 
-```sql
+```
 SELECT arrayMap((x, y) -> (x * y), array_1, array_2) AS multi
 FROM
 (
@@ -109,7 +109,7 @@ FROM
 
 ClickHouse create temporary structure in memory like this:
 
-```sql
+```
 SELECT
     x,
     y
@@ -134,7 +134,7 @@ ARRAY JOIN
 
 We have only 10 values, which is no more than what we have in initial arrays.
 
-```sql
+```
 SELECT groupArray(x * y) AS multi
 FROM
 (
@@ -162,7 +162,7 @@ The same approach can be applied to other array* function with arrayMap-like cap
 
 ## Examples with bigger arrays:
 
-```sql
+```
 SET max_threads=1;
 SET send_logs_level='trace';
 
@@ -222,7 +222,7 @@ Elapsed: 36.777 sec. Processed 524.04 thousand rows, 4.19 MB (14.25 thousand row
 
 Which data types we have in those arrays?
 
-```sql
+```
 WITH 100 AS size
 SELECT
     toTypeName(materialize(CAST(range(size), 'Array(UInt32)'))) AS array_1,
@@ -240,7 +240,7 @@ By default ClickHouse execute query by blocks of 65515 rows (`max_block_size` se
 
 Lets estimate query total memory usage given previous calculations.
 
-```sql
+```
 WITH
     100 AS size,
     4 AS value_size,
@@ -271,7 +271,7 @@ Correlation is pretty clear.
 
 What if we will reduce size of blocks used for query execution?
 
-```sql
+```
 SET max_block_size = '16k';
 
 SELECT arrayMap(x -> ((array_1[x]) * (array_2[x])), arrayEnumerate(array_1)) AS multi
@@ -292,7 +292,7 @@ Elapsed: 35.935 sec. Processed 512.00 thousand rows, 4.10 MB (14.25 thousand row
 
 Memory usage down in 4 times, which has strong correlation with our change: 65k -> 16k ~ 4 times.
 
-```sql
+```
 SELECT arrayMap((x, y) -> (x * y), array_1, array_2) AS multi
 FROM
 (

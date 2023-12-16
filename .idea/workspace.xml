@@ -7,245 +7,680 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="69ddd2ad-813b-49a1-b3c5-c5aaced8e76b" name="Changes" comment="add clickhouse&#10;&#10;a">
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/engines/altinity-kb-atomic-database-engine/altinity-kb-atomic-database-engine__index.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/engines/altinity-kb-atomic-database-engine/altinity-kb-how-to-convert-atomic-to-ordinary.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/engines/altinity-kb-atomic-database-engine/how-to-convert-ordinary-to-atomic.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/engines/engines__index.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/engines/kb-embeddedrocksdb-and-dictionary.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/engines/mergetree-table-engine-family/aggregatingmergetree.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/engines/mergetree-table-engine-family/collapsing-vs-replacing.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/engines/mergetree-table-engine-family/index-and-column-files.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/engines/mergetree-table-engine-family/kb-nulls-in-order-by.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/engines/mergetree-table-engine-family/merge-performance-final-optimize-by.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/engines/mergetree-table-engine-family/mergetree-table-engine-family__index.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/engines/mergetree-table-engine-family/part-naming-and-mvcc.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/engines/mergetree-table-engine-family/pick-keys.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/engines/mergetree-table-engine-family/replacingmergetree/kb-replacingmergetree-does-not-collapse-duplicates.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/engines/mergetree-table-engine-family/replacingmergetree/replacingmergetree__index.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/engines/mergetree-table-engine-family/skip-index.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/engines/mergetree-table-engine-family/summingmergetree.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-dictionaries/dictionaries-and-arrays.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-dictionaries/dictionary-on-top-tables.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-dictionaries/example-of-postgresql-dictionary.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-dictionaries/kb-dictionaries-index.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-dictionaries/kb-range_hashed-example-open-intervals.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-dictionaries/kb-sparse_hashed-vs-hashed.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-dictionaries/mysql8-source-for-dictionaries.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-dictionaries/partial-updates.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-dictionaries/security-named-collections.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-functions/array-like-memory-usage.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-functions/assumenotnull-and-friends.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-functions/encrypt.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-functions/kb-functions__index.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-functions/kb-sequencematch.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-functions/resample-vs-if-vs-map-vs-subquery.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-integrations/Spark.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-integrations/bi-tools.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-integrations/catboost-mindsdb-fast.ai.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-integrations/clickhouse-odbc.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-integrations/cloud/cloud-access-management.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-integrations/cloud/cloud__index.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-integrations/kb-google-s3-gcs.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-integrations/kb-integrations__index.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-integrations/kb-kafka/error-handling.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-integrations/kb-kafka/kb-adjusting-librdkafka-settings.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-integrations/kb-kafka/kb-exactly-once-semantics.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-integrations/kb-kafka/kb-kafka-main-parsing-loop.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-integrations/kb-kafka/kb-kafka-parallel-consuming.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-integrations/kb-kafka/kb-kafka__index.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-integrations/kb-kafka/kb-rewind-fast-forward-replay.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-integrations/kb-kafka/kb-selects-from-engine-kafka.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-integrations/mysql-clickhouse.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-interfaces/kb-clickhouse-client.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-interfaces/kb-interfaces__index.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-kubernetes/kb-kubernetes__index.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-kubernetes/kb-possible-issues-with-running-clickhouse-in-k8s.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/ansi-sql-mode.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/array-functions-as-window.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/async-inserts.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/atomic-insert.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/cumulative-unique.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/data-types-on-disk-and-in-ram.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/datetime64.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/delete-via-tombstone-column.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/distinct-vs-group-by-vs-limit-by.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/explain-query.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/fill-missing-values-at-query-time.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/group-by/group-by__index.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/group-by/tricks.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/join-with-calendar-using-arrays.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/joins/join-table-engine.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/joins/joins__index.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/jsonextract-to-parse-many-attributes-at-a-time.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/kb-alter-modify-column-is-stuck-the-column-is-inaccessible.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/kb-final-clause-speed.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/kb-kill-query.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/kb-optimize-vs-optimize-final.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/kb-parameterized-views.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/kb-possible-deadlock-avoided.-client-should-retry.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/kb-queries-and-syntax__index.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/kb-sample-by.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/lag-lead.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/literal-decimal-or-float.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/machine-learning-in-clickhouse.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/multiple-date-column-in-partition-key.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/mutations.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/partial-projection-optimization.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/pivot-unpivot.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/projections-examples.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/roaring-bitmaps-for-calculating-retention.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/sampling-example.md" afterDir="false" />
+    <list default="true" id="69ddd2ad-813b-49a1-b3c5-c5aaced8e76b" name="Changes" comment="修复报错问题&#10;&#10;a">
+      <change afterPath="$PROJECT_DIR$/Writerside/images/128942286.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Writerside/images/131596298.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Writerside/images/2021-04-20_10-50.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Writerside/images/2021-04-20_10-54.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Writerside/images/90964099 (1).svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Writerside/images/90964099.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Writerside/images/90964165 (1) (1) (1).png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Writerside/images/90964165 (1) (1).png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Writerside/images/90964177.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Writerside/images/93913111.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Writerside/images/93913148 (2) (2) (1).png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Writerside/images/93913148 (2) (2) (2).png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Writerside/images/93913148 (2) (2).png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Writerside/images/93913161 (3) (3) (1).png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Writerside/images/93913161 (3) (3) (2).png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Writerside/images/93913161 (3) (3) (3).png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Writerside/images/93913161 (3) (3).png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Writerside/images/93978647.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Writerside/images/93978653.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Writerside/images/94076929 (1).png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Writerside/images/94076929.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Writerside/images/Untitled-2021-08-05-1027.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Writerside/images/add.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Writerside/images/altinity-cloud-cluster-add-setting.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Writerside/images/altinity-cloud-cluster-settings-configure.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Writerside/images/bullet_blue.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Writerside/images/forbidden.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Writerside/images/home_page_16.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Writerside/images/illyustraciya_bez_nazvaniya.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Writerside/images/information.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Writerside/images/mutations4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Writerside/images/select-ec2-iam-role.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/engines/engines_engines_index.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/engines/kb-atomic-database-engine/kb-atomic-database-engine_index.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/engines/kb-atomic-database-engine/kb-how-to-convert-atomic-to-ordinary.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/engines/mergetree-table-engine-family/mergetree-table-engine-family_mergetree-table-engine-family_index.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/engines/mergetree-table-engine-family/replacingmergetree/replacingmergetree_replacingmergetree_index.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-functions/kb-functions_index.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-integrations/kb-integrations_index.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-interfaces/kb-interfaces_index.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/joins/joins_index.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/kb-possible-deadlock-avoided-client-should-retry.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/kb-queries-and-syntax_index.md" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/simplestateif-or-ifstate-for-simple-aggregate-functions.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/skip-indexes/minmax.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/skip-indexes/skip-index-bloom_filter-for-array-column.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/skip-indexes/skip-indexes-examples.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/skip-indexes/skip-indexes__index.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/slow_select_count.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/state-and-merge-combinators.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/time-zones.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/top-n-and-remain.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/trace_log.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/troubleshooting.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/ts-interpolation.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/ttl/modify-ttl.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/ttl/ttl-group-by-examples.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/ttl/ttl-recompress-example.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/ttl/ttl__index.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/ttl/what-are-my-ttls.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/update-via-dictionary.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/values-mapping.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/window-functions.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-schema-design/backfill_column.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-schema-design/best-schema-for-storing-many-metrics-registered-from-the-single-source.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-schema-design/change-order-by.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-schema-design/codecs/codecs-on-array-columns.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-schema-design/codecs/codecs-speed.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-schema-design/codecs/codecs__index.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-schema-design/codecs/kb-how-to-test-different-compression-codecs.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-schema-design/flattened-table.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-schema-design/floats-vs-decimals.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-schema-design/how-much-is-too-much.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-schema-design/how-to-store-ips.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-schema-design/ingestion-aggregate-function.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-schema-design/ingestion-performance-and-formats.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-schema-design/insert_deduplication.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-schema-design/kb-dictionaries-vs-lowcardinality.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-schema-design/kb-jsonasstring-and-mat.-view-as-json-parser.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-schema-design/kb-schema-design-index.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-schema-design/lowcardinality.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-schema-design/materialized-views/backfill-populate-mv-in-a-controlled-manner.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-schema-design/materialized-views/idempotent_inserts_mv.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-schema-design/materialized-views/materialized-views__index.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-schema-design/preaggregations.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-schema-design/row-level-deduplication.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-schema-design/uniq-functions.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/alters.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/asynchronous_metrics_descr.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/aws-ec2-storage.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/cgroups_k8s.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/ch-logs-2-json-vectordev.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/change-me.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/clickhouse-backup-diff.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/clickhouse-backup.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/clickhouse-deployment-plan.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/clickhouse-operator.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/clickhouse-versions.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/cluster-production-configuration-guide/cluster-configuration-faq.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/cluster-production-configuration-guide/cluster-configuration-process.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/cluster-production-configuration-guide/cluster-production-configuration-guide__index.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/cluster-production-configuration-guide/hardening-clickhouse-security.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/cluster-production-configuration-guide/hardware-requirements.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/cluster-production-configuration-guide/network-configuration.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/cluster-production-configuration-guide/version-upgrades.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/connection-problems.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/custom_settings.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/disk_encryption.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/filesystems.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/high-cpu-usage.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/http_handlers.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-clickhouse-in-docker.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-converting-mergetree-to-replicated.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-data-migration/distributed-table-cluster.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-data-migration/fetch_alter_table.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-data-migration/kb-clickhouse-copier/kb-clickhouse-copier-20.3-and-earlier.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-data-migration/kb-clickhouse-copier/kb-clickhouse-copier-20.4_21.6.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-data-migration/kb-clickhouse-copier/kb-clickhouse-copier-kubernetes-job.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-data-migration/kb-clickhouse-copier/kb-clickhouse-copier__index.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-data-migration/kb-data-migration__index.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-data-migration/mssql-clickhouse.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-data-migration/remote-table-function.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-data-migration/rsync.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-ddlworker/altinity-kb-ddlworker__index.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-ddlworker/there-are-n-unfinished-hosts-0-of-them-are-currently-active.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-memory-configuration-settings.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-monitoring.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-object-consistency-in-a-cluster.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-replication-queue.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-s3-object-storage/aws-s3-recipes.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-s3-object-storage/kb-s3-object-storage__index.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-s3-object-storage/s3disk.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-server-config-files.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-settings-to-adjust.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-setup-and-maintenance-index.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-shutting-down-a-node.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-system-tables-eat-my-disk.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-threads.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-who-ate-my-memory.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-zookeeper/clickhouse-keeper-service.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-zookeeper/clickhouse-keeper.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-zookeeper/install_ubuntu.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-zookeeper/jvm-sizes-and-garbage-collector-settings.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-zookeeper/kb-how-to-check-the-list-of-watches.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-zookeeper/kb-proper-setup.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-zookeeper/kb-recovering-from-complete-metadata-loss-in-zookeeper.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-zookeeper/kb-zookeeper-backup.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-zookeeper/kb-zookeeper-cluster-migration.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-zookeeper/kb-zookeeper__index.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-zookeeper/zookeeper-monitoring.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-zookeeper/zookeeper-schema.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/load-balancers.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/logging.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/monitoring-operator-exporter-compatibility.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/packaging-compatibility-greater-than-21.x-and-earlier.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/precreate_parts_using_clickhouse_local.sh.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/rbac.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/recovery-after-complete-data-loss.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/schema-migration-tools/golang-migrate.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/schema-migration-tools/schema-migration-tools__index.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/source-pars-size-is-greater-than-maximum.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/ssl-connection-unexpectedly-closed.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/suspiciously-many-broken-parts.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/sysall.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/timeouts-during-optimize-final.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/uniq-uuid-doubled-clickhouse-upgrade.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/uniqExact-to-uniq-combined.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/useful-setting-to-turn-on.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/who-ate-my-cpu.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/zookeeper-session-expired.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-useful-queries/debug-hang.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-useful-queries/detached-parts.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-useful-queries/ingestion-rate-part_log.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-useful-queries/kb-database-size-table-column-size.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-useful-queries/kb-datasets.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-useful-queries/kb-number-of-active-parts-in-a-partition.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-useful-queries/kb-useful-queries-index.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-useful-queries/parts-consistency.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-useful-queries/query_log.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-useful-queries/table-meta-in-zookeeper.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/upgrade/clickhouse-feature-report.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/upgrade/removing-empty-parts.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/upgrade/removing-lost-parts.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/upgrade/upgrade__index.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/upgrade/vulnerabilities.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/using-this-knowledgebase/mermaid_example.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/using-this-knowledgebase/using-this-knowledgebase__index.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-schema-design/codecs/codecs_index.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-schema-design/materialized-views/materialized-views_index.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/cluster-production-configuration-guide/cluster-production-configuration-guide_index.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-data-migration/kb-clickhouse-copier/20.3-and-earlier.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-data-migration/kb-clickhouse-copier/20.4_21.6.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-ddlworker/kb-ddlworker_index.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-s3-object-storage/kb-s3-object-storage_index.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-zookeeper/kb-zookeeper_index.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/schema-migration-tools/schema-migration-tools_index.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/upgrade/upgrade_upgrade_index.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/using-this-knowledgebase/using-this-knowledgebase_index.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/using-this-knowledgebase/using-this-knowledgebase_using-this-knowledgebase_index.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Writerside/blog.tree" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/blog.tree" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Writerside/cfg/buildprofiles.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/cfg/buildprofiles.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Writerside/redirection-rules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/redirection-rules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Writerside/writerside.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/writerside.cfg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/engines/altinity-kb-atomic-database-engine/altinity-kb-atomic-database-engine__index.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/engines/altinity-kb-atomic-database-engine/altinity-kb-atomic-database-engine_altinity-kb-atomic-database-engine__index.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/engines/altinity-kb-atomic-database-engine/altinity-kb-atomic-database-engine_altinity-kb-how-to-convert-atomic-to-ordinary.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/engines/altinity-kb-atomic-database-engine/altinity-kb-atomic-database-engine_how-to-convert-ordinary-to-atomic.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/engines/engines_engines__index.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/engines/engines_kb-embeddedrocksdb-and-dictionary.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/engines/engines_kb-embeddedrocksdb-and-dictionary.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/engines/kb-embeddedrocksdb-and-dictionary.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/engines/kb-embeddedrocksdb-and-dictionary.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/engines/mergetree-table-engine-family/aggregatingmergetree.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/engines/mergetree-table-engine-family/aggregatingmergetree.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/engines/mergetree-table-engine-family/kb-nulls-in-order-by.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/engines/mergetree-table-engine-family/kb-nulls-in-order-by.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/engines/mergetree-table-engine-family/merge-performance-final-optimize-by.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/engines/mergetree-table-engine-family/merge-performance-final-optimize-by.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/engines/mergetree-table-engine-family/mergetree-table-engine-family_aggregatingmergetree.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/engines/mergetree-table-engine-family/mergetree-table-engine-family_aggregatingmergetree.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/engines/mergetree-table-engine-family/mergetree-table-engine-family_kb-nulls-in-order-by.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/engines/mergetree-table-engine-family/mergetree-table-engine-family_kb-nulls-in-order-by.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/engines/mergetree-table-engine-family/mergetree-table-engine-family_merge-performance-final-optimize-by.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/engines/mergetree-table-engine-family/mergetree-table-engine-family_merge-performance-final-optimize-by.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/engines/mergetree-table-engine-family/mergetree-table-engine-family_mergetree-table-engine-family__index.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/engines/mergetree-table-engine-family/mergetree-table-engine-family_pick-keys.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/engines/mergetree-table-engine-family/mergetree-table-engine-family_pick-keys.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/engines/mergetree-table-engine-family/mergetree-table-engine-family_skip-index.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/engines/mergetree-table-engine-family/mergetree-table-engine-family_skip-index.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/engines/mergetree-table-engine-family/mergetree-table-engine-family_summingmergetree.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/engines/mergetree-table-engine-family/mergetree-table-engine-family_summingmergetree.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/engines/mergetree-table-engine-family/pick-keys.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/engines/mergetree-table-engine-family/pick-keys.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/engines/mergetree-table-engine-family/replacingmergetree/replacingmergetree__index.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/engines/mergetree-table-engine-family/replacingmergetree/replacingmergetree__index.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/engines/mergetree-table-engine-family/replacingmergetree/replacingmergetree_replacingmergetree__index.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/engines/mergetree-table-engine-family/skip-index.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/engines/mergetree-table-engine-family/skip-index.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/engines/mergetree-table-engine-family/summingmergetree.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/engines/mergetree-table-engine-family/summingmergetree.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-dictionaries/example-of-postgresql-dictionary.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-dictionaries/example-of-postgresql-dictionary.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-dictionaries/kb-dictionaries_dictionaries-and-arrays.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-dictionaries/kb-dictionaries_dictionaries-and-arrays.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-dictionaries/kb-dictionaries_dictionary-on-top-tables.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-dictionaries/kb-dictionaries_dictionary-on-top-tables.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-dictionaries/kb-dictionaries_example-of-postgresql-dictionary.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-dictionaries/kb-dictionaries_example-of-postgresql-dictionary.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-dictionaries/kb-dictionaries_kb-range_hashed-example-open-intervals.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-dictionaries/kb-dictionaries_kb-range_hashed-example-open-intervals.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-dictionaries/kb-dictionaries_kb-sparse_hashed-vs-hashed.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-dictionaries/kb-dictionaries_kb-sparse_hashed-vs-hashed.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-dictionaries/kb-dictionaries_mysql8-source-for-dictionaries.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-dictionaries/kb-dictionaries_mysql8-source-for-dictionaries.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-dictionaries/kb-dictionaries_partial-updates.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-dictionaries/kb-dictionaries_partial-updates.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-dictionaries/kb-dictionaries_security-named-collections.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-dictionaries/kb-dictionaries_security-named-collections.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-dictionaries/kb-range_hashed-example-open-intervals.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-dictionaries/kb-range_hashed-example-open-intervals.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-dictionaries/kb-sparse_hashed-vs-hashed.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-dictionaries/kb-sparse_hashed-vs-hashed.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-dictionaries/mysql8-source-for-dictionaries.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-dictionaries/mysql8-source-for-dictionaries.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-dictionaries/partial-updates.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-dictionaries/partial-updates.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-dictionaries/security-named-collections.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-dictionaries/security-named-collections.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-functions/array-like-memory-usage.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-functions/array-like-memory-usage.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-functions/assumenotnull-and-friends.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-functions/assumenotnull-and-friends.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-functions/encrypt.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-functions/encrypt.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-functions/kb-functions__index.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-functions/kb-functions_array-like-memory-usage.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-functions/kb-functions_array-like-memory-usage.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-functions/kb-functions_assumenotnull-and-friends.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-functions/kb-functions_assumenotnull-and-friends.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-functions/kb-functions_encrypt.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-functions/kb-functions_encrypt.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-functions/kb-functions_kb-functions__index.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-functions/kb-functions_kb-sequencematch.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-functions/kb-functions_kb-sequencematch.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-functions/kb-functions_resample-vs-if-vs-map-vs-subquery.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-functions/kb-functions_resample-vs-if-vs-map-vs-subquery.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-functions/resample-vs-if-vs-map-vs-subquery.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-functions/resample-vs-if-vs-map-vs-subquery.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-integrations/cloud/cloud-access-management.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-integrations/cloud/cloud-access-management.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-integrations/cloud/cloud_cloud-access-management.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-integrations/cloud/cloud_cloud__index.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-integrations/kb-integrations_Spark.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-integrations/kb-integrations_Spark.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-integrations/kb-integrations__index.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-integrations/kb-integrations_clickhouse-odbc.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-integrations/kb-integrations_clickhouse-odbc.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-integrations/kb-integrations_mysql-clickhouse.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-integrations/kb-integrations_mysql-clickhouse.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-integrations/kb-kafka/error-handling.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-integrations/kb-kafka/error-handling.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-integrations/kb-kafka/kb-adjusting-librdkafka-settings.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-integrations/kb-kafka/kb-adjusting-librdkafka-settings.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-integrations/kb-kafka/kb-kafka_error-handling.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-integrations/kb-kafka/kb-kafka_kb-adjusting-librdkafka-settings.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-integrations/kb-kafka/kb-kafka_kb-exactly-once-semantics.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-integrations/kb-kafka/kb-kafka_kb-kafka-main-parsing-loop.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-integrations/kb-kafka/kb-kafka_kb-kafka-parallel-consuming.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-integrations/kb-kafka/kb-kafka_kb-kafka__index.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-integrations/kb-kafka/kb-kafka_kb-rewind-fast-forward-replay.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-integrations/kb-kafka/kb-kafka_kb-selects-from-engine-kafka.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-integrations/mysql-clickhouse.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-integrations/mysql-clickhouse.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-interfaces/kb-interfaces__index.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-interfaces/kb-interfaces_kb-clickhouse-client.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-interfaces/kb-interfaces_kb-interfaces__index.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-kubernetes/kb-kubernetes_kb-kubernetes__index.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-kubernetes/kb-kubernetes_kb-possible-issues-with-running-clickhouse-in-k8s.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-kubernetes/kb-possible-issues-with-running-clickhouse-in-k8s.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-kubernetes/kb-possible-issues-with-running-clickhouse-in-k8s.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/ansi-sql-mode.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/ansi-sql-mode.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/array-functions-as-window.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/array-functions-as-window.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/cumulative-unique.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/cumulative-unique.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/distinct-vs-group-by-vs-limit-by.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/distinct-vs-group-by-vs-limit-by.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/group-by/group-by_group-by__index.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/group-by/group-by_tricks.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/group-by/tricks.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/group-by/tricks.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/join-with-calendar-using-arrays.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/join-with-calendar-using-arrays.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/joins/join-table-engine.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/joins/join-table-engine.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/joins/joins__index.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/joins/joins_join-table-engine.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/joins/joins_joins__index.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/jsonextract-to-parse-many-attributes-at-a-time.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/jsonextract-to-parse-many-attributes-at-a-time.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/kb-kill-query.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/kb-kill-query.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/kb-parameterized-views.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/kb-parameterized-views.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/kb-possible-deadlock-avoided.-client-should-retry.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/kb-queries-and-syntax__index.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/kb-queries-and-syntax_ansi-sql-mode.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/kb-queries-and-syntax_array-functions-as-window.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/kb-queries-and-syntax_async-inserts.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/kb-queries-and-syntax_atomic-insert.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/kb-queries-and-syntax_cumulative-unique.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/kb-queries-and-syntax_data-types-on-disk-and-in-ram.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/kb-queries-and-syntax_datetime64.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/kb-queries-and-syntax_delete-via-tombstone-column.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/kb-queries-and-syntax_distinct-vs-group-by-vs-limit-by.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/kb-queries-and-syntax_explain-query.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/kb-queries-and-syntax_fill-missing-values-at-query-time.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/kb-queries-and-syntax_join-with-calendar-using-arrays.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/kb-queries-and-syntax_jsonextract-to-parse-many-attributes-at-a-time.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/kb-queries-and-syntax_kb-alter-modify-column-is-stuck-the-column-is-inaccessible.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/kb-queries-and-syntax_kb-final-clause-speed.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/kb-queries-and-syntax_kb-kill-query.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/kb-queries-and-syntax_kb-optimize-vs-optimize-final.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/kb-queries-and-syntax_kb-parameterized-views.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/kb-queries-and-syntax_kb-possible-deadlock-avoided.-client-should-retry.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/kb-queries-and-syntax_kb-queries-and-syntax__index.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/kb-queries-and-syntax_kb-sample-by.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/kb-queries-and-syntax_lag-lead.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/kb-queries-and-syntax_literal-decimal-or-float.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/kb-queries-and-syntax_machine-learning-in-clickhouse.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/kb-queries-and-syntax_multiple-date-column-in-partition-key.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/kb-queries-and-syntax_mutations.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/kb-queries-and-syntax_partial-projection-optimization.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/kb-queries-and-syntax_pivot-unpivot.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/kb-queries-and-syntax_projections-examples.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/kb-queries-and-syntax_roaring-bitmaps-for-calculating-retention.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/kb-queries-and-syntax_sampling-example.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/kb-queries-and-syntax_simplestateif-or-ifstate-for-simple-aggregate-functions.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/kb-queries-and-syntax_slow_select_count.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/kb-queries-and-syntax_state-and-merge-combinators.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/kb-queries-and-syntax_time-zones.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/kb-queries-and-syntax_top-n-and-remain.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/kb-queries-and-syntax_trace_log.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/kb-queries-and-syntax_troubleshooting.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/kb-queries-and-syntax_ts-interpolation.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/kb-queries-and-syntax_update-via-dictionary.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/kb-queries-and-syntax_values-mapping.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/kb-queries-and-syntax_window-functions.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/lag-lead.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/lag-lead.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/multiple-date-column-in-partition-key.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/multiple-date-column-in-partition-key.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/mutations.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/mutations.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/projections-examples.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/projections-examples.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/sampling-example.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/sampling-example.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/skip-indexes/skip-index-bloom_filter-for-array-column.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/skip-indexes/skip-index-bloom_filter-for-array-column.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/skip-indexes/skip-indexes_minmax.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/skip-indexes/skip-indexes_skip-index-bloom_filter-for-array-column.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/skip-indexes/skip-indexes_skip-indexes-examples.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/skip-indexes/skip-indexes_skip-indexes__index.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/slow_select_count.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/slow_select_count.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/time-zones.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/time-zones.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/top-n-and-remain.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/top-n-and-remain.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/ts-interpolation.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/ts-interpolation.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/ttl/modify-ttl.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/ttl/modify-ttl.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/ttl/ttl-group-by-examples.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/ttl/ttl-group-by-examples.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/ttl/ttl-recompress-example.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/ttl/ttl-recompress-example.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/ttl/ttl_modify-ttl.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/ttl/ttl_modify-ttl.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/ttl/ttl_ttl-group-by-examples.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/ttl/ttl_ttl-recompress-example.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/ttl/ttl_ttl__index.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/ttl/ttl_what-are-my-ttls.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/values-mapping.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/values-mapping.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/window-functions.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/window-functions.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-schema-design/backfill_column.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-schema-design/backfill_column.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-schema-design/codecs/codecs__index.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-schema-design/codecs/codecs_codecs-on-array-columns.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-schema-design/codecs/codecs_codecs-speed.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-schema-design/codecs/codecs_codecs__index.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-schema-design/codecs/codecs_kb-how-to-test-different-compression-codecs.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-schema-design/codecs/kb-how-to-test-different-compression-codecs.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-schema-design/codecs/kb-how-to-test-different-compression-codecs.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-schema-design/floats-vs-decimals.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-schema-design/floats-vs-decimals.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-schema-design/how-much-is-too-much.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-schema-design/how-much-is-too-much.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-schema-design/how-to-store-ips.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-schema-design/how-to-store-ips.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-schema-design/ingestion-aggregate-function.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-schema-design/ingestion-aggregate-function.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-schema-design/ingestion-performance-and-formats.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-schema-design/ingestion-performance-and-formats.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-schema-design/insert_deduplication.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-schema-design/insert_deduplication.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-schema-design/kb-schema-design_backfill_column.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-schema-design/kb-schema-design_best-schema-for-storing-many-metrics-registered-from-the-single-source.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-schema-design/kb-schema-design_change-order-by.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-schema-design/kb-schema-design_flattened-table.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-schema-design/kb-schema-design_floats-vs-decimals.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-schema-design/kb-schema-design_how-much-is-too-much.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-schema-design/kb-schema-design_how-to-store-ips.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-schema-design/kb-schema-design_ingestion-aggregate-function.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-schema-design/kb-schema-design_ingestion-performance-and-formats.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-schema-design/kb-schema-design_insert_deduplication.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-schema-design/kb-schema-design_kb-dictionaries-vs-lowcardinality.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-schema-design/kb-schema-design_kb-jsonasstring-and-mat.-view-as-json-parser.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-schema-design/kb-schema-design_kb-schema-design-index.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-schema-design/kb-schema-design_lowcardinality.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-schema-design/kb-schema-design_preaggregations.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-schema-design/kb-schema-design_row-level-deduplication.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-schema-design/kb-schema-design_uniq-functions.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-schema-design/materialized-views/materialized-views__index.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-schema-design/materialized-views/materialized-views_backfill-populate-mv-in-a-controlled-manner.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-schema-design/materialized-views/materialized-views_idempotent_inserts_mv.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-schema-design/materialized-views/materialized-views_materialized-views__index.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-schema-design/row-level-deduplication.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-schema-design/row-level-deduplication.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/alters.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/alters.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/aws-ec2-storage.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/aws-ec2-storage.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/change-me.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/change-me.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/clickhouse-backup-diff.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/clickhouse-backup-diff.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/clickhouse-backup.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/clickhouse-backup.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/cluster-production-configuration-guide/cluster-configuration-process.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/cluster-production-configuration-guide/cluster-configuration-process.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/cluster-production-configuration-guide/cluster-production-configuration-guide__index.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/cluster-production-configuration-guide/cluster-production-configuration-guide_cluster-configuration-faq.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/cluster-production-configuration-guide/cluster-production-configuration-guide_cluster-configuration-process.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/cluster-production-configuration-guide/cluster-production-configuration-guide_cluster-production-configuration-guide__index.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/cluster-production-configuration-guide/cluster-production-configuration-guide_hardening-clickhouse-security.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/cluster-production-configuration-guide/cluster-production-configuration-guide_hardware-requirements.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/cluster-production-configuration-guide/cluster-production-configuration-guide_network-configuration.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/cluster-production-configuration-guide/cluster-production-configuration-guide_version-upgrades.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/custom_settings.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/custom_settings.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/disk_encryption.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/disk_encryption.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/http_handlers.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/http_handlers.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-clickhouse-in-docker.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-clickhouse-in-docker.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-converting-mergetree-to-replicated.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-converting-mergetree-to-replicated.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-data-migration/distributed-table-cluster.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-data-migration/distributed-table-cluster.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-data-migration/fetch_alter_table.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-data-migration/fetch_alter_table.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-data-migration/kb-clickhouse-copier/kb-clickhouse-copier-20.3-and-earlier.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-data-migration/kb-clickhouse-copier/kb-clickhouse-copier-20.4_21.6.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-data-migration/kb-clickhouse-copier/kb-clickhouse-copier_kb-clickhouse-copier-20.3-and-earlier.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-data-migration/kb-clickhouse-copier/kb-clickhouse-copier_kb-clickhouse-copier-20.4_21.6.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-data-migration/kb-clickhouse-copier/kb-clickhouse-copier_kb-clickhouse-copier-kubernetes-job.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-data-migration/kb-clickhouse-copier/kb-clickhouse-copier_kb-clickhouse-copier__index.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-data-migration/kb-data-migration_distributed-table-cluster.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-data-migration/kb-data-migration_fetch_alter_table.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-data-migration/kb-data-migration_kb-data-migration__index.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-data-migration/kb-data-migration_mssql-clickhouse.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-data-migration/kb-data-migration_remote-table-function.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-data-migration/kb-data-migration_rsync.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-data-migration/remote-table-function.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-data-migration/remote-table-function.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-data-migration/rsync.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-data-migration/rsync.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-ddlworker/kb-ddlworker_altinity-kb-ddlworker__index.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-ddlworker/kb-ddlworker_there-are-n-unfinished-hosts-0-of-them-are-currently-active.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-ddlworker/there-are-n-unfinished-hosts-0-of-them-are-currently-active.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-ddlworker/there-are-n-unfinished-hosts-0-of-them-are-currently-active.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-memory-configuration-settings.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-memory-configuration-settings.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-moving-table-to-another-device.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-moving-table-to-another-device.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-s3-object-storage/aws-s3-recipes.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-s3-object-storage/aws-s3-recipes.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-s3-object-storage/kb-s3-object-storage__index.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-s3-object-storage/kb-s3-object-storage_aws-s3-recipes.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-s3-object-storage/kb-s3-object-storage_kb-s3-object-storage__index.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-s3-object-storage/kb-s3-object-storage_s3disk.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-s3-object-storage/s3disk.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-s3-object-storage/s3disk.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-server-config-files.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-server-config-files.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-settings-to-adjust.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-settings-to-adjust.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-setup-and-maintenance_alters.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-setup-and-maintenance_alters.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-setup-and-maintenance_aws-ec2-storage.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-setup-and-maintenance_aws-ec2-storage.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-setup-and-maintenance_cgroups_k8s.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-setup-and-maintenance_cgroups_k8s.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-setup-and-maintenance_ch-logs-2-json-vectordev.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-setup-and-maintenance_ch-logs-2-json-vectordev.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-setup-and-maintenance_change-me.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-setup-and-maintenance_change-me.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-setup-and-maintenance_clickhouse-backup-diff.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-setup-and-maintenance_clickhouse-backup-diff.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-setup-and-maintenance_clickhouse-backup.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-setup-and-maintenance_clickhouse-backup.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-setup-and-maintenance_clickhouse-deployment-plan.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-setup-and-maintenance_clickhouse-deployment-plan.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-setup-and-maintenance_connection-problems.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-setup-and-maintenance_connection-problems.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-setup-and-maintenance_custom_settings.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-setup-and-maintenance_custom_settings.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-setup-and-maintenance_disk_encryption.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-setup-and-maintenance_disk_encryption.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-setup-and-maintenance_high-cpu-usage.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-setup-and-maintenance_high-cpu-usage.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-setup-and-maintenance_http_handlers.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-setup-and-maintenance_http_handlers.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-setup-and-maintenance_kb-clickhouse-in-docker.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-setup-and-maintenance_kb-clickhouse-in-docker.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-setup-and-maintenance_kb-converting-mergetree-to-replicated.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-setup-and-maintenance_kb-converting-mergetree-to-replicated.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-setup-and-maintenance_kb-memory-configuration-settings.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-setup-and-maintenance_kb-memory-configuration-settings.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-setup-and-maintenance_kb-monitoring.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-setup-and-maintenance_kb-monitoring.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-setup-and-maintenance_kb-moving-table-to-another-device.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-setup-and-maintenance_kb-moving-table-to-another-device.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-setup-and-maintenance_kb-object-consistency-in-a-cluster.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-setup-and-maintenance_kb-object-consistency-in-a-cluster.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-setup-and-maintenance_kb-replication-queue.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-setup-and-maintenance_kb-replication-queue.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-setup-and-maintenance_kb-server-config-files.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-setup-and-maintenance_kb-server-config-files.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-setup-and-maintenance_kb-settings-to-adjust.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-setup-and-maintenance_kb-settings-to-adjust.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-setup-and-maintenance_kb-shutting-down-a-node.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-setup-and-maintenance_kb-shutting-down-a-node.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-setup-and-maintenance_kb-system-tables-eat-my-disk.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-setup-and-maintenance_kb-system-tables-eat-my-disk.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-setup-and-maintenance_kb-threads.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-setup-and-maintenance_kb-threads.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-setup-and-maintenance_kb-who-ate-my-memory.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-setup-and-maintenance_kb-who-ate-my-memory.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-setup-and-maintenance_logging.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-setup-and-maintenance_logging.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-setup-and-maintenance_monitoring-operator-exporter-compatibility.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-setup-and-maintenance_monitoring-operator-exporter-compatibility.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-setup-and-maintenance_packaging-compatibility-greater-than-21.x-and-earlier.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-setup-and-maintenance_packaging-compatibility-greater-than-21.x-and-earlier.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-setup-and-maintenance_rbac.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-setup-and-maintenance_rbac.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-setup-and-maintenance_recovery-after-complete-data-loss.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-setup-and-maintenance_recovery-after-complete-data-loss.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-setup-and-maintenance_suspiciously-many-broken-parts.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-setup-and-maintenance_suspiciously-many-broken-parts.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-setup-and-maintenance_sysall.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-setup-and-maintenance_sysall.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-setup-and-maintenance_uniq-uuid-doubled-clickhouse-upgrade.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-setup-and-maintenance_uniq-uuid-doubled-clickhouse-upgrade.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-setup-and-maintenance_uniqExact-to-uniq-combined.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-setup-and-maintenance_uniqExact-to-uniq-combined.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-setup-and-maintenance_useful-setting-to-turn-on.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-setup-and-maintenance_useful-setting-to-turn-on.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-setup-and-maintenance_who-ate-my-cpu.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-setup-and-maintenance_who-ate-my-cpu.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-setup-and-maintenance_zookeeper-session-expired.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-setup-and-maintenance_zookeeper-session-expired.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-system-tables-eat-my-disk.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-system-tables-eat-my-disk.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-threads.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-threads.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-zookeeper/clickhouse-keeper.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-zookeeper/clickhouse-keeper.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-zookeeper/kb-zookeeper__index.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-zookeeper/kb-zookeeper_clickhouse-keeper-service.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-zookeeper/kb-zookeeper_clickhouse-keeper.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-zookeeper/kb-zookeeper_install_ubuntu.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-zookeeper/kb-zookeeper_jvm-sizes-and-garbage-collector-settings.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-zookeeper/kb-zookeeper_kb-how-to-check-the-list-of-watches.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-zookeeper/kb-zookeeper_kb-proper-setup.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-zookeeper/kb-zookeeper_kb-recovering-from-complete-metadata-loss-in-zookeeper.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-zookeeper/kb-zookeeper_kb-zookeeper-backup.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-zookeeper/kb-zookeeper_kb-zookeeper-cluster-migration.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-zookeeper/kb-zookeeper_kb-zookeeper__index.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-zookeeper/kb-zookeeper_zookeeper-monitoring.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-zookeeper/kb-zookeeper_zookeeper-schema.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-zookeeper/zookeeper-schema.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-zookeeper/zookeeper-schema.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/monitoring-operator-exporter-compatibility.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/monitoring-operator-exporter-compatibility.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/rbac.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/rbac.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/recovery-after-complete-data-loss.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/recovery-after-complete-data-loss.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/schema-migration-tools/schema-migration-tools__index.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/schema-migration-tools/schema-migration-tools_golang-migrate.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/schema-migration-tools/schema-migration-tools_schema-migration-tools__index.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/uniq-uuid-doubled-clickhouse-upgrade.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/uniq-uuid-doubled-clickhouse-upgrade.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/useful-setting-to-turn-on.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/useful-setting-to-turn-on.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/who-ate-my-cpu.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/who-ate-my-cpu.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/zookeeper-session-expired.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/zookeeper-session-expired.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-useful-queries/debug-hang.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-useful-queries/debug-hang.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-useful-queries/ingestion-rate-part_log.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-useful-queries/ingestion-rate-part_log.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-useful-queries/kb-database-size-table-column-size.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-useful-queries/kb-database-size-table-column-size.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-useful-queries/kb-useful-queries_debug-hang.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-useful-queries/kb-useful-queries_debug-hang.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-useful-queries/kb-useful-queries_detached-parts.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-useful-queries/kb-useful-queries_detached-parts.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-useful-queries/kb-useful-queries_ingestion-rate-part_log.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-useful-queries/kb-useful-queries_ingestion-rate-part_log.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-useful-queries/kb-useful-queries_kb-database-size-table-column-size.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-useful-queries/kb-useful-queries_kb-database-size-table-column-size.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-useful-queries/kb-useful-queries_parts-consistency.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-useful-queries/kb-useful-queries_parts-consistency.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-useful-queries/kb-useful-queries_query_log.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-useful-queries/kb-useful-queries_query_log.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-useful-queries/kb-useful-queries_table-meta-in-zookeeper.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-useful-queries/kb-useful-queries_table-meta-in-zookeeper.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-useful-queries/parts-consistency.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-useful-queries/parts-consistency.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-useful-queries/query_log.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-useful-queries/query_log.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/upgrade/removing-lost-parts.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/upgrade/removing-lost-parts.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/upgrade/upgrade_removing-empty-parts.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/upgrade/upgrade_removing-empty-parts.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/upgrade/upgrade_removing-lost-parts.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/upgrade/upgrade_removing-lost-parts.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/upgrade/upgrade_upgrade__index.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/using-this-knowledgebase/using-this-knowledgebase__index.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/using-this-knowledgebase/using-this-knowledgebase_mermaid_example.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/using-this-knowledgebase/using-this-knowledgebase_mermaid_example.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Clickhouse/using-this-knowledgebase/using-this-knowledgebase_using-this-knowledgebase__index.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Readings1.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Starter.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Starter.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/Starter1.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/clickhouse/engines/altinity-kb-atomic-database-engine/altinity-kb-how-to-convert-atomic-to-ordinary.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/clickhouse/engines/altinity-kb-atomic-database-engine/how-to-convert-ordinary-to-atomic.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/engines/kb-atomic-database-engine/how-to-convert-ordinary-to-atomic.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/clickhouse/engines/engines__index.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/clickhouse/engines/engines__index.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/clickhouse/engines/mergetree-table-engine-family/mergetree-table-engine-family__index.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/engines/mergetree-table-engine-family/mergetree-table-engine-family_index.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-dictionaries/dictionaries-and-arrays.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-dictionaries/dictionaries-and-arrays.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-dictionaries/dictionary-on-top-tables.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-dictionaries/dictionary-on-top-tables.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-functions/kb-sequencematch.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-functions/kb-sequencematch.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-integrations/clickhouse-odbc.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-integrations/clickhouse-odbc.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-integrations/cloud/cloud__index.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-integrations/cloud/cloud_index.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-integrations/kb-kafka/kb-kafka__index.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-integrations/kb-kafka/kb-kafka_index.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-kubernetes/kb-kubernetes__index.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-kubernetes/kb-kubernetes_index.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-queries-and-syntax/async-inserts.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-queries-and-syntax/async-inserts.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-queries-and-syntax/atomic-insert.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-queries-and-syntax/atomic-insert.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-queries-and-syntax/datetime64.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-queries-and-syntax/datetime64.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-queries-and-syntax/delete-via-tombstone-column.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-queries-and-syntax/delete-via-tombstone-column.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-queries-and-syntax/explain-query.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-queries-and-syntax/explain-query.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-queries-and-syntax/fill-missing-values-at-query-time.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-queries-and-syntax/fill-missing-values-at-query-time.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-queries-and-syntax/group-by/group-by__index.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/group-by/group-by_index.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-queries-and-syntax/kb-alter-modify-column-is-stuck-the-column-is-inaccessible.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-queries-and-syntax/kb-alter-modify-column-is-stuck-the-column-is-inaccessible.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-queries-and-syntax/kb-final-clause-speed.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-queries-and-syntax/kb-final-clause-speed.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-queries-and-syntax/literal-decimal-or-float.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-queries-and-syntax/literal-decimal-or-float.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-queries-and-syntax/machine-learning-in-clickhouse.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-queries-and-syntax/machine-learning-in-clickhouse.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-queries-and-syntax/partial-projection-optimization.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-queries-and-syntax/partial-projection-optimization.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-queries-and-syntax/pivot-unpivot.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-queries-and-syntax/pivot-unpivot.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-queries-and-syntax/roaring-bitmaps-for-calculating-retention.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-queries-and-syntax/roaring-bitmaps-for-calculating-retention.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-queries-and-syntax/simplestateif-or-ifstate-for-simple-aggregate-functions.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-queries-and-syntax/skip-indexes/minmax.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-queries-and-syntax/skip-indexes/minmax.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-queries-and-syntax/skip-indexes/skip-indexes-examples.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-queries-and-syntax/skip-indexes/skip-indexes-examples.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-queries-and-syntax/skip-indexes/skip-indexes__index.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/skip-indexes/skip-indexes_index.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-queries-and-syntax/state-and-merge-combinators.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-queries-and-syntax/state-and-merge-combinators.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-queries-and-syntax/trace_log.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-queries-and-syntax/trace_log.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-queries-and-syntax/troubleshooting.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-queries-and-syntax/troubleshooting.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-queries-and-syntax/ttl/ttl__index.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-queries-and-syntax/ttl/ttl_index.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-queries-and-syntax/update-via-dictionary.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-queries-and-syntax/update-via-dictionary.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-schema-design/change-order-by.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-schema-design/change-order-by.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-schema-design/codecs/codecs-on-array-columns.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-schema-design/codecs/codecs-on-array-columns.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-schema-design/codecs/codecs-speed.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-schema-design/codecs/codecs-speed.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-schema-design/flattened-table.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-schema-design/flattened-table.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-schema-design/kb-jsonasstring-and-mat.-view-as-json-parser.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-schema-design/kb-jsonasstring-and-mat.-view-as-json-parser.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-schema-design/materialized-views/backfill-populate-mv-in-a-controlled-manner.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-schema-design/materialized-views/backfill-populate-mv-in-a-controlled-manner.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-schema-design/materialized-views/idempotent_inserts_mv.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-schema-design/materialized-views/idempotent_inserts_mv.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-schema-design/uniq-functions.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-schema-design/uniq-functions.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-setup-and-maintenance/cgroups_k8s.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-setup-and-maintenance/cgroups_k8s.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-setup-and-maintenance/ch-logs-2-json-vectordev.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-setup-and-maintenance/ch-logs-2-json-vectordev.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-setup-and-maintenance/clickhouse-deployment-plan.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-setup-and-maintenance/clickhouse-deployment-plan.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-setup-and-maintenance/cluster-production-configuration-guide/cluster-configuration-faq.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-setup-and-maintenance/cluster-production-configuration-guide/cluster-configuration-faq.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-setup-and-maintenance/cluster-production-configuration-guide/hardware-requirements.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-setup-and-maintenance/cluster-production-configuration-guide/hardware-requirements.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-setup-and-maintenance/connection-problems.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-setup-and-maintenance/connection-problems.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-setup-and-maintenance/high-cpu-usage.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-setup-and-maintenance/high-cpu-usage.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-setup-and-maintenance/kb-data-migration/kb-clickhouse-copier/kb-clickhouse-copier-kubernetes-job.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-data-migration/kb-clickhouse-copier/kubernetes-job.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-setup-and-maintenance/kb-data-migration/kb-clickhouse-copier/kb-clickhouse-copier__index.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-data-migration/kb-clickhouse-copier/kb-clickhouse-copier_index.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-setup-and-maintenance/kb-data-migration/kb-data-migration__index.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/kb-data-migration/kb-data-migration_index.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-setup-and-maintenance/kb-data-migration/mssql-clickhouse.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-setup-and-maintenance/kb-data-migration/mssql-clickhouse.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-setup-and-maintenance/kb-ddlworker/altinity-kb-ddlworker__index.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-setup-and-maintenance/kb-monitoring.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-setup-and-maintenance/kb-monitoring.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-setup-and-maintenance/kb-object-consistency-in-a-cluster.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-setup-and-maintenance/kb-object-consistency-in-a-cluster.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-setup-and-maintenance/kb-replication-queue.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-setup-and-maintenance/kb-replication-queue.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-setup-and-maintenance/kb-shutting-down-a-node.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-setup-and-maintenance/kb-shutting-down-a-node.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-setup-and-maintenance/kb-who-ate-my-memory.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-setup-and-maintenance/kb-who-ate-my-memory.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-setup-and-maintenance/kb-zookeeper/clickhouse-keeper-service.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-setup-and-maintenance/kb-zookeeper/clickhouse-keeper-service.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-setup-and-maintenance/kb-zookeeper/install_ubuntu.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-setup-and-maintenance/kb-zookeeper/install_ubuntu.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-setup-and-maintenance/kb-zookeeper/jvm-sizes-and-garbage-collector-settings.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-setup-and-maintenance/kb-zookeeper/jvm-sizes-and-garbage-collector-settings.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-setup-and-maintenance/kb-zookeeper/kb-recovering-from-complete-metadata-loss-in-zookeeper.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-setup-and-maintenance/kb-zookeeper/kb-recovering-from-complete-metadata-loss-in-zookeeper.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-setup-and-maintenance/logging.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-setup-and-maintenance/logging.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-setup-and-maintenance/packaging-compatibility-greater-than-21.x-and-earlier.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-setup-and-maintenance/packaging-compatibility-greater-than-21.x-and-earlier.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-setup-and-maintenance/schema-migration-tools/golang-migrate.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-setup-and-maintenance/schema-migration-tools/golang-migrate.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-setup-and-maintenance/suspiciously-many-broken-parts.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-setup-and-maintenance/suspiciously-many-broken-parts.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-setup-and-maintenance/sysall.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-setup-and-maintenance/sysall.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-setup-and-maintenance/uniqExact-to-uniq-combined.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-setup-and-maintenance/uniqExact-to-uniq-combined.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-useful-queries/detached-parts.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-useful-queries/detached-parts.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-useful-queries/table-meta-in-zookeeper.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/clickhouse/kb-useful-queries/table-meta-in-zookeeper.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/clickhouse/upgrade/removing-empty-parts.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/clickhouse/upgrade/removing-empty-parts.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/logging-system/2017-06-12-about-gelf.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/logging-system/2017-06-12-about-gelf.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/logging-system/logging-system_2017-06-12-about-gelf.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/logging-system/logging-system_2017-06-12-about-gelf.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/post/mysql/2016-01-13-about-index.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/post/mysql/2016-01-13-about-index.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/post/mysql/2017-01-11-mysql-explain-or-desc.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/post/mysql/2017-01-11-mysql-explain-or-desc.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/post/mysql/mysql_2016-01-13-about-index.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/post/mysql/mysql_2016-01-13-about-index.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/post/mysql/mysql_2017-01-11-mysql-explain-or-desc.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/post/mysql/mysql_2017-01-11-mysql-explain-or-desc.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/post/netcore/2019-12-22-aspnetcore-middleware-and-pipeline.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/post/netcore/2019-12-22-aspnetcore-middleware-and-pipeline.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/topics/post/netcore/netcore_2019-12-22-aspnetcore-middleware-and-pipeline.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/post/netcore/netcore_2019-12-22-aspnetcore-middleware-and-pipeline.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webHelpBLOG2-all.zip" beforeDir="false" afterPath="$PROJECT_DIR$/webHelpBLOG2-all.zip" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/about.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/assets/css/font-awesome.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/assets/css/images/close.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/assets/fonts/FontAwesome.otf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/assets/fonts/fontawesome-webfont.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/assets/fonts/fontawesome-webfont.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/assets/fonts/fontawesome-webfont.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/assets/fonts/fontawesome-webfont.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/assets/fonts/fontawesome-webfont.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/assets/js/ie/PIE.htc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/assets/js/ie/backgroundsize.min.htc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/assets/js/ie/html5shiv.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/assets/js/ie/respond.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/assets/js/jquery.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/assets/js/jquery.scrollex.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/assets/js/main.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/assets/js/skel.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/assets/js/util.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/assets/sass/ie8.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/assets/sass/ie9.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/assets/sass/main.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/feed.atom" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/feed.rss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/migration-blog-plan.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/migration-repo-plan.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/posts/2016/01/2016-01-13-about-index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/posts/2016/01/2016-01-15-mysql-index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/posts/2016/01/2017-01-11-mysql-explain-or-desc.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/posts/2016/01/2018-04-11-mysql-index-optimization.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/posts/2016/01/2019-11-15-mysql-lock.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/posts/2016/03/2016-03-15-How-to-Read-a-Book.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/posts/2016/08/2019-08-06-redis-distributed-lock.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/posts/2017/02/2017-02-21-How-to-Read-a-Book.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/posts/2017/04/2017-12-04-metrics-tracing-logging.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/posts/2017/05/2017-05-10-about-liblog.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/posts/2017/06/2017-06-12-about-gelf.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/posts/2017/08/2017-08-11-gitlab-ci-powershell-bugs.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/posts/2018/08/2018-08-16-How-to-Read-a-Book.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/posts/2018/12/2018-12-20-how-to-logging-in-production-enviroment.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/posts/2019/05/2019-06-05-why-redis.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/posts/2019/10/2017-06-10-use-mailkit-with-mimekit-to-send-email.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/posts/2019/12/2019-12-21-netcore-start-process.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/posts/2019/12/2019-12-22-aspnetcore-middleware-and-pipeline.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/posts/2020/03/2020-01-10-about-static-content-generator.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/posts/2020/03/2020-03-10-How-to-Read-a-Book.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/posts/2020/03/2020-03-10-wyam-STATIC-CONTENT-GENERATOR-AND-TOOLKIT.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/posts/2020/04/2020-04-13-string-class-sealed.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/posts/asset/2016-03-15-How-to-Read-a-Book/s1670978.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/posts/asset/2017-12-04-metrics-tracing-logging/01.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/posts/asset/2017-12-04-metrics-tracing-logging/02.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/posts/asset/2017-12-04-metrics-tracing-logging/03.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/posts/asset/2019-12-22-aspnetcore-middleware-and-pipeline/aspnet-pipeline.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/posts/asset/2019-12-22-aspnetcore-middleware-and-pipeline/aspnetcore-request-pipeline.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/posts/asset/img/calcite.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/posts/asset/img/sql.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/posts/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/posts/netcore/aspnet-pipeline.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/posts/netcore/aspnetcore-request-pipeline.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/posts/reading-notes/s1670978.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/sitemap.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/tags/AspNetCore.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/tags/C#.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/tags/GELF-.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/tags/GrayLog.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/tags/Ihost.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/tags/LibLog.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/tags/Metrics.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/tags/Pop3.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/tags/Tracing.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/tags/db.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/tags/github-page.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/tags/gitlab-ci.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/tags/hexo.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/tags/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/tags/jekyII.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/tags/logging.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/tags/loggingsystem.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/tags/mailkit-.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/tags/middleware.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/tags/mimekit.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/tags/msbuild.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/tags/mysql.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/tags/mysql索引.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/tags/netcore.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/tags/pipeline.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/tags/powershell.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/tags/redis.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/tags/sealed.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/tags/smtp.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/tags/string.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/tags/webhost.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/tags/wyam.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/tags/分布式锁.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/tags/原理.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/tags/如何阅读一本书.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/tags/工具库.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/tags/执行计划.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/tags/索引优化原则.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/tags/读书笔记.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/tags/锁机制.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/tags/阅读技巧.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/tags/静态内容生成器.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/tools.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/wyam/CNAME" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/wyam/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/wyam/config.wyam" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/wyam/config.wyam.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/wyam/config.wyam.hash" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/wyam/config.wyam.packages.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/wyam/input/about.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/wyam/input/migration-blog-plan.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/wyam/input/migration-repo-plan.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/wyam/input/posts/asset/2016-03-15-How-to-Read-a-Book/s1670978.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/wyam/input/posts/asset/2017-12-04-metrics-tracing-logging/01.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/wyam/input/posts/asset/2017-12-04-metrics-tracing-logging/02.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/wyam/input/posts/asset/2017-12-04-metrics-tracing-logging/03.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/wyam/input/posts/asset/2019-12-22-aspnetcore-middleware-and-pipeline/aspnet-pipeline.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/wyam/input/posts/asset/2019-12-22-aspnetcore-middleware-and-pipeline/aspnetcore-request-pipeline.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/wyam/input/posts/asset/img/calcite.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/wyam/input/posts/asset/img/sql.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/wyam/input/posts/ci/2017-08-11-gitlab-ci-powershell-bugs.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/wyam/input/posts/csharp/2020-04-13-string-class-sealed.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/wyam/input/posts/logging-system/2017-05-10-about-liblog.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/wyam/input/posts/logging-system/2017-06-12-about-gelf.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/wyam/input/posts/logging-system/2018-12-20-how-to-logging-in-production-enviroment.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/wyam/input/posts/metrics/2017-12-04-metrics-tracing-logging.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/wyam/input/posts/mysql/2016-01-13-about-index.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/wyam/input/posts/mysql/2016-01-15-mysql-index.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/wyam/input/posts/mysql/2017-01-11-mysql-explain-or-desc.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/wyam/input/posts/mysql/2018-04-11-mysql-index-optimization.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/wyam/input/posts/mysql/2019-11-15-mysql-lock.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/wyam/input/posts/netcore/2019-12-21-netcore-start-process.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/wyam/input/posts/netcore/2019-12-22-aspnetcore-middleware-and-pipeline.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/wyam/input/posts/netcore/aspnet-pipeline.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/wyam/input/posts/netcore/aspnetcore-request-pipeline.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/wyam/input/posts/reading-notes/2016-03-15-How-to-Read-a-Book.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/wyam/input/posts/reading-notes/2017-02-21-How-to-Read-a-Book.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/wyam/input/posts/reading-notes/2018-08-16-How-to-Read-a-Book.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/wyam/input/posts/reading-notes/2020-03-10-How-to-Read-a-Book.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/wyam/input/posts/reading-notes/s1670978.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/wyam/input/posts/redis/2019-06-05-why-redis.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/wyam/input/posts/redis/2019-08-06-redis-distributed-lock.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/wyam/input/posts/tools/2017-06-10-use-mailkit-with-mimekit-to-send-email.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/wyam/input/posts/wyam/2020-01-10-about-static-content-generator.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/wyam/input/posts/wyam/2020-03-10-wyam-static-content-generator-and-toolkit.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/wyam/input/tools.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/wyam/theme/_Archive.cshtml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/wyam/theme/_Footer.cshtml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/wyam/theme/_Head.cshtml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/wyam/theme/_Header.cshtml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/wyam/theme/_Index.cshtml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/wyam/theme/_IndexHeader.cshtml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/wyam/theme/_IndexSections.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-integrations/kb-clickhouse-client.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/wyam/theme/_Layout.cshtml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/wyam/theme/_Navbar.cshtml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/wyam/theme/_PostFooter.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/Clickhouse/kb-setup-and-maintenance/introduction-to-clickhouse-backups-and-clickhouse-backup.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/wyam/theme/_PostHeader.cshtml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/wyam/theme/_PostLayout.cshtml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/wyam/theme/_PostList.cshtml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/wyam/theme/_Scripts.cshtml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/wyam/theme/_Tag.cshtml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/wyam/theme/_Tags.cshtml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/wyam/theme/assets/css/font-awesome.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/wyam/theme/assets/css/images/close.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/wyam/theme/assets/fonts/FontAwesome.otf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/wyam/theme/assets/fonts/fontawesome-webfont.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/wyam/theme/assets/fonts/fontawesome-webfont.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/wyam/theme/assets/fonts/fontawesome-webfont.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/wyam/theme/assets/fonts/fontawesome-webfont.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/wyam/theme/assets/fonts/fontawesome-webfont.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/wyam/theme/assets/js/ie/PIE.htc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/wyam/theme/assets/js/ie/backgroundsize.min.htc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/wyam/theme/assets/js/ie/html5shiv.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/wyam/theme/assets/js/ie/respond.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/wyam/theme/assets/js/jquery.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/wyam/theme/assets/js/jquery.scrollex.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/wyam/theme/assets/js/main.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/wyam/theme/assets/js/skel.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/wyam/theme/assets/js/util.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/wyam/theme/assets/sass/base/_page.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/wyam/theme/assets/sass/base/_typography.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/wyam/theme/assets/sass/components/_box.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/wyam/theme/assets/sass/components/_button.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/wyam/theme/assets/sass/components/_features.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/wyam/theme/assets/sass/components/_form.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/wyam/theme/assets/sass/components/_icon.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/wyam/theme/assets/sass/components/_image.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/wyam/theme/assets/sass/components/_list.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/wyam/theme/assets/sass/components/_section.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/wyam/theme/assets/sass/components/_table.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/wyam/theme/assets/sass/components/layout/_banner.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/wyam/theme/assets/sass/components/layout/_footer.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/wyam/theme/assets/sass/components/layout/_header.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/wyam/theme/assets/sass/components/layout/_menu.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/wyam/theme/assets/sass/components/layout/_wrapper.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/wyam/theme/assets/sass/ie8.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/wyam/theme/assets/sass/ie9.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/wyam/theme/assets/sass/layout/_banner.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/wyam/theme/assets/sass/layout/_footer.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/wyam/theme/assets/sass/layout/_header.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/wyam/theme/assets/sass/layout/_menu.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/wyam/theme/assets/sass/layout/_wrapper.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/wyam/theme/assets/sass/libs/_functions.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/wyam/theme/assets/sass/libs/_mixins.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/wyam/theme/assets/sass/libs/_skel.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/wyam/theme/assets/sass/libs/_vars.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/wyam/theme/assets/sass/main.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wyam_backup/wyam/theme/favicon.ico" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -344,13 +779,14 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master",
     "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Repos/github/robin-jiangdh/robin-jiangdh.github.io/Writerside/topics/Clickhouse",
+    "last_opened_file_path": "C:/Repos/github/robin-jiangdh/robin-jiangdh.github.io/Writerside/images",
     "run.code.analysis.last.selected.profile": "pProject Default",
     "writerside.last.selected.productrobin-jiangdh.github.io": "blog"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Repos\github\robin-jiangdh\robin-jiangdh.github.io\Writerside\images" />
       <recent name="C:\Repos\github\robin-jiangdh\robin-jiangdh.github.io\Writerside\topics\Clickhouse" />
       <recent name="C:\Repos\github\robin-jiangdh\robin-jiangdh.github.io\Writerside" />
     </key>
@@ -375,6 +811,7 @@
     <MESSAGE value="add clickhouse" />
     <MESSAGE value="add CNAME&#10;&#10;a" />
     <MESSAGE value="add clickhouse&#10;&#10;a" />
-    <option name="LAST_COMMIT_MESSAGE" value="add clickhouse&#10;&#10;a" />
+    <MESSAGE value="修复报错问题&#10;&#10;a" />
+    <option name="LAST_COMMIT_MESSAGE" value="修复报错问题&#10;&#10;a" />
   </component>
 </project>

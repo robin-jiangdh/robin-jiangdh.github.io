@@ -15,19 +15,19 @@ More safer way:
 * Wait until all already running queries would finish execution on it.
   It’s possible to check it via query:
 
-  ```sql
+  ```
   SHOW PROCESSLIST;
   ```
 * Ensure there is no pending data in distributed tables 
 
-  ```sql 
+  ``` 
   SELECT * FROM system.distribution_queue;
   SYSTEM FLUSH DISTRIBUTED <table_name>;
   ```
 
 * Run sync replica query in related shard replicas (others than the one you remove) via query:
 
-  ```sql
+  ```
   SYSTEM SYNC REPLICA db.table;
   ```
 

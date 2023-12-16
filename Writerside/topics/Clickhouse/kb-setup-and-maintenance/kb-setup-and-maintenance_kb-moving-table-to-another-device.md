@@ -61,13 +61,13 @@ nano /etc/clickhouse-server/config.d/storage.xml
 
 1. Update storage_policy setting of tables to new policy.
 
-```sql
+```
 ALTER TABLE table_4 MODIFY SETTING storage_policy='move_from_default_to_disk_1';
 ```
 
 1. Wait till all parts of tables change their disk_name to new disk.
 
-```sql
+```
 SELECT name,disk_name, path from system.parts WHERE table='table_4' and active;
 SELECT disk_name, path, sum(rows), sum(bytes_on_disk), uniq(partition), count() FROM system.parts WHERE table='table_4' and active GROUP BY disk_name, path ORDER BY disk_name, path;
 ```
@@ -123,6 +123,6 @@ ClickHouse wouldn't auto reload config, because we removed some disks from stora
 1. Restart ClickHouse server.
 2. Make sure that storage policy uses the right disks.
 
-```sql
+```
 SELECT * FROM system.storage_policies WHERE policy_name='move_from_default_to_disk_1';
 ```

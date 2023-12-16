@@ -10,7 +10,7 @@ Controlled by session level setting `send_logs_level`
 Possible values: `'trace', 'debug', 'information', 'warning', 'error', 'fatal', 'none'`
 Can be used with clickhouse-client in both interactive and non-interactive mode.
 
-```bash
+```
 $ clickhouse-client -mn --send_logs_level='trace' --query "SELECT sum(number) FROM numbers(1000)"
 [LAPTOP] 2021.04.29 00:05:31.425842 [ 25316 ] {14b0646d-8a6e-4b2f-9b13-52a218cf43ba} <Debug> executeQuery: (from 127.0.0.1:42590, using production parser) SELECT sum(number) FROM numbers(1000)
 [LAPTOP] 2021.04.29 00:05:31.426281 [ 25316 ] {14b0646d-8a6e-4b2f-9b13-52a218cf43ba} <Trace> ContextAccess (default): Access granted: CREATE TEMPORARY TABLE ON *.*
@@ -26,7 +26,7 @@ $ clickhouse-client -mn --send_logs_level='trace' --query "SELECT sum(number) FR
 $ clickhouse-client -mn --send_logs_level='trace' --query "SELECT sum(number) FROM numbers(1000)" 2> ./query.log
 ```
 
-```sql
+```
 LAPTOP.localdomain :) SET send_logs_level='trace';
 
 SET send_logs_level = 'trace'
@@ -62,7 +62,7 @@ Query id: d3db767b-34e9-4252-9f90-348cf958f822
 
 ## system tables
 
-```sql
+```
 SELECT sum(number)
 FROM numbers(1000);
 
@@ -103,7 +103,7 @@ WHERE (trace_id, finish_date) IN (
 
 [https://www.speedscope.app/](https://www.speedscope.app/)
 
-```sql
+```
 WITH
     '95578e1c-1e93-463c-916c-a1a8cdd08198' AS query,
     min(min) AS start_value,

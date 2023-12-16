@@ -8,7 +8,7 @@ description: >-
 
 ## Decimal
 
-```sql
+```
 SELECT
     9.2::Decimal64(2) AS postgresql_cast,
     toDecimal64(9.2, 2) AS to_function,
@@ -27,7 +27,7 @@ When it sees a number with a decimal separator it interprets as `Float64` litera
 
 Workaround is very simple - wrap the number in quotes (and it will be considered as a string literal by query parser, and will be transformed to Decimal directly), or use postgres-alike casting syntax:
 
-```sql
+```
 select cast(64.32,'Decimal128(2)') a, cast('64.32','Decimal128(2)') b, 64.32::Decimal128(2) c;
 
 ┌─────a─┬─────b─┬─────c─┐
@@ -37,7 +37,7 @@ select cast(64.32,'Decimal128(2)') a, cast('64.32','Decimal128(2)') b, 64.32::De
 
 ## Float64
 
-```sql
+```
 SELECT
     toFloat64(15008753.) AS to_func,
     toFloat64('1.5008753E7') AS to_func_scientific,

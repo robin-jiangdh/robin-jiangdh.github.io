@@ -12,7 +12,7 @@ Documentation https://clickhouse.com/docs/en/operations/access-rights/
 
 Create an ```admin``` user like (root in MySQL or postgres in PostgreSQL) to do the DBA/admin ops in the `user.xml` file and [set the access management property for the admin user](https://clickhouse.com/docs/en/operations/access-rights/#enabling-access-control)
 
-```xml
+```
 <clickhouse>
 <users>
   <default>
@@ -53,7 +53,7 @@ Create an ```admin``` user like (root in MySQL or postgres in PostgreSQL) to do 
 
 As `default` is used for many internal and background operations, so it is not convenient to set it up with a password, because you would have to change it in many configs/parts. Best way to secure the default user is only allow localhost or trusted network connections like this in `users.xml`:
 
-```xml
+```
 <clickhouse>
 <users>
     <default>
@@ -72,13 +72,13 @@ As `default` is used for many internal and background operations, so it is not c
 
 The replication user is usually `default`. **There is no need to create this user unless you know what you're doing** because you need an specific user for replication. Ports 9009 and 9010(tls) provide low-level data access between servers.This ports should not be accessible from untrusted networks. You can specify credentials for authenthication between replicas. This is required when `interserver_https_port` is accessible from untrusted networks. You can do so creating a user with the `default` profile:
 
-```sql
+```
 CREATE USER replication IDENTIFIED WITH sha256_password BY 'password' SETTINGS PROFILE 'default'
 ```
 
 After this assign this user to the interserver credentials:
 
-```xml
+```
   <interserver_http_credentials>
       <user>replication</user>
       <password>password</password>
@@ -87,7 +87,7 @@ After this assign this user to the interserver credentials:
 
 We also can use sha256 passwords like this:
 
-```xml
+```
 <password_sha256_hex>65e84be33532fb784c48129675f9eff3a682b27168c0ea744b2cf58ee02337c5</password_sha256_hex>
 ```
 
@@ -102,7 +102,7 @@ see [User Hardening article](https://docs.Robinjiang.com/operationsguide/securit
 
 ## Example: 3 roles (dba, dashboard_ro, ingester_rw)
 
-```sql
+```
 create role dba on cluster '{cluster}';
 grant all on *.* to dba on cluster '{cluster}';
 create user `user1` identified  by 'pass1234' on cluster '{cluster}';
@@ -147,7 +147,7 @@ grant ingester_rw to ingester_app1 on cluster '{cluster}';
 
 ## check
 
-```bash
+```
 $ clickhouse-client -u dash1 --password pass1234
 
 create table test ( A Int64) Engine=Log;
@@ -171,7 +171,7 @@ select count() from system.numbers limit 1000000000000;
 
 ## clean up
 
-```sql
+```
 show profiles;
 ┌─name─────────────────┐
 │ default              │

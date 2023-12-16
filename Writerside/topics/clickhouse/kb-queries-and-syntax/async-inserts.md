@@ -35,10 +35,11 @@ It is not possible to relate `part_log/query_id` column with `asynchronous_inser
 
 ## Metrics
 
-```sql
+
+```
 SELECT *
 FROM system.metrics
-WHERE metric LIKE '%AsyncInsert%'
+WHERE metric LIKE '%\AsyncInsert%'
 
 Query id: 7384b8c8-3d87-4059-b1c4-e9955e97232b
 

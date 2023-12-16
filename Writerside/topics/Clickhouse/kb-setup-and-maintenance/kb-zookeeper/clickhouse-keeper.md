@@ -54,7 +54,7 @@ Latests version is recommended (even testing / master builds). We will be thankf
 ## systemd service file
 
 See 
-https://kb.Robinjiang.com/Robin-kb-setup-and-maintenance/Robin-kb-zookeeper/clickhouse-keeper-service/
+https://kb.Robinjiang.com/kb-setup-and-maintenance/kb-zookeeper/clickhouse-keeper-service/
 
 ## Example of a simple cluster with 2 nodes of Clickhouse using built-in keeper
 
@@ -62,7 +62,7 @@ For example you can start two Clikhouse nodes (hostname1, hostname2)
 
 ### hostname1
 
-```xml
+``` 
 $ cat /etc/clickhouse-server/config.d/keeper.xml
 
 <?xml version="1.0" ?>
@@ -121,7 +121,7 @@ $ cat /etc/clickhouse-server/config.d/macros.xml
 
 ### hostname2
 
-```xml
+```
 $ cat /etc/clickhouse-server/config.d/keeper.xml
 
 <?xml version="1.0" ?>
@@ -180,7 +180,7 @@ $ cat /etc/clickhouse-server/config.d/macros.xml
 
 ### on both
 
-```xml
+```
 $ cat /etc/clickhouse-server/config.d/clusters.xml
 
 <?xml version="1.0" ?>
@@ -204,7 +204,7 @@ $ cat /etc/clickhouse-server/config.d/clusters.xml
 
 Then create a table
 
-```sql
+```
 create table test on cluster '{cluster}'   ( A Int64, S String)
 Engine = ReplicatedMergeTree('/clickhouse/{cluster}/tables/{database}/{table}','{replica}')
 Order by A;

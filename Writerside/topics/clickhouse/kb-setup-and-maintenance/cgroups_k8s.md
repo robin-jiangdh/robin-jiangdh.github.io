@@ -14,7 +14,7 @@ The probable reason is that ClickHouse 22.2 started to respect cgroups (Respect 
 
 You can observe that `max_threads = 1`
 
-```sql
+```
 SELECT
     name,
     value
@@ -38,7 +38,7 @@ We suggest to set requests.cpu = `half of available CPU cores`, and limits.cpu =
 
 For example in case of 16 CPU cores:
 
-```xml
+``` 
           resources:
             requests:
               memory: ...
@@ -51,7 +51,7 @@ For example in case of 16 CPU cores:
 
 Then you should get a new result:
 
-```sql
+```
 SELECT
     name,
     value
@@ -67,7 +67,7 @@ WHERE name = 'max_threads'
 
 For some reason AWS EKS sets cgroup kernel parameters in case of empty requests.cpu & limits.cpu into these:
 
-```bash
+```
 # cat /sys/fs/cgroup/cpu/cpu.cfs_quota_us
 -1
 

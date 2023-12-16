@@ -8,7 +8,7 @@ description: >
 
 ### Count threads used by clickhouse-server
 
-```bash
+```
 cat /proc/$(pidof -s clickhouse-server)/status | grep Threads
 Threads: 103
 
@@ -22,24 +22,24 @@ ps hH -AF | grep clickhouse | wc -l
 ### Thread counts by type (using ps & clickhouse-local)
 
 
-```bash
-ps H -o 'tid comm' $(pidof -s clickhouse-server) |  tail -n +2 | awk '{ printf("%s\t%s\n", $1, $2) }' | clickhouse-local -S "threadid UInt16, name String" -q "SELECT name, count() FROM table GROUP BY name WITH TOTALS ORDER BY count() DESC FORMAT PrettyCompact"
+```
+ps H -o 'tid comm' $(pidof -s clickhouse-server) |  tail -n +2 | awk '{ printf("%\s\t%\s\n", $1, $2) }' | clickhouse-local -S "threadid UInt16, name String" -q "SELECT name, count() FROM table GROUP BY name WITH TOTALS ORDER BY count() DESC FORMAT PrettyCompact"
 ```
 
 ### Threads used by running queries:
 
-```sql
+```
 SELECT query, length(thread_ids) AS threads_count FROM system.processes ORDER BY threads_count;
 ```
 
 ### Thread pools limits & usage
 
-```sql
+```
 SELECT
     name,
     value
 FROM system.settings
-WHERE name LIKE '%pool%'
+WHERE name LIKE '%\pool%\'
 
 ┌─name─────────────────────────────────────────┬─value─┐
 │ connection_pool_max_wait_ms                  │ 0     │
@@ -57,12 +57,12 @@ WHERE name LIKE '%pool%'
 └──────────────────────────────────────────────┴───────┘
 ```
 
-```sql
+```
 SELECT
     metric,
     value
 FROM system.metrics
-WHERE metric LIKE 'Background%'
+WHERE metric LIKE 'Background%\\'
 
 ┌─metric──────────────────────────────────┬─value─┐
 │ BackgroundPoolTask                      │     0 │
@@ -77,7 +77,7 @@ WHERE metric LIKE 'Background%'
 
 SELECT *
 FROM system.asynchronous_metrics
-WHERE lower(metric) LIKE '%thread%'
+WHERE lower(metric) LIKE '%\thread%\'
 ORDER BY metric ASC
 
 ┌─metric───────────────────────────────────┬─value─┐
@@ -96,7 +96,7 @@ ORDER BY metric ASC
 
 SELECT *
 FROM system.metrics
-WHERE lower(metric) LIKE '%thread%'
+WHERE lower(metric) LIKE '%\thread%\'
 ORDER BY metric ASC
 
 Query id: 6acbb596-e28f-4f89-94b2-27dccfe88ee9
@@ -112,7 +112,7 @@ Query id: 6acbb596-e28f-4f89-94b2-27dccfe88ee9
 
 ### Stack traces of the working threads from the pools
 
-```sql
+```
 SET allow_introspection_functions = 1;
 
 WITH arrayMap(x -> demangle(addressToSymbol(x)), trace) AS all
@@ -121,6 +121,6 @@ SELECT
     query_id,
     arrayStringConcat(all, '\n') AS res
 FROM system.stack_trace
-WHERE res ILIKE '%Pool%'
+WHERE res ILIKE '%\Pool%\'
 FORMAT Vertical;
 ```

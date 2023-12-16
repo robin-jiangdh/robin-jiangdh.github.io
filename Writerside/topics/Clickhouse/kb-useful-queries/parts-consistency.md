@@ -4,7 +4,7 @@ title: "Parts consistency"
 linkTitle: "Parts consistency"
 ---
 ## Check if there are blocks missing
-```sql
+```
 SELECT
     database,
     table,
@@ -44,7 +44,7 @@ ARRAY JOIN missing_ranges AS ranges
 └──────────┴──────────────────┴──────────────┴─────────────────────┴────────────────────┴───────────────────────┴───────────────────┴───────────────────────┘
 ```
 ## Find the number of blocks in a table
-```sql
+```
 SELECT
     database,
     table,
@@ -62,7 +62,7 @@ GROUP BY
 └──────────┴──────────────────┴──────────────┴──────────────┘
 ```
 ## Compare the list of parts in ZooKeeper with the list of parts on disk
-```sql
+```
 select zoo.p_path as part_zoo, zoo.ctime, zoo.mtime, disk.p_path as part_disk
 from
 (
@@ -79,7 +79,7 @@ order by part_zoo;
 ```
 
 You can clean that orphan zk records (need to execute using `delete` in zkCli, `rm` in zk-shell):
-```sql
+```
 select 'delete '||part_zoo
 from (
 select zoo.p_path as part_zoo, zoo.ctime, zoo.mtime, disk.p_path as part_disk

@@ -23,7 +23,7 @@ Or you may add information for deduplication (some unique information / insert i
 
 ### Example 1. Inconsistency with deduplicate_blocks_in_dependent_materialized_views 0
 
-```sql
+```
 create table test (A Int64, D Date) 
 Engine =  ReplicatedMergeTree('/clickhouse/{cluster}/tables/{table}','{replica}') 
 partition by toYYYYMM(D) order by A;
@@ -61,7 +61,7 @@ select sum(CNT) from test_mv;
 
 ### Example 2. Inconsistency with deduplicate_blocks_in_dependent_materialized_views 1
 
-```sql
+```
 create table test (A Int64, D Date) 
 Engine =  ReplicatedMergeTree('/clickhouse/{cluster}/tables/{table}','{replica}') 
 partition by toYYYYMM(D) order by A;

@@ -14,7 +14,7 @@ Backblaze has s3 compatible API but requires empty acl parameter `acl: ""`.
 
 [https://www.backblaze.com/](https://www.backblaze.com/) has 15 days and free 10Gb S3 trial.
 
-```bash
+```
 $ mkdir clickhouse-backup
 $ cd clickhouse-backup
 $ wget https://github.com/AlexAkulov/clickhouse-backup/releases/download/2.2.0/clickhouse-backup.tar.gz
@@ -65,7 +65,7 @@ s3:
 
 I have a database `test` with table `test`
 
-```sql
+```
 select count() from test.test;
 
 ┌─count()─┐
@@ -75,7 +75,7 @@ select count() from test.test;
 
 clickhouse-backup list should work without errors (it scans local and remote (s3) folders):
 
-```bash
+```
 $ sudo ./clickhouse-backup list -c config.yml
 $
 ```
@@ -87,7 +87,7 @@ $
 * remove the local backup
 * drop the source database
 
-```bash
+```
 $ sudo ./clickhouse-backup create --tables='test.*' bkp01 -c config.yml
 2021/05/31 23:11:13  info done   backup=bkp01 operation=create table=test.test
 2021/05/31 23:11:13  info done   backup=bkp01 operation=create
@@ -105,7 +105,7 @@ $ sudo ./clickhouse-backup delete local bkp01 -c config.yml
 2021/05/31 23:13:29  info delete 'bkp01'
 ```
 
-```sql
+```
 DROP DATABASE test;
 ```
 
@@ -114,7 +114,7 @@ DROP DATABASE test;
 * download the remote backup
 * restore database
 
-```bash
+```
 $ sudo ./clickhouse-backup list -c config.yml
 bkp01   1.44MiB   31/05/2021 23:11:13   remote      tar
 
@@ -129,7 +129,7 @@ $ sudo ./clickhouse-backup restore bkp01 -c config.yml
 2021/05/31 23:16:04  info done    backup=bkp01 operation=restore
 ```
 
-```sql
+```
 SELECT count() FROM test.test;
 ┌─count()─┐
 │  400000 │
@@ -138,7 +138,7 @@ SELECT count() FROM test.test;
 
 ### Delete backups
 
-```bash
+```
 $ sudo ./clickhouse-backup delete local bkp01 -c config.yml
 2021/05/31 23:17:05  info delete 'bkp01'
 

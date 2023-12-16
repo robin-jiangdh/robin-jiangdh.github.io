@@ -8,7 +8,7 @@ description: >
 
 ### Test data
 
-```sql
+```
 DROP TABLE IF EXISTS arr_src;
 CREATE TABLE arr_src
 (
@@ -26,7 +26,7 @@ FROM numbers(1000);
 
 ### Dictionary
 
-```sql
+```
 DROP DICTIONARY IF EXISTS arr_dict;
 CREATE DICTIONARY arr_dict
 (
@@ -52,7 +52,7 @@ SELECT
 
 ### Test data in PG
 
-```sql
+```
 create user ch;
 create database ch;
 GRANT ALL PRIVILEGES ON DATABASE ch TO ch;
@@ -71,7 +71,7 @@ INSERT INTO arr_src VALUES
 
 ### Dictionary Example
 
-```sql
+```
 CREATE DICTIONARY pg_arr_dict
 (
     key UInt64,
@@ -103,7 +103,7 @@ SELECT
 
 ### Test data in MySQL
 
-```sql
+```
 -- casted into CH Arrays
 
 create table arr_src(
@@ -120,7 +120,7 @@ INSERT INTO arr_src VALUES
 
 ### Dictionary in MySQL
 
-```sql
+```
 -- supporting table to cast data
 CREATE TABLE arr_src
 (

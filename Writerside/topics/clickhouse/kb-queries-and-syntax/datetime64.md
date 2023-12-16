@@ -8,7 +8,7 @@ description: >-
 
 ## Substract fractional seconds
 
-```sql
+```
 WITH toDateTime64('2021-09-07 13:41:50.926', 3) AS time
 SELECT
     time - 1,

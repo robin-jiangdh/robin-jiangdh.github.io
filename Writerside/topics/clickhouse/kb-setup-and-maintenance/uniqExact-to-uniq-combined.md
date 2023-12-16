@@ -43,7 +43,7 @@ Luckly for us, ClickHouse use the exact same serialization (`LEB128` + list of v
 
 We need one a helper -- `UDF` function to do that conversion:
 
-```xml
+``` 
 cat /etc/clickhouse-server/pipe_function.xml
 <clickhouse>
   <function>
@@ -70,7 +70,7 @@ This UDF -- `pipe` converts `uniqExactState` to the `Array(FixedString(16))`.
 
 And here is the full example, how you can convert `uniqExactState(string)` to `uniqState(string)` or `uniqCombinedState(string)` using `pipe` UDF and `arrayReduce('func', [..])`.
 
-```sql
+```
 -- Generate demo with random data, uniqs are stored as heavy uniqExact
 CREATE TABLE aggregates
 (
@@ -148,7 +148,7 @@ GROUP BY key
 Now, lets repeat the same insert, but in that case we will also populate `uniq` & `uniqCombined` with values converted via `sipHash128` function.
 If we did everything right, `uniq` counts will not change, because we inserted the exact same values.
 
-```sql
+```
 INSERT INTO aggregates SELECT
     number % 10000 AS id,
     uniqExactState(toString(number)),
@@ -194,9 +194,9 @@ GROUP BY key
 20 rows in set. Elapsed: 3.318 sec. Processed 20.00 thousand rows, 11.02 MB (6.03 thousand rows/s., 3.32 MB/s.)
 ```
 
-Let's compare the data size, `uniq` won in this case, but check this article [Functions to count uniqs](uniq-functions.), milage may vary.
+Let's compare the data size, `uniq` won in this case, but check this article [Functions to count uniqs](uniq-functions.md), milage may vary.
 
-```sql
+```
 optimize table aggregates final;
 
 SELECT
@@ -204,7 +204,7 @@ SELECT
     formatReadableSize(sum(column_data_compressed_bytes) AS size) AS compressed,
     formatReadableSize(sum(column_data_uncompressed_bytes) AS usize) AS uncompressed
 FROM system.parts_columns
-WHERE (active = 1)  AND (table LIKE 'aggregates') and column like '%uniq%'
+WHERE (active = 1)  AND (table LIKE 'aggregates') and column like '%\uniq%\'
 GROUP BY column
 ORDER BY size DESC;
 

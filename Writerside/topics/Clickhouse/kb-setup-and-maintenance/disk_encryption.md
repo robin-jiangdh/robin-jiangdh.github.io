@@ -19,7 +19,7 @@ chown clickhouse.clickhouse /data/clickhouse_encrypted
 * https://clickhouse.com/docs/en/operations/server-configuration-parameters/settings/#server-settings-encryption
 
 
-```xml
+```
 cat /etc/clickhouse-server/config.d/encrypted_storage.xml
 <clickhouse>
     <storage_configuration>
@@ -50,11 +50,11 @@ cat /etc/clickhouse-server/config.d/encrypted_storage.xml
 </clickhouse>
 ```
 
-```bash
+```
 systemctl restart clickhouse-server
 ```
 
-```sql
+```
 select name, path, type, is_encrypted from system.disks;
 ┌─name───────────┬─path──────────────────────────────────┬─type──┬─is_encrypted─┐
 │ default        │ /var/lib/clickhouse/                  │ local │            0 │
@@ -71,20 +71,20 @@ select * from system.storage_policies;
 
 ## Create table
 
-```sql
+```
 CREATE TABLE bench_encrypted(c_int Int64, c_str varchar(255), c_float Float64) 
 engine=MergeTree order by c_int
 settings storage_policy = 'encrypted';
 ```
 
-```bash
+```
 cat /data/clickhouse_encrypted/encrypted/store/906/9061167e-d5f7-45ea-8e54-eb6ba3b678dc/format_version.txt
 ENC�AdruM�˪h"��^�
 ```
 
 # Compare performance of encrypted and not encrypted tables
 
-```sql
+```
 CREATE TABLE bench_encrypted(c_int Int64, c_str varchar(255), c_float Float64) 
 engine=MergeTree order by c_int
 settings storage_policy = 'encrypted';
@@ -134,7 +134,7 @@ select avg(c_float) from bench_unencrypted;
 * https://clickhouse.com/docs/en/operations/server-configuration-parameters/settings/#server-settings-encryption
 * https://serverfault.com/questions/413397/how-to-set-environment-variable-in-systemd-service
 
-```xml
+```
 cat /etc/clickhouse-server/config.d/encrypted_storage.xml
 <clickhouse>
     <storage_configuration>
@@ -167,7 +167,7 @@ cat /etc/default/clickhouse-server
 DiskKey=00112233445566778899aabbccddeeff
 ```
 
-```bash
+```
 systemctl restart clickhouse-server
 ```
 

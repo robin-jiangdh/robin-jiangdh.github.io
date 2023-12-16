@@ -6,7 +6,7 @@ description: >-
      Query to gather information about ingestion rate from system.part_log. 
 ---
 
-```sql
+```
 -- Insert rate
 select database, table, time_bucket,
        max(number_of_parts_per_insert) max_parts_pi,

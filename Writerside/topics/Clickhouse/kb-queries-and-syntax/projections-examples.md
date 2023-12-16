@@ -6,7 +6,7 @@ description: >
 ---
 ## Aggregating projections
 
-```sql
+```
 create table z(Browser String, Country UInt8, F Float64)
 Engine=MergeTree
 order by Browser;
@@ -65,7 +65,7 @@ Elapsed: 0.005 sec. Processed 22.43 thousand rows
 
 You can create an `orderby projection` and include all columns of a table, but if a table is very wide it will double of stored data. This expample demonstrate a trick, we create an `orderby projection` and include primary key columns and the target column and sort by the target column. This allows using subquery to find primary key values and after that to query the table using the primary key. 
 
-```sql
+```
 CREATE TABLE test_a
 (
     `src` String,

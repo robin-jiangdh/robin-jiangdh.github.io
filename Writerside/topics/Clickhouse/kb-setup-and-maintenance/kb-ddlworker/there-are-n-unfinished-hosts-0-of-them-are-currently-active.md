@@ -10,11 +10,11 @@ Sometimes your Distributed DDL queries are being stuck, and not executing on all
 
 ### Clickhouse node can't recognize itself
 
-```sql
+```
 SELECT * FROM system.clusters; -- check is_local column, it should have 1 for itself
 ```
 
-```bash
+```
 getent hosts clickhouse.local.net # or other name which should be local
 hostname --fqdn
 
@@ -32,7 +32,7 @@ There is an issue in Debian based images, when hostname being mapped to 127.0.1.
 
 It's usually some heavy operations like merges, mutations, alter columns, so it make sense to check those tables:
 
-```sql
+```
 SHOW PROCESSLIST;
 SELECT * FROM system.merges;
 SELECT * FROM system.mutations;
@@ -44,7 +44,7 @@ In that case, you can just wait completion of previous task.
 
 In that case, the first step is to understand which exact task is stuck and why. There are some queries which can help with that.
 
-```sql
+```
 -- list of all distributed ddl queries, path can be different in your installation
 SELECT * FROM system.zookeeper WHERE path = '/clickhouse/task_queue/ddl/';
 
@@ -52,11 +52,11 @@ SELECT * FROM system.zookeeper WHERE path = '/clickhouse/task_queue/ddl/';
 SELECT * FROM system.zookeeper WHERE path = '/clickhouse/task_queue/ddl/query-0000001000/';
 SELECT * FROM system.zookeeper WHERE path = '/clickhouse/task_queue/ddl/' AND name = 'query-0000001000';
 -- 22.3
-SELECT * FROM system.zookeeper WHERE path like '/clickhouse/task_queue/ddl/query-0000001000/%' 
+SELECT * FROM system.zookeeper WHERE path like '/clickhouse/task_queue/ddl/query-0000001000/%\' 
 ORDER BY ctime, path SETTINGS allow_unrestricted_reads_from_keeper='true'
 -- 22.6
 SELECT path, name, value, ctime, mtime 
-FROM system.zookeeper WHERE path like '/clickhouse/task_queue/ddl/query-0000001000/%' 
+FROM system.zookeeper WHERE path like '/clickhouse/task_queue/ddl/query-0000001000/%\' 
 ORDER BY ctime, path SETTINGS allow_unrestricted_reads_from_keeper='true'
 
 -- How many nodes executed this task
@@ -76,13 +76,13 @@ SELECT name, value, ctime, mtime FROM system.zookeeper
 WHERE path = '/clickhouse/task_queue/ddl/query-0000001000/finished/';
 
 -- Latest successfull executed tasks from query_log.
-SELECT query FROM system.query_log WHERE query LIKE '%ddl_entry%' AND type = 2 ORDER BY event_time DESC LIMIT 5;
+SELECT query FROM system.query_log WHERE query LIKE '%\ddl_entry%\' AND type = 2 ORDER BY event_time DESC LIMIT 5;
 
 SELECT
     FQDN(),
     *
 FROM clusterAllReplicas('cluster', system.metrics)
-WHERE metric LIKE '%MaxDDLEntryID%'
+WHERE metric LIKE '%\MaxDDLEntryID%\'
 
 ┌─FQDN()───────────────────┬─metric────────┬─value─┬─description───────────────────────────┐
 │ chi-ab.svc.cluster.local │ MaxDDLEntryID │  1468 │ Max processed DDL entry of DDLWorker. │
@@ -106,7 +106,7 @@ grep -C 40 "ddl_entry" /var/log/clickhouse-server/clickhouse-server*.log
 
 Obsolete replicas left in zookeeper.
 
-```sql
+```
 SELECT database, table, zookeeper_path, replica_path zookeeper FROM system.replicas WHERE total_replicas != active_replicas;
 
 SELECT * FROM system.zookeeper WHERE path = '/clickhouse/cluster/tables/01/database/table/replicas';
@@ -123,7 +123,7 @@ SYSTEM START REPLICATION QUEUES;
 
 Task were removed from DDL queue, but left in Replicated\*MergeTree table queue.
 
-```bash
+```
 grep -C 40 "ddl_entry" /var/log/clickhouse-server/clickhouse-server*.log
 
 /var/log/clickhouse-server/clickhouse-server.log:2021.05.04 12:41:28.956888 [ 599 ] {} <Debug> DDLWorker: Processing task query-0000211211 (ALTER TABLE db.table_local ON CLUSTER `all-replicated` DELETE WHERE id = 1)
@@ -158,7 +158,7 @@ Solution:
 
 Changing the DDL queue path in Zookeeper without restarting ClickHouse will make ClickHouse confused. If you need to do this ensure that you restart ClickHouse before submitting additional distributed DDL commands. Here's an example. 
 
-```sql
+```
 -- Path before change:
 SELECT *
 FROM system.zookeeper

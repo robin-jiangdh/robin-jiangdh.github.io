@@ -12,7 +12,7 @@ There are some usecases when you may want to mimic window functions using Arrays
 
 ## Running difference sample
 
-```sql
+```
 DROP TABLE IS EXISTS test_running_difference
 
 CREATE TABLE test_running_difference
@@ -136,7 +136,7 @@ SELECT * FROM test_running_difference
 ```
 
 runningDifference works only in blocks & require ordered data & problematic when group changes
-```sql 
+``` 
 select id, val, runningDifference(val) from (select * from test_running_difference order by id, ts);
 ```
 
@@ -385,7 +385,7 @@ You can do also a lot of magic with arrayEnumerate and accessing different value
 
 use arrayJoin
 
-```sql
+```
 WITH 
     groupArray(tuple(ts, val)) as window_rows,
     arraySort(x -> x.1, window_rows) as sorted_window_rows,
@@ -402,7 +402,7 @@ GROUP BY id
 
  or ARRAY JOIN 
  
-```sql
+```
 SELECT 
   id,
   diff,

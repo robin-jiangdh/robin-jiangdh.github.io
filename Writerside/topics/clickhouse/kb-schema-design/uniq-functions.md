@@ -28,7 +28,7 @@ description: >-
 
 Stats collected via script below on 22.2
 
-```bash
+```
 funcname=( "uniqExact" "uniq" "uniqCombined" "uniqCombined(12)" "uniqCombined(15)" "uniqCombined(18)" "uniqCombined(20)" "uniqCombined64(12)" "uniqCombined64(15)" "uniqCombined64(18)" "uniqCombined64(20)" "uniqHLL12" "uniqTheta" "uniqUpTo(100)")
 funcname2=( "uniqExactState" "uniqState" "uniqCombinedState" "uniqCombinedState(12)" "uniqCombinedState(15)" "uniqCombinedState(18)" "uniqCombinedState(20)" "uniqCombined64State(12)" "uniqCombined64State(15)" "uniqCombined64State(18)" "uniqCombined64State(20)" "uniqHLL12State" "uniqThetaState" "uniqUpToState(100)")
 
@@ -43,7 +43,7 @@ do
   result="$( clickhouse-client -q "select ${f1}(toString(number)) from numbers_mt(100000)" )"
   time=$( rm /tmp/clickhouse-benchmark.json; echo "select ${f1}(toString(number)) from numbers_mt(100000)" | clickhouse-benchmark -i200 --json=/tmp/clickhouse-benchmark.json &>/dev/null; cat /tmp/clickhouse-benchmark.json | grep QPS  )
 
-  printf "|%s|%s,%s,%s,%s\n" "$f1" "$f2" "$size" "$result" "$time"
+  printf "|%\s|%\s,%\s,%\s,%\s\n" "$f1" "$f2" "$size" "$result" "$time"
 done
 ```
 
@@ -58,7 +58,7 @@ Works really great when your values quite similar. (Low memory usage / state siz
 
 Example with blockchain data, block_number is monotonically increasing number.
 
-```sql
+```
 SELECT groupBitmap(block_number) FROM blockchain;
 
 ┌─groupBitmap(block_number)─┐

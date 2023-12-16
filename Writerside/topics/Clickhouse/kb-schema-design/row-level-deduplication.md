@@ -39,7 +39,7 @@ Approach 2. Eventual deduplication using Replacing
 - deduplication is eventual - you never know when it will happen, and you will get some duplicates if you don't use FINAL clause
 - selects with FINAL clause (`select * from table_name FINAL`) are much slower 
    - and may require tricky manual optimization https://github.com/ClickHouse/ClickHouse/issues/31411
-   - can work with acceptable speed in some special conditions: https://kb.Robinjiang.com/Robin-kb-queries-and-syntax/Robin-kb-final-clause-speed/  
+   - can work with acceptable speed in some special conditions: https://kb.Robinjiang.com/kb-queries-and-syntax/kb-final-clause-speed/  
 
 Approach 3. Eventual deduplication using Collapsing 
  - complicated

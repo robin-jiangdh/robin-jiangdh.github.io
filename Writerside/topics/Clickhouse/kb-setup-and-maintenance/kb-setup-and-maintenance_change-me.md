@@ -26,13 +26,13 @@ There are two possible solutions to this problem:
 
 1. Change the FQDN to allow other nodes to access it. This solution can also help to keep the environment more organized. To do this, use the following command to edit the hostname file:
 
-```sh
+```
 sudo vim /etc/hostname
 ```
 
 Or use the following command to change the hostname:
 
-```sh
+```
 sudo hostnamectl set-hostname ...
 ```
 

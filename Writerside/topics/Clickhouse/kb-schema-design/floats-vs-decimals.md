@@ -10,7 +10,7 @@ In case you need accurate calculations you should use Decimal datatypes.
 
 ### Operations on floats are not associative
 
-```sql
+```
 SELECT (toFloat64(100000000000000000.) + toFloat64(7.5)) - toFloat64(100000000000000000.) AS res
 
 ┌─res─┐
@@ -27,7 +27,7 @@ SELECT (toFloat64(100000000000000000.) - toFloat64(100000000000000000.)) + toFlo
 
 ### No problem with Decimals:
 
-```sql
+```
 SELECT (toDecimal64(100000000000000000., 1) + toDecimal64(7.5, 1)) - toDecimal64(100000000000000000., 1) AS res
 
 ┌─res─┐
@@ -50,7 +50,7 @@ Usually, this deviation is small, but it can be significant when some kind of ar
 
 ### Some decimal numbers has no accurate float representation
 
-```sql
+```
 SELECT sum(toFloat64(0.45)) AS res
 FROM numbers(10000)
 
@@ -77,7 +77,7 @@ SELECT toFloat32(0.6) * 6 AS res
 
 ### No problem with Decimal:
 
-```sql
+```
 SELECT sum(toDecimal64(0.45, 2)) AS res
 FROM numbers(10000)
 
@@ -97,7 +97,7 @@ SELECT toDecimal32(0.6, 1) * 6 AS res
 
 The same number can have several floating-point representations and because of that you should not compare Floats directly
 
-```sql
+```
 SELECT (toFloat32(0.1) * 10) = (toFloat32(0.01) * 100) AS res
 
 ┌─res─┐

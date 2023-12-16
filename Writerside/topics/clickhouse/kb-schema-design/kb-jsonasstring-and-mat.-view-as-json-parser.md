@@ -8,7 +8,7 @@ Tables with engine Null don’t store data but can be used as a source for mater
 
 JSONAsString a special input format which allows to ingest JSONs into a String column. If the input has several JSON objects (comma separated) they will be interpreted as separate rows. JSON can be multiline.
 
-```sql
+```
 create table entrypoint(J String) Engine=Null;
 create table datastore(a String, i Int64, f Float64) Engine=MergeTree order by a;
 
@@ -35,4 +35,4 @@ SELECT * FROM datastore;
 └──────┴────┴─────┘
 ```
 
-See also: [JSONExtract to parse many attributes at a time](jsonextract-to-parse-many-attributes-at-a-time.)
+See also: [JSONExtract to parse many attributes at a time](jsonextract-to-parse-many-attributes-at-a-time.md)

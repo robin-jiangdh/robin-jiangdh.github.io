@@ -9,7 +9,7 @@ description: >-
 
 ## The most cpu / write / read-intensive queries from query_log
 
-```sql
+```
 SELECT
     normalized_query_hash,
     any(query),
@@ -43,7 +43,7 @@ FORMAT Vertical
 
 ## Find queries which were started but not finished at some moment in time
 
-```sql
+```
 SELECT
   query_id,
   min(event_time) t,
