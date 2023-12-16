@@ -13,14 +13,14 @@ description: >-
 Need to install `clickhouse-common-static` + `clickhouse-keeper` OR `clickhouse-common-static` + `clickhouse-server`. 
 Both OK, use the first if you don't need clickhouse server locally.
 
-``` 
+``` {ignore-vars=true}
  
 dpkg -i clickhouse-common-static_{%version}.deb clickhouse-keeper_{%version}.deb
  
 dpkg -i clickhouse-common-static_{%version}.deb clickhouse-server_{%version}.deb clickhouse-client_{%version}.deb
  
 ```
-{ignore-vars=true}
+
 
 
 Create directories
