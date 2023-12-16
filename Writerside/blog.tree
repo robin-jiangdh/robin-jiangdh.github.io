@@ -3,7 +3,7 @@
         SYSTEM "https://resources.jetbrains.com/writerside/1.0/product-profile.dtd">
 
 <instance-profile id="blog"
-                  name="blog" start-page="2017-12-04-metrics-tracing-logging.md">
+                  name="blog" start-page="Starter.md">
 
     <toc-element topic="metrics-logging-tracing.topic">
         <toc-element topic="2017-05-10-about-liblog.md"/>

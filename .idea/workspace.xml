@@ -5,40 +5,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="69ddd2ad-813b-49a1-b3c5-c5aaced8e76b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Writerside/aawesome-life.tree" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/favicon.ico" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/redirection-rules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Readings.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Section-Starting-Page.topic" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Starter.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/awesome-life.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/blog-summary.topic" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/metrics-logging-tracing.topic" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Writerside/topics/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/aawesome-life.tree" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Writerside/blog.tree" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/blog.tree" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Writerside/cfg/buildprofiles.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/cfg/buildprofiles.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Writerside/topics/csharp/2020-04-13-string-class-sealed.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/ci/csharp/2020-04-13-string-class-sealed.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Writerside/topics/mysql/2016-01-13-about-index.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/post/mysql/2016-01-13-about-index.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Writerside/topics/mysql/2016-01-15-mysql-index.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/post/mysql/2016-01-15-mysql-index.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Writerside/topics/mysql/2017-01-11-mysql-explain-or-desc.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/post/mysql/2017-01-11-mysql-explain-or-desc.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Writerside/topics/mysql/2018-04-11-mysql-index-optimization.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/post/mysql/2018-04-11-mysql-index-optimization.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Writerside/topics/mysql/2019-11-15-mysql-lock.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/post/mysql/2019-11-15-mysql-lock.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Writerside/topics/netcore/2019-12-21-netcore-start-process.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/post/netcore/2019-12-21-netcore-start-process.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Writerside/topics/netcore/2019-12-22-aspnetcore-middleware-and-pipeline.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/post/netcore/2019-12-22-aspnetcore-middleware-and-pipeline.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Writerside/topics/reading-notes/2016-03-15-How-to-Read-a-Book.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/post/reading-notes/2016-03-15-How-to-Read-a-Book.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Writerside/topics/reading-notes/2017-02-21-How-to-Read-a-Book.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/post/reading-notes/2017-02-21-How-to-Read-a-Book.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Writerside/topics/reading-notes/2018-08-16-How-to-Read-a-Book.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/post/reading-notes/2018-08-16-How-to-Read-a-Book.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Writerside/topics/reading-notes/2020-03-10-How-to-Read-a-Book.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/post/reading-notes/2020-03-10-How-to-Read-a-Book.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Writerside/topics/redis/2019-06-05-why-redis.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/post/redis/2019-06-05-why-redis.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Writerside/topics/redis/2019-08-06-redis-distributed-lock.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/post/redis/2019-08-06-redis-distributed-lock.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Writerside/topics/tools/2017-06-10-use-mailkit-with-mimekit-to-send-email.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/post/tools/2017-06-10-use-mailkit-with-mimekit-to-send-email.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Writerside/topics/wyam/2020-01-10-about-static-content-generator.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/post/wyam/2020-01-10-about-static-content-generator.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Writerside/topics/wyam/2020-03-10-wyam-static-content-generator-and-toolkit.md" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/topics/post/wyam/2020-03-10-wyam-static-content-generator-and-toolkit.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -120,6 +102,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "ASKED_ADD_EXTERNAL_FILES": "true",
+    "DefaultHtmlFileTemplate": "HTML File",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master",
@@ -136,6 +119,14 @@
       <recent name="C:\Repos\github\robin-jiangdh\robin-jiangdh.github.io\Writerside\topics\ci" />
       <recent name="C:\Repos\github\robin-jiangdh\robin-jiangdh.github.io\wyam_backup" />
     </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="Build blog (blog)" type="StardustRunConfiguration" factoryName="save-as-zip">
+      <option name="folderPath" value="$PROJECT_DIR$" />
+      <option name="instanceId" value="blog" />
+      <option name="instanceName" value="blog" />
+      <method v="2" />
+    </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="VcsManagerConfiguration">
