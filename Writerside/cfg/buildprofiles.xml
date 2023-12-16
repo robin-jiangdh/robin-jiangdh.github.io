@@ -2,11 +2,33 @@
 <buildprofiles xsi:noNamespaceSchemaLocation="https://resources.jetbrains.com/writerside/1.0/build-profiles.xsd"
                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 
-    <variables></variables>
+    <variables>
+        <primary-color>aqua</primary-color>
+        <header-logo>logo.png</header-logo>
+        <product-web-url>https://robinjiang.com</product-web-url>
+        <custom-favicons>favicon.ico</custom-favicons>
+
+    </variables>
     <build-profile instance="blog">
         <variables>
             <noindex-content>false</noindex-content>
         </variables>
     </build-profile>
+    <build-profile instance="awesome-life">
+        <variables>
+            <noindex-content>false</noindex-content>
+        </variables>
+    </build-profile>
+    <footer>
+        <copyright>Product 2000-2023</copyright>
+        <!--<icp>123456789</icp>
+        <social type="blog" href="link to a blog"></social>
+        <social type="twitter" href="link to a Twitter account"></social>
+        <social type="facebook" href="link to a Facebook account"></social>
+        <link href="https://slack.example.com">Slack community</link>
+        <link href="https://stackoverflow.com">StackOverflow</link>
+        <link href="https://example.com/terms-an-conditions.html">Terms and conditions</link>
+        <link href="https://example.com/code-of-conduct.html">Code of Conduct</link>-->
+    </footer>
 
 </buildprofiles>

@@ -1,0 +1,3 @@
+# About awesome-life
+
+Start typing here...
