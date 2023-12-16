@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE categories
+        SYSTEM "https://resources.jetbrains.com/writerside/1.0/categories.dtd">
+<categories>
+    <category id="tech" name="about it engineer" order="1"/>
+    <category id="reading" name="awesome life" order="2"/>
+</categories>

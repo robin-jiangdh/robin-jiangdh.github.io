@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE instance-profile
+        SYSTEM "https://resources.jetbrains.com/writerside/1.0/product-profile.dtd">
+
+<instance-profile id="blog"
+                  name="blog" start-page="2017-08-11-gitlab-ci-powershell-bugs.md">
+
+    <toc-element topic="tech.md">
+        <toc-element toc-title="redis">
+            <toc-element topic="2019-08-06-redis-distributed-lock.md"/>
+            <toc-element topic="2019-06-05-why-redis.md"/>
+        </toc-element>
+        <toc-element toc-title="netcore">
+            <toc-element topic="2019-12-22-aspnetcore-middleware-and-pipeline.md"/>
+            <toc-element topic="2019-12-21-netcore-start-process.md"/>
+        </toc-element>
+        <toc-element toc-title="mysql">
+            <toc-element topic="2019-11-15-mysql-lock.md"/>
+            <toc-element topic="2018-04-11-mysql-index-optimization.md"/>
+            <toc-element topic="2017-01-11-mysql-explain-or-desc.md"/>
+            <toc-element topic="2016-01-15-mysql-index.md"/>
+            <toc-element topic="2016-01-13-about-index.md"/>
+        </toc-element>
+        <toc-element toc-title="csharp">
+            <toc-element topic="2020-04-13-string-class-sealed.md"/>
+        </toc-element>
+        <toc-element toc-title="ci">
+            <toc-element topic="2017-08-11-gitlab-ci-powershell-bugs.md"/>
+        </toc-element>
+    </toc-element>
+    <toc-element toc-title="logging-system">
+        <toc-element topic="2018-12-20-how-to-logging-in-production-enviroment.md"/>
+        <toc-element topic="2017-06-12-about-gelf.md"/>
+        <toc-element topic="2017-05-10-about-liblog.md"/>
+    </toc-element>
+    <toc-element toc-title="metrics">
+        <toc-element topic="2017-12-04-metrics-tracing-logging.md"/>
+    </toc-element>
+    <toc-element toc-title="reading-notes">
+        <toc-element topic="2020-03-10-How-to-Read-a-Book.md"/>
+        <toc-element topic="2018-08-16-How-to-Read-a-Book.md"/>
+        <toc-element topic="2017-02-21-How-to-Read-a-Book.md"/>
+        <toc-element topic="2016-03-15-How-to-Read-a-Book.md"/>
+    </toc-element>
+    <toc-element toc-title="tools">
+        <toc-element topic="2017-06-10-use-mailkit-with-mimekit-to-send-email.md"/>
+    </toc-element>
+    <toc-element toc-title="wyam">
+        <toc-element topic="2020-03-10-wyam-static-content-generator-and-toolkit.md"/>
+        <toc-element topic="2020-01-10-about-static-content-generator.md"/>
+    </toc-element>
+</instance-profile>

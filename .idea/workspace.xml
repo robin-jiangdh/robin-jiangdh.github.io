@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="69ddd2ad-813b-49a1-b3c5-c5aaced8e76b" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.github/workflows/deploy.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Writerside/blog.tree" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Writerside/c.list" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Writerside/cfg/buildprofiles.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Writerside/topics/ci/2017-08-11-gitlab-ci-powershell-bugs.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Writerside/topics/csharp/2020-04-13-string-class-sealed.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Writerside/topics/logging-system/2017-05-10-about-liblog.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Writerside/topics/logging-system/2017-06-12-about-gelf.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Writerside/topics/logging-system/2018-12-20-how-to-logging-in-production-enviroment.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Writerside/topics/metrics/2017-12-04-metrics-tracing-logging.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Writerside/topics/mysql/2016-01-13-about-index.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Writerside/topics/mysql/2016-01-15-mysql-index.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Writerside/topics/mysql/2017-01-11-mysql-explain-or-desc.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Writerside/topics/mysql/2018-04-11-mysql-index-optimization.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Writerside/topics/mysql/2019-11-15-mysql-lock.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Writerside/topics/netcore/2019-12-21-netcore-start-process.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Writerside/topics/netcore/2019-12-22-aspnetcore-middleware-and-pipeline.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Writerside/topics/reading-notes/2016-03-15-How-to-Read-a-Book.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Writerside/topics/reading-notes/2017-02-21-How-to-Read-a-Book.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Writerside/topics/reading-notes/2018-08-16-How-to-Read-a-Book.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Writerside/topics/reading-notes/2020-03-10-How-to-Read-a-Book.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Writerside/topics/redis/2019-06-05-why-redis.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Writerside/topics/redis/2019-08-06-redis-distributed-lock.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Writerside/topics/tech.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Writerside/topics/tools/2017-06-10-use-mailkit-with-mimekit-to-send-email.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Writerside/topics/wyam/2020-01-10-about-static-content-generator.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Writerside/topics/wyam/2020-03-10-wyam-static-content-generator-and-toolkit.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Writerside/v.list" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Writerside/writerside.cfg" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="InstanceColorv3">
+    <option name="map">
+      <map>
+        <entry key="blog.tree">
+          <value>
+            <ColorState>
+              <option name="customOrder" value="1" />
+              <option name="first">
+                <RgbState>
+                  <option name="blue" value="60" />
+                  <option name="darkBlue" value="60" />
+                  <option name="darkGreen" value="68" />
+                  <option name="darkRed" value="206" />
+                  <option name="green" value="68" />
+                  <option name="red" value="206" />
+                </RgbState>
+              </option>
+              <option name="second">
+                <RgbState>
+                  <option name="blue" value="65" />
+                  <option name="darkBlue" value="65" />
+                  <option name="darkGreen" value="126" />
+                  <option name="darkRed" value="231" />
+                  <option name="green" value="126" />
+                  <option name="red" value="231" />
+                </RgbState>
+              </option>
+            </ColorState>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0
+}</component>
+  <component name="ProjectId" id="2ZbXIhuaCUwelpgt1KivDcqM4xb" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "C:/Repos/github/robin-jiangdh/robin-jiangdh.github.io",
+    "writerside.last.selected.productrobin-jiangdh.github.io": "blog"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Repos\github\robin-jiangdh\robin-jiangdh.github.io\wyam_backup" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+</project>
