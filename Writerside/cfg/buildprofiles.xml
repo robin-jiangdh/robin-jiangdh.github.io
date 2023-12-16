@@ -5,20 +5,15 @@
     <variables>
         <primary-color>aqua</primary-color>
         <!--<header-logo>logo.png</header-logo>-->
-        <product-web-url>https://robinjiang.com</product-web-url>
+        <product-web-url>https://doc.robinjiang.com</product-web-url>
         <!--<custom-favicons>favicon.ico</custom-favicons>-->
 
     </variables>
     <build-profile instance="blog">
         <variables>
-            <noindex-content>true</noindex-content>
-        </variables>
-    </build-profile>
-    <build-profile instance="awesome-life">
-        <variables>
             <noindex-content>false</noindex-content>
         </variables>
-    </build-profile>
+    </build-profile> 
     <footer>
         <copyright>Product 2000-2023</copyright>
         <!--<icp>123456789</icp>
