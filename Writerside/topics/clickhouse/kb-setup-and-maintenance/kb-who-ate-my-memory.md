@@ -55,7 +55,8 @@ ORDER BY memory_usage DESC
 LIMIT 10;
 
 ```
-
+```
+{ignore-vars=true}
 ```
 for i in `seq 1 600`; do clickhouse-client --empty_result_for_aggregation_by_empty_set=0 -q "select (select 'Merges: \
 '||formatReadableSize(sum(memory_usage)) from system.merges), (select \

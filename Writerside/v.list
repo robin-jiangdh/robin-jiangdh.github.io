@@ -3,4 +3,5 @@
 <vars>
     <var name="creator" value="RobinJiang"/>
     <var name="github" value="RobinJiang"/>
+    <var name="version" value="latest"/>
 </vars>
