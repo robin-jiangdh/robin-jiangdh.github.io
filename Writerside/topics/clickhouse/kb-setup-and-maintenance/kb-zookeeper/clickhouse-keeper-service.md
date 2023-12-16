@@ -10,9 +10,9 @@ Both OK, use the first if you don't need clickhouse server locally.
 
 ``` 
  
-dpkg -i clickhouse-common-static_{%version}.deb clickhouse-keeper_{%version}.deb
+dpkg -i clickhouse-common-static_latest.deb clickhouse-keeper_latest.deb
  
-dpkg -i clickhouse-common-static_{%version}.deb clickhouse-server_{%version}.deb clickhouse-client_{%version}.deb
+dpkg -i clickhouse-common-static_latest.deb clickhouse-server_latest.deb clickhouse-client_latest.deb
  
 ```
 
