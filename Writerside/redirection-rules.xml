@@ -14,4 +14,12 @@
         <description><![CDATA[Created after removal of "<metrics-logging-tracing.md>" from blog]]></description>
         <accepts>metrics-logging-tracing.html</accepts>
     </rule>
+    <rule id="673df4f5">
+        <description><![CDATA[Created after removal of "<search.md>" from blog]]></description>
+        <accepts>search.html</accepts>
+    </rule>
+    <rule id="25185d79">
+        <description>Created after removal of ""Robin Knowledge Base" from blog</description>
+        <accepts>_index.html</accepts>
+    </rule>
 </rules>
