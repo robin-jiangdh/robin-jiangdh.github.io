@@ -1,0 +1,198 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat"><html lang="en-US" data-colors-preset="contrast" data-primary-color="#307FFF"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="robots" content="noindex">  <meta name="built-on" content="2023-12-17T22:54:23.4557544"><meta name="build-number" content="${buildNumber}">       <title>Kubernetes job for clickhouse-copier | blog</title><script id="virtual-toc-data" type="application/json">[{"id":"kubernetes-job-for-clickhouse-copier-linktitle-kubernetes-job-for-clickhouse-copier-description-kubernetes-job-for-clickhouse-copier","level":0,"title":"#Kubernetes job for clickhouse-copier\nlinkTitle: \"Kubernetes job for clickhouse-copier\"\ndescription: \u003e\nKubernetes job for clickhouse-copier","anchor":"#kubernetes-job-for-clickhouse-copier-linktitle-kubernetes-job-for-clickhouse-copier-description-kubernetes-job-for-clickhouse-copier"},{"id":"deployment","level":0,"title":"Deployment","anchor":"#deployment"}]</script><script id="topic-shortcuts" type="application/json"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.6.6-b205/app.css" rel="stylesheet">   <link rel="apple-touch-icon" sizes="180x180" href="https://jetbrains.com/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="https://jetbrains.com/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="https://jetbrains.com/favicon-16x16.png"><link rel="manifest" href="https://jetbrains.com/site.webmanifest"><link rel="mask-icon" href="https://jetbrains.com/safari-pinned-tab.svg" color="#000000"><meta name="msapplication-TileColor" content="#000000"/><meta name="msapplication-TileImage" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-144x144.png"/><meta name="msapplication-square70x70logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-70x70.png"/><meta name="msapplication-square150x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-150x150.png"/><meta name="msapplication-wide310x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x150.png"/><meta name="msapplication-square310x310logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x310.png"/>  <meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="Kubernetes job for clickhouse-copier | blog"/><meta property="og:description" content=""/><meta property="og:image" content=""/><meta property="og:site_name" content="blog Help"/><meta property="og:type" content="website"/><meta property="og:locale" content="en_US"/><meta property="og:url" content="/1.0/kubernetes-job.html"/><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="Kubernetes job for clickhouse-copier | blog"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json"> { "@context": "http://schema.org", "@type": "WebPage", "@id": "/1.0/kubernetes-job.html#webpage", "url": "/1.0/kubernetes-job.html", "name": "Kubernetes job for clickhouse-copier | blog", "description": "", "image": "", "inLanguage":"en-US" }</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json"> { "@type": "WebSite", "@id": "/#website", "url": "/", "name": "blog Help" }</script><!-- End Schema.org --></head>      <body data-id="kubernetes-job" data-main-title="Kubernetes job for clickhouse-copier" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}"  data-template="article"  data-breadcrumbs="Clickhouse///kb-setup-and-maintenance///kb-data-migration///kb-clickhouse-copier"  >   <div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>blog 1.0 Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="kubernetes-job"   id="kubernetes-job.md">Kubernetes job for clickhouse-copier</h1>  <section class="chapter"><h2 id="kubernetes-job-for-clickhouse-copier-linktitle-kubernetes-job-for-clickhouse-copier-description-kubernetes-job-for-clickhouse-copier" data-toc="kubernetes-job-for-clickhouse-copier-linktitle-kubernetes-job-for-clickhouse-copier-description-kubernetes-job-for-clickhouse-copier"   >#Kubernetes job for clickhouse-copier
+linkTitle: &quot;Kubernetes job for clickhouse-copier&quot;
+description: &gt;
+Kubernetes job for clickhouse-copier</h2></section><p id="b54217a8_429">Clickhouse-copier can be deployed in a kubernetes environment to automate some simple backups or copy fresh data between clusters.</p><p id="b54217a8_430">Some documentation to read:</p><ul class="list _ul" id="b54217a8_431"><li class="list__item" id="b54217a8_432"><p>https://kb.Robinjiang.com/kb-setup-and-maintenance/kb-data-migration/kb-clickhouse-copier/</p></li><li class="list__item" id="b54217a8_433"><p>https://clickhouse.com/docs/en/operations/utilities/clickhouse-copier/</p></li></ul><section class="chapter"><h2 id="deployment" data-toc="deployment"   >Deployment</h2><p id="b54217a8_434">Use a kubernetes job is recommended but a simple pod can be used if you only want to execute the copy one time.</p><p id="b54217a8_435">Just edit/change all the <code class="code" id="b54217a8_436">yaml</code> files to your needs.</p><section class="chapter"><h3 id="1-create-the-pvc" data-toc="1-create-the-pvc"   >1) Create the PVC:</h3><p id="b54217a8_437">First create a namespace in which all the pods and resources are going to be deployed</p><div class="code-block" data-lang="none"         >
+kubectl create namespace clickhouse-copier
+</div><p id="b54217a8_439">Then create the PVC using a <code class="code" id="b54217a8_440">storageClass</code> gp2-encrypted class or use any other storageClass from other providers:</p><div class="code-block" data-lang="yaml"         >
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: copier-logs
+  namespace: clickhouse-copier
+spec:
+  storageClassName: gp2-encrypted
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 100Mi
+</div><p id="b54217a8_442">and deploy:</p><div class="code-block" data-lang="none"         >
+kubectl -n clickhouse-copier create -f ./kubernetes/copier-pvc.yaml
+</div></section><section class="chapter"><h3 id="2-create-the-configmap" data-toc="2-create-the-configmap"   >2) Create the configmap:</h3><p id="b54217a8_444">The configmap has both files <code class="code" id="b54217a8_445">zookeeper.xml</code> and <code class="code" id="b54217a8_446">task01.xml</code> with the zookeeper node listing and the parameters for the task respectively.</p><div class="code-block" data-lang="yaml"         >
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: copier-config
+  namespace: clickhouse-copier
+data:
+    task01.xml: |
+        &lt;clickhouse&gt;
+            &lt;logger&gt;
+                &lt;console&gt;true&lt;/console&gt;
+                &lt;log remove=&quot;remove&quot;/&gt;
+                &lt;errorlog remove=&quot;remove&quot;/&gt;
+                &lt;level&gt;trace&lt;/level&gt;
+            &lt;/logger&gt;
+            &lt;remote_servers&gt;
+                &lt;all-replicated&gt;
+                    &lt;shard&gt;
+                        &lt;replica&gt;
+                            &lt;host&gt;clickhouse01.svc.cluster.local&lt;/host&gt;
+                            &lt;port&gt;9000&lt;/port&gt;
+                            &lt;user&gt;chcopier&lt;/user&gt;
+                            &lt;password&gt;pass&lt;/password&gt;
+                        &lt;/replica&gt;
+                        &lt;replica&gt;
+                            &lt;host&gt;clickhouse02.svc.cluster.local&lt;/host&gt;
+                            &lt;port&gt;9000&lt;/port&gt;
+                            &lt;user&gt;chcopier&lt;/user&gt;
+                            &lt;password&gt;pass&lt;/password&gt;
+                        &lt;/replica&gt;
+                    &lt;/shard&gt;
+                &lt;/all-replicated&gt;
+                &lt;all-sharded&gt;
+                    &lt;!-- &lt;secret&gt;&lt;/secret&gt; --&gt;
+                    &lt;shard&gt;
+                        &lt;replica&gt;
+                            &lt;host&gt;clickhouse03.svc.cluster.local&lt;/host&gt;
+                            &lt;port&gt;9000&lt;/port&gt;
+                            &lt;user&gt;chcopier&lt;/user&gt;
+                            &lt;password&gt;pass&lt;/password&gt;
+                        &lt;/replica&gt;
+                    &lt;/shard&gt;
+                    &lt;shard&gt;
+                        &lt;replica&gt;
+                            &lt;host&gt;clickhouse03.svc.cluster.local&lt;/host&gt;
+                            &lt;port&gt;9000&lt;/port&gt;
+                            &lt;user&gt;chcopier&lt;/user&gt;
+                            &lt;password&gt;pass&lt;/password&gt;
+                        &lt;/replica&gt;
+                    &lt;/shard&gt;
+                &lt;/all-sharded&gt;
+            &lt;/remote_servers&gt;
+            &lt;max_workers&gt;1&lt;/max_workers&gt;
+            &lt;settings_pull&gt;
+                &lt;readonly&gt;1&lt;/readonly&gt;
+            &lt;/settings_pull&gt;
+            &lt;settings_push&gt;
+                &lt;readonly&gt;0&lt;/readonly&gt;
+            &lt;/settings_push&gt;
+            &lt;settings&gt;
+                &lt;connect_timeout&gt;3&lt;/connect_timeout&gt;
+                &lt;insert_distributed_sync&gt;1&lt;/insert_distributed_sync&gt;
+            &lt;/settings&gt;
+            &lt;tables&gt;
+                &lt;table_sales&gt;
+                    &lt;cluster_pull&gt;all-replicated&lt;/cluster_pull&gt;
+                    &lt;database_pull&gt;default&lt;/database_pull&gt;
+                    &lt;table_pull&gt;fact_sales_event&lt;/table_pull&gt;
+                    &lt;cluster_push&gt;all-sharded&lt;/cluster_push&gt;
+                    &lt;database_push&gt;default&lt;/database_push&gt;
+                    &lt;table_push&gt;fact_sales_event&lt;/table_push&gt;
+                    &lt;engine&gt;
+                        Engine=ReplicatedMergeTree('/clickhouse/{cluster}/tables/{shard}/fact_sales_event', '{replica}')
+                        PARTITION BY toYYYYMM(timestamp)
+                        ORDER BY (channel_id, product_id)
+                        SETTINGS index_granularity = 8192
+                    &lt;/engine&gt;
+                    &lt;sharding_key&gt;rand()&lt;/sharding_key&gt;
+                &lt;/table_ventas&gt;
+            &lt;/tables&gt;
+        &lt;/clickhouse&gt;
+    zookeeper.xml: |
+        &lt;clickhouse&gt;
+            &lt;logger&gt;
+                &lt;level&gt;trace&lt;/level&gt;
+                &lt;size&gt;100M&lt;/size&gt;
+                &lt;count&gt;3&lt;/count&gt;
+            &lt;/logger&gt;
+            &lt;zookeeper&gt;
+                &lt;node&gt;
+                    &lt;host&gt;zookeeper1.svc.cluster.local&lt;/host&gt;
+                    &lt;port&gt;2181&lt;/port&gt;
+                &lt;/node&gt;
+                &lt;node&gt;
+                    &lt;host&gt;zookeeper2.svc.cluster.local&lt;/host&gt;
+                    &lt;port&gt;2181&lt;/port&gt;
+                &lt;/node&gt;
+                &lt;node&gt;
+                    &lt;host&gt;zookeeper3.svc.cluster.local&lt;/host&gt;
+                    &lt;port&gt;2181&lt;/port&gt;
+                &lt;/node&gt;
+            &lt;/zookeeper&gt;
+        &lt;/clickhouse&gt;
+</div><p id="b54217a8_448">and deploy:</p><div class="code-block" data-lang="none"         >
+kubectl -n clickhouse-copier create -f ./kubernetes/copier-configmap.yaml
+</div><p id="b54217a8_450">The <code class="code" id="b54217a8_451">task01.xml</code> file has many parameters to take into account explained in the <a href="https://clickhouse.com/docs/en/operations/utilities/clickhouse-copier/" id="b54217a8_452"   data-external="true" rel="noopener noreferrer" >clickhouse-copier documentation</a>. Important to note that it is needed a FQDN for the zookeeper nodes and clickhouse server that are valid for the cluster. As the deployment creates a new namespace, it is recommended to use a FQDN linked to a service. For example <code class="code" id="b54217a8_453">zookeeper01.svc.cluster.local</code>. This file should be adapted to both clusters topologies and to the needs of the user.</p><p id="b54217a8_454">The <code class="code" id="b54217a8_455">zookeeper.xml</code> file is pretty straightforward with a simple 3 node ensemble configuration.</p></section><section class="chapter"><h3 id="3-create-the-job" data-toc="3-create-the-job"   >3) Create the job:</h3><p id="b54217a8_456">Basically the job will download the official clickhouse image and will create a pod with 2 containers:</p><ul class="list _ul" id="b54217a8_457"><li class="list__item" id="b54217a8_458"><p id="b54217a8_459">clickhouse-copier: This container will run the clickhouse-copier utility.</p></li><li class="list__item" id="b54217a8_460"><p id="b54217a8_461">sidecar-logging: This container will be used to read the logs of the clickhouse-copier container for different runs (this part can be improved):</p></li></ul><div class="code-block" data-lang="yaml"         >
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: clickhouse-copier-test
+  namespace: clickhouse-copier
+spec:
+  # only for kubernetes 1.23
+  # ttlSecondsAfterFinished: 86400
+  template:
+    spec:
+      containers:
+        - name: clickhouse-copier
+          image: clickhouse/clickhouse-server:21.8
+          command:
+            - clickhouse-copier
+            - --task-upload-force=1
+            - --config-file=$(CH_COPIER_CONFIG)
+            - --task-path=$(CH_COPIER_TASKPATH)
+            - --task-file=$(CH_COPIER_TASKFILE)
+            - --base-dir=$(CH_COPIER_BASEDIR)
+          env:
+            - name: CH_COPIER_CONFIG
+              value: &quot;/var/lib/clickhouse/tmp/zookeeper.xml&quot;
+            - name: CH_COPIER_TASKPATH
+              value: &quot;/clickhouse/copier/tasks/task01&quot;
+            - name: CH_COPIER_TASKFILE
+              value: &quot;/var/lib/clickhouse/tmp/task01.xml&quot;
+            - name: CH_COPIER_BASEDIR
+              value: &quot;/var/lib/clickhouse/tmp&quot;
+          resources:
+            limits:
+              cpu: &quot;1&quot;
+              memory: 2048Mi
+          volumeMounts:
+            - name: copier-config
+              mountPath: /var/lib/clickhouse/tmp/zookeeper.xml
+              subPath: zookeeper.xml
+            - name: copier-config
+              mountPath: /var/lib/clickhouse/tmp/task01.xml
+              subPath: task01.xml
+            - name: copier-logs
+              mountPath: /var/lib/clickhouse/tmp
+        - name: sidecar-logger
+          image: busybox:1.35
+          command: ['/bin/sh', '-c', 'tail', '-n', '1000', '-f', '/tmp/copier-logs/clickhouse-copier*/*.log']
+          resources:
+            limits:
+              cpu: &quot;1&quot;
+              memory: 512Mi
+          volumeMounts:
+            - name: copier-logs
+              mountPath: /tmp/copier-logs
+      volumes:
+        - name: copier-config
+          configMap:
+            name: copier-config
+            items:
+              - key: zookeeper.xml
+                path: zookeeper.xml
+              - key: task01.xml
+                path: task01.xml
+        - name: copier-logs
+          persistentVolumeClaim:
+            claimName: copier-logs
+      restartPolicy: Never
+  backoffLimit: 3
+</div><p id="b54217a8_463">Deploy and watch progress checking the logs:</p><div class="code-block" data-lang="none"         >
+kubectl -n clickhouse-copier logs &lt;podname&gt; sidecar-logging
+</div></section></section><div class="last-modified"> Last modified: 17 十二月 2023</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom">  <a class="navigation-links__prev" href="distributed-table-cluster.html">Distributed table to Cluster</a>   <a class="navigation-links__next" href="kb-clickhouse-copier-index.html">clickhouse-copier</a>  </div></article><div id="disqus_thread"></div></div></section></main></div>  <script src="https://resources.jetbrains.com/writerside/apidoc/6.6.6-b205/app.js"></script></body></html>

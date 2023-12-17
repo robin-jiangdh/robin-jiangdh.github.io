@@ -1,0 +1,64 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat"><html lang="en-US" data-colors-preset="contrast" data-primary-color="#307FFF"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="robots" content="noindex">  <meta name="built-on" content="2023-12-17T22:54:23.256479"><meta name="build-number" content="${buildNumber}">       <title>range_hashed example - open intervals | blog</title><script id="virtual-toc-data" type="application/json">[{"id":"range-hashed-example-open-intervals-linktitle-range-hashed-example-open-intervals-description-range-hashed-example-open-intervals","level":0,"title":"#range_hashed example - open intervals\nlinkTitle: \"range_hashed example - open intervals\"\ndescription: \u003e\nrange_hashed example - open intervals","anchor":"#range-hashed-example-open-intervals-linktitle-range-hashed-example-open-intervals-description-range-hashed-example-open-intervals"}]</script><script id="topic-shortcuts" type="application/json"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.6.6-b205/app.css" rel="stylesheet">   <link rel="apple-touch-icon" sizes="180x180" href="https://jetbrains.com/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="https://jetbrains.com/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="https://jetbrains.com/favicon-16x16.png"><link rel="manifest" href="https://jetbrains.com/site.webmanifest"><link rel="mask-icon" href="https://jetbrains.com/safari-pinned-tab.svg" color="#000000"><meta name="msapplication-TileColor" content="#000000"/><meta name="msapplication-TileImage" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-144x144.png"/><meta name="msapplication-square70x70logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-70x70.png"/><meta name="msapplication-square150x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-150x150.png"/><meta name="msapplication-wide310x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x150.png"/><meta name="msapplication-square310x310logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x310.png"/>  <meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="range_hashed example - open intervals | blog"/><meta property="og:description" content=""/><meta property="og:image" content=""/><meta property="og:site_name" content="blog Help"/><meta property="og:type" content="website"/><meta property="og:locale" content="en_US"/><meta property="og:url" content="/1.0/kb-range-hashed-example-open-intervals.html"/><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="range_hashed example - open intervals | blog"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json"> { "@context": "http://schema.org", "@type": "WebPage", "@id": "/1.0/kb-range-hashed-example-open-intervals.html#webpage", "url": "/1.0/kb-range-hashed-example-open-intervals.html", "name": "range_hashed example - open intervals | blog", "description": "", "image": "", "inLanguage":"en-US" }</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json"> { "@type": "WebSite", "@id": "/#website", "url": "/", "name": "blog Help" }</script><!-- End Schema.org --></head>      <body data-id="kb-range_hashed-example-open-intervals" data-main-title="range_hashed example - open intervals" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}"  data-template="article"  data-breadcrumbs="Clickhouse///kb-dictionaries"  >   <div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>blog 1.0 Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="kb-range_hashed-example-open-intervals"   id="kb-range_hashed-example-open-intervals.md">range_hashed example - open intervals</h1>  <section class="chapter"><h2 id="range-hashed-example-open-intervals-linktitle-range-hashed-example-open-intervals-description-range-hashed-example-open-intervals" data-toc="range-hashed-example-open-intervals-linktitle-range-hashed-example-open-intervals-description-range-hashed-example-open-intervals"   >#range_hashed example - open intervals
+linkTitle: &quot;range_hashed example - open intervals&quot;
+description: &gt;
+range_hashed example - open intervals</h2><p id="b8970299_22">The following example shows a <code class="code" id="b8970299_23">range_hashed</code> example at open intervals.</p><div class="code-block" data-lang="none"         >
+DROP TABLE IF EXISTS rates;
+
+DROP DICTIONARY IF EXISTS rates_dict;
+
+CREATE TABLE rates (
+  id UInt64,
+  date_start Nullable(Date),
+  date_end Nullable(Date),
+  rate Decimal64(4)
+) engine=Log;
+
+INSERT INTO rates VALUES (1, Null, '2021-03-13',99), (1, '2021-03-14','2021-03-16',100), (1, '2021-03-17', Null, 101), (2, '2021-03-14', Null, 200), (3, Null, '2021-03-14', 300), (4, '2021-03-14', '2021-03-14', 400);
+
+CREATE DICTIONARY rates_dict
+(
+  id UInt64,
+  date_start Date,
+  date_end Date,
+  rate Decimal64(4)
+)
+PRIMARY KEY id
+SOURCE(CLICKHOUSE(HOST 'localhost' PORT 9000 USER 'default' TABLE 'rates'))
+LIFETIME(MIN 1 MAX 1000)
+LAYOUT(RANGE_HASHED())
+RANGE(MIN date_start MAX date_end);
+
+SELECT * FROM rates_dict order by id, date_start;
+
+┌─id─┬─date_start─┬───date_end─┬─────rate─┐
+│  1 │ 1970-01-01 │ 2021-03-13 │  99.0000 │
+│  1 │ 2021-03-14 │ 2021-03-16 │ 100.0000 │
+│  1 │ 2021-03-17 │ 1970-01-01 │ 101.0000 │
+│  2 │ 2021-03-14 │ 1970-01-01 │ 200.0000 │
+│  3 │ 1970-01-01 │ 2021-03-14 │ 300.0000 │
+│  4 │ 2021-03-14 │ 2021-03-14 │ 400.0000 │
+└────┴────────────┴────────────┴──────────┘
+
+WITH
+  toDate('2021-03-10') + INTERVAL number DAY as date
+select
+  date,
+  dictGet(currentDatabase() || '.rates_dict', 'rate', toUInt64(1), date) as rate1,
+  dictGet(currentDatabase() || '.rates_dict', 'rate', toUInt64(2), date) as rate2,
+  dictGet(currentDatabase() || '.rates_dict', 'rate', toUInt64(3), date) as rate3,
+  dictGet(currentDatabase() || '.rates_dict', 'rate', toUInt64(4), date) as rate4
+FROM numbers(10);
+
+┌───────date─┬────rate1─┬────rate2─┬────rate3─┬────rate4─┐
+│ 2021-03-10 │  99.0000 │   0.0000 │ 300.0000 │   0.0000 │
+│ 2021-03-11 │  99.0000 │   0.0000 │ 300.0000 │   0.0000 │
+│ 2021-03-12 │  99.0000 │   0.0000 │ 300.0000 │   0.0000 │
+│ 2021-03-13 │  99.0000 │   0.0000 │ 300.0000 │   0.0000 │
+│ 2021-03-14 │ 100.0000 │ 200.0000 │ 300.0000 │ 400.0000 │
+│ 2021-03-15 │ 100.0000 │ 200.0000 │   0.0000 │   0.0000 │
+│ 2021-03-16 │ 100.0000 │ 200.0000 │   0.0000 │   0.0000 │
+│ 2021-03-17 │ 101.0000 │ 200.0000 │   0.0000 │   0.0000 │
+│ 2021-03-18 │ 101.0000 │ 200.0000 │   0.0000 │   0.0000 │
+│ 2021-03-19 │ 101.0000 │ 200.0000 │   0.0000 │   0.0000 │
+└────────────┴──────────┴──────────┴──────────┴──────────┘
+</div></section><div class="last-modified"> Last modified: 17 十二月 2023</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom">  <a class="navigation-links__prev" href="kb-sparse-hashed-vs-hashed.html">SPARSE_HASHED VS HASHED vs HASHED_ARRAY</a>   <a class="navigation-links__next" href="kb-dictionaries-security-named-collections.html">Security named collections</a>  </div></article><div id="disqus_thread"></div></div></section></main></div>  <script src="https://resources.jetbrains.com/writerside/apidoc/6.6.6-b205/app.js"></script></body></html>

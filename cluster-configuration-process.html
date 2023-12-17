@@ -1,0 +1,122 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat"><html lang="en-US" data-colors-preset="contrast" data-primary-color="#307FFF"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="robots" content="noindex">  <meta name="built-on" content="2023-12-17T22:54:23.2076577"><meta name="build-number" content="${buildNumber}">       <title>Cluster Configuration Process | blog</title><script id="virtual-toc-data" type="application/json">[{"id":"cluster-configuration-process-linktitle-cluster-configuration-process-description-cluster-configuration-process","level":0,"title":"#Cluster Configuration Process\nlinkTitle: \"Cluster Configuration Process\"\ndescription: \u003e\nCluster Configuration Process","anchor":"#cluster-configuration-process-linktitle-cluster-configuration-process-description-cluster-configuration-process"}]</script><script id="topic-shortcuts" type="application/json"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.6.6-b205/app.css" rel="stylesheet">   <link rel="apple-touch-icon" sizes="180x180" href="https://jetbrains.com/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="https://jetbrains.com/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="https://jetbrains.com/favicon-16x16.png"><link rel="manifest" href="https://jetbrains.com/site.webmanifest"><link rel="mask-icon" href="https://jetbrains.com/safari-pinned-tab.svg" color="#000000"><meta name="msapplication-TileColor" content="#000000"/><meta name="msapplication-TileImage" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-144x144.png"/><meta name="msapplication-square70x70logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-70x70.png"/><meta name="msapplication-square150x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-150x150.png"/><meta name="msapplication-wide310x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x150.png"/><meta name="msapplication-square310x310logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x310.png"/>  <meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="Cluster Configuration Process | blog"/><meta property="og:description" content=""/><meta property="og:image" content=""/><meta property="og:site_name" content="blog Help"/><meta property="og:type" content="website"/><meta property="og:locale" content="en_US"/><meta property="og:url" content="/1.0/cluster-configuration-process.html"/><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="Cluster Configuration Process | blog"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json"> { "@context": "http://schema.org", "@type": "WebPage", "@id": "/1.0/cluster-configuration-process.html#webpage", "url": "/1.0/cluster-configuration-process.html", "name": "Cluster Configuration Process | blog", "description": "", "image": "", "inLanguage":"en-US" }</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json"> { "@type": "WebSite", "@id": "/#website", "url": "/", "name": "blog Help" }</script><!-- End Schema.org --></head>      <body data-id="cluster-configuration-process" data-main-title="Cluster Configuration Process" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}"  data-template="article"  data-breadcrumbs="Clickhouse///kb-setup-and-maintenance///cluster-production-configuration-guide"  >   <div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>blog 1.0 Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="cluster-configuration-process"   id="cluster-configuration-process.md">Cluster Configuration Process</h1>  <section class="chapter"><h2 id="cluster-configuration-process-linktitle-cluster-configuration-process-description-cluster-configuration-process" data-toc="cluster-configuration-process-linktitle-cluster-configuration-process-description-cluster-configuration-process"   >#Cluster Configuration Process
+linkTitle: &quot;Cluster Configuration Process&quot;
+description: &gt;
+Cluster Configuration Process</h2><p id="86774e85_624">So you set up 3 nodes with zookeeper (zookeeper1, zookeeper2, zookeeper3 - <a href="https://docs.Robinjiang.com/operationsguide/clickhouse-zookeeper/" id="86774e85_625"   data-external="true" rel="noopener noreferrer" >How to install zookeer?</a>), and and 4 nodes with ClickHouse (clickhouse-sh1r1,clickhouse-sh1r2,clickhouse-sh2r1,clickhouse-sh2r2 - <a href="https://docs.Robinjiang.com/Robinstablerelease/stablequickstartguide/" id="86774e85_626"   data-external="true" rel="noopener noreferrer" >how to install ClickHouse?</a>). Now we need to make them work together.</p><p id="86774e85_627">Use ansible/puppet/salt or other systems to control the servers&rsquo; configurations.</p><ol class="list _decimal" id="86774e85_628" type="1"><li class="list__item" id="86774e85_629"><p>Configure ClickHouse access to Zookeeper by adding the file zookeeper.xml in /etc/clickhouse-server/config.d/ folder. This file must be placed on all ClickHouse servers.</p></li></ol><div class="code-block" data-lang="markup"         >
+&lt;yandex&gt;
+    &lt;zookeeper&gt;
+        &lt;node&gt;
+            &lt;host&gt;zookeeper1&lt;/host&gt;
+            &lt;port&gt;2181&lt;/port&gt;
+        &lt;/node&gt;
+        &lt;node&gt;
+            &lt;host&gt;zookeeper2&lt;/host&gt;
+            &lt;port&gt;2181&lt;/port&gt;
+        &lt;/node&gt;
+        &lt;node&gt;
+            &lt;host&gt;zookeeper3&lt;/host&gt;
+            &lt;port&gt;2181&lt;/port&gt;
+        &lt;/node&gt;
+    &lt;/zookeeper&gt;
+&lt;/yandex&gt;
+</div><ol class="list _decimal" id="86774e85_631" type="1"><li class="list__item" id="86774e85_632"><p>On each server put the file macros.xml in <code class="code" id="86774e85_633">/etc/clickhouse-server/config.d/</code> folder.</p></li></ol><div class="code-block" data-lang="markup"         >
+&lt;yandex&gt;
+    &lt;!--
+        That macros are defined per server,
+        and they can be used in DDL, to make the DB schema cluster/server neutral
+    --&gt;
+    &lt;macros&gt;
+        &lt;cluster&gt;prod_cluster&lt;/cluster&gt;
+        &lt;shard&gt;01&lt;/shard&gt;
+        &lt;replica&gt;clickhouse-sh1r1&lt;/replica&gt; &lt;!-- better - use the same as hostname  --&gt;
+    &lt;/macros&gt;
+&lt;/yandex&gt;
+</div><ol class="list _decimal" id="86774e85_635" type="1"><li class="list__item" id="86774e85_636"><p>On each server place the file cluster.xml in /etc/clickhouse-server/config.d/ folder. Before 20.10 ClickHouse will use default user to connect to other nodes (configurable, other users can be used), since 20.10 we recommend to use passwordless intercluster authentication based on common secret (HMAC auth)</p></li></ol><div class="code-block" data-lang="markup"         >
+&lt;yandex&gt;
+    &lt;remote_servers&gt;
+        &lt;prod_cluster&gt; &lt;!-- you need to give a some name for a cluster --&gt;
+
+            &lt;!--
+                &lt;secret&gt;some_random_string, same on all cluster nodes, keep it safe&lt;/secret&gt;
+            --&gt;
+            &lt;shard&gt;
+                &lt;internal_replication&gt;true&lt;/internal_replication&gt;
+                &lt;replica&gt;
+                    &lt;host&gt;clickhouse-sh1r1&lt;/host&gt;
+                    &lt;port&gt;9000&lt;/port&gt;
+                &lt;/replica&gt;
+                &lt;replica&gt;
+                    &lt;host&gt;clickhouse-sh1r2&lt;/host&gt;
+                    &lt;port&gt;9000&lt;/port&gt;
+                &lt;/replica&gt;
+            &lt;/shard&gt;
+            &lt;shard&gt;
+                &lt;internal_replication&gt;true&lt;/internal_replication&gt;
+                &lt;replica&gt;
+                    &lt;host&gt;clickhouse-sh2r1&lt;/host&gt;
+                    &lt;port&gt;9000&lt;/port&gt;
+                &lt;/replica&gt;
+                &lt;replica&gt;
+                    &lt;host&gt;clickhouse-sh2r2&lt;/host&gt;
+                    &lt;port&gt;9000&lt;/port&gt;
+                &lt;/replica&gt;
+            &lt;/shard&gt;
+        &lt;/prod_cluster&gt;
+    &lt;/remote_servers&gt;
+&lt;/yandex&gt;
+</div><ol class="list _decimal" id="86774e85_638" type="1"><li class="list__item" id="86774e85_639"><p>A good practice is to create 2 additional cluster configurations similar to prod_cluster above with the following distinction: but listing all nodes of single shard (all are replicas) and as nodes of 6 different shards (no replicas) </p><ol class="list _decimal" id="86774e85_640" type="1"><li class="list__item" id="86774e85_641"><p>all-replicated: All nodes are listed as replicas in a single shard.</p></li><li class="list__item" id="86774e85_642"><p>all-sharded: All nodes are listed as separate shards with no replicas.</p></li></ol></li></ol><p id="86774e85_643">Once this is complete, other queries that span nodes can be performed. For example:</p><div class="code-block" data-lang="none"         >
+CREATE TABLE test_table_local ON CLUSTER '{cluster}'
+(
+  id UInt8
+)
+Engine=ReplicatedMergeTree('/clickhouse/tables/{database}/{table}/{shard}', '{replica}')
+ORDER BY (id);
+</div><p id="86774e85_645">That will create a table on all servers in the cluster. You can insert data into this table and it will be replicated automatically to the other shards.To store the data or read the data from all shards at the same time, create a Distributed table that links to the replicatedMergeTree table.</p><div class="code-block" data-lang="none"         >
+CREATE TABLE test_table ON CLUSTER '{cluster}'
+Engine=Distributed('{cluster}', 'default', '
+</div><section class="chapter"><h3 id="hardening-clickhouse-security" data-toc="hardening-clickhouse-security"   >Hardening ClickHouse Security</h3><p id="86774e85_647"><span class="control" id="86774e85_648">See</span> <a href="https://docs.Robinjiang.com/operationsguide/security/clickhouse-hardening-guide/" id="86774e85_649"   data-external="true" rel="noopener noreferrer" >https://docs.Robinjiang.com/operationsguide/security/clickhouse-hardening-guide/</a></p></section><section class="chapter"><h3 id="additional-settings" data-toc="additional-settings"   >Additional Settings</h3><p id="86774e85_650">See [kb-settings-to-adjust]({{&lt;ref &quot;kb-settings-to-adjust&quot; &gt;}})</p><section class="chapter"><h4 id="users" data-toc="users"   >Users</h4><p id="86774e85_651">Disable or add password for the default users default and readonly if your server is accessible from non-trusted networks.</p><p id="86774e85_652">If you add password to the default user, you will need to adjust cluster configuration, since the other servers need to know the default user&rsquo;s should know the default user&rsquo;s to connect to each other.</p><p id="86774e85_653">If you&rsquo;re inside a trusted network, you can leave default user set to nothing to allow the ClickHouse nodes to communicate with each other.</p></section><section class="chapter"><h4 id="engines-clickhouse-building-blocks" data-toc="engines-clickhouse-building-blocks"   >Engines &amp; ClickHouse building blocks</h4><p id="86774e85_654">For general explanations of roles of different engines - check the post <a href="https://github.com/yandex/ClickHouse/issues/2161" id="86774e85_655"   data-external="true" rel="noopener noreferrer" >Distributed vs Shard vs Replicated ahhh, help me!!!</a>.</p></section><section class="chapter"><h4 id="zookeeper-paths" data-toc="zookeeper-paths"   >Zookeeper Paths</h4><p id="86774e85_656">Use conventions for zookeeper paths. For example, use:</p><p id="86774e85_657">ReplicatedMergeTree('/clickhouse//tables//table_name', '')</p><p id="86774e85_658">for:</p><p id="86774e85_659">SELECT * FROM system.zookeeper WHERE path='/ ...';</p></section><section class="chapter"><h4 id="configuration-best-practices" data-toc="configuration-best-practices"   >Configuration Best Practices</h4><div class="table-wrapper"><table class="" id="86774e85_660"><thead><tr class="ijRowHead" id="86774e85_661"><th id="86774e85_662"><p id="86774e85_663">Attribution</p><p id="86774e85_664">Modified by a post [on GitHub by Mikhail Filimonov](https://github.com/ClickHouse/ClickHouse/issues/3607#issuecomment-440235298).</p></th></tr></thead><tbody></tbody></table></div><p id="86774e85_665">The following are recommended Best Practices when it comes to setting up a ClickHouse Cluster with Zookeeper:</p><ol class="list _decimal" id="86774e85_666" type="1"><li class="list__item" id="86774e85_667"><p>Don&rsquo;t edit/overwrite default configuration files. Sometimes a newer version of ClickHouse introduces some new settings or changes the defaults in config.xml and users.xml. </p><ol class="list _decimal" id="86774e85_668" type="1"><li class="list__item" id="86774e85_669"><p>Set configurations via the extra files in conf.d directory. For example, to overwrite the interface save the file config.d/listen.xml, with the following:</p></li></ol></li></ol><div class="code-block" data-lang="markup"         >
+&lt;?xml version=&quot;1.0&quot;?&gt;
+&lt;yandex&gt;
+    &lt;listen_host replace=&quot;replace&quot;&gt;::&lt;/listen_host&gt;
+&lt;/yandex&gt;
+</div><ol class="list _decimal" id="86774e85_671" type="1"><li class="list__item" id="86774e85_672"><p>The same is true for users. For example, change the default profile by putting the file in users.d/profile_default.xml:</p></li></ol><div class="code-block" data-lang="markup"         >
+&lt;?xml version=&quot;1.0&quot;?&gt;
+&lt;yandex&gt;
+    &lt;profiles&gt;
+        &lt;default replace=&quot;replace&quot;&gt;
+            &lt;max_memory_usage&gt;15000000000&lt;/max_memory_usage&gt;
+            &lt;max_bytes_before_external_group_by&gt;12000000000&lt;/max_bytes_before_external_group_by&gt;
+            &lt;max_bytes_before_external_sort&gt;12000000000&lt;/max_bytes_before_external_sort&gt;
+            &lt;distributed_aggregation_memory_efficient&gt;1&lt;/distributed_aggregation_memory_efficient&gt;
+            &lt;use_uncompressed_cache&gt;0&lt;/use_uncompressed_cache&gt;
+            &lt;load_balancing&gt;random&lt;/load_balancing&gt;
+            &lt;log_queries&gt;1&lt;/log_queries&gt;
+            &lt;max_execution_time&gt;600&lt;/max_execution_time&gt;
+        &lt;/default&gt;
+    &lt;/profiles&gt;
+&lt;/yandex&gt;
+</div><ol class="list _decimal" id="86774e85_674" type="1"><li class="list__item" id="86774e85_675"><p>Or you can create a user by putting a file users.d/user_xxx.xml (since 20.5 you can also use CREATE USER)</p></li></ol><div class="code-block" data-lang="markup"         >
+&lt;?xml version=&quot;1.0&quot;?&gt;
+&lt;yandex&gt;
+    &lt;users&gt;
+        &lt;xxx&gt;
+            &lt;!-- PASSWORD=$(base64 &lt; /dev/urandom | head -c8); echo &quot;$PASSWORD&quot;; echo -n &quot;$PASSWORD&quot; | sha256sum | tr -d '-' --&gt;
+            &lt;password_sha256_hex&gt;...&lt;/password_sha256_hex&gt;
+            &lt;networks incl=&quot;networks&quot; /&gt;
+            &lt;profile&gt;readonly&lt;/profile&gt;
+            &lt;quota&gt;default&lt;/quota&gt;
+            &lt;allow_databases incl=&quot;allowed_databases&quot; /&gt;
+        &lt;/xxx&gt;
+    &lt;/users&gt;
+&lt;/yandex&gt;
+</div><ol class="list _decimal" id="86774e85_677" type="1"><li class="list__item" id="86774e85_678"><p>Some parts of configuration will contain repeated elements (like allowed ips for all the users). To avoid repeating that - use substitutions file. By default its /etc/metrika.xml, but you can change it for example to /etc/clickhouse-server/substitutions.xml with the &lt;include_from&gt; section of the main config. Put the repeated parts into substitutions file, like this:</p></li></ol><div class="code-block" data-lang="markup"         >
+&lt;?xml version=&quot;1.0&quot;?&gt;
+&lt;yandex&gt;
+    &lt;networks&gt;
+        &lt;ip&gt;::1&lt;/ip&gt;
+        &lt;ip&gt;127.0.0.1&lt;/ip&gt;
+        &lt;ip&gt;10.42.0.0/16&lt;/ip&gt;
+        &lt;ip&gt;192.168.0.0/24&lt;/ip&gt;
+    &lt;/networks&gt;
+&lt;/yandex&gt;
+
+</div><p id="86774e85_680">These files can be common for all the servers inside the cluster or can be individualized per server. If you choose to use one substitutions file per cluster, not per node, you will also need to generate the file with macros, if macros are used.</p><p id="86774e85_681">This way you have full flexibility; you&rsquo;re not limited to the settings described in the template. You can change any settings per server or data center just by assigning files with some settings to that server or server group. It becomes easy to navigate, edit, and assign files.</p></section></section><section class="chapter"><h3 id="other-configuration-recommendations" data-toc="other-configuration-recommendations"   >Other Configuration Recommendations</h3><p id="86774e85_682">Other configurations that should be evaluated:</p><ul class="list _ul" id="86774e85_683"><li class="list__item" id="86774e85_684"><p>&quot;listen&quot; in config.xml: Determines which IP addresses and ports the ClickHouse servers listen for incoming communications.</p></li><li class="list__item" id="86774e85_685"><p>&quot;max_memory_..&quot; and &quot;max_bytes_before_external_...&quot; in users.xml. These are part of the profile &quot;default&quot;.</p></li><li class="list__item" id="86774e85_686"><p>&quot;max_execution_time&quot;</p></li><li class="list__item" id="86774e85_687"><p>&quot;log_queries&quot;</p></li></ul><p id="86774e85_688">The following extra debug logs should be considered:</p><ul class="list _ul" id="86774e85_689"><li class="list__item" id="86774e85_690"><p>part_log</p></li><li class="list__item" id="86774e85_691"><p>text_log</p></li></ul></section><section class="chapter"><h3 id="understanding-the-configuration" data-toc="understanding-the-configuration"   >Understanding The Configuration</h3><p id="86774e85_692">ClickHouse configuration stores most of its information in two files:</p><ul class="list _ul" id="86774e85_693"><li class="list__item" id="86774e85_694"><p>config.xml: Stores <a href="https://clickhouse.yandex/docs/en/operations/server_settings/" id="86774e85_695"   data-external="true" rel="noopener noreferrer" >Server configuration parameters</a>. They are server wide, some are hierarchical , and most of them can&rsquo;t be changed in runtime. The list of settings to apply without a restart changes from version to version. Some settings can be verified using system tables, for example: </p><ul class="list _ul" id="86774e85_696"><li class="list__item" id="86774e85_697"><p>macros (system.macros)</p></li><li class="list__item" id="86774e85_698"><p>remote_servers (system.clusters)</p></li></ul></li><li class="list__item" id="86774e85_699"><p>users.xml: Configure users, and user level / session level <a href="https://clickhouse.yandex/docs/en/operations/settings/settings/" id="86774e85_700"   data-external="true" rel="noopener noreferrer" >settings</a>. </p><ul class="list _ul" id="86774e85_701"><li class="list__item" id="86774e85_702"><p>Each user can change these during their session by: </p><ul class="list _ul" id="86774e85_703"><li class="list__item" id="86774e85_704"><p>Using parameter in http query</p></li><li class="list__item" id="86774e85_705"><p>By using parameter for clickhouse-client</p></li><li class="list__item" id="86774e85_706"><p>Sending query like set allow_experimental_data_skipping_indices=1.</p></li></ul></li><li class="list__item" id="86774e85_707"><p>Those settings and their current values are visible in system.settings. You can make some settings global by editing default profile in users.xml, which does not need restart.</p></li><li class="list__item" id="86774e85_708"><p>You can forbid users to change their settings by using readonly=2 for that user, or using <a href="https://clickhouse.yandex/docs/en/operations/settings/constraints_on_settings/" id="86774e85_709"   data-external="true" rel="noopener noreferrer" >setting constraints</a>.</p></li><li class="list__item" id="86774e85_710"><p>Changes in users.xml are applied w/o restart.</p></li></ul></li></ul><p id="86774e85_711">For both config.xml and users.xml, it&rsquo;s preferable to put adjustments in the config.d and users.d subfolders instead of editing config.xml and users.xml directly.</p><p id="86774e85_712">You can check if the config file was reread by checking /var/lib/clickhouse/preprocessed_configs/ folder.</p></section></section><div class="last-modified"> Last modified: 17 十二月 2023</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom">  <a class="navigation-links__prev" href="cluster-production-configuration-guide-index.html">Production Cluster Configuration Guide</a>   <a class="navigation-links__next" href="cluster-configuration-faq.html">Cluster Configuration FAQ</a>  </div></article><div id="disqus_thread"></div></div></section></main></div>  <script src="https://resources.jetbrains.com/writerside/apidoc/6.6.6-b205/app.js"></script></body></html>

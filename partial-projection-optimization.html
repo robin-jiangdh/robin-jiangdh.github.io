@@ -1,0 +1,233 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat"><html lang="en-US" data-colors-preset="contrast" data-primary-color="#307FFF"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="robots" content="noindex">  <meta name="built-on" content="2023-12-17T22:54:22.1275528"><meta name="build-number" content="${buildNumber}">       <title>Use both projection and raw data in single query | blog</title><script id="virtual-toc-data" type="application/json">[{"id":"use-both-projection-and-raw-data-in-single-query-linktitle-partial-projection-optimization-description-how-to-write-queries-which-will-use-both-data-from-projection-and-raw-table","level":0,"title":"#Use both projection and raw data in single query\nlinkTitle: \"partial-projection-optimization\"\ndescription: \u003e\nHow to write queries, which will use both data from projection and raw table.","anchor":"#use-both-projection-and-raw-data-in-single-query-linktitle-partial-projection-optimization-description-how-to-write-queries-which-will-use-both-data-from-projection-and-raw-table"}]</script><script id="topic-shortcuts" type="application/json"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.6.6-b205/app.css" rel="stylesheet">   <link rel="apple-touch-icon" sizes="180x180" href="https://jetbrains.com/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="https://jetbrains.com/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="https://jetbrains.com/favicon-16x16.png"><link rel="manifest" href="https://jetbrains.com/site.webmanifest"><link rel="mask-icon" href="https://jetbrains.com/safari-pinned-tab.svg" color="#000000"><meta name="msapplication-TileColor" content="#000000"/><meta name="msapplication-TileImage" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-144x144.png"/><meta name="msapplication-square70x70logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-70x70.png"/><meta name="msapplication-square150x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-150x150.png"/><meta name="msapplication-wide310x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x150.png"/><meta name="msapplication-square310x310logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x310.png"/>  <meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="Use both projection and raw data in single query | blog"/><meta property="og:description" content=""/><meta property="og:image" content=""/><meta property="og:site_name" content="blog Help"/><meta property="og:type" content="website"/><meta property="og:locale" content="en_US"/><meta property="og:url" content="/1.0/partial-projection-optimization.html"/><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="Use both projection and raw data in single query | blog"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json"> { "@context": "http://schema.org", "@type": "WebPage", "@id": "/1.0/partial-projection-optimization.html#webpage", "url": "/1.0/partial-projection-optimization.html", "name": "Use both projection and raw data in single query | blog", "description": "", "image": "", "inLanguage":"en-US" }</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json"> { "@type": "WebSite", "@id": "/#website", "url": "/", "name": "blog Help" }</script><!-- End Schema.org --></head>      <body data-id="partial-projection-optimization" data-main-title="Use both projection and raw data in single query" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}"  data-template="article"  data-breadcrumbs="Clickhouse///kb-queries-and-syntax"  >   <div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>blog 1.0 Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="partial-projection-optimization"   id="partial-projection-optimization.md">Use both projection and raw data in single query</h1>  <section class="chapter"><h2 id="use-both-projection-and-raw-data-in-single-query-linktitle-partial-projection-optimization-description-how-to-write-queries-which-will-use-both-data-from-projection-and-raw-table" data-toc="use-both-projection-and-raw-data-in-single-query-linktitle-partial-projection-optimization-description-how-to-write-queries-which-will-use-both-data-from-projection-and-raw-table"   >#Use both projection and raw data in single query
+linkTitle: &quot;partial-projection-optimization&quot;
+description: &gt;
+How to write queries, which will use both data from projection and raw table.</h2><div class="code-block" data-lang="none"         >
+CREATE TABLE default.metric
+(
+    `key_a` UInt8,
+    `key_b` UInt32,
+    `date` Date,
+    `value` UInt32,
+    PROJECTION monthly
+    (
+        SELECT
+            key_a,
+            key_b,
+            min(date),
+            sum(value)
+        GROUP BY
+            key_a,
+            key_b
+    )
+)
+ENGINE = MergeTree
+PARTITION BY toYYYYMM(date)
+ORDER BY (key_a, key_b, date)
+SETTINGS index_granularity = 8192;
+
+
+INSERT INTO metric SELECT
+    key_a,
+    key_b,
+    date,
+    rand() % 100000 AS value
+FROM
+(
+    SELECT
+        arrayJoin(range(8)) AS key_a,
+        number % 500000 AS key_b,
+        today() - intDiv(number, 500000) AS date
+    FROM numbers_mt(1080000000)
+);
+
+OPTIMIZE TABLE metric FINAL;
+
+SET max_threads = 8;
+
+WITH
+    toDate('2015-02-27') AS start_date,
+    toDate('2022-02-15') AS end_date,
+    key_a IN (1, 3, 5, 7) AS key_a_cond
+SELECT
+    key_b,
+    sum(value) AS sum
+FROM metric
+WHERE (date &gt; start_date) AND (date &lt; end_date) AND key_a_cond
+GROUP BY key_b
+ORDER BY sum DESC
+LIMIT 25
+
+25 rows in set. Elapsed: 6.561 sec. Processed 4.32 billion rows, 47.54 GB (658.70 million rows/s., 7.25 GB/s.)
+
+WITH
+    toDate('2015-02-27') AS start_date,
+    toDate('2022-02-15') AS end_date,
+    key_a IN (1, 3, 5, 7) AS key_a_cond
+SELECT
+    key_b,
+    sum(value) AS sum
+FROM
+(
+    SELECT
+        key_b,
+        value
+    FROM metric
+    WHERE indexHint(_partition_id IN CAST([toYYYYMM(start_date), toYYYYMM(end_date)], 'Array(String)')) AND (date &gt; start_date) AND (date &lt; end_date) AND key_a_cond
+    UNION ALL
+    SELECT
+        key_b,
+        sum(value) AS value
+    FROM metric
+    WHERE indexHint(_partition_id IN CAST(range(toYYYYMM(start_date) + 1, toYYYYMM(end_date)), 'Array(String)')) AND key_a_cond
+    GROUP BY key_b
+)
+GROUP BY key_b
+ORDER BY sum DESC
+LIMIT 25
+
+25 rows in set. Elapsed: 1.038 sec. Processed 181.86 million rows, 4.56 GB (175.18 million rows/s., 4.40 GB/s.)
+
+
+WITH
+    (toDate('2016-02-27'), toDate('2017-02-15')) AS period_1,
+    (toDate('2018-05-27'), toDate('2022-08-15')) AS period_2,
+    (date &gt; (period_1.1)) AND (date &lt; (period_1.2)) AS period_1_cond,
+    (date &gt; (period_2.1)) AND (date &lt; (period_2.2)) AS period_2_cond,
+    key_a IN (1, 3, 5, 7) AS key_a_cond
+SELECT
+    key_b,
+    sumIf(value, period_1_cond) AS sum_per_1,
+    sumIf(value, period_2_cond) AS sum_per_2
+FROM metric
+WHERE (period_1_cond OR period_2_cond) AND key_a_cond
+GROUP BY key_b
+ORDER BY sum_per_2 / sum_per_1 DESC
+LIMIT 25
+
+25 rows in set. Elapsed: 5.717 sec. Processed 3.47 billion rows, 38.17 GB (606.93 million rows/s., 6.68 GB/s.)
+
+WITH
+    (toDate('2016-02-27'), toDate('2017-02-15')) AS period_1,
+    (toDate('2018-05-27'), toDate('2022-08-15')) AS period_2,
+    (date &gt; (period_1.1)) AND (date &lt; (period_1.2)) AS period_1_cond,
+    (date &gt; (period_2.1)) AND (date &lt; (period_2.2)) AS period_2_cond,
+    CAST([toYYYYMM(period_1.1), toYYYYMM(period_1.2), toYYYYMM(period_2.1), toYYYYMM(period_2.2)], 'Array(String)') AS daily_parts,
+    key_a IN (1, 3, 5, 7) AS key_a_cond
+SELECT
+    key_b,
+    sumIf(value, period_1_cond) AS sum_per_1,
+    sumIf(value, period_2_cond) AS sum_per_2
+FROM
+(
+    SELECT
+        key_b,
+        date,
+        value
+    FROM metric
+    WHERE indexHint(_partition_id IN (daily_parts)) AND (period_1_cond OR period_2_cond) AND key_a_cond
+    UNION ALL
+    SELECT
+        key_b,
+        min(date) AS date,
+        sum(value) AS value
+    FROM metric
+    WHERE indexHint(_partition_id IN CAST(arrayConcat(range(toYYYYMM(period_1.1) + 1, toYYYYMM(period_1.2)), range(toYYYYMM(period_2.1) + 1, toYYYYMM(period_2.1))), 'Array(String)')) AND indexHint(_partition_id NOT IN (daily_parts)) AND key_a_cond
+    GROUP BY
+        key_b
+)
+GROUP BY key_b
+ORDER BY sum_per_2 / sum_per_1 DESC
+LIMIT 25
+
+
+25 rows in set. Elapsed: 0.444 sec. Processed 140.34 million rows, 2.11 GB (316.23 million rows/s., 4.77 GB/s.)
+
+
+WITH
+    toDate('2022-01-03') AS start_date,
+    toDate('2022-02-15') AS end_date,
+    key_a IN (1, 3, 5, 7) AS key_a_cond
+SELECT
+    key_b,
+    sum(value) AS sum
+FROM metric
+WHERE (date &gt; start_date) AND (date &lt; end_date) AND key_a_cond
+GROUP BY key_b
+ORDER BY sum DESC
+LIMIT 25
+
+25 rows in set. Elapsed: 0.208 sec. Processed 100.06 million rows, 1.10 GB (481.06 million rows/s., 5.29 GB/s.)
+
+
+WITH
+    toDate('2022-01-03') AS start_date,
+    toDate('2022-02-15') AS end_date,
+    key_a IN (1, 3, 5, 7) AS key_a_cond
+SELECT
+    key_b,
+    sum(value) AS sum
+FROM
+(
+    SELECT
+        key_b,
+        value
+    FROM metric
+    WHERE indexHint(_partition_id IN CAST([toYYYYMM(start_date), toYYYYMM(end_date)], 'Array(String)')) AND (date &gt; start_date) AND (date &lt; end_date) AND key_a_cond
+    UNION ALL
+    SELECT
+        key_b,
+        sum(value) AS value
+    FROM metric
+    WHERE indexHint(_partition_id IN CAST(range(toYYYYMM(start_date) + 1, toYYYYMM(end_date)), 'Array(String)')) AND key_a_cond
+    GROUP BY key_b
+)
+GROUP BY key_b
+ORDER BY sum DESC
+LIMIT 25
+
+25 rows in set. Elapsed: 0.216 sec. Processed 100.06 million rows, 1.10 GB (462.68 million rows/s., 5.09 GB/s.)
+
+
+WITH
+    toDate('2021-12-03') AS start_date,
+    toDate('2022-02-15') AS end_date,
+    key_a IN (1, 3, 5, 7) AS key_a_cond
+SELECT
+    key_b,
+    sum(value) AS sum
+FROM metric
+WHERE (date &gt; start_date) AND (date &lt; end_date) AND key_a_cond
+GROUP BY key_b
+ORDER BY sum DESC
+LIMIT 25
+
+25 rows in set. Elapsed: 0.308 sec. Processed 162.09 million rows, 1.78 GB (526.89 million rows/s., 5.80 GB/s.)
+
+WITH
+    toDate('2021-12-03') AS start_date,
+    toDate('2022-02-15') AS end_date,
+    key_a IN (1, 3, 5, 7) AS key_a_cond
+SELECT
+    key_b,
+    sum(value) AS sum
+FROM
+(
+    SELECT
+        key_b,
+        value
+    FROM metric
+    WHERE indexHint(_partition_id IN CAST([toYYYYMM(start_date), toYYYYMM(end_date)], 'Array(String)')) AND (date &gt; start_date) AND (date &lt; end_date) AND key_a_cond
+    UNION ALL
+    SELECT
+        key_b,
+        sum(value) AS value
+    FROM metric
+    WHERE indexHint(_partition_id IN CAST(range(toYYYYMM(start_date) + 1, toYYYYMM(end_date)), 'Array(String)')) AND key_a_cond
+    GROUP BY key_b
+)
+GROUP BY key_b
+ORDER BY sum DESC
+LIMIT 25
+
+25 rows in set. Elapsed: 0.268 sec. Processed 102.08 million rows, 1.16 GB (381.46 million rows/s., 4.33 GB/s.)
+</div></section><div class="last-modified"> Last modified: 17 十二月 2023</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom">  <a class="navigation-links__prev" href="pivot-unpivot.html">PIVOT / UNPIVOT</a>   <a class="navigation-links__next" href="mutations.html">Mutations</a>  </div></article><div id="disqus_thread"></div></div></section></main></div>  <script src="https://resources.jetbrains.com/writerside/apidoc/6.6.6-b205/app.js"></script></body></html>

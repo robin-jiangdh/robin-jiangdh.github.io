@@ -1,0 +1,148 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat"><html lang="en-US" data-colors-preset="contrast" data-primary-color="#307FFF"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="robots" content="noindex">  <meta name="built-on" content="2023-12-17T22:54:23.1897007"><meta name="build-number" content="${buildNumber}">       <title>sysall database (system tables on a cluster level) | blog</title><script id="virtual-toc-data" type="application/json">[{"id":"sysall-database-system-tables-on-a-cluster-level-linktitle-sysall-database-weight-100-description-sysall-database-system-tables-on-a-cluster-level","level":0,"title":"#sysall database (system tables on a cluster level)\nlinkTitle: \"sysall database\"\nweight: 100\ndescription: \u003e-\nsysall database (system tables on a cluster level)","anchor":"#sysall-database-system-tables-on-a-cluster-level-linktitle-sysall-database-weight-100-description-sysall-database-system-tables-on-a-cluster-level"},{"id":"requirements","level":0,"title":"Requirements","anchor":"#requirements"},{"id":"script-to-create-db-ojects","level":0,"title":"Script to create DB ojects","anchor":"#script-to-create-db-ojects"},{"id":"some-examples","level":0,"title":"Some examples","anchor":"#some-examples"}]</script><script id="topic-shortcuts" type="application/json"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.6.6-b205/app.css" rel="stylesheet">   <link rel="apple-touch-icon" sizes="180x180" href="https://jetbrains.com/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="https://jetbrains.com/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="https://jetbrains.com/favicon-16x16.png"><link rel="manifest" href="https://jetbrains.com/site.webmanifest"><link rel="mask-icon" href="https://jetbrains.com/safari-pinned-tab.svg" color="#000000"><meta name="msapplication-TileColor" content="#000000"/><meta name="msapplication-TileImage" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-144x144.png"/><meta name="msapplication-square70x70logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-70x70.png"/><meta name="msapplication-square150x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-150x150.png"/><meta name="msapplication-wide310x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x150.png"/><meta name="msapplication-square310x310logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x310.png"/>  <meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="sysall database (system tables on a cluster level) | blog"/><meta property="og:description" content=""/><meta property="og:image" content=""/><meta property="og:site_name" content="blog Help"/><meta property="og:type" content="website"/><meta property="og:locale" content="en_US"/><meta property="og:url" content="/1.0/sysall.html"/><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="sysall database (system tables on a cluster level) | blog"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json"> { "@context": "http://schema.org", "@type": "WebPage", "@id": "/1.0/sysall.html#webpage", "url": "/1.0/sysall.html", "name": "sysall database (system tables on a cluster level) | blog", "description": "", "image": "", "inLanguage":"en-US" }</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json"> { "@type": "WebSite", "@id": "/#website", "url": "/", "name": "blog Help" }</script><!-- End Schema.org --></head>      <body data-id="sysall" data-main-title="sysall database (system tables on a cluster level)" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}"  data-template="article"  data-breadcrumbs="Clickhouse///kb-setup-and-maintenance"  >   <div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>blog 1.0 Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="sysall"   id="sysall.md">sysall database (system tables on a cluster level)</h1>  <section class="chapter"><h2 id="sysall-database-system-tables-on-a-cluster-level-linktitle-sysall-database-weight-100-description-sysall-database-system-tables-on-a-cluster-level" data-toc="sysall-database-system-tables-on-a-cluster-level-linktitle-sysall-database-weight-100-description-sysall-database-system-tables-on-a-cluster-level"   >#sysall database (system tables on a cluster level)
+linkTitle: &quot;sysall database&quot;
+weight: 100
+description: &gt;-
+sysall database (system tables on a cluster level)</h2></section><section class="chapter"><h2 id="requirements" data-toc="requirements"   >Requirements</h2><p id="6eea927d_113">The idea is that you have a macros <code class="code" id="6eea927d_114">cluster</code> with cluster name.</p><p id="6eea927d_115">For example you have a cluster named <code class="code" id="6eea927d_116">production</code> and this cluster includes all ClickHouse nodes.</p><div class="code-block" data-lang="none"         >
+$ cat /etc/clickhouse-server/config.d/clusters.xml
+&lt;?xml version=&quot;1.0&quot; ?&gt;
+&lt;yandex&gt;
+    &lt;remote_servers&gt;
+        &lt;production&gt;
+          &lt;shard&gt;
+...
+</div><p id="6eea927d_118">And you need to have a macro <code class="code" id="6eea927d_119">cluster</code> set to <code class="code" id="6eea927d_120">production</code>:</p><div class="code-block" data-lang="none"         >
+cat /etc/clickhouse-server/config.d/macros.xml
+&lt;?xml version=&quot;1.0&quot; ?&gt;
+&lt;yandex&gt;
+    &lt;macros&gt;
+        &lt;cluster&gt;production&lt;/cluster&gt;
+        &lt;replica&gt;....&lt;/replica&gt;
+        ....
+    &lt;/macros&gt;
+&lt;/yandex&gt;
+</div><p id="6eea927d_122">Now you should be able to query all nodes using <code class="code" id="6eea927d_123">clusterAllReplicas</code>:</p><div class="code-block" data-lang="none"         >
+SELECT
+    hostName(),
+    FQDN(),
+    materialize(uptime()) AS uptime
+FROM clusterAllReplicas('{cluster}', system.one)
+SETTINGS skip_unavailable_shards = 1
+
+┌─hostName()─┬─FQDN()──────────────┬──uptime─┐
+│ chhost1    │ chhost1.localdomain │ 1071574 │
+│ chhost2    │ chhost2.localdomain │ 1071517 │
+└────────────┴─────────────────────┴─────────┘
+</div><p id="6eea927d_125"><code class="code" id="6eea927d_126">skip_unavailable_shards</code> is necessary to query a system with some nodes are down.</p></section><section class="chapter"><h2 id="script-to-create-db-ojects" data-toc="script-to-create-db-ojects"   >Script to create DB ojects</h2><div class="code-block" data-lang="none"         >
+CREATE DATABASE sysall;
+
+CREATE OR REPLACE VIEW sysall.cluster_state AS
+SELECT
+    shard_num,
+    replica_num,
+    host_name,
+    host_address,
+    port,
+    errors_count,
+    uptime,
+    if(uptime &gt; 0, 'UP', 'DOWN') AS node_state
+FROM system.clusters
+LEFT JOIN
+(
+    SELECT
+        hostName() AS host_name,
+        FQDN() AS fqdn,
+        materialize(uptime()) AS uptime
+    FROM clusterAllReplicas('{cluster}', system.one)
+) as hosts_info USING (host_name)
+WHERE cluster = getMacro('cluster')
+SETTINGS skip_unavailable_shards = 1;
+
+CREATE OR REPLACE VIEW sysall.asynchronous_metrics as  select hostName() nodeHost, FQDN() nodeFQDN, *
+from clusterAllReplicas('{cluster}', system.asynchronous_metrics) SETTINGS skip_unavailable_shards = 1;
+
+CREATE OR REPLACE VIEW sysall.query_log as select hostName() nodeHost, FQDN() nodeFQDN, *
+from clusterAllReplicas('{cluster}', system.query_log) SETTINGS skip_unavailable_shards = 1;
+
+CREATE OR REPLACE VIEW sysall.dictionaries as select hostName() nodeHost, FQDN() nodeFQDN, *
+from clusterAllReplicas('{cluster}', system.dictionaries) SETTINGS skip_unavailable_shards = 1;
+
+CREATE OR REPLACE VIEW sysall.replication_queue as select hostName() nodeHost, FQDN() nodeFQDN, *
+from clusterAllReplicas('{cluster}', system.replication_queue) SETTINGS skip_unavailable_shards = 1;
+
+CREATE OR REPLACE VIEW sysall.replicas as select hostName() nodeHost, FQDN() nodeFQDN, *
+from clusterAllReplicas('{cluster}', system.replicas) SETTINGS skip_unavailable_shards = 1;
+
+CREATE OR REPLACE VIEW sysall.merges as select hostName() nodeHost, FQDN() nodeFQDN, *
+from clusterAllReplicas('{cluster}', system.merges) SETTINGS skip_unavailable_shards = 1;
+
+CREATE OR REPLACE VIEW sysall.mutations as select hostName() nodeHost, FQDN() nodeFQDN, *
+from clusterAllReplicas('{cluster}', system.mutations) SETTINGS skip_unavailable_shards = 1;
+
+CREATE OR REPLACE VIEW sysall.parts as select hostName() nodeHost, FQDN() nodeFQDN, *
+from clusterAllReplicas('{cluster}', system.parts) SETTINGS skip_unavailable_shards = 1;
+
+CREATE OR REPLACE VIEW sysall.detached_parts as select hostName() nodeHost, FQDN() nodeFQDN, *
+from clusterAllReplicas('{cluster}', system.detached_parts) SETTINGS skip_unavailable_shards = 1;
+
+CREATE OR REPLACE VIEW sysall.disks as select hostName() nodeHost, FQDN() nodeFQDN, *
+from clusterAllReplicas('{cluster}', system.disks) SETTINGS skip_unavailable_shards = 1;
+
+CREATE OR REPLACE VIEW sysall.distribution_queue as select hostName() nodeHost, FQDN() nodeFQDN, *
+from clusterAllReplicas('{cluster}', system.distribution_queue) SETTINGS skip_unavailable_shards = 1;
+
+CREATE OR REPLACE VIEW sysall.databases as select hostName() nodeHost, FQDN() nodeFQDN, *
+from clusterAllReplicas('{cluster}', system.databases) SETTINGS skip_unavailable_shards = 1;
+
+CREATE OR REPLACE VIEW sysall.events as select hostName() nodeHost, FQDN() nodeFQDN, *
+from clusterAllReplicas('{cluster}', system.events) SETTINGS skip_unavailable_shards = 1;
+
+CREATE OR REPLACE VIEW sysall.metrics as select hostName() nodeHost, FQDN() nodeFQDN, *
+from clusterAllReplicas('{cluster}', system.metrics) SETTINGS skip_unavailable_shards = 1;
+
+CREATE OR REPLACE VIEW sysall.macros as select hostName() nodeHost, FQDN() nodeFQDN, *
+from clusterAllReplicas('{cluster}', system.macros) SETTINGS skip_unavailable_shards = 1;
+
+CREATE OR REPLACE VIEW sysall.tables as select hostName() nodeHost, FQDN() nodeFQDN, *
+from clusterAllReplicas('{cluster}', system.tables) SETTINGS skip_unavailable_shards = 1;
+
+CREATE OR REPLACE VIEW sysall.clusters as select hostName() nodeHost, FQDN() nodeFQDN, *
+from clusterAllReplicas('{cluster}', system.clusters) SETTINGS skip_unavailable_shards = 1;
+
+CREATE OR REPLACE VIEW sysall.columns as select hostName() nodeHost, FQDN() nodeFQDN, *
+from clusterAllReplicas('{cluster}', system.columns) SETTINGS skip_unavailable_shards = 1;
+
+CREATE OR REPLACE VIEW sysall.processes as select hostName() nodeHost, FQDN() nodeFQDN, *
+from clusterAllReplicas('{cluster}', system.processes) SETTINGS skip_unavailable_shards = 1;
+
+CREATE OR REPLACE VIEW sysall.errors as select hostName() nodeHost, FQDN() nodeFQDN, *
+from clusterAllReplicas('{cluster}', system.errors) SETTINGS skip_unavailable_shards = 1;
+
+CREATE OR REPLACE VIEW sysall.settings as select hostName() nodeHost, FQDN() nodeFQDN, *
+from clusterAllReplicas('{cluster}', system.settings) SETTINGS skip_unavailable_shards = 1;
+
+CREATE OR REPLACE VIEW sysall.parts_columns as select hostName() nodeHost, FQDN() nodeFQDN, *
+from clusterAllReplicas('{cluster}', system.parts_columns) SETTINGS skip_unavailable_shards = 1;
+
+CREATE OR REPLACE VIEW sysall.zookeeper as select hostName() nodeHost, FQDN() nodeFQDN, *
+from clusterAllReplicas('{cluster}', system.zookeeper) SETTINGS skip_unavailable_shards = 1;
+</div></section><section class="chapter"><h2 id="some-examples" data-toc="some-examples"   >Some examples</h2><div class="code-block" data-lang="none"         >
+select * from sysall.cluster_state;
+┌─shard_num─┬─replica_num─┬─host_name───────────┬─host_address─┬─port─┬─errors_count─┬──uptime─┬─node_state─┐
+│         1 │           1 │ chhost1.localdomain │ 10.253.86.2  │ 9000 │            0 │ 1071788 │ UP         │
+│         2 │           1 │ chhost2.localdomain │ 10.253.215.2 │ 9000 │            0 │ 1071731 │ UP         │
+│         3 │           1 │ chhost3.localdomain │ 10.252.83.8  │ 9999 │            0 │       0 │ DOWN       │
+└───────────┴─────────────┴─────────────────────┴──────────────┴──────┴──────────────┴─────────┴────────────┘
+
+
+SELECT
+    nodeFQDN,
+    path,
+    formatReadableSize(free_space) AS free,
+    formatReadableSize(total_space) AS total
+FROM sysall.disks
+┌─nodeFQDN────────────┬─path─────────────────┬─free───────┬─total──────┐
+│ chhost1.localdomain │ /var/lib/clickhouse/ │ 511.04 GiB │ 937.54 GiB │
+│ chhost2.localdomain │ /var/lib/clickhouse/ │ 495.77 GiB │ 937.54 GiB │
+└─────────────────────┴──────────────────────┴────────────┴────────────┘
+
+</div></section><div class="last-modified"> Last modified: 17 十二月 2023</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom">  <a class="navigation-links__prev" href="timeouts-during-optimize-final.html">Timeouts during OPTIMIZE FINAL</a>   <a class="navigation-links__next" href="suspiciously-many-broken-parts.html">Suspiciously many broken parts</a>  </div></article><div id="disqus_thread"></div></div></section></main></div>  <script src="https://resources.jetbrains.com/writerside/apidoc/6.6.6-b205/app.js"></script></body></html>

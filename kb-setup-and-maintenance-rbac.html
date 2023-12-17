@@ -1,0 +1,160 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat"><html lang="en-US" data-colors-preset="contrast" data-primary-color="#307FFF"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="robots" content="noindex">  <meta name="built-on" content="2023-12-17T22:54:22.3135868"><meta name="build-number" content="${buildNumber}">       <title>Access Control and Account Management (RBAC) | blog</title><script id="virtual-toc-data" type="application/json">[{"id":"access-control-and-account-management-rbac-linktitle-rbac-example-weight-100-description-access-control-and-account-management-rbac","level":0,"title":"#Access Control and Account Management (RBAC)\nlinkTitle: \"RBAC example\"\nweight: 100\ndescription: \u003e-\nAccess Control and Account Management (RBAC).","anchor":"#access-control-and-account-management-rbac-linktitle-rbac-example-weight-100-description-access-control-and-account-management-rbac"},{"id":"enable-rbac-and-create-admin-user","level":0,"title":"Enable RBAC and create admin user","anchor":"#enable-rbac-and-create-admin-user"},{"id":"default-user","level":0,"title":"default user","anchor":"#default-user"},{"id":"replication-user","level":0,"title":"replication user","anchor":"#replication-user"},{"id":"create-users-and-roles","level":0,"title":"Create users and roles","anchor":"#create-users-and-roles"},{"id":"example-3-roles-dba-dashboard-ro-ingester-rw","level":0,"title":"Example: 3 roles (dba, dashboard_ro, ingester_rw)","anchor":"#example-3-roles-dba-dashboard-ro-ingester-rw"},{"id":"check","level":0,"title":"check","anchor":"#check"},{"id":"clean-up","level":0,"title":"clean up","anchor":"#clean-up"}]</script><script id="topic-shortcuts" type="application/json"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.6.6-b205/app.css" rel="stylesheet">   <link rel="apple-touch-icon" sizes="180x180" href="https://jetbrains.com/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="https://jetbrains.com/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="https://jetbrains.com/favicon-16x16.png"><link rel="manifest" href="https://jetbrains.com/site.webmanifest"><link rel="mask-icon" href="https://jetbrains.com/safari-pinned-tab.svg" color="#000000"><meta name="msapplication-TileColor" content="#000000"/><meta name="msapplication-TileImage" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-144x144.png"/><meta name="msapplication-square70x70logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-70x70.png"/><meta name="msapplication-square150x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-150x150.png"/><meta name="msapplication-wide310x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x150.png"/><meta name="msapplication-square310x310logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x310.png"/>  <meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="Access Control and Account Management (RBAC) | blog"/><meta property="og:description" content=""/><meta property="og:image" content=""/><meta property="og:site_name" content="blog Help"/><meta property="og:type" content="website"/><meta property="og:locale" content="en_US"/><meta property="og:url" content="/1.0/kb-setup-and-maintenance-rbac.html"/><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="Access Control and Account Management (RBAC) | blog"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json"> { "@context": "http://schema.org", "@type": "WebPage", "@id": "/1.0/kb-setup-and-maintenance-rbac.html#webpage", "url": "/1.0/kb-setup-and-maintenance-rbac.html", "name": "Access Control and Account Management (RBAC) | blog", "description": "", "image": "", "inLanguage":"en-US" }</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json"> { "@type": "WebSite", "@id": "/#website", "url": "/", "name": "blog Help" }</script><!-- End Schema.org --></head>      <body data-id="kb-setup-and-maintenance_rbac" data-main-title="Access Control and Account Management (RBAC)" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}"  data-template="article"  data-breadcrumbs="Clickhouse///kb-setup-and-maintenance"  >   <div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>blog 1.0 Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="kb-setup-and-maintenance_rbac"   id="kb-setup-and-maintenance_rbac.md">Access Control and Account Management (RBAC)</h1>  <section class="chapter"><h2 id="access-control-and-account-management-rbac-linktitle-rbac-example-weight-100-description-access-control-and-account-management-rbac" data-toc="access-control-and-account-management-rbac-linktitle-rbac-example-weight-100-description-access-control-and-account-management-rbac"   >#Access Control and Account Management (RBAC)
+linkTitle: &quot;RBAC example&quot;
+weight: 100
+description: &gt;-
+Access Control and Account Management (RBAC).</h2><p id="16d81652_211">Documentation https://clickhouse.com/docs/en/operations/access-rights/</p></section><section class="chapter"><h2 id="enable-rbac-and-create-admin-user" data-toc="enable-rbac-and-create-admin-user"   >Enable RBAC and create admin user</h2><p id="16d81652_212">Create an <code class="code" id="16d81652_213">admin</code> user like (root in MySQL or postgres in PostgreSQL) to do the DBA/admin ops in the <code class="code" id="16d81652_214">user.xml</code> file and <a href="https://clickhouse.com/docs/en/operations/access-rights/#enabling-access-control" id="16d81652_215"   data-external="true" rel="noopener noreferrer" >set the access management property for the admin user</a></p><div class="code-block" data-lang="none"         >
+&lt;clickhouse&gt;
+&lt;users&gt;
+  &lt;default&gt;
+  ....
+  &lt;/default&gt;
+  &lt;admin&gt;
+      &lt;!--    
+        Password could be specified in plaintext or in SHA256 (in hex format).
+
+        If you want to specify password in plaintext (not recommended), place it in 'password' element.
+        Example: &lt;password&gt;qwerty&lt;/password&gt;.
+        Password could be empty.
+
+        If you want to specify SHA256, place it in 'password_sha256_hex' element.
+        Example: &lt;password_sha256_hex&gt;65e84be33532fb784c48129675f9eff3a682b27168c0ea744b2cf58ee02337c5&lt;/password_sha256_hex&gt;
+        Restrictions of SHA256: impossibility to connect to ClickHouse using MySQL JS client (as of July 2019).
+
+        If you want to specify double SHA1, place it in 'password_double_sha1_hex' element.
+        Example: &lt;password_double_sha1_hex&gt;e395796d6546b1b65db9d665cd43f0e858dd4303&lt;/password_double_sha1_hex&gt;
+      --&gt;
+      &lt;password&gt;&lt;/password&gt; 
+      &lt;networks&gt;
+          &lt;ip&gt;::/0&lt;/ip&gt;
+      &lt;/networks&gt;
+      &lt;!-- Settings profile for user. --&gt;
+      &lt;profile&gt;default&lt;/profile&gt;
+      &lt;!-- Quota for user. --&gt;
+      &lt;quota&gt;default&lt;/quota&gt;
+      &lt;!-- Set This parameter to Enable RBAC
+      Admin user can create other users and grant rights to them. --&gt;
+      &lt;access_management&gt;1&lt;/access_management&gt;
+  &lt;/admin&gt;
+...
+&lt;/clickhouse&gt;
+</div></section><section class="chapter"><h2 id="default-user" data-toc="default-user"   >default user</h2><p id="16d81652_217">As <code class="code" id="16d81652_218">default</code> is used for many internal and background operations, so it is not convenient to set it up with a password, because you would have to change it in many configs/parts. Best way to secure the default user is only allow localhost or trusted network connections like this in <code class="code" id="16d81652_219">users.xml</code>:</p><div class="code-block" data-lang="none"         >
+&lt;clickhouse&gt;
+&lt;users&gt;
+    &lt;default&gt;
+    ......    
+        &lt;networks&gt;
+            &lt;ip&gt;127.0.0.1/8&lt;/ip&gt;
+            &lt;ip&gt;10.10.10.0/24&lt;/ip&gt;
+        &lt;/networks&gt;
+    
+    ......
+    &lt;/default&gt;
+&lt;/clickhouse&gt;
+</div></section><section class="chapter"><h2 id="replication-user" data-toc="replication-user"   >replication user</h2><p id="16d81652_221">The replication user is usually <code class="code" id="16d81652_222">default</code>. <span class="control" id="16d81652_223">There is no need to create this user unless you know what you're doing</span> because you need an specific user for replication. Ports 9009 and 9010(tls) provide low-level data access between servers.This ports should not be accessible from untrusted networks. You can specify credentials for authenthication between replicas. This is required when <code class="code" id="16d81652_224">interserver_https_port</code> is accessible from untrusted networks. You can do so creating a user with the <code class="code" id="16d81652_225">default</code> profile:</p><div class="code-block" data-lang="none"         >
+CREATE USER replication IDENTIFIED WITH sha256_password BY 'password' SETTINGS PROFILE 'default'
+</div><p id="16d81652_227">After this assign this user to the interserver credentials:</p><div class="code-block" data-lang="none"         >
+  &lt;interserver_http_credentials&gt;
+      &lt;user&gt;replication&lt;/user&gt;
+      &lt;password&gt;password&lt;/password&gt;
+  &lt;/interserver_http_credentials&gt;
+</div><p id="16d81652_229">We also can use sha256 passwords like this:</p><div class="code-block" data-lang="none"         >
+&lt;password_sha256_hex&gt;65e84be33532fb784c48129675f9eff3a682b27168c0ea744b2cf58ee02337c5&lt;/password_sha256_hex&gt;
+</div><p id="16d81652_231">When the <code class="code" id="16d81652_232">CREATE USER</code> query is executed in the <code class="code" id="16d81652_233">clickhouse-client</code> it will echo the <code class="code" id="16d81652_234">sha256</code> digest to copy it wherever you need</p></section><section class="chapter"><h2 id="create-users-and-roles" data-toc="create-users-and-roles"   >Create users and roles</h2><p id="16d81652_235">Now we can setup users/roles using a generic best-practice approach for RBAC from other databases, like using roles, granting permissions to roles, creating users for different applications, etc...</p><p id="16d81652_236">see <a href="https://docs.Robinjiang.com/operationsguide/security/clickhouse-hardening-guide/user-hardening/" id="16d81652_237"   data-external="true" rel="noopener noreferrer" >User Hardening article</a></p></section><section class="chapter"><h2 id="example-3-roles-dba-dashboard-ro-ingester-rw" data-toc="example-3-roles-dba-dashboard-ro-ingester-rw"   >Example: 3 roles (dba, dashboard_ro, ingester_rw)</h2><div class="code-block" data-lang="none"         >
+create role dba on cluster '{cluster}';
+grant all on *.* to dba on cluster '{cluster}';
+create user `user1` identified  by 'pass1234' on cluster '{cluster}';
+grant dba to user1 on cluster '{cluster}';
+
+
+create role dashboard_ro on cluster '{cluster}';
+grant select on default.* to dashboard_ro on cluster '{cluster}';
+grant dictGet on *.*  to dashboard_ro on cluster '{cluster}';
+
+create settings profile or replace profile_dashboard_ro on cluster '{cluster}'
+settings max_concurrent_queries_for_user = 10 READONLY, 
+         max_threads = 16 READONLY, 
+         max_memory_usage_for_user = '30G' READONLY,
+         max_memory_usage = '30G' READONLY,
+         max_execution_time = 60 READONLY,
+         max_rows_to_read = 1000000000 READONLY,
+         max_bytes_to_read = '5000G' READONLY
+TO dashboard_ro;
+
+create user `dash1` identified  by 'pass1234' on cluster '{cluster}';
+
+grant dashboard_ro to dash1 on cluster '{cluster}';
+
+create role ingester_rw on cluster '{cluster}';
+grant select,insert on default.* to ingester_rw on cluster '{cluster}';
+
+create settings profile or replace profile_ingester_rw on cluster '{cluster}'
+settings max_concurrent_queries_for_user = 40 READONLY,    -- user can run 40 queries (select, insert ...) simultaneously  
+         max_threads = 10 READONLY,                        -- each query can use up to 10 cpu (READONLY means user cannot override a value)
+         max_memory_usage_for_user = '30G' READONLY,       -- all queries of the user can use up to 30G RAM
+         max_memory_usage = '25G' READONLY,                -- each query can use up to 25G RAM
+         max_execution_time = 200 READONLY,                -- each query can executes no longer 200 seconds
+         max_rows_to_read = 1000000000 READONLY,           -- each query can read up to 1 billion rows
+         max_bytes_to_read = '5000G' READONLY              -- each query can read up to 5 TB from a MergeTree
+TO ingester_rw;
+
+create user `ingester_app1` identified  by 'pass1234'　on cluster '{cluster}';
+
+grant ingester_rw to ingester_app1 on cluster '{cluster}';
+</div></section><section class="chapter"><h2 id="check" data-toc="check"   >check</h2><div class="code-block" data-lang="none"         >
+$ clickhouse-client -u dash1 --password pass1234
+
+create table test ( A Int64) Engine=Log;
+   DB::Exception: dash1: Not enough privileges
+   
+   
+$ clickhouse-client -u user1 --password pass1234
+
+create table test ( A Int64) Engine=Log;
+Ok.
+
+drop table test;
+Ok.
+
+
+$ clickhouse-client -u ingester_app1 --password pass1234
+
+select count() from system.numbers limit 1000000000000;
+   DB::Exception: Received from localhost:9000. DB::Exception: Limit for rows or bytes to read exceeded, max rows: 1.00 billion
+</div></section><section class="chapter"><h2 id="clean-up" data-toc="clean-up"   >clean up</h2><div class="code-block" data-lang="none"         >
+show profiles;
+┌─name─────────────────┐
+│ default              │
+│ profile_dashboard_ro │
+│ profile_ingester_rw  │
+│ readonly             │
+└──────────────────────┘
+
+drop profile if exists readonly on cluster '{cluster}';
+drop profile if exists profile_dashboard_ro on cluster '{cluster}';
+drop profile if exists profile_ingester_rw on cluster '{cluster}';
+
+
+show roles;
+┌─name─────────┐
+│ dashboard_ro │
+│ dba          │
+│ ingester_rw  │
+└──────────────┘
+
+drop role if exists dba on cluster '{cluster}';
+drop role if exists dashboard_ro on cluster '{cluster}';
+drop role if exists ingester_rw on cluster '{cluster}';
+
+
+show users;
+┌─name──────────┐
+│ dash1         │
+│ default       │
+│ ingester_app1 │
+│ user1         │
+└───────────────┘
+
+drop user if exists ingester_app1 on cluster '{cluster}';
+drop user if exists user1 on cluster '{cluster}';
+drop user if exists dash1 on cluster '{cluster}';
+</div></section><div class="last-modified"> Last modified: 17 十二月 2023</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom">  <a class="navigation-links__prev" href="kb-setup-and-maintenance-recovery-after-complete-data-loss.html">recovery-after-complete-data-loss</a>   <a class="navigation-links__next" href="kb-setup-and-maintenance-precreate-parts-using-clickhouse-local-sh.html">Precreate parts using clickhouse-local</a>  </div></article><div id="disqus_thread"></div></div></section></main></div>  <script src="https://resources.jetbrains.com/writerside/apidoc/6.6.6-b205/app.js"></script></body></html>

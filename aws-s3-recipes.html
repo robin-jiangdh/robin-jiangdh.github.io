@@ -1,0 +1,46 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat"><html lang="en-US" data-colors-preset="contrast" data-primary-color="#307FFF"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="robots" content="noindex">  <meta name="built-on" content="2023-12-17T22:54:21.8020042"><meta name="build-number" content="${buildNumber}">       <title>AWS S3 Recipes | blog</title><script id="virtual-toc-data" type="application/json">[{"id":"aws-s3-recipes-linktitle-aws-s3-recipes-weight-100-description-aws-s3-recipes","level":0,"title":"#AWS S3 Recipes\nlinkTitle: \"AWS S3 Recipes\"\nweight: 100\ndescription: \u003e-\nAWS S3 Recipes","anchor":"#aws-s3-recipes-linktitle-aws-s3-recipes-weight-100-description-aws-s3-recipes"},{"id":"using-aws-iam-identity-and-access-management-roles","level":0,"title":"Using AWS IAM — Identity and Access Management roles","anchor":"#using-aws-iam-identity-and-access-management-roles"}]</script><script id="topic-shortcuts" type="application/json"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.6.6-b205/app.css" rel="stylesheet">   <link rel="apple-touch-icon" sizes="180x180" href="https://jetbrains.com/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="https://jetbrains.com/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="https://jetbrains.com/favicon-16x16.png"><link rel="manifest" href="https://jetbrains.com/site.webmanifest"><link rel="mask-icon" href="https://jetbrains.com/safari-pinned-tab.svg" color="#000000"><meta name="msapplication-TileColor" content="#000000"/><meta name="msapplication-TileImage" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-144x144.png"/><meta name="msapplication-square70x70logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-70x70.png"/><meta name="msapplication-square150x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-150x150.png"/><meta name="msapplication-wide310x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x150.png"/><meta name="msapplication-square310x310logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x310.png"/>  <meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="AWS S3 Recipes | blog"/><meta property="og:description" content=""/><meta property="og:image" content=""/><meta property="og:site_name" content="blog Help"/><meta property="og:type" content="website"/><meta property="og:locale" content="en_US"/><meta property="og:url" content="/1.0/aws-s3-recipes.html"/><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="AWS S3 Recipes | blog"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json"> { "@context": "http://schema.org", "@type": "WebPage", "@id": "/1.0/aws-s3-recipes.html#webpage", "url": "/1.0/aws-s3-recipes.html", "name": "AWS S3 Recipes | blog", "description": "", "image": "", "inLanguage":"en-US" }</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json"> { "@type": "WebSite", "@id": "/#website", "url": "/", "name": "blog Help" }</script><!-- End Schema.org --></head>      <body data-id="aws-s3-recipes" data-main-title="AWS S3 Recipes" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}"  data-template="article"  data-breadcrumbs="Clickhouse///kb-setup-and-maintenance///kb-s3-object-storage"  >   <div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>blog 1.0 Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="aws-s3-recipes"   id="aws-s3-recipes.md">AWS S3 Recipes</h1>  <section class="chapter"><h2 id="aws-s3-recipes-linktitle-aws-s3-recipes-weight-100-description-aws-s3-recipes" data-toc="aws-s3-recipes-linktitle-aws-s3-recipes-weight-100-description-aws-s3-recipes"   >#AWS S3 Recipes
+linkTitle: &quot;AWS S3 Recipes&quot;
+weight: 100
+description: &gt;-
+AWS S3 Recipes</h2></section><section class="chapter"><h2 id="using-aws-iam-identity-and-access-management-roles" data-toc="using-aws-iam-identity-and-access-management-roles"   >Using AWS IAM &mdash; Identity and Access Management roles</h2><p id="bc3eef02_65">For EC2 instance, there is an option to configure an IAM role:</p><figure  id="bc3eef02_66"><img alt="Select ec2 iam role" src="images/select-ec2-iam-role.png" title="Select ec2 iam role"  width="1341" height="560"></figure><p id="bc3eef02_67">Role shall contain a policy with permissions like:</p><div class="code-block" data-lang="json"         >
+{
+    &quot;Version&quot;: &quot;2012-10-17&quot;,
+    &quot;Statement&quot;: [
+        {
+            &quot;Sid&quot;: &quot;allow-put-and-get&quot;,
+            &quot;Effect&quot;: &quot;Allow&quot;,
+            &quot;Action&quot;: [
+                &quot;s3:PutObject&quot;,
+                &quot;s3:GetObject&quot;
+            ],
+            &quot;Resource&quot;: &quot;arn:aws:s3:::BUCKET_NAME/test_s3_disk/*&quot;
+        }
+    ]
+}
+</div><p id="bc3eef02_69">Corresponding configuration of ClickHouse:</p><div class="code-block" data-lang="none"         >
+&lt;clickhouse&gt;
+    &lt;storage_configuration&gt;
+        &lt;disks&gt;
+            &lt;disk_s3&gt;
+                &lt;type&gt;s3&lt;/type&gt;
+                &lt;endpoint&gt;http://s3.us-east-1.amazonaws.com/BUCKET_NAME/test_s3_disk/&lt;/endpoint&gt;
+                &lt;use_environment_credentials&gt;true&lt;/use_environment_credentials&gt;
+            &lt;/disk_s3&gt;
+        &lt;/disks&gt;
+        &lt;policies&gt;
+            &lt;policy_s3_only&gt;
+                &lt;volumes&gt;
+                    &lt;volume_s3&gt;
+                        &lt;disk&gt;disk_s3&lt;/disk&gt;
+                    &lt;/volume_s3&gt;
+                &lt;/volumes&gt;
+            &lt;/policy_s3_only&gt;
+        &lt;/policies&gt;
+    &lt;/storage_configuration&gt;
+&lt;/clickhouse&gt;
+</div><p id="bc3eef02_71">Small check:</p><div class="code-block" data-lang="none"         >
+CREATE TABLE table_s3 (number Int64) ENGINE=MergeTree() ORDER BY tuple() PARTITION BY tuple() SETTINGS storage_policy='policy_s3_only';
+INSERT INTO table_s3 SELECT * FROM system.numbers LIMIT 100000000;
+SELECT * FROM table_s3;
+DROP TABLE table_s3;
+</div></section><div class="last-modified"> Last modified: 17 十二月 2023</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom">  <a class="navigation-links__prev" href="kb-s3-object-storage-index.html">S3 &amp; object storage</a>   <a class="navigation-links__next" href="zookeeper-schema.html">ZooKeeper schema</a>  </div></article><div id="disqus_thread"></div></div></section></main></div>  <script src="https://resources.jetbrains.com/writerside/apidoc/6.6.6-b205/app.js"></script></body></html>

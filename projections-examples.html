@@ -1,0 +1,95 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat"><html lang="en-US" data-colors-preset="contrast" data-primary-color="#307FFF"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="robots" content="noindex">  <meta name="built-on" content="2023-12-17T22:54:22.0933738"><meta name="build-number" content="${buildNumber}">       <title>Projections examples | blog</title><script id="virtual-toc-data" type="application/json">[{"id":"projections-examples-linktitle-projections-examples-description-projections-examples","level":0,"title":"#Projections examples\nlinkTitle: \"Projections examples\"\ndescription: \u003e\nProjections examples","anchor":"#projections-examples-linktitle-projections-examples-description-projections-examples"},{"id":"aggregating-projections","level":0,"title":"Aggregating projections","anchor":"#aggregating-projections"},{"id":"emulation-of-an-inverted-index-using-orderby-projection","level":0,"title":"Emulation of an inverted index using orderby projection","anchor":"#emulation-of-an-inverted-index-using-orderby-projection"},{"id":"see-also","level":0,"title":"See also","anchor":"#see-also"}]</script><script id="topic-shortcuts" type="application/json"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.6.6-b205/app.css" rel="stylesheet">   <link rel="apple-touch-icon" sizes="180x180" href="https://jetbrains.com/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="https://jetbrains.com/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="https://jetbrains.com/favicon-16x16.png"><link rel="manifest" href="https://jetbrains.com/site.webmanifest"><link rel="mask-icon" href="https://jetbrains.com/safari-pinned-tab.svg" color="#000000"><meta name="msapplication-TileColor" content="#000000"/><meta name="msapplication-TileImage" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-144x144.png"/><meta name="msapplication-square70x70logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-70x70.png"/><meta name="msapplication-square150x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-150x150.png"/><meta name="msapplication-wide310x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x150.png"/><meta name="msapplication-square310x310logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x310.png"/>  <meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="Projections examples | blog"/><meta property="og:description" content=""/><meta property="og:image" content=""/><meta property="og:site_name" content="blog Help"/><meta property="og:type" content="website"/><meta property="og:locale" content="en_US"/><meta property="og:url" content="/1.0/projections-examples.html"/><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="Projections examples | blog"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json"> { "@context": "http://schema.org", "@type": "WebPage", "@id": "/1.0/projections-examples.html#webpage", "url": "/1.0/projections-examples.html", "name": "Projections examples | blog", "description": "", "image": "", "inLanguage":"en-US" }</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json"> { "@type": "WebSite", "@id": "/#website", "url": "/", "name": "blog Help" }</script><!-- End Schema.org --></head>      <body data-id="projections-examples" data-main-title="Projections examples" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}"  data-template="article"  data-breadcrumbs="Clickhouse///kb-queries-and-syntax"  >   <div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>blog 1.0 Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="projections-examples"   id="projections-examples.md">Projections examples</h1>  <section class="chapter"><h2 id="projections-examples-linktitle-projections-examples-description-projections-examples" data-toc="projections-examples-linktitle-projections-examples-description-projections-examples"   >#Projections examples
+linkTitle: &quot;Projections examples&quot;
+description: &gt;
+Projections examples</h2></section><section class="chapter"><h2 id="aggregating-projections" data-toc="aggregating-projections"   >Aggregating projections</h2><div class="code-block" data-lang="none"         >
+create table z(Browser String, Country UInt8, F Float64)
+Engine=MergeTree
+order by Browser;
+
+insert into z
+     select toString(number%9999),
+     number%33, 1
+from numbers(100000000);
+
+--Q1)
+select sum(F), Browser
+from z
+group by Browser format Null;
+Elapsed: 0.205 sec. Processed 100.00 million rows
+
+--Q2)
+select sum(F), Browser, Country
+from z
+group by Browser,Country format Null;
+Elapsed: 0.381 sec. Processed 100.00 million rows
+
+--Q3)
+select sum(F),count(), Browser, Country
+from z
+group by Browser,Country format Null;
+Elapsed: 0.398 sec. Processed 100.00 million rows
+
+alter table z add projection pp
+   (select Browser,Country, count(), sum(F)
+    group by Browser,Country);
+alter table z materialize projection pp;
+
+---- 0 = don't use proj, 1 = use projection
+set allow_experimental_projection_optimization=1;
+
+--Q1)
+select sum(F), Browser
+from z
+group by Browser format Null;
+Elapsed: 0.003 sec. Processed 22.43 thousand rows
+
+--Q2)
+select sum(F), Browser, Country
+from z
+group by Browser,Country format Null;
+Elapsed: 0.004 sec. Processed 22.43 thousand rows
+
+--Q3)
+select sum(F),count(), Browser, Country
+from z
+group by Browser,Country format Null;
+Elapsed: 0.005 sec. Processed 22.43 thousand rows
+</div></section><section class="chapter"><h2 id="emulation-of-an-inverted-index-using-orderby-projection" data-toc="emulation-of-an-inverted-index-using-orderby-projection"   >Emulation of an inverted index using orderby projection</h2><p id="8821e8cc_135">You can create an <code class="code" id="8821e8cc_136">orderby projection</code> and include all columns of a table, but if a table is very wide it will double of stored data. This expample demonstrate a trick, we create an <code class="code" id="8821e8cc_137">orderby projection</code> and include primary key columns and the target column and sort by the target column. This allows using subquery to find primary key values and after that to query the table using the primary key.</p><div class="code-block" data-lang="none"         >
+CREATE TABLE test_a
+(
+    `src` String,
+    `dst` String,
+    `other_cols` String,
+    PROJECTION p1
+    (
+        SELECT
+            src,
+            dst
+        ORDER BY dst
+    )
+)
+ENGINE = MergeTree
+ORDER BY src;
+
+insert into test_a select number, -number, 'other_col '||toString(number) from numbers(1e8);
+
+select * from test_a where src='42';
+┌─src─┬─dst─┬─other_cols───┐
+│ 42  │ -42 │ other_col 42 │
+└─────┴─────┴──────────────┘
+1 row in set. Elapsed: 0.005 sec. Processed 16.38 thousand rows, 988.49 KB (3.14 million rows/s., 189.43 MB/s.)
+
+
+select * from test_a where dst='-42';
+┌─src─┬─dst─┬─other_cols───┐
+│ 42  │ -42 │ other_col 42 │
+└─────┴─────┴──────────────┘
+1 row in set. Elapsed: 0.625 sec. Processed 100.00 million rows, 1.79 GB (160.05 million rows/s., 2.86 GB/s.)
+
+-- optimization using projection
+select * from test_a where src in (select src from test_a where dst='-42') and dst='-42';
+┌─src─┬─dst─┬─other_cols───┐
+│ 42  │ -42 │ other_col 42 │
+└─────┴─────┴──────────────┘
+1 row in set. Elapsed: 0.013 sec. Processed 32.77 thousand rows, 660.75 KB (2.54 million rows/s., 51.26 MB/s.)
+</div><p id="8821e8cc_139"><span class="control" id="8821e8cc_140">Elapsed: 0.625 sec. Processed 100.00 million rows</span>-- not optimized</p><p id="8821e8cc_141">VS</p><p id="8821e8cc_142"><span class="control" id="8821e8cc_143">Elapsed: 0.013 sec. Processed 32.77 thousand rows</span>-- optimized</p></section><section class="chapter"><h2 id="see-also" data-toc="see-also"   >See also</h2><ul class="list _ul" id="8821e8cc_144"><li class="list__item" id="8821e8cc_145"><p>Amos Bird - kuaishou.com - Projections in ClickHouse. <a href="https://github.com/ClickHouse/clickhouse-presentations/blob/master/percona2021/projections.pdf" id="8821e8cc_146"   data-external="true" rel="noopener noreferrer" >slides</a>. <a href="https://youtu.be/jJ5VuLr2k5k?list=PLWhC0zeznqkkNYzcvHEfZ8hly3Cu9ojKk" id="8821e8cc_147"   data-external="true" rel="noopener noreferrer" >video</a></p></li><li class="list__item" id="8821e8cc_148"><p><a href="https://clickhouse.tech/docs/en/engines/table-engines/mergetree-family/mergetree/#projections" id="8821e8cc_149"   data-external="true" rel="noopener noreferrer" >Documentation</a></p></li><li class="list__item" id="8821e8cc_150"><p><a href="https://blog.tinybird.co/2021/07/09/projections/" id="8821e8cc_151"   data-external="true" rel="noopener noreferrer" >tinybird blog article</a></p></li><li class="list__item" id="8821e8cc_152"><p>ClickHouse presentation on Projections https://www.youtube.com/watch?v=QDAJTKZT8y4</p></li></ul></section><div class="last-modified"> Last modified: 17 十二月 2023</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom">  <a class="navigation-links__prev" href="roaring-bitmaps-for-calculating-retention.html">Roaring bitmaps for calculating retention</a>   <a class="navigation-links__next" href="pivot-unpivot.html">PIVOT / UNPIVOT</a>  </div></article><div id="disqus_thread"></div></div></section></main></div>  <script src="https://resources.jetbrains.com/writerside/apidoc/6.6.6-b205/app.js"></script></body></html>

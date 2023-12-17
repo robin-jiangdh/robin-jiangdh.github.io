@@ -1,0 +1,89 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat"><html lang="en-US" data-colors-preset="contrast" data-primary-color="#307FFF"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="robots" content="noindex">  <meta name="built-on" content="2023-12-17T22:54:22.1219947"><meta name="build-number" content="${buildNumber}">       <title>Install standalone Zookeeper for ClickHouse on Ubuntu / Debian | blog</title><script id="virtual-toc-data" type="application/json">[{"id":"install-standalone-zookeeper-for-clickhouse-on-ubuntu-debian-linktitle-zookeeper-install-on-ubuntu-weight-100-description-install-standalone-zookeeper-for-clickhouse-on-ubuntu-debian","level":0,"title":"#Install standalone Zookeeper for ClickHouse on Ubuntu / Debian\nlinkTitle: \"Zookeeper install on Ubuntu\"\nweight: 100\ndescription: \u003e-\nInstall standalone Zookeeper for ClickHouse on Ubuntu / Debian.","anchor":"#install-standalone-zookeeper-for-clickhouse-on-ubuntu-debian-linktitle-zookeeper-install-on-ubuntu-weight-100-description-install-standalone-zookeeper-for-clickhouse-on-ubuntu-debian"},{"id":"reference-script-to-install-standalone-zookeeper-for-ubuntu-debian","level":0,"title":"Reference script to install standalone Zookeeper for Ubuntu / Debian","anchor":"#reference-script-to-install-standalone-zookeeper-for-ubuntu-debian"}]</script><script id="topic-shortcuts" type="application/json"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.6.6-b205/app.css" rel="stylesheet">   <link rel="apple-touch-icon" sizes="180x180" href="https://jetbrains.com/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="https://jetbrains.com/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="https://jetbrains.com/favicon-16x16.png"><link rel="manifest" href="https://jetbrains.com/site.webmanifest"><link rel="mask-icon" href="https://jetbrains.com/safari-pinned-tab.svg" color="#000000"><meta name="msapplication-TileColor" content="#000000"/><meta name="msapplication-TileImage" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-144x144.png"/><meta name="msapplication-square70x70logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-70x70.png"/><meta name="msapplication-square150x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-150x150.png"/><meta name="msapplication-wide310x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x150.png"/><meta name="msapplication-square310x310logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x310.png"/>  <meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="Install standalone Zookeeper for ClickHouse on Ubuntu / Debian | blog"/><meta property="og:description" content=""/><meta property="og:image" content=""/><meta property="og:site_name" content="blog Help"/><meta property="og:type" content="website"/><meta property="og:locale" content="en_US"/><meta property="og:url" content="/1.0/install-ubuntu.html"/><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="Install standalone Zookeeper for ClickHouse on Ubuntu / Debian | blog"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json"> { "@context": "http://schema.org", "@type": "WebPage", "@id": "/1.0/install-ubuntu.html#webpage", "url": "/1.0/install-ubuntu.html", "name": "Install standalone Zookeeper for ClickHouse on Ubuntu / Debian | blog", "description": "", "image": "", "inLanguage":"en-US" }</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json"> { "@type": "WebSite", "@id": "/#website", "url": "/", "name": "blog Help" }</script><!-- End Schema.org --></head>      <body data-id="install_ubuntu" data-main-title="Install standalone Zookeeper for ClickHouse on Ubuntu / Debian" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}"  data-template="article"  data-breadcrumbs="Clickhouse///kb-setup-and-maintenance///kb-zookeeper"  >   <div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>blog 1.0 Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="install_ubuntu"   id="install_ubuntu.md">Install standalone Zookeeper for ClickHouse on Ubuntu / Debian</h1>  <section class="chapter"><h2 id="install-standalone-zookeeper-for-clickhouse-on-ubuntu-debian-linktitle-zookeeper-install-on-ubuntu-weight-100-description-install-standalone-zookeeper-for-clickhouse-on-ubuntu-debian" data-toc="install-standalone-zookeeper-for-clickhouse-on-ubuntu-debian-linktitle-zookeeper-install-on-ubuntu-weight-100-description-install-standalone-zookeeper-for-clickhouse-on-ubuntu-debian"   >#Install standalone Zookeeper for ClickHouse on Ubuntu / Debian
+linkTitle: &quot;Zookeeper install on Ubuntu&quot;
+weight: 100
+description: &gt;-
+Install standalone Zookeeper for ClickHouse on Ubuntu / Debian.</h2></section><section class="chapter"><h2 id="reference-script-to-install-standalone-zookeeper-for-ubuntu-debian" data-toc="reference-script-to-install-standalone-zookeeper-for-ubuntu-debian"   >Reference script to install standalone Zookeeper for Ubuntu / Debian</h2><p id="86e950e4_15">Tested on Ubuntu 20.</p><div class="code-block" data-lang="none"         >
+# install java runtime environment
+sudo apt-get update
+sudo apt install default-jre
+
+# prepare folders, logs folder should be on the low-latency disk.
+sudo mkdir -p /var/lib/zookeeper/data /var/lib/zookeeper/logs /etc/zookeeper /var/log/zookeeper /opt 
+
+# download and install files 
+export ZOOKEEPER_VERSION=3.6.3
+wget https://dlcdn.apache.org/zookeeper/zookeeper-${ZOOKEEPER_VERSION}/apache-zookeeper-${ZOOKEEPER_VERSION}-bin.tar.gz -O /tmp/apache-zookeeper-${ZOOKEEPER_VERSION}-bin.tar.gz
+sudo tar -xvf /tmp/apache-zookeeper-${ZOOKEEPER_VERSION}-bin.tar.gz -C /opt
+rm -rf /tmp/apache-zookeeper-${ZOOKEEPER_VERSION}-bin.tar.gz
+
+# create the user 
+sudo groupadd -r zookeeper
+sudo useradd -r -g zookeeper --home-dir=/var/lib/zookeeper --shell=/bin/false zookeeper
+
+# symlink pointing to the used version of zookeeper distibution
+sudo ln -s /opt/apache-zookeeper-${ZOOKEEPER_VERSION}-bin /opt/zookeeper 
+sudo chown -R zookeeper:zookeeper /var/lib/zookeeper /var/log/zookeeper /etc/zookeeper /opt/apache-zookeeper-${ZOOKEEPER_VERSION}-bin
+sudo chown -h zookeeper:zookeeper /opt/zookeeper
+
+# shortcuts in /usr/local/bin/
+echo -e '#!/usr/bin/env bash\n/opt/zookeeper/bin/zkCli.sh &quot;$@&quot;'             | sudo tee /usr/local/bin/zkCli
+echo -e '#!/usr/bin/env bash\n/opt/zookeeper/bin/zkServer.sh &quot;$@&quot;'          | sudo tee /usr/local/bin/zkServer
+echo -e '#!/usr/bin/env bash\n/opt/zookeeper/bin/zkCleanup.sh &quot;$@&quot;'         | sudo tee /usr/local/bin/zkCleanup
+echo -e '#!/usr/bin/env bash\n/opt/zookeeper/bin/zkSnapShotToolkit.sh &quot;$@&quot;' | sudo tee /usr/local/bin/zkSnapShotToolkit
+echo -e '#!/usr/bin/env bash\n/opt/zookeeper/bin/zkTxnLogToolkit.sh &quot;$@&quot;'   | sudo tee /usr/local/bin/zkTxnLogToolkit
+sudo chmod +x /usr/local/bin/zkCli /usr/local/bin/zkServer /usr/local/bin/zkCleanup /usr/local/bin/zkSnapShotToolkit /usr/local/bin/zkTxnLogToolkit
+
+# put in the config
+sudo cp opt/zookeeper/conf/* /etc/zookeeper
+cat &lt;&lt;EOF | sudo tee /etc/zookeeper/zoo.cfg
+initLimit=20
+syncLimit=10
+maxSessionTimeout=60000000
+maxClientCnxns=2000
+preAllocSize=131072
+snapCount=3000000
+dataDir=/var/lib/zookeeper/data
+dataLogDir=/var/lib/zookeeper/logs # use low-latency disk!
+clientPort=2181
+#clientPortAddress=nthk-zoo1.localdomain
+autopurge.snapRetainCount=10
+autopurge.purgeInterval=1
+4lw.commands.whitelist=*
+EOF
+sudo chown -R zookeeper:zookeeper /etc/zookeeper
+
+# create systemd service file
+cat &lt;&lt;EOF | sudo tee /etc/systemd/system/zookeeper.service
+[Unit]
+Description=Zookeeper Daemon
+Documentation=http://zookeeper.apache.org
+Requires=network.target
+After=network.target
+
+[Service]
+Type=forking
+WorkingDirectory=/var/lib/zookeeper
+User=zookeeper
+Group=zookeeper
+Environment=ZK_SERVER_HEAP=1536 # in megabytes, adjust to ~ 80-90% of avaliable RAM (more than 8Gb is rather overkill)
+Environment=SERVER_JVMFLAGS=&quot;-Xms256m -XX:+AlwaysPreTouch -Djute.maxbuffer=8388608 -XX:MaxGCPauseMillis=50&quot;
+Environment=ZOO_LOG_DIR=/var/log/zookeeper
+ExecStart=/opt/zookeeper/bin/zkServer.sh start /etc/zookeeper/zoo.cfg
+ExecStop=/opt/zookeeper/bin/zkServer.sh stop /etc/zookeeper/zoo.cfg
+ExecReload=/opt/zookeeper/bin/zkServer.sh restart /etc/zookeeper/zoo.cfg
+TimeoutSec=30
+Restart=on-failure
+
+[Install]
+WantedBy=default.target
+EOF
+
+# start zookeeper
+sudo systemctl daemon-reload
+sudo systemctl start zookeeper.service 
+
+# check status etc.
+echo stat | nc localhost 2181
+echo ruok | nc localhost 2181
+echo mntr | nc localhost 2181
+</div></section><div class="last-modified"> Last modified: 17 十二月 2023</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom">  <a class="navigation-links__prev" href="jvm-sizes-and-garbage-collector-settings.html">JVM sizes and garbage collector settings</a>   <a class="navigation-links__next" href="clickhouse-keeper.html">clickhouse-keeper</a>  </div></article><div id="disqus_thread"></div></div></section></main></div>  <script src="https://resources.jetbrains.com/writerside/apidoc/6.6.6-b205/app.js"></script></body></html>

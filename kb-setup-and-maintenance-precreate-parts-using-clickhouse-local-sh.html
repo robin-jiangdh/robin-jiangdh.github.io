@@ -1,0 +1,103 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat"><html lang="en-US" data-colors-preset="contrast" data-primary-color="#307FFF"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="robots" content="noindex">  <meta name="built-on" content="2023-12-17T22:54:22.3449159"><meta name="build-number" content="${buildNumber}">       <title>Precreate parts using clickhouse-local | blog</title><script id="virtual-toc-data" type="application/json">[{"id":"precreate-parts-using-clickhouse-local-linktitle-precreate-parts-using-clickhouse-local-weight-100-description-precreate-parts-using-clickhouse-local","level":0,"title":"#Precreate parts using clickhouse-local\nlinkTitle: \"Precreate parts using clickhouse-local\"\nweight: 100\ndescription: \u003e-\nPrecreate parts using clickhouse-local.","anchor":"#precreate-parts-using-clickhouse-local-linktitle-precreate-parts-using-clickhouse-local-weight-100-description-precreate-parts-using-clickhouse-local"},{"id":"precreate-parts-using-clickhouse-local","level":0,"title":"Precreate parts using clickhouse-local","anchor":"#precreate-parts-using-clickhouse-local"}]</script><script id="topic-shortcuts" type="application/json"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.6.6-b205/app.css" rel="stylesheet">   <link rel="apple-touch-icon" sizes="180x180" href="https://jetbrains.com/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="https://jetbrains.com/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="https://jetbrains.com/favicon-16x16.png"><link rel="manifest" href="https://jetbrains.com/site.webmanifest"><link rel="mask-icon" href="https://jetbrains.com/safari-pinned-tab.svg" color="#000000"><meta name="msapplication-TileColor" content="#000000"/><meta name="msapplication-TileImage" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-144x144.png"/><meta name="msapplication-square70x70logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-70x70.png"/><meta name="msapplication-square150x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-150x150.png"/><meta name="msapplication-wide310x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x150.png"/><meta name="msapplication-square310x310logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x310.png"/>  <meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="Precreate parts using clickhouse-local | blog"/><meta property="og:description" content=""/><meta property="og:image" content=""/><meta property="og:site_name" content="blog Help"/><meta property="og:type" content="website"/><meta property="og:locale" content="en_US"/><meta property="og:url" content="/1.0/kb-setup-and-maintenance-precreate-parts-using-clickhouse-local-sh.html"/><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="Precreate parts using clickhouse-local | blog"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json"> { "@context": "http://schema.org", "@type": "WebPage", "@id": "/1.0/kb-setup-and-maintenance-precreate-parts-using-clickhouse-local-sh.html#webpage", "url": "/1.0/kb-setup-and-maintenance-precreate-parts-using-clickhouse-local-sh.html", "name": "Precreate parts using clickhouse-local | blog", "description": "", "image": "", "inLanguage":"en-US" }</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json"> { "@type": "WebSite", "@id": "/#website", "url": "/", "name": "blog Help" }</script><!-- End Schema.org --></head>      <body data-id="kb-setup-and-maintenance_precreate_parts_using_clickhouse_local.sh" data-main-title="Precreate parts using clickhouse-local" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}"  data-template="article"  data-breadcrumbs="Clickhouse///kb-setup-and-maintenance"  >   <div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>blog 1.0 Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="kb-setup-and-maintenance_precreate_parts_using_clickhouse_local.sh"   id="kb-setup-and-maintenance_precreate_parts_using_clickhouse_local.sh.md">Precreate parts using clickhouse-local</h1>  <section class="chapter"><h2 id="precreate-parts-using-clickhouse-local-linktitle-precreate-parts-using-clickhouse-local-weight-100-description-precreate-parts-using-clickhouse-local" data-toc="precreate-parts-using-clickhouse-local-linktitle-precreate-parts-using-clickhouse-local-weight-100-description-precreate-parts-using-clickhouse-local"   >#Precreate parts using clickhouse-local
+linkTitle: &quot;Precreate parts using clickhouse-local&quot;
+weight: 100
+description: &gt;-
+Precreate parts using clickhouse-local.</h2></section><section class="chapter"><h2 id="precreate-parts-using-clickhouse-local" data-toc="precreate-parts-using-clickhouse-local"   >Precreate parts using clickhouse-local</h2><div class="code-block" data-lang="none"         >
+rm -rf /tmp/precreate_parts
+
+
+mkdir -p /tmp/precreate_parts/metadata/local/
+
+cd /tmp/precreate_parts
+
+## 1. Imagine we want to process this file:
+
+cat &lt;&lt;EOF &gt; /tmp/data.csv
+1,2020-01-01,&quot;String&quot;
+2,2020-02-02,&quot;Another string&quot;
+3,2020-03-03,&quot;One more string&quot;
+4,2020-01-02,&quot;String for first partition&quot;
+EOF
+
+## 2. that is the metadata for the table we want to fill
+## schema should match the schema of the table from server
+## (the easiest way is just to copy it from the server)
+
+## I've added sleepEachRow(0.5) here just to mimic slow insert
+
+cat &lt;&lt;EOF &gt; metadata/local/test.sql
+ATTACH TABLE local.test (id UInt64, d Date, s String, x MATERIALIZED sleepEachRow(0.5)) Engine=MergeTree ORDER BY id PARTITION BY toYYYYMM(d);
+EOF
+
+## 3a. that is the metadata for the input file we want to read
+## it should match the structure of source file
+
+## use stdin to read from pipe 
+
+cat &lt;&lt;EOF &gt; metadata/local/stdin.sql 
+ATTACH TABLE local.stdin (id UInt64, d Date, s String) Engine=File(CSV, stdin);
+EOF
+
+## 3b. Instead of stdin you can use file path 
+
+cat &lt;&lt;EOF &gt; metadata/local/data_csv.sql 
+ATTACH TABLE local.data_csv (id UInt64, d Date, s String) Engine=File(CSV, '/tmp/data.csv');
+EOF
+
+## All preparations done,
+## the rest is simple:
+
+# option a (if 3a used) with pipe / reading stdin
+
+cat /tmp/data.csv | clickhouse-local --query &quot;INSERT INTO local.test SELECT * FROM local.stdin&quot; -- --path=.
+
+# option b (if 3b used) 0 with filepath 
+cd /tmp/precreate_parts
+clickhouse-local --query &quot;INSERT INTO local.test SELECT * FROM local.data_csv&quot; -- --path=.
+
+
+# now you can check what was inserted (i did both options so i have doubled data)
+
+clickhouse-local --query &quot;SELECT _part,* FROM local.test ORDER BY id&quot; -- --path=.
+202001_4_4_0	1	2020-01-01	String
+202001_1_1_0	1	2020-01-01	String
+202002_5_5_0	2	2020-02-02	Another string
+202002_2_2_0	2	2020-02-02	Another string
+202003_6_6_0	3	2020-03-03	One more string
+202003_3_3_0	3	2020-03-03	One more string
+202001_4_4_0	4	2020-01-02	String for first partition
+202001_1_1_0	4	2020-01-02	String for first partition
+
+# But you can't do OPTIMIZE (local will die with coredump) :) That would be too good
+# clickhouse-local --query &quot;OPTIMIZE TABLE local.test FINAL&quot; -- --path=.
+
+## now you can upload those parts to a server (in detached subfolder) and attach them.
+
+mfilimonov@laptop5591:/tmp/precreate_parts$ ls -la data/local/test/
+total 40
+drwxrwxr-x 9 mfilimonov mfilimonov 4096 paź 15 11:15 .
+drwxrwxr-x 3 mfilimonov mfilimonov 4096 paź 15 11:15 ..
+drwxrwxr-x 2 mfilimonov mfilimonov 4096 paź 15 11:15 202001_1_1_0
+drwxrwxr-x 2 mfilimonov mfilimonov 4096 paź 15 11:15 202001_4_4_0
+drwxrwxr-x 2 mfilimonov mfilimonov 4096 paź 15 11:15 202002_2_2_0
+drwxrwxr-x 2 mfilimonov mfilimonov 4096 paź 15 11:15 202002_5_5_0
+drwxrwxr-x 2 mfilimonov mfilimonov 4096 paź 15 11:15 202003_3_3_0
+drwxrwxr-x 2 mfilimonov mfilimonov 4096 paź 15 11:15 202003_6_6_0
+drwxrwxr-x 2 mfilimonov mfilimonov 4096 paź 15 11:15 detached
+-rw-rw-r-- 1 mfilimonov mfilimonov    1 paź 15 11:15 format_version.txt
+
+
+mfilimonov@laptop5591:/tmp/precreate_parts$ ls -la data/local/test/202001_1_1_0/
+total 44
+drwxrwxr-x 2 mfilimonov mfilimonov 4096 paź 15 11:15 .
+drwxrwxr-x 9 mfilimonov mfilimonov 4096 paź 15 11:15 ..
+-rw-rw-r-- 1 mfilimonov mfilimonov  250 paź 15 11:15 checksums.txt
+-rw-rw-r-- 1 mfilimonov mfilimonov   79 paź 15 11:15 columns.txt
+-rw-rw-r-- 1 mfilimonov mfilimonov    1 paź 15 11:15 count.txt
+-rw-rw-r-- 1 mfilimonov mfilimonov  155 paź 15 11:15 data.bin
+-rw-rw-r-- 1 mfilimonov mfilimonov  144 paź 15 11:15 data.mrk3
+-rw-rw-r-- 1 mfilimonov mfilimonov   10 paź 15 11:15 default_compression_codec.txt
+-rw-rw-r-- 1 mfilimonov mfilimonov    4 paź 15 11:15 minmax_d.idx
+-rw-rw-r-- 1 mfilimonov mfilimonov    4 paź 15 11:15 partition.dat
+-rw-rw-r-- 1 mfilimonov mfilimonov   16 paź 15 11:15 primary.idx
+</div></section><div class="last-modified"> Last modified: 17 十二月 2023</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom">  <a class="navigation-links__prev" href="kb-setup-and-maintenance-rbac.html">Access Control and Account Management (RBAC)</a>   <a class="navigation-links__next" href="kb-setup-and-maintenance-packaging-compatibility-greater-than-21-x-and-earlier.html">Robin packaging compatibility &gt;21.x and earlier</a>  </div></article><div id="disqus_thread"></div></div></section></main></div>  <script src="https://resources.jetbrains.com/writerside/apidoc/6.6.6-b205/app.js"></script></body></html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat"><html lang="en-US" data-colors-preset="contrast" data-primary-color="#307FFF"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="robots" content="noindex">  <meta name="built-on" content="2023-12-17T22:54:22.432732"><meta name="build-number" content="${buildNumber}">       <title>Compatibility layer for clickhouse-operator metric exporter | blog</title><script id="virtual-toc-data" type="application/json">[{"id":"compatibility-layer-for-clickhouse-operator-metric-exporter-linktitle-clickhouse-operator-metrics-names-from-clickhouse-server-weight-100-description-page-description-for-heading-and-indexes","level":0,"title":"#Compatibility layer for clickhouse-operator metric exporter\nlinkTitle: \"clickhouse-operator metrics names from clickhouse-server\"\nweight: 100\ndescription: \u003e-\nPage description for heading and indexes.","anchor":"#compatibility-layer-for-clickhouse-operator-metric-exporter-linktitle-clickhouse-operator-metrics-names-from-clickhouse-server-weight-100-description-page-description-for-heading-and-indexes"}]</script><script id="topic-shortcuts" type="application/json"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.6.6-b205/app.css" rel="stylesheet">   <link rel="apple-touch-icon" sizes="180x180" href="https://jetbrains.com/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="https://jetbrains.com/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="https://jetbrains.com/favicon-16x16.png"><link rel="manifest" href="https://jetbrains.com/site.webmanifest"><link rel="mask-icon" href="https://jetbrains.com/safari-pinned-tab.svg" color="#000000"><meta name="msapplication-TileColor" content="#000000"/><meta name="msapplication-TileImage" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-144x144.png"/><meta name="msapplication-square70x70logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-70x70.png"/><meta name="msapplication-square150x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-150x150.png"/><meta name="msapplication-wide310x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x150.png"/><meta name="msapplication-square310x310logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x310.png"/>  <meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="Compatibility layer for clickhouse-operator metric exporter | blog"/><meta property="og:description" content=""/><meta property="og:image" content=""/><meta property="og:site_name" content="blog Help"/><meta property="og:type" content="website"/><meta property="og:locale" content="en_US"/><meta property="og:url" content="/1.0/kb-setup-and-maintenance-monitoring-operator-exporter-compatibility.html"/><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="Compatibility layer for clickhouse-operator metric exporter | blog"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json"> { "@context": "http://schema.org", "@type": "WebPage", "@id": "/1.0/kb-setup-and-maintenance-monitoring-operator-exporter-compatibility.html#webpage", "url": "/1.0/kb-setup-and-maintenance-monitoring-operator-exporter-compatibility.html", "name": "Compatibility layer for clickhouse-operator metric exporter | blog", "description": "", "image": "", "inLanguage":"en-US" }</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json"> { "@type": "WebSite", "@id": "/#website", "url": "/", "name": "blog Help" }</script><!-- End Schema.org --></head>      <body data-id="kb-setup-and-maintenance_monitoring-operator-exporter-compatibility" data-main-title="Compatibility layer for clickhouse-operator metric exporter" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}"  data-template="article"  data-breadcrumbs="Clickhouse///kb-setup-and-maintenance"  >   <div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>blog 1.0 Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="kb-setup-and-maintenance_monitoring-operator-exporter-compatibility"   id="kb-setup-and-maintenance_monitoring-operator-exporter-compatibility.md">Compatibility layer for clickhouse-operator metric exporter</h1>  <section class="chapter"><h2 id="compatibility-layer-for-clickhouse-operator-metric-exporter-linktitle-clickhouse-operator-metrics-names-from-clickhouse-server-weight-100-description-page-description-for-heading-and-indexes" data-toc="compatibility-layer-for-clickhouse-operator-metric-exporter-linktitle-clickhouse-operator-metrics-names-from-clickhouse-server-weight-100-description-page-description-for-heading-and-indexes"   >#Compatibility layer for clickhouse-operator metric exporter
+linkTitle: &quot;clickhouse-operator metrics names from clickhouse-server&quot;
+weight: 100
+description: &gt;-
+Page description for heading and indexes.</h2><p id="81a7d276_29">It's possible to expose clickhouse-server metrics in clickhouse-operator style. It's for clickhouse-operator grafana dashboard.</p><div class="code-block" data-lang="none"         >
+CREATE VIEW system.operator_compatible_metrics
+(
+    `name` String,
+    `value` Float64,
+    `help` String,
+    `labels` Map(String, String),
+    `type` String
+) AS
+SELECT
+    concat('chi_clickhouse_event_', event) AS name,
+    CAST(value, 'Float64') AS value,
+    description AS help,
+    map('hostname', hostName()) AS labels,
+    'counter' AS type
+FROM system.events
+UNION ALL
+SELECT
+    concat('chi_clickhouse_metric_', metric) AS name,
+    CAST(value, 'Float64') AS value,
+    description AS help,
+    map('hostname', hostName()) AS labels,
+    'gauge' AS type
+FROM system.metrics
+UNION ALL
+SELECT
+    concat('chi_clickhouse_metric_', metric) AS name,
+    value,
+    '' AS help,
+    map('hostname', hostName()) AS labels,
+    'gauge' AS type
+FROM system.asynchronous_metrics
+UNION ALL
+SELECT
+    'chi_clickhouse_metric_MemoryDictionaryBytesAllocated' AS name,
+    CAST(sum(bytes_allocated), 'Float64') AS value,
+    'Memory size allocated for dictionaries' AS help,
+    map('hostname', hostName()) AS labels,
+    'gauge' AS type
+FROM system.dictionaries
+UNION ALL
+SELECT
+    'chi_clickhouse_metric_LongestRunningQuery' AS name,
+    CAST(max(elapsed), 'Float64') AS value,
+    'Longest running query time' AS help,
+    map('hostname', hostName()) AS labels,
+    'gauge' AS type
+FROM system.processes
+UNION ALL
+WITH
+    ['chi_clickhouse_table_partitions', 'chi_clickhouse_table_parts', 'chi_clickhouse_table_parts_bytes', 'chi_clickhouse_table_parts_bytes_uncompressed', 'chi_clickhouse_table_parts_rows', 'chi_clickhouse_metric_DiskDataBytes', 'chi_clickhouse_metric_MemoryPrimaryKeyBytesAllocated'] AS names,
+    [uniq(partition), count(), sum(bytes), sum(data_uncompressed_bytes), sum(rows), sum(bytes_on_disk), sum(primary_key_bytes_in_memory_allocated)] AS values,
+    arrayJoin(arrayZip(names, values)) AS tpl
+SELECT
+    tpl.1 AS name,
+    CAST(tpl.2, 'Float64') AS value,
+    '' AS help,
+    map('database', database, 'table', table, 'active', toString(active), 'hostname', hostName()) AS labels,
+    'gauge' AS type
+FROM system.parts
+GROUP BY
+    active,
+    database,
+    table
+UNION ALL
+WITH
+    ['chi_clickhouse_table_mutations', 'chi_clickhouse_table_mutations_parts_to_do'] AS names,
+    [CAST(count(), 'Float64'), CAST(sum(parts_to_do), 'Float64')] AS values,
+    arrayJoin(arrayZip(names, values)) AS tpl
+SELECT
+    tpl.1 AS name,
+    tpl.2 AS value,
+    '' AS help,
+    map('database', database, 'table', table, 'hostname', hostName()) AS labels,
+    'gauge' AS type
+FROM system.mutations
+WHERE is_done = 0
+GROUP BY
+    database,
+    table
+UNION ALL
+WITH if(coalesce(reason, 'unknown') = '', 'detached_by_user', coalesce(reason, 'unknown')) AS detach_reason
+SELECT
+    'chi_clickhouse_metric_DetachedParts' AS name,
+    CAST(count(), 'Float64') AS value,
+    '' AS help,
+    map('database', database, 'table', table, 'disk', disk, 'hostname', hostName()) AS labels,
+    'gauge' AS type
+FROM system.detached_parts
+GROUP BY
+    database,
+    table,
+    disk,
+    reason
+ORDER BY name ASC
+</div><div class="code-block" data-lang="none"         >
+nano /etc/clickhouse-server/config.d/operator_metrics.xml
+&lt;clickhouse&gt;
+    &lt;http_handlers&gt;
+        &lt;rule&gt;
+            &lt;url&gt;/metrics&lt;/url&gt;
+            &lt;methods&gt;POST,GET&lt;/methods&gt;
+            &lt;handler&gt;
+                &lt;type&gt;predefined_query_handler&lt;/type&gt;
+                &lt;query&gt;SELECT * FROM system.operator_compatible_metrics FORMAT Prometheus&lt;/query&gt;
+                &lt;content_type&gt;text/plain; charset=utf-8&lt;/content_type&gt;
+            &lt;/handler&gt;
+        &lt;/rule&gt;
+        &lt;defaults/&gt;
+        &lt;rule&gt;
+            &lt;url&gt;/&lt;/url&gt;
+            &lt;methods&gt;POST,GET&lt;/methods&gt;
+            &lt;headers&gt;&lt;pragma&gt;no-cache&lt;/pragma&gt;&lt;/headers&gt;
+            &lt;handler&gt;
+                &lt;type&gt;dynamic_query_handler&lt;/type&gt;
+                &lt;query_param_name&gt;query&lt;/query_param_name&gt;
+            &lt;/handler&gt;
+        &lt;/rule&gt;
+    &lt;/http_handlers&gt;    
+&lt;/clickhouse&gt;
+</div><div class="code-block" data-lang="none"         >
+curl http://localhost:8123/metrics
+# HELP chi_clickhouse_metric_Query Number of executing queries
+# TYPE chi_clickhouse_metric_Query gauge
+chi_clickhouse_metric_Query{hostname=&quot;LAPTOP&quot;} 1
+
+# HELP chi_clickhouse_metric_Merge Number of executing background merges
+# TYPE chi_clickhouse_metric_Merge gauge
+chi_clickhouse_metric_Merge{hostname=&quot;LAPTOP&quot;} 0
+
+# HELP chi_clickhouse_metric_PartMutation Number of mutations (ALTER DELETE/UPDATE)
+# TYPE chi_clickhouse_metric_PartMutation gauge
+chi_clickhouse_metric_PartMutation{hostname=&quot;LAPTOP&quot;} 0
+</div></section><div class="last-modified"> Last modified: 17 十二月 2023</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom">  <a class="navigation-links__prev" href="kb-setup-and-maintenance-packaging-compatibility-greater-than-21-x-and-earlier.html">Robin packaging compatibility &gt;21.x and earlier</a>   <a class="navigation-links__next" href="kb-setup-and-maintenance-logging.html">Logging</a>  </div></article><div id="disqus_thread"></div></div></section></main></div>  <script src="https://resources.jetbrains.com/writerside/apidoc/6.6.6-b205/app.js"></script></body></html>

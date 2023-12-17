@@ -1,0 +1,110 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat"><html lang="en-US" data-colors-preset="contrast" data-primary-color="#307FFF"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="robots" content="noindex">  <meta name="built-on" content="2023-12-17T22:54:22.1019932"><meta name="build-number" content="${buildNumber}">       <title>EmbeddedRocksDB &amp; dictionary | blog</title><script id="virtual-toc-data" type="application/json">[{"id":"embeddedrocksdb-dictionary-linktitle-embeddedrocksdb-dictionary-description-embeddedrocksdb-dictionary","level":0,"title":"#EmbeddedRocksDB \u0026 dictionary\nlinkTitle: \"EmbeddedRocksDB \u0026 dictionary\"\ndescription: \u003e\nEmbeddedRocksDB \u0026 dictionary","anchor":"#embeddedrocksdb-dictionary-linktitle-embeddedrocksdb-dictionary-description-embeddedrocksdb-dictionary"},{"id":"direct-queries-to-tables-to-request-10000-rows-by-a-random-key","level":0,"title":"Direct queries to tables to request 10000 rows by a random key","anchor":"#direct-queries-to-tables-to-request-10000-rows-by-a-random-key"},{"id":"dictget-100-00-thousand-random-rows","level":0,"title":"dictGet – 100.00 thousand random rows","anchor":"#dictget-100-00-thousand-random-rows"},{"id":"dictget-1million-random-rows","level":0,"title":"dictGet – 1million random rows","anchor":"#dictget-1million-random-rows"},{"id":"dictget-1million-random-rows-from-hashed","level":0,"title":"dictGet – 1million random rows from Hashed","anchor":"#dictget-1million-random-rows-from-hashed"},{"id":"dictget-1million-random-rows-from-sparsehashed","level":0,"title":"dictGet – 1million random rows from SparseHashed","anchor":"#dictget-1million-random-rows-from-sparsehashed"}]</script><script id="topic-shortcuts" type="application/json"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.6.6-b205/app.css" rel="stylesheet">   <link rel="apple-touch-icon" sizes="180x180" href="https://jetbrains.com/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="https://jetbrains.com/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="https://jetbrains.com/favicon-16x16.png"><link rel="manifest" href="https://jetbrains.com/site.webmanifest"><link rel="mask-icon" href="https://jetbrains.com/safari-pinned-tab.svg" color="#000000"><meta name="msapplication-TileColor" content="#000000"/><meta name="msapplication-TileImage" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-144x144.png"/><meta name="msapplication-square70x70logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-70x70.png"/><meta name="msapplication-square150x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-150x150.png"/><meta name="msapplication-wide310x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x150.png"/><meta name="msapplication-square310x310logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x310.png"/>  <meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="EmbeddedRocksDB &amp; dictionary | blog"/><meta property="og:description" content=""/><meta property="og:image" content=""/><meta property="og:site_name" content="blog Help"/><meta property="og:type" content="website"/><meta property="og:locale" content="en_US"/><meta property="og:url" content="/1.0/engines-kb-embeddedrocksdb-and-dictionary.html"/><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="EmbeddedRocksDB &amp; dictionary | blog"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json"> { "@context": "http://schema.org", "@type": "WebPage", "@id": "/1.0/engines-kb-embeddedrocksdb-and-dictionary.html#webpage", "url": "/1.0/engines-kb-embeddedrocksdb-and-dictionary.html", "name": "EmbeddedRocksDB &amp; dictionary | blog", "description": "", "image": "", "inLanguage":"en-US" }</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json"> { "@type": "WebSite", "@id": "/#website", "url": "/", "name": "blog Help" }</script><!-- End Schema.org --></head>      <body data-id="engines_kb-embeddedrocksdb-and-dictionary" data-main-title="EmbeddedRocksDB &amp; dictionary" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}"  data-template="article"  data-breadcrumbs="Clickhouse///engines"  >   <div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>blog 1.0 Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="engines_kb-embeddedrocksdb-and-dictionary"   id="engines_kb-embeddedrocksdb-and-dictionary.md">EmbeddedRocksDB &amp; dictionary</h1>  <section class="chapter"><h2 id="embeddedrocksdb-dictionary-linktitle-embeddedrocksdb-dictionary-description-embeddedrocksdb-dictionary" data-toc="embeddedrocksdb-dictionary-linktitle-embeddedrocksdb-dictionary-description-embeddedrocksdb-dictionary"   >#EmbeddedRocksDB &amp; dictionary
+linkTitle: &quot;EmbeddedRocksDB &amp; dictionary&quot;
+description: &gt;
+EmbeddedRocksDB &amp; dictionary</h2><p id="954e245_377">RocksDB is faster than MergeTree on Key/Value queries because MergeTree primary key index is sparse. Probably it's possible to speedup MergeTree by reducing <code class="code" id="954e245_378">index_granularity</code>.</p><p id="954e245_379">NVMe disk is used for the tests.</p><p id="954e245_380">The main feature of RocksDB is instant updates. You can update a row <span class="control" id="954e245_381">instantly</span> (microseconds):</p><div class="code-block" data-lang="none"         >
+select * from rocksDB where A=15645646;
+┌────────A─┬─B────────────────────┐
+│ 15645646 │ 12517841379565221195 │
+└──────────┴──────────────────────┘
+1 rows in set. Elapsed: 0.001 sec.
+
+insert into rocksDB values (15645646, 'xxxx');
+1 rows in set. Elapsed: 0.001 sec.
+
+select * from rocksDB where A=15645646;
+┌────────A─┬─B────┐
+│ 15645646 │ xxxx │
+└──────────┴──────┘
+1 rows in set. Elapsed: 0.001 sec.
+</div><p id="954e245_383">Let&rsquo;s load 100 millions rows:</p><div class="code-block" data-lang="none"         >
+create table rocksDB(A UInt64, B String, primary key A) Engine=EmbeddedRocksDB();
+insert into rocksDB select number, toString(cityHash64(number))
+from numbers(100000000);
+
+-- 0 rows in set. Elapsed: 154.559 sec. Processed 100.66 million rows, 805.28 MB (651.27 thousand rows/s., 5.21 MB/s.)
+-- Size on disk: 1.5GB
+
+create table mergeTreeDB(A UInt64, B String) Engine=MergeTree() order by A;
+insert into mergeTreeDB select number, toString(cityHash64(number))
+from numbers(100000000);
+
+Size on disk: 973MB
+</div><div class="code-block" data-lang="none"         >
+CREATE DICTIONARY test_rocksDB(A UInt64,B String)
+PRIMARY KEY A
+SOURCE(CLICKHOUSE(HOST 'localhost' PORT 9000 TABLE rocksDB DB 'default'
+         USER 'default'))
+LAYOUT(DIRECT());
+
+CREATE DICTIONARY test_mergeTreeDB(A UInt64,B String)
+PRIMARY KEY A
+SOURCE(CLICKHOUSE(HOST 'localhost' PORT 9000 TABLE mergeTreeDB DB 'default'
+         USER 'default'))
+LAYOUT(DIRECT());
+</div></section><section class="chapter"><h2 id="direct-queries-to-tables-to-request-10000-rows-by-a-random-key" data-toc="direct-queries-to-tables-to-request-10000-rows-by-a-random-key"   >Direct queries to tables to request 10000 rows by a random key</h2><div class="code-block" data-lang="none"         >
+select count() from (
+select * from rocksDB where A in (select toUInt64(rand64()%100000000)
+ from numbers(10000)))
+Elapsed: 0.076 sec. Processed 10.00 thousand rows
+
+select count() from (
+select * from mergeTreeDB where A in (select toUInt64(rand64()%100000000)
+  from numbers(10000)))
+Elapsed: 0.202 sec. Processed 55.95 million rows
+</div><p id="954e245_387">RocksDB as expected is much faster: <span class="control" id="954e245_388">0.076 sec.</span> VS <span class="control" id="954e245_389">0.202 sec.</span></p><p id="954e245_390">RocksDB processes less rows: <span class="control" id="954e245_391">10.00 thousand rows</span> VS <span class="control" id="954e245_392">55.95 million rows</span></p></section><section class="chapter"><h2 id="dictget-100-00-thousand-random-rows" data-toc="dictget-100-00-thousand-random-rows"   >dictGet &ndash; 100.00 thousand random rows</h2><div class="code-block" data-lang="none"         >
+select count() from (
+   select dictGet( 'default.test_rocksDB', 'B', toUInt64(rand64()%100000000) )
+   from numbers_mt(100000))
+Elapsed: 0.786 sec. Processed 100.00 thousand rows
+
+select count() from (
+   select dictGet( 'default.test_mergeTreeDB', 'B', toUInt64(rand64()%100000000) )
+   from numbers_mt(100000))
+Elapsed: 3.160 sec. Processed 100.00 thousand rows
+</div></section><section class="chapter"><h2 id="dictget-1million-random-rows" data-toc="dictget-1million-random-rows"   >dictGet &ndash; 1million random rows</h2><div class="code-block" data-lang="none"         >
+select count() from (
+   select dictGet( 'default.test_rocksDB', 'B', toUInt64(rand64()%100000000) )
+   from numbers_mt(1000000))
+Elapsed: 5.643 sec. Processed 1.00 million rows
+
+select count() from (
+   select dictGet( 'default.test_mergeTreeDB', 'B', toUInt64(rand64()%100000000) )
+   from numbers_mt(1000000))
+Elapsed: 31.111 sec. Processed 1.00 million rows
+</div></section><section class="chapter"><h2 id="dictget-1million-random-rows-from-hashed" data-toc="dictget-1million-random-rows-from-hashed"   >dictGet &ndash; 1million random rows from Hashed</h2><div class="code-block" data-lang="none"         >
+CREATE DICTIONARY test_mergeTreeDBHashed(A UInt64,B String)
+PRIMARY KEY A
+SOURCE(CLICKHOUSE(HOST 'localhost' PORT 9000 TABLE mergeTreeDB DB 'default'
+         USER 'default'))
+LAYOUT(Hashed())
+LIFETIME(0);
+
+0 rows in set. Elapsed: 46.564 sec.
+
+┌─name───────────────────┬─type───┬─status─┬─element_count─┬─RAM──────┐
+│ test_mergeTreeDBHashed │ Hashed │ LOADED │     100000000 │ 7.87 GiB │
+└────────────────────────┴────────┴────────┴───────────────┴──────────┘
+
+select count() from (
+   select dictGet( 'default.test_mergeTreeDBHashed', 'B', toUInt64(rand64()%100000000) )
+   from numbers_mt(1000000))
+Elapsed: 0.079 sec. Processed 1.00 million rows
+</div></section><section class="chapter"><h2 id="dictget-1million-random-rows-from-sparsehashed" data-toc="dictget-1million-random-rows-from-sparsehashed"   >dictGet &ndash; 1million random rows from SparseHashed</h2><div class="code-block" data-lang="none"         >
+CREATE DICTIONARY test_mergeTreeDBSparseHashed(A UInt64,B String)
+PRIMARY KEY A
+SOURCE(CLICKHOUSE(HOST 'localhost' PORT 9000 TABLE mergeTreeDB DB 'default'
+         USER 'default'))
+LAYOUT(SPARSE_HASHED())
+LIFETIME(0);
+0 rows in set. Elapsed: 81.404 sec.
+
+┌─name─────────────────────────┬─type─────────┬─status─┬─element_count─┬─RAM──────┐
+│ test_mergeTreeDBSparseHashed │ SparseHashed │ LOADED │     100000000 │ 4.24 GiB │
+└──────────────────────────────┴──────────────┴────────┴───────────────┴──────────┘
+
+select count() from (
+   select dictGet( 'default.test_mergeTreeDBSparseHashed', 'B', toUInt64(rand64()%100000000) )
+   from numbers_mt(1000000))
+
+Elapsed: 0.065 sec. Processed 1.00 million rows
+</div></section><div class="last-modified"> Last modified: 17 十二月 2023</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom">  <a class="navigation-links__prev" href="engines-index.html">Engines</a>   <a class="navigation-links__next" href="engines-engines-index.html">Engines</a>  </div></article><div id="disqus_thread"></div></div></section></main></div>  <script src="https://resources.jetbrains.com/writerside/apidoc/6.6.6-b205/app.js"></script></body></html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat"><html lang="en-US" data-colors-preset="contrast" data-primary-color="#307FFF"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="robots" content="noindex">  <meta name="built-on" content="2023-12-17T22:54:22.1089967"><meta name="build-number" content="${buildNumber}">       <title>PIVOT / UNPIVOT | blog</title><script id="virtual-toc-data" type="application/json">[{"id":"pivot-unpivot-linktitle-pivot-unpivot-description-pivot-unpivot","level":0,"title":"#PIVOT / UNPIVOT\nlinkTitle: \"PIVOT / UNPIVOT\"\ndescription: \u003e\nPIVOT / UNPIVOT","anchor":"#pivot-unpivot-linktitle-pivot-unpivot-description-pivot-unpivot"},{"id":"pivot","level":0,"title":"PIVOT","anchor":"#pivot"},{"id":"unpivot","level":0,"title":"UNPIVOT","anchor":"#unpivot"}]</script><script id="topic-shortcuts" type="application/json"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.6.6-b205/app.css" rel="stylesheet">   <link rel="apple-touch-icon" sizes="180x180" href="https://jetbrains.com/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="https://jetbrains.com/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="https://jetbrains.com/favicon-16x16.png"><link rel="manifest" href="https://jetbrains.com/site.webmanifest"><link rel="mask-icon" href="https://jetbrains.com/safari-pinned-tab.svg" color="#000000"><meta name="msapplication-TileColor" content="#000000"/><meta name="msapplication-TileImage" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-144x144.png"/><meta name="msapplication-square70x70logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-70x70.png"/><meta name="msapplication-square150x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-150x150.png"/><meta name="msapplication-wide310x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x150.png"/><meta name="msapplication-square310x310logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x310.png"/>  <meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="PIVOT / UNPIVOT | blog"/><meta property="og:description" content=""/><meta property="og:image" content=""/><meta property="og:site_name" content="blog Help"/><meta property="og:type" content="website"/><meta property="og:locale" content="en_US"/><meta property="og:url" content="/1.0/pivot-unpivot.html"/><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="PIVOT / UNPIVOT | blog"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json"> { "@context": "http://schema.org", "@type": "WebPage", "@id": "/1.0/pivot-unpivot.html#webpage", "url": "/1.0/pivot-unpivot.html", "name": "PIVOT / UNPIVOT | blog", "description": "", "image": "", "inLanguage":"en-US" }</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json"> { "@type": "WebSite", "@id": "/#website", "url": "/", "name": "blog Help" }</script><!-- End Schema.org --></head>      <body data-id="pivot-unpivot" data-main-title="PIVOT / UNPIVOT" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}"  data-template="article"  data-breadcrumbs="Clickhouse///kb-queries-and-syntax"  >   <div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>blog 1.0 Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="pivot-unpivot"   id="pivot-unpivot.md">PIVOT / UNPIVOT</h1>  <section class="chapter"><h2 id="pivot-unpivot-linktitle-pivot-unpivot-description-pivot-unpivot" data-toc="pivot-unpivot-linktitle-pivot-unpivot-description-pivot-unpivot"   >#PIVOT / UNPIVOT
+linkTitle: &quot;PIVOT / UNPIVOT&quot;
+description: &gt;
+PIVOT / UNPIVOT</h2></section><section class="chapter"><h2 id="pivot" data-toc="pivot"   >PIVOT</h2><div class="code-block" data-lang="none"         >
+CREATE TABLE sales(suppkey UInt8, category String, quantity UInt32) ENGINE=Memory(); 
+
+INSERT INTO sales VALUES (2, 'AA' ,7500),(1, 'AB' , 4000),(1, 'AA' , 6900),(1, 'AB', 8900), (1, 'AC', 8300), (1, 'AA', 7000), (1, 'AC', 9000), (2,'AA', 9800), (2,'AB', 9600), (1,'AC', 8900),(1, 'AD', 400), (2,'AD', 900), (2,'AD', 1200), (1,'AD', 2600), (2, 'AC', 9600),(1, 'AC', 6200);
+</div><section class="chapter"><h3 id="using-map-data-type-starting-from-clickhouse-21-1" data-toc="using-map-data-type-starting-from-clickhouse-21-1"   >Using Map data type (starting from Clickhouse 21.1)</h3><div class="code-block" data-lang="none"         >
+WITH CAST(sumMap([category], [quantity]), 'Map(String, UInt32)') AS map
+SELECT
+    suppkey,
+    map['AA'] AS AA,
+    map['AB'] AS AB,
+    map['AC'] AS AC,
+    map['AD'] AS AD
+FROM sales
+GROUP BY suppkey
+ORDER BY suppkey ASC
+
+┌─suppkey─┬────AA─┬────AB─┬────AC─┬───AD─┐
+│       1 │ 13900 │ 12900 │ 32400 │ 3000 │
+│       2 │ 17300 │  9600 │  9600 │ 2100 │
+└─────────┴───────┴───────┴───────┴──────┘
+
+WITH CAST(sumMap(map(category, quantity)), 'Map(LowCardinality(String), UInt32)') AS map
+SELECT
+    suppkey,
+    map['AA'] AS AA,
+    map['AB'] AS AB,
+    map['AC'] AS AC,
+    map['AD'] AS AD
+FROM sales
+GROUP BY suppkey
+ORDER BY suppkey ASC
+
+┌─suppkey─┬────AA─┬────AB─┬────AC─┬───AD─┐
+│       1 │ 13900 │ 12900 │ 32400 │ 3000 │
+│       2 │ 17300 │  9600 │  9600 │ 2100 │
+└─────────┴───────┴───────┴───────┴──────┘
+</div></section><section class="chapter"><h3 id="using-if-combinator" data-toc="using-if-combinator"   >Using -If combinator</h3><div class="code-block" data-lang="none"         >
+SELECT
+    suppkey,
+    sumIf(quantity, category = 'AA') AS AA,
+    sumIf(quantity, category = 'AB') AS AB,
+    sumIf(quantity, category = 'AC') AS AC,
+    sumIf(quantity, category = 'AD') AS AD
+FROM sales
+GROUP BY suppkey
+ORDER BY suppkey ASC
+
+┌─suppkey─┬────AA─┬────AB─┬────AC─┬───AD─┐
+│       1 │ 13900 │ 12900 │ 32400 │ 3000 │
+│       2 │ 17300 │  9600 │  9600 │ 2100 │
+└─────────┴───────┴───────┴───────┴──────┘
+</div></section><section class="chapter"><h3 id="using-resample-combinator" data-toc="using-resample-combinator"   >Using -Resample combinator</h3><div class="code-block" data-lang="none"         >
+WITH sumResample(0, 4, 1)(quantity, transform(category, ['AA', 'AB', 'AC', 'AD'], [0, 1, 2, 3], 4)) AS sum
+SELECT
+    suppkey,
+    sum[1] AS AA,
+    sum[2] AS AB,
+    sum[3] AS AC,
+    sum[4] AS AD
+FROM sales
+GROUP BY suppkey
+ORDER BY suppkey ASC
+
+┌─suppkey─┬────AA─┬────AB─┬────AC─┬───AD─┐
+│       1 │ 13900 │ 12900 │ 32400 │ 3000 │
+│       2 │ 17300 │  9600 │  9600 │ 2100 │
+└─────────┴───────┴───────┴───────┴──────┘
+</div></section></section><section class="chapter"><h2 id="unpivot" data-toc="unpivot"   >UNPIVOT</h2><div class="code-block" data-lang="none"         >
+CREATE TABLE sales_w(suppkey UInt8, brand String, AA UInt32, AB UInt32, AC UInt32,
+AD UInt32) ENGINE=Memory();
+
+ INSERT INTO sales_w VALUES (1, 'BRAND_A', 1500, 4200, 1600, 9800), (2, 'BRAND_B', 6200, 1300, 5800, 3100), (3, 'BRAND_C', 5000, 8900, 6900, 3400);
+</div><div class="code-block" data-lang="none"         >
+SELECT
+    suppkey,
+    brand,
+    category,
+    quantity
+FROM sales_w
+ARRAY JOIN
+    [AA, AB, AC, AD] AS quantity,
+    splitByString(', ', 'AA, AB, AC, AD') AS category
+ORDER BY suppkey ASC
+
+┌─suppkey─┬─brand───┬─category─┬─quantity─┐
+│       1 │ BRAND_A │ AA       │     1500 │
+│       1 │ BRAND_A │ AB       │     4200 │
+│       1 │ BRAND_A │ AC       │     1600 │
+│       1 │ BRAND_A │ AD       │     9800 │
+│       2 │ BRAND_B │ AA       │     6200 │
+│       2 │ BRAND_B │ AB       │     1300 │
+│       2 │ BRAND_B │ AC       │     5800 │
+│       2 │ BRAND_B │ AD       │     3100 │
+│       3 │ BRAND_C │ AA       │     5000 │
+│       3 │ BRAND_C │ AB       │     8900 │
+│       3 │ BRAND_C │ AC       │     6900 │
+│       3 │ BRAND_C │ AD       │     3400 │
+└─────────┴─────────┴──────────┴──────────┘
+
+SELECT
+    suppkey,
+    brand,
+    tpl.1 AS category,
+    tpl.2 AS quantity
+FROM sales_w
+ARRAY JOIN tupleToNameValuePairs(CAST((AA, AB, AC, AD), 'Tuple(AA UInt32, AB UInt32, AC UInt32, AD UInt32)')) AS tpl
+ORDER BY suppkey ASC
+
+┌─suppkey─┬─brand───┬─category─┬─quantity─┐
+│       1 │ BRAND_A │ AA       │     1500 │
+│       1 │ BRAND_A │ AB       │     4200 │
+│       1 │ BRAND_A │ AC       │     1600 │
+│       1 │ BRAND_A │ AD       │     9800 │
+│       2 │ BRAND_B │ AA       │     6200 │
+│       2 │ BRAND_B │ AB       │     1300 │
+│       2 │ BRAND_B │ AC       │     5800 │
+│       2 │ BRAND_B │ AD       │     3100 │
+│       3 │ BRAND_C │ AA       │     5000 │
+│       3 │ BRAND_C │ AB       │     8900 │
+│       3 │ BRAND_C │ AC       │     6900 │
+│       3 │ BRAND_C │ AD       │     3400 │
+└─────────┴─────────┴──────────┴──────────┘
+</div></section><div class="last-modified"> Last modified: 17 十二月 2023</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom">  <a class="navigation-links__prev" href="projections-examples.html">Projections examples</a>   <a class="navigation-links__next" href="partial-projection-optimization.html">Use both projection and raw data in single query</a>  </div></article><div id="disqus_thread"></div></div></section></main></div>  <script src="https://resources.jetbrains.com/writerside/apidoc/6.6.6-b205/app.js"></script></body></html>

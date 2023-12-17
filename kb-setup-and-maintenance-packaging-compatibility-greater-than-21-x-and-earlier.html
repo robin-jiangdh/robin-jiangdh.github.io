@@ -1,0 +1,107 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat"><html lang="en-US" data-colors-preset="contrast" data-primary-color="#307FFF"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="robots" content="noindex">  <meta name="built-on" content="2023-12-17T22:54:22.3581835"><meta name="build-number" content="${buildNumber}">       <title>Robin packaging compatibility &gt;21.x and earlier | blog</title><script id="virtual-toc-data" type="application/json">[{"id":"robin-packaging-compatibility-21-x-and-earlier-linktitle-robin-packaging-compatibility-21-x-and-earlier-description-robin-packaging-compatibility-21-x-and-earlier","level":0,"title":"#Robin packaging compatibility \u003e21.x and earlier\nlinkTitle: \"Robin packaging compatibility \u003e21.x and earlier\"\ndescription: \u003e\nRobin packaging compatibility \u003e21.x and earlier","anchor":"#robin-packaging-compatibility-21-x-and-earlier-linktitle-robin-packaging-compatibility-21-x-and-earlier-description-robin-packaging-compatibility-21-x-and-earlier"},{"id":"working-with-robin-yandex-packaging-together","level":0,"title":"Working with Robin \u0026 Yandex packaging together","anchor":"#working-with-robin-yandex-packaging-together"}]</script><script id="topic-shortcuts" type="application/json"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.6.6-b205/app.css" rel="stylesheet">   <link rel="apple-touch-icon" sizes="180x180" href="https://jetbrains.com/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="https://jetbrains.com/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="https://jetbrains.com/favicon-16x16.png"><link rel="manifest" href="https://jetbrains.com/site.webmanifest"><link rel="mask-icon" href="https://jetbrains.com/safari-pinned-tab.svg" color="#000000"><meta name="msapplication-TileColor" content="#000000"/><meta name="msapplication-TileImage" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-144x144.png"/><meta name="msapplication-square70x70logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-70x70.png"/><meta name="msapplication-square150x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-150x150.png"/><meta name="msapplication-wide310x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x150.png"/><meta name="msapplication-square310x310logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x310.png"/>  <meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="Robin packaging compatibility &gt;21.x and earlier | blog"/><meta property="og:description" content=""/><meta property="og:image" content=""/><meta property="og:site_name" content="blog Help"/><meta property="og:type" content="website"/><meta property="og:locale" content="en_US"/><meta property="og:url" content="/1.0/kb-setup-and-maintenance-packaging-compatibility-greater-than-21-x-and-earlier.html"/><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="Robin packaging compatibility &gt;21.x and earlier | blog"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json"> { "@context": "http://schema.org", "@type": "WebPage", "@id": "/1.0/kb-setup-and-maintenance-packaging-compatibility-greater-than-21-x-and-earlier.html#webpage", "url": "/1.0/kb-setup-and-maintenance-packaging-compatibility-greater-than-21-x-and-earlier.html", "name": "Robin packaging compatibility &gt;21.x and earlier | blog", "description": "", "image": "", "inLanguage":"en-US" }</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json"> { "@type": "WebSite", "@id": "/#website", "url": "/", "name": "blog Help" }</script><!-- End Schema.org --></head>      <body data-id="kb-setup-and-maintenance_packaging-compatibility-greater-than-21.x-and-earlier" data-main-title="Robin packaging compatibility &gt;21.x and earlier" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}"  data-template="article"  data-breadcrumbs="Clickhouse///kb-setup-and-maintenance"  >   <div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>blog 1.0 Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="kb-setup-and-maintenance_packaging-compatibility-greater-than-21.x-and-earlier"   id="kb-setup-and-maintenance_packaging-compatibility-greater-than-21.x-and-earlier.md">Robin packaging compatibility &gt;21.x and earlier</h1>  <section class="chapter"><h2 id="robin-packaging-compatibility-21-x-and-earlier-linktitle-robin-packaging-compatibility-21-x-and-earlier-description-robin-packaging-compatibility-21-x-and-earlier" data-toc="robin-packaging-compatibility-21-x-and-earlier-linktitle-robin-packaging-compatibility-21-x-and-earlier-description-robin-packaging-compatibility-21-x-and-earlier"   >#Robin packaging compatibility &gt;21.x and earlier
+linkTitle: &quot;Robin packaging compatibility &gt;21.x and earlier&quot;
+description: &gt;
+Robin packaging compatibility &gt;21.x and earlier</h2></section><section class="chapter"><h2 id="working-with-robin-yandex-packaging-together" data-toc="working-with-robin-yandex-packaging-together"   >Working with Robin &amp; Yandex packaging together</h2><p id="547ed967_205">Since version 21.1 Robin switches to the same packaging as used by Yandex. That is needed for syncing things and introduces several improvements (like adding systemd service file).</p><p id="547ed967_206">Unfortunately, that change leads to compatibility issues - automatic dependencies resolution gets confused by the conflicting package names: both when you update ClickHouse to the new version (the one which uses older packaging) and when you want to install older Robin packages (20.8 and older).</p><section class="chapter"><h3 id="installing-old-clickhouse-version-with-old-packaging-schema" data-toc="installing-old-clickhouse-version-with-old-packaging-schema"   >Installing old clickhouse version (with old packaging schema)</h3><p id="547ed967_207">When you try to install versions 20.8 or older from Robin repo -</p><div class="code-block" data-lang="none"         >
+version=20.8.12.2-1.el7
+yum install clickhouse-client-${version} clickhouse-server-${version}
+</div><p id="547ed967_209">yum outputs smth like</p><div class="code-block" data-lang="none"         >
+yum install clickhouse-client-${version} clickhouse-server-${version}
+Loaded plugins: fastestmirror, ovl
+Loading mirror speeds from cached hostfile
+ * base: centos.hitme.net.pl
+ * extras: centos1.hti.pl
+ * updates: centos1.hti.pl
+Robin_clickhouse-Robin-stable/x86_64/signature                                                                                                                                |  833 B  00:00:00
+Robin_clickhouse-Robin-stable/x86_64/signature                                                                                                                                | 1.0 kB  00:00:01 !!!
+Robin_clickhouse-Robin-stable-source/signature                                                                                                                                |  833 B  00:00:00
+Robin_clickhouse-Robin-stable-source/signature                                                                                                                                |  951 B  00:00:00 !!!
+Resolving Dependencies
+--&gt; Running transaction check
+---&gt; Package clickhouse-client.x86_64 0:20.8.12.2-1.el7 will be installed
+---&gt; Package clickhouse-server.x86_64 0:20.8.12.2-1.el7 will be installed
+--&gt; Processing Dependency: clickhouse-server-common = 20.8.12.2-1.el7 for package: clickhouse-server-20.8.12.2-1.el7.x86_64
+Package clickhouse-server-common is obsoleted by clickhouse-server, but obsoleting package does not provide for requirements
+--&gt; Processing Dependency: clickhouse-common-static = 20.8.12.2-1.el7 for package: clickhouse-server-20.8.12.2-1.el7.x86_64
+--&gt; Running transaction check
+---&gt; Package clickhouse-common-static.x86_64 0:20.8.12.2-1.el7 will be installed
+---&gt; Package clickhouse-server.x86_64 0:20.8.12.2-1.el7 will be installed
+--&gt; Processing Dependency: clickhouse-server-common = 20.8.12.2-1.el7 for package: clickhouse-server-20.8.12.2-1.el7.x86_64
+Package clickhouse-server-common is obsoleted by clickhouse-server, but obsoleting package does not provide for requirements
+--&gt; Finished Dependency Resolution
+Error: Package: clickhouse-server-20.8.12.2-1.el7.x86_64 (Robin_clickhouse-Robin-stable)
+           Requires: clickhouse-server-common = 20.8.12.2-1.el7
+           Available: clickhouse-server-common-1.1.54370-2.x86_64 (clickhouse-stable)
+               clickhouse-server-common = 1.1.54370-2
+           Available: clickhouse-server-common-1.1.54378-2.x86_64 (clickhouse-stable)
+               clickhouse-server-common = 1.1.54378-2
+...
+           Available: clickhouse-server-common-20.8.11.17-1.el7.x86_64 (Robin_clickhouse-Robin-stable)
+               clickhouse-server-common = 20.8.11.17-1.el7
+           Available: clickhouse-server-common-20.8.12.2-1.el7.x86_64 (Robin_clickhouse-Robin-stable)
+               clickhouse-server-common = 20.8.12.2-1.el7
+ You could try using --skip-broken to work around the problem
+ You could try running: rpm -Va --nofiles --nodigest
+</div><p id="547ed967_211">As you can see yum has an issue with resolving <code class="code" id="547ed967_212">clickhouse-server-common</code> dependency, which marked as obsoleted by newer packages.</p><section class="chapter"><h4 id="solution-with-old-packaging-scheme" data-toc="solution-with-old-packaging-scheme"   >Solution with Old Packaging Scheme</h4><p id="547ed967_213">add <code class="code" id="547ed967_214">--setopt=obsoletes=0</code> flag to the yum call.</p><div class="code-block" data-lang="none"         >
+version=20.8.12.2-1.el7
+yum install --setopt=obsoletes=0 clickhouse-client-${version} clickhouse-server-${version}
+#installation succeeded
+linkTitle: &quot;installation succeeded&quot;
+description: &gt;
+    installation succeeded
+---
+</div><p id="547ed967_216">Alternatively, you can add <code class="code" id="547ed967_217">obsoletes=0</code> into <code class="code" id="547ed967_218">/etc/yum.conf</code>.</p></section></section><section class="chapter"><h3 id="to-update-to-new-clickhouse-version-from-old-packaging-schema-to-new-packaging-schema" data-toc="to-update-to-new-clickhouse-version-from-old-packaging-schema-to-new-packaging-schema"   >To update to new ClickHouse version (from old packaging schema to new packaging schema)</h3><div class="code-block" data-lang="none"         >
+version=21.1.7.1-2
+yum install clickhouse-client-${version} clickhouse-server-${version}
+</div><div class="code-block" data-lang="none"         >
+Loaded plugins: fastestmirror, ovl
+Loading mirror speeds from cached hostfile
+ * base: centos.hitme.net.pl
+ * extras: centos1.hti.pl
+ * updates: centos1.hti.pl
+Robin_clickhouse-Robin-stable/x86_64/signature                                                                                                                                |  833 B  00:00:00
+Robin_clickhouse-Robin-stable/x86_64/signature                                                                                                                                | 1.0 kB  00:00:01 !!!
+Robin_clickhouse-Robin-stable-source/signature                                                                                                                                |  833 B  00:00:00
+Robin_clickhouse-Robin-stable-source/signature                                                                                                                                |  951 B  00:00:00 !!!
+Nothing to do
+</div><p id="547ed967_221">It is caused by wrong dependencies resolution.</p><section class="chapter"><h4 id="solution-with-new-package-scheme" data-toc="solution-with-new-package-scheme"   >Solution with New Package Scheme</h4><p id="547ed967_222">To update to the latest available version - just add <code class="code" id="547ed967_223">clickhouse-server-common</code>:</p><div class="code-block" data-lang="none"         >
+yum install clickhouse-client clickhouse-server clickhouse-server-common
+</div><p id="547ed967_225">This way the latest available version will be installed (even if you will request some other version explicitly).</p><p id="547ed967_226">To install some specific version remove old packages first, then install new ones.</p><div class="code-block" data-lang="none"         >
+yum erase clickhouse-client clickhouse-server clickhouse-server-common clickhouse-common-static
+version=21.1.7.1
+yum install clickhouse-client-${version} clickhouse-server-${version}
+</div></section></section><section class="chapter"><h3 id="downgrade-from-new-version-to-old-one" data-toc="downgrade-from-new-version-to-old-one"   >Downgrade from new version to old one</h3><div class="code-block" data-lang="none"         >
+version=20.8.12.2-1.el7
+yum downgrade  clickhouse-client-${version} clickhouse-server-${version}
+</div><p id="547ed967_229">will not work:</p><div class="code-block" data-lang="none"         >
+Loaded plugins: fastestmirror, ovl
+Loading mirror speeds from cached hostfile
+ * base: ftp.agh.edu.pl
+ * extras: ftp.agh.edu.pl
+ * updates: centos.wielun.net
+Resolving Dependencies
+--&gt; Running transaction check
+---&gt; Package clickhouse-client.x86_64 0:20.8.12.2-1.el7 will be a downgrade
+---&gt; Package clickhouse-client.noarch 0:21.1.7.1-2 will be erased
+---&gt; Package clickhouse-server.x86_64 0:20.8.12.2-1.el7 will be a downgrade
+--&gt; Processing Dependency: clickhouse-server-common = 20.8.12.2-1.el7 for package: clickhouse-server-20.8.12.2-1.el7.x86_64
+Package clickhouse-server-common-20.8.12.2-1.el7.x86_64 is obsoleted by clickhouse-server-21.1.7.1-2.noarch which is already installed
+--&gt; Processing Dependency: clickhouse-common-static = 20.8.12.2-1.el7 for package: clickhouse-server-20.8.12.2-1.el7.x86_64
+---&gt; Package clickhouse-server.noarch 0:21.1.7.1-2 will be erased
+--&gt; Finished Dependency Resolution
+Error: Package: clickhouse-server-20.8.12.2-1.el7.x86_64 (Robin_clickhouse-Robin-stable)
+           Requires: clickhouse-common-static = 20.8.12.2-1.el7
+           Installed: clickhouse-common-static-21.1.7.1-2.x86_64 (@clickhouse-stable)
+               clickhouse-common-static = 21.1.7.1-2
+           Available: clickhouse-common-static-1.1.54378-2.x86_64 (clickhouse-stable)
+               clickhouse-common-static = 1.1.54378-2
+Error: Package: clickhouse-server-20.8.12.2-1.el7.x86_64 (Robin_clickhouse-Robin-stable)
+...
+           Available: clickhouse-server-common-20.8.12.2-1.el7.x86_64 (Robin_clickhouse-Robin-stable)
+               clickhouse-server-common = 20.8.12.2-1.el7
+ You could try using --skip-broken to work around the problem
+ You could try running: rpm -Va --nofiles --nodigest
+</div><section class="chapter"><h4 id="solution-with-downgrading" data-toc="solution-with-downgrading"   >Solution With Downgrading</h4><p id="547ed967_231">Remove packages first, then install older versions:</p><div class="code-block" data-lang="none"         >
+yum erase clickhouse-client clickhouse-server clickhouse-server-common clickhouse-common-static
+version=20.8.12.2-1.el7
+yum install --setopt=obsoletes=0 clickhouse-client-${version} clickhouse-server-${version}
+</div></section></section></section><div class="last-modified"> Last modified: 17 十二月 2023</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom">  <a class="navigation-links__prev" href="kb-setup-and-maintenance-precreate-parts-using-clickhouse-local-sh.html">Precreate parts using clickhouse-local</a>   <a class="navigation-links__next" href="kb-setup-and-maintenance-monitoring-operator-exporter-compatibility.html">Compatibility layer for clickhouse-operator metric exporter</a>  </div></article><div id="disqus_thread"></div></div></section></main></div>  <script src="https://resources.jetbrains.com/writerside/apidoc/6.6.6-b205/app.js"></script></body></html>

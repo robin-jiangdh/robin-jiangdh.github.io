@@ -1,0 +1,130 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat"><html lang="en-US" data-colors-preset="contrast" data-primary-color="#307FFF"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="robots" content="noindex">  <meta name="built-on" content="2023-12-17T22:54:22.3003053"><meta name="build-number" content="${buildNumber}">       <title>Lag / Lead | blog</title><script id="virtual-toc-data" type="application/json">[{"id":"lag-lead-linktitle-lag-lead-description-lag-lead","level":0,"title":"#Lag / Lead\nlinkTitle: \"Lag / Lead\"\ndescription: \u003e\nLag / Lead","anchor":"#lag-lead-linktitle-lag-lead-description-lag-lead"},{"id":"sample-data","level":0,"title":"Sample data","anchor":"#sample-data"},{"id":"using-arrays","level":0,"title":"Using arrays","anchor":"#using-arrays"},{"id":"using-window-functions-starting-from-clickhouse-21-3","level":0,"title":"Using window functions (starting from Clickhouse 21.3)","anchor":"#using-window-functions-starting-from-clickhouse-21-3"},{"id":"using-laginframe-leadinframe-starting-from-clickhouse-21-4","level":0,"title":"Using lagInFrame/leadInFrame (starting from ClickHouse 21.4)","anchor":"#using-laginframe-leadinframe-starting-from-clickhouse-21-4"},{"id":"using-neighbor-no-grouping-incorrect-result-over-blocks","level":0,"title":"Using neighbor (no grouping, incorrect result over blocks)","anchor":"#using-neighbor-no-grouping-incorrect-result-over-blocks"}]</script><script id="topic-shortcuts" type="application/json"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.6.6-b205/app.css" rel="stylesheet">   <link rel="apple-touch-icon" sizes="180x180" href="https://jetbrains.com/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="https://jetbrains.com/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="https://jetbrains.com/favicon-16x16.png"><link rel="manifest" href="https://jetbrains.com/site.webmanifest"><link rel="mask-icon" href="https://jetbrains.com/safari-pinned-tab.svg" color="#000000"><meta name="msapplication-TileColor" content="#000000"/><meta name="msapplication-TileImage" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-144x144.png"/><meta name="msapplication-square70x70logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-70x70.png"/><meta name="msapplication-square150x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-150x150.png"/><meta name="msapplication-wide310x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x150.png"/><meta name="msapplication-square310x310logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x310.png"/>  <meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="Lag / Lead | blog"/><meta property="og:description" content=""/><meta property="og:image" content=""/><meta property="og:site_name" content="blog Help"/><meta property="og:type" content="website"/><meta property="og:locale" content="en_US"/><meta property="og:url" content="/1.0/lag-lead.html"/><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="Lag / Lead | blog"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json"> { "@context": "http://schema.org", "@type": "WebPage", "@id": "/1.0/lag-lead.html#webpage", "url": "/1.0/lag-lead.html", "name": "Lag / Lead | blog", "description": "", "image": "", "inLanguage":"en-US" }</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json"> { "@type": "WebSite", "@id": "/#website", "url": "/", "name": "blog Help" }</script><!-- End Schema.org --></head>      <body data-id="lag-lead" data-main-title="Lag / Lead" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}"  data-template="article"  data-breadcrumbs="Clickhouse///kb-queries-and-syntax"  >   <div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>blog 1.0 Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="lag-lead"   id="lag-lead.md">Lag / Lead</h1>  <section class="chapter"><h2 id="lag-lead-linktitle-lag-lead-description-lag-lead" data-toc="lag-lead-linktitle-lag-lead-description-lag-lead"   >#Lag / Lead
+linkTitle: &quot;Lag / Lead&quot;
+description: &gt;
+Lag / Lead</h2></section><section class="chapter"><h2 id="sample-data" data-toc="sample-data"   >Sample data</h2><div class="code-block" data-lang="none"         >
+CREATE TABLE llexample (
+    g Int32,
+    a Date )
+ENGINE = Memory;
+
+INSERT INTO llexample SELECT
+    number % 3,
+    toDate('2020-01-01') + number
+FROM numbers(10);
+
+SELECT * FROM llexample ORDER BY g,a;
+
+┌─g─┬──────────a─┐
+│ 0 │ 2020-01-01 │
+│ 0 │ 2020-01-04 │
+│ 0 │ 2020-01-07 │
+│ 0 │ 2020-01-10 │
+│ 1 │ 2020-01-02 │
+│ 1 │ 2020-01-05 │
+│ 1 │ 2020-01-08 │
+│ 2 │ 2020-01-03 │
+│ 2 │ 2020-01-06 │
+│ 2 │ 2020-01-09 │
+└───┴────────────┘
+</div></section><section class="chapter"><h2 id="using-arrays" data-toc="using-arrays"   >Using arrays</h2><div class="code-block" data-lang="none"         >
+select g, (arrayJoin(tuple_ll) as ll).1 a, ll.2 prev, ll.3 next
+from (
+select g, arrayZip( arraySort(groupArray(a)) as aa,
+                    arrayPopBack(arrayPushFront(aa, toDate(0))),
+                    arrayPopFront(arrayPushBack(aa, toDate(0))) ) tuple_ll
+from llexample
+group by g)
+order by g, a;
+
+┌─g─┬──────────a─┬───────prev─┬───────next─┐
+│ 0 │ 2020-01-01 │ 1970-01-01 │ 2020-01-04 │
+│ 0 │ 2020-01-04 │ 2020-01-01 │ 2020-01-07 │
+│ 0 │ 2020-01-07 │ 2020-01-04 │ 2020-01-10 │
+│ 0 │ 2020-01-10 │ 2020-01-07 │ 1970-01-01 │
+│ 1 │ 2020-01-02 │ 1970-01-01 │ 2020-01-05 │
+│ 1 │ 2020-01-05 │ 2020-01-02 │ 2020-01-08 │
+│ 1 │ 2020-01-08 │ 2020-01-05 │ 1970-01-01 │
+│ 2 │ 2020-01-03 │ 1970-01-01 │ 2020-01-06 │
+│ 2 │ 2020-01-06 │ 2020-01-03 │ 2020-01-09 │
+│ 2 │ 2020-01-09 │ 2020-01-06 │ 1970-01-01 │
+└───┴────────────┴────────────┴────────────┘
+</div></section><section class="chapter"><h2 id="using-window-functions-starting-from-clickhouse-21-3" data-toc="using-window-functions-starting-from-clickhouse-21-3"   >Using window functions (starting from Clickhouse 21.3)</h2><div class="code-block" data-lang="none"         >
+SET allow_experimental_window_functions = 1;
+
+SELECT
+    g,
+    a,
+    any(a) OVER (PARTITION BY g ORDER BY a ASC ROWS
+                 BETWEEN 1 PRECEDING AND 1 PRECEDING) AS prev,
+    any(a) OVER (PARTITION BY g ORDER BY a ASC ROWS
+                 BETWEEN 1 FOLLOWING AND 1 FOLLOWING) AS next
+FROM llexample
+ORDER BY
+    g ASC,
+    a ASC;
+
+┌─g─┬──────────a─┬───────prev─┬───────next─┐
+│ 0 │ 2020-01-01 │ 1970-01-01 │ 2020-01-04 │
+│ 0 │ 2020-01-04 │ 2020-01-01 │ 2020-01-07 │
+│ 0 │ 2020-01-07 │ 2020-01-04 │ 2020-01-10 │
+│ 0 │ 2020-01-10 │ 2020-01-07 │ 1970-01-01 │
+│ 1 │ 2020-01-02 │ 1970-01-01 │ 2020-01-05 │
+│ 1 │ 2020-01-05 │ 2020-01-02 │ 2020-01-08 │
+│ 1 │ 2020-01-08 │ 2020-01-05 │ 1970-01-01 │
+│ 2 │ 2020-01-03 │ 1970-01-01 │ 2020-01-06 │
+│ 2 │ 2020-01-06 │ 2020-01-03 │ 2020-01-09 │
+│ 2 │ 2020-01-09 │ 2020-01-06 │ 1970-01-01 │
+└───┴────────────┴────────────┴────────────┘
+</div></section><section class="chapter"><h2 id="using-laginframe-leadinframe-starting-from-clickhouse-21-4" data-toc="using-laginframe-leadinframe-starting-from-clickhouse-21-4"   >Using lagInFrame/leadInFrame (starting from ClickHouse 21.4)</h2><div class="code-block" data-lang="none"         >
+SELECT
+    g,
+    a,
+    lagInFrame(a) OVER (PARTITION BY g ORDER BY a ASC ROWS
+                 BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS prev,
+    leadInFrame(a) OVER (PARTITION BY g ORDER BY a ASC ROWS
+                 BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS next
+FROM llexample
+ORDER BY
+    g ASC,
+    a ASC;
+
+┌─g─┬──────────a─┬───────prev─┬───────next─┐
+│ 0 │ 2020-01-01 │ 1970-01-01 │ 2020-01-04 │
+│ 0 │ 2020-01-04 │ 2020-01-01 │ 2020-01-07 │
+│ 0 │ 2020-01-07 │ 2020-01-04 │ 2020-01-10 │
+│ 0 │ 2020-01-10 │ 2020-01-07 │ 1970-01-01 │
+│ 1 │ 2020-01-02 │ 1970-01-01 │ 2020-01-05 │
+│ 1 │ 2020-01-05 │ 2020-01-02 │ 2020-01-08 │
+│ 1 │ 2020-01-08 │ 2020-01-05 │ 1970-01-01 │
+│ 2 │ 2020-01-03 │ 1970-01-01 │ 2020-01-06 │
+│ 2 │ 2020-01-06 │ 2020-01-03 │ 2020-01-09 │
+│ 2 │ 2020-01-09 │ 2020-01-06 │ 1970-01-01 │
+└───┴────────────┴────────────┴────────────┘
+</div></section><section class="chapter"><h2 id="using-neighbor-no-grouping-incorrect-result-over-blocks" data-toc="using-neighbor-no-grouping-incorrect-result-over-blocks"   >Using neighbor (no grouping, incorrect result over blocks)</h2><div class="code-block" data-lang="none"         >
+SELECT
+    g,
+    a,
+    neighbor(a, -1) AS prev,
+    neighbor(a, 1) AS next
+FROM
+(
+    SELECT *
+    FROM llexample
+    ORDER BY
+        g ASC,
+        a ASC
+);
+
+┌─g─┬──────────a─┬───────prev─┬───────next─┐
+│ 0 │ 2020-01-01 │ 1970-01-01 │ 2020-01-04 │
+│ 0 │ 2020-01-04 │ 2020-01-01 │ 2020-01-07 │
+│ 0 │ 2020-01-07 │ 2020-01-04 │ 2020-01-10 │
+│ 0 │ 2020-01-10 │ 2020-01-07 │ 2020-01-02 │
+│ 1 │ 2020-01-02 │ 2020-01-10 │ 2020-01-05 │
+│ 1 │ 2020-01-05 │ 2020-01-02 │ 2020-01-08 │
+│ 1 │ 2020-01-08 │ 2020-01-05 │ 2020-01-03 │
+│ 2 │ 2020-01-03 │ 2020-01-08 │ 2020-01-06 │
+│ 2 │ 2020-01-06 │ 2020-01-03 │ 2020-01-09 │
+│ 2 │ 2020-01-09 │ 2020-01-06 │ 1970-01-01 │
+└───┴────────────┴────────────┴────────────┘
+</div></section><div class="last-modified"> Last modified: 17 十二月 2023</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom">  <a class="navigation-links__prev" href="literal-decimal-or-float.html">Imprecise parsing of literal Decimal or Float64</a>   <a class="navigation-links__next" href="kb-sample-by.html">SAMPLE by</a>  </div></article><div id="disqus_thread"></div></div></section></main></div>  <script src="https://resources.jetbrains.com/writerside/apidoc/6.6.6-b205/app.js"></script></body></html>

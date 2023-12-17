@@ -1,0 +1,57 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat"><html lang="en-US" data-colors-preset="contrast" data-primary-color="#307FFF"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="robots" content="noindex">  <meta name="built-on" content="2023-12-17T22:54:22.872884"><meta name="build-number" content="${buildNumber}">       <title>Ingestion metrics from system.part_log | blog</title><script id="virtual-toc-data" type="application/json">[{"id":"ingestion-metrics-from-system-part-log-linktitle-ingestion-metrics-from-system-part-log-weight-100-description-query-to-gather-information-about-ingestion-rate-from-system-part-log","level":0,"title":"#Ingestion metrics from system.part_log\nlinkTitle: \"Ingestion metrics from system.part_log\"\nweight: 100\ndescription: \u003e-\nQuery to gather information about ingestion rate from system.part_log.","anchor":"#ingestion-metrics-from-system-part-log-linktitle-ingestion-metrics-from-system-part-log-weight-100-description-query-to-gather-information-about-ingestion-rate-from-system-part-log"}]</script><script id="topic-shortcuts" type="application/json"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.6.6-b205/app.css" rel="stylesheet">   <link rel="apple-touch-icon" sizes="180x180" href="https://jetbrains.com/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="https://jetbrains.com/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="https://jetbrains.com/favicon-16x16.png"><link rel="manifest" href="https://jetbrains.com/site.webmanifest"><link rel="mask-icon" href="https://jetbrains.com/safari-pinned-tab.svg" color="#000000"><meta name="msapplication-TileColor" content="#000000"/><meta name="msapplication-TileImage" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-144x144.png"/><meta name="msapplication-square70x70logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-70x70.png"/><meta name="msapplication-square150x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-150x150.png"/><meta name="msapplication-wide310x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x150.png"/><meta name="msapplication-square310x310logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x310.png"/>  <meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="Ingestion metrics from system.part_log | blog"/><meta property="og:description" content=""/><meta property="og:image" content=""/><meta property="og:site_name" content="blog Help"/><meta property="og:type" content="website"/><meta property="og:locale" content="en_US"/><meta property="og:url" content="/1.0/ingestion-rate-part-log.html"/><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="Ingestion metrics from system.part_log | blog"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json"> { "@context": "http://schema.org", "@type": "WebPage", "@id": "/1.0/ingestion-rate-part-log.html#webpage", "url": "/1.0/ingestion-rate-part-log.html", "name": "Ingestion metrics from system.part_log | blog", "description": "", "image": "", "inLanguage":"en-US" }</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json"> { "@type": "WebSite", "@id": "/#website", "url": "/", "name": "blog Help" }</script><!-- End Schema.org --></head>      <body data-id="ingestion-rate-part_log" data-main-title="Ingestion metrics from system.part_log" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}"  data-template="article"  data-breadcrumbs="Clickhouse///kb-useful-queries"  >   <div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>blog 1.0 Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="ingestion-rate-part_log"   id="ingestion-rate-part_log.md">Ingestion metrics from system.part_log</h1>  <section class="chapter"><h2 id="ingestion-metrics-from-system-part-log-linktitle-ingestion-metrics-from-system-part-log-weight-100-description-query-to-gather-information-about-ingestion-rate-from-system-part-log" data-toc="ingestion-metrics-from-system-part-log-linktitle-ingestion-metrics-from-system-part-log-weight-100-description-query-to-gather-information-about-ingestion-rate-from-system-part-log"   >#Ingestion metrics from system.part_log
+linkTitle: &quot;Ingestion metrics from system.part_log&quot;
+weight: 100
+description: &gt;-
+Query to gather information about ingestion rate from system.part_log.</h2><div class="code-block" data-lang="none"         >
+-- Insert rate
+select database, table, time_bucket,
+       max(number_of_parts_per_insert) max_parts_pi,
+       median(number_of_parts_per_insert) median_parts_pi,
+       min(min_rows_per_part) min_rows_pp, 
+       max(max_rows_per_part) max_rows_pp, 
+       median(median_rows_per_part) median_rows_pp,
+       min(rows_per_insert) min_rows_pi, 
+       median(rows_per_insert) median_rows_pi, 
+       max(rows_per_insert) max_rows_pi, 
+       sum(rows_per_insert) rows_inserted,
+       sum(seconds_per_insert) parts_creation_seconds,
+       count() inserts,
+       sum(number_of_parts_per_insert) new_parts,
+       max(last_part_pi) - min(first_part_pi) as insert_period,
+       inserts*60/insert_period as inserts_per_minute
+from
+(SELECT 
+	database, 
+	table,
+	toStartOfDay(event_time) AS time_bucket, 
+	count() AS number_of_parts_per_insert,
+	min(rows) AS min_rows_per_part,
+	max(rows) AS max_rows_per_part, 
+	median(rows) AS median_rows_per_part,
+	sum(rows) AS rows_per_insert, 
+	min(size_in_bytes) AS min_bytes_per_part, 
+	max(size_in_bytes) AS max_bytes_per_part,
+	median(size_in_bytes) AS median_bytes_per_part, 
+	sum(size_in_bytes) AS bytes_per_insert, 
+	median_bytes_per_part / median_rows_per_part AS avg_row_size,
+	sum(duration_ms)/1000 as seconds_per_insert,
+	max(event_time) as last_part_pi,  min(event_time) as first_part_pi
+FROM 
+	system.part_log
+WHERE 
+  -- Enum8('NewPart' = 1, 'MergeParts' = 2, 'DownloadPart' = 3, 'RemovePart' = 4, 'MutatePart' = 5, 'MovePart' = 6)
+	event_type = 1 
+	AND 
+  -- change if another time period is desired
+	event_date &gt;= today()
+GROUP BY query_id, database, table, time_bucket
+)
+GROUP BY database, table, time_bucket
+ORDER BY time_bucket, database, table ASC
+
+-- New parts per partition 
+select database, table, event_type, partition_id, count() c, round(avg(rows)) 
+from system.part_log where event_date &gt;= today() and event_type = 'NewPart'
+group by database, table, event_type, partition_id
+order by c desc
+</div></section><div class="last-modified"> Last modified: 17 十二月 2023</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom">  <a class="navigation-links__prev" href="kb-database-size-table-column-size.html">Database Size - Table - Column size</a>   <a class="navigation-links__next" href="detached-parts.html">Can detached parts be dropped?</a>  </div></article><div id="disqus_thread"></div></div></section></main></div>  <script src="https://resources.jetbrains.com/writerside/apidoc/6.6.6-b205/app.js"></script></body></html>

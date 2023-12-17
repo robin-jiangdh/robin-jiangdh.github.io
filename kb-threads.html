@@ -1,0 +1,101 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat"><html lang="en-US" data-colors-preset="contrast" data-primary-color="#307FFF"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="robots" content="noindex">  <meta name="built-on" content="2023-12-17T22:54:21.7617164"><meta name="build-number" content="${buildNumber}">       <title>Threads | blog</title><script id="virtual-toc-data" type="application/json">[{"id":"threads-linktitle-threads-description-threads","level":0,"title":"#Threads\nlinkTitle: \"Threads\"\ndescription: \u003e\nThreads","anchor":"#threads-linktitle-threads-description-threads"}]</script><script id="topic-shortcuts" type="application/json"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.6.6-b205/app.css" rel="stylesheet">   <link rel="apple-touch-icon" sizes="180x180" href="https://jetbrains.com/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="https://jetbrains.com/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="https://jetbrains.com/favicon-16x16.png"><link rel="manifest" href="https://jetbrains.com/site.webmanifest"><link rel="mask-icon" href="https://jetbrains.com/safari-pinned-tab.svg" color="#000000"><meta name="msapplication-TileColor" content="#000000"/><meta name="msapplication-TileImage" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-144x144.png"/><meta name="msapplication-square70x70logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-70x70.png"/><meta name="msapplication-square150x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-150x150.png"/><meta name="msapplication-wide310x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x150.png"/><meta name="msapplication-square310x310logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x310.png"/>  <meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="Threads | blog"/><meta property="og:description" content=""/><meta property="og:image" content=""/><meta property="og:site_name" content="blog Help"/><meta property="og:type" content="website"/><meta property="og:locale" content="en_US"/><meta property="og:url" content="/1.0/kb-threads.html"/><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="Threads | blog"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json"> { "@context": "http://schema.org", "@type": "WebPage", "@id": "/1.0/kb-threads.html#webpage", "url": "/1.0/kb-threads.html", "name": "Threads | blog", "description": "", "image": "", "inLanguage":"en-US" }</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json"> { "@type": "WebSite", "@id": "/#website", "url": "/", "name": "blog Help" }</script><!-- End Schema.org --></head>      <body data-id="kb-threads" data-main-title="Threads" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}"  data-template="article"  data-breadcrumbs="Clickhouse///kb-setup-and-maintenance"  >   <div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>blog 1.0 Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="kb-threads"   id="kb-threads.md">Threads</h1>  <section class="chapter"><h2 id="threads-linktitle-threads-description-threads" data-toc="threads-linktitle-threads-description-threads"   >#Threads
+linkTitle: &quot;Threads&quot;
+description: &gt;
+Threads</h2><section class="chapter"><h3 id="count-threads-used-by-clickhouse-server" data-toc="count-threads-used-by-clickhouse-server"   >Count threads used by clickhouse-server</h3><div class="code-block" data-lang="none"         >
+cat /proc/$(pidof -s clickhouse-server)/status | grep Threads
+Threads: 103
+
+ps hH $(pidof -s clickhouse-server) | wc -l
+103
+
+ps hH -AF | grep clickhouse | wc -l
+116
+</div></section><section class="chapter"><h3 id="thread-counts-by-type-using-ps-clickhouse-local" data-toc="thread-counts-by-type-using-ps-clickhouse-local"   >Thread counts by type (using ps &amp; clickhouse-local)</h3><div class="code-block" data-lang="none"         >
+ps H -o 'tid comm' $(pidof -s clickhouse-server) |  tail -n +2 | awk '{ printf(&quot;%s\t%s\n&quot;, $1, $2) }' | clickhouse-local -S &quot;threadid UInt16, name String&quot; -q &quot;SELECT name, count() FROM table GROUP BY name WITH TOTALS ORDER BY count() DESC FORMAT PrettyCompact&quot;
+</div></section><section class="chapter"><h3 id="threads-used-by-running-queries" data-toc="threads-used-by-running-queries"   >Threads used by running queries:</h3><div class="code-block" data-lang="none"         >
+SELECT query, length(thread_ids) AS threads_count FROM system.processes ORDER BY threads_count;
+</div></section><section class="chapter"><h3 id="thread-pools-limits-usage" data-toc="thread-pools-limits-usage"   >Thread pools limits &amp; usage</h3><div class="code-block" data-lang="none"         >
+SELECT
+    name,
+    value
+FROM system.settings
+WHERE name LIKE '%pool%'
+
+┌─name─────────────────────────────────────────┬─value─┐
+│ connection_pool_max_wait_ms                  │ 0     │
+│ distributed_connections_pool_size            │ 1024  │
+│ background_buffer_flush_schedule_pool_size   │ 16    │
+│ background_pool_size                         │ 16    │
+│ background_move_pool_size                    │ 8     │
+│ background_fetches_pool_size                 │ 8     │
+│ background_schedule_pool_size                │ 16    │
+│ background_message_broker_schedule_pool_size │ 16    │
+│ background_distributed_schedule_pool_size    │ 16    │
+│ postgresql_connection_pool_size              │ 16    │
+│ postgresql_connection_pool_wait_timeout      │ -1    │
+│ odbc_bridge_connection_pool_size             │ 16    │
+└──────────────────────────────────────────────┴───────┘
+&lt;/code-block&gt;
+&lt;code-block ignore-vars=&quot;true&quot; lang=&quot;sql&quot;&gt;
+SELECT
+    metric,
+    value
+FROM system.metrics
+WHERE metric LIKE 'Background%\'
+
+┌─metric──────────────────────────────────┬─value─┐
+│ BackgroundPoolTask                      │     0 │
+│ BackgroundFetchesPoolTask               │     0 │
+│ BackgroundMovePoolTask                  │     0 │
+│ BackgroundSchedulePoolTask              │     0 │
+│ BackgroundBufferFlushSchedulePoolTask   │     0 │
+│ BackgroundDistributedSchedulePoolTask   │     0 │
+│ BackgroundMessageBrokerSchedulePoolTask │     0 │
+└─────────────────────────────────────────┴───────┘
+
+
+SELECT *
+FROM system.asynchronous_metrics
+WHERE lower(metric) LIKE '%thread%'
+ORDER BY metric ASC
+
+┌─metric───────────────────────────────────┬─value─┐
+│ HTTPThreads                              │     0 │
+│ InterserverThreads                       │     0 │
+│ MySQLThreads                             │     0 │
+│ OSThreadsRunnable                        │     2 │
+│ OSThreadsTotal                           │  2910 │
+│ PostgreSQLThreads                        │     0 │
+│ TCPThreads                               │     1 │
+│ jemalloc.background_thread.num_runs      │     0 │
+│ jemalloc.background_thread.num_threads   │     0 │
+│ jemalloc.background_thread.run_intervals │     0 │
+└──────────────────────────────────────────┴───────┘
+
+
+SELECT *
+FROM system.metrics
+WHERE lower(metric) LIKE '%thread%'
+ORDER BY metric ASC
+
+Query id: 6acbb596-e28f-4f89-94b2-27dccfe88ee9
+
+┌─metric─────────────┬─value─┬─description───────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│ GlobalThread       │   151 │ Number of threads in global thread pool.                                                                          │
+│ GlobalThreadActive │   144 │ Number of threads in global thread pool running a task.                                                           │
+│ LocalThread        │     0 │ Number of threads in local thread pools. The threads in local thread pools are taken from the global thread pool. │
+│ LocalThreadActive  │     0 │ Number of threads in local thread pools running a task.                                                           │
+│ QueryThread        │     0 │ Number of query processing threads                                                                                │
+└────────────────────┴───────┴───────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+</div></section><section class="chapter"><h3 id="stack-traces-of-the-working-threads-from-the-pools" data-toc="stack-traces-of-the-working-threads-from-the-pools"   >Stack traces of the working threads from the pools</h3><div class="code-block" data-lang="none"         >
+SET allow_introspection_functions = 1;
+
+WITH arrayMap(x -&gt; demangle(addressToSymbol(x)), trace) AS all
+SELECT
+    thread_id,
+    query_id,
+    arrayStringConcat(all, '\n') AS res
+FROM system.stack_trace
+WHERE res ILIKE '%Pool%'
+FORMAT Vertical;
+</div></section></section><div class="last-modified"> Last modified: 17 十二月 2023</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom">  <a class="navigation-links__prev" href="kb-who-ate-my-memory.html">Who ate my memory</a>   <a class="navigation-links__next" href="kb-system-tables-eat-my-disk.html">System tables ate my disk</a>  </div></article><div id="disqus_thread"></div></div></section></main></div>  <script src="https://resources.jetbrains.com/writerside/apidoc/6.6.6-b205/app.js"></script></body></html>

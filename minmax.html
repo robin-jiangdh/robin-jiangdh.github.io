@@ -1,0 +1,141 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat"><html lang="en-US" data-colors-preset="contrast" data-primary-color="#307FFF"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="robots" content="noindex">  <meta name="built-on" content="2023-12-17T22:54:21.7675816"><meta name="build-number" content="${buildNumber}">       <title>Example: minmax | blog</title><script id="virtual-toc-data" type="application/json">[{"id":"example-minmax-linktitle-example-minmax-description-example-minmax","level":0,"title":"#Example: minmax\nlinkTitle: \"Example: minmax\"\ndescription: \u003e\nExample: minmax","anchor":"#example-minmax-linktitle-example-minmax-description-example-minmax"}]</script><script id="topic-shortcuts" type="application/json"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.6.6-b205/app.css" rel="stylesheet">   <link rel="apple-touch-icon" sizes="180x180" href="https://jetbrains.com/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="https://jetbrains.com/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="https://jetbrains.com/favicon-16x16.png"><link rel="manifest" href="https://jetbrains.com/site.webmanifest"><link rel="mask-icon" href="https://jetbrains.com/safari-pinned-tab.svg" color="#000000"><meta name="msapplication-TileColor" content="#000000"/><meta name="msapplication-TileImage" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-144x144.png"/><meta name="msapplication-square70x70logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-70x70.png"/><meta name="msapplication-square150x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-150x150.png"/><meta name="msapplication-wide310x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x150.png"/><meta name="msapplication-square310x310logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x310.png"/>  <meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="Example: minmax | blog"/><meta property="og:description" content=""/><meta property="og:image" content=""/><meta property="og:site_name" content="blog Help"/><meta property="og:type" content="website"/><meta property="og:locale" content="en_US"/><meta property="og:url" content="/1.0/minmax.html"/><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="Example: minmax | blog"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json"> { "@context": "http://schema.org", "@type": "WebPage", "@id": "/1.0/minmax.html#webpage", "url": "/1.0/minmax.html", "name": "Example: minmax | blog", "description": "", "image": "", "inLanguage":"en-US" }</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json"> { "@type": "WebSite", "@id": "/#website", "url": "/", "name": "blog Help" }</script><!-- End Schema.org --></head>      <body data-id="minmax" data-main-title="Example: minmax" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}"  data-template="article"  data-breadcrumbs="Clickhouse///kb-queries-and-syntax///skip-indexes"  >   <div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>blog 1.0 Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="minmax"   id="minmax.md">Example: minmax</h1>  <section class="chapter"><h2 id="example-minmax-linktitle-example-minmax-description-example-minmax" data-toc="example-minmax-linktitle-example-minmax-description-example-minmax"   >#Example: minmax
+linkTitle: &quot;Example: minmax&quot;
+description: &gt;
+Example: minmax</h2><section class="chapter"><h3 id="use-cases" data-toc="use-cases"   >Use cases</h3><section class="chapter"><h4 id="strong-correlation-between-column-from-table-order-by-partition-by-key-and-other-column-which-is-regularly-being-used-in-where-condition" data-toc="strong-correlation-between-column-from-table-order-by-partition-by-key-and-other-column-which-is-regularly-being-used-in-where-condition"   >Strong correlation between column from table ORDER BY / PARTITION BY key and other column which is regularly being used in WHERE condition</h4><p id="78d1f910_36">Good example is incremental ID which increasing with time.</p><div class="code-block" data-lang="none"         >
+CREATE TABLE skip_idx_corr
+(
+    `key` UInt32,
+    `id` UInt32,
+    `ts` DateTime
+)
+ENGINE = MergeTree
+PARTITION BY toYYYYMM(ts)
+ORDER BY (key, id);
+
+INSERT INTO skip_idx_corr SELECT
+    rand(),
+    number,
+    now() + intDiv(number, 10)
+FROM numbers(100000000);
+
+SELECT count()
+FROM skip_idx_corr
+WHERE id = 6000000
+
+1 rows in set. Elapsed: 0.167 sec. Processed 100.00 million rows, 400.00 MB
+(599.96 million rows/s., 2.40 GB/s.)
+
+
+ALTER TABLE skip_idx_corr ADD INDEX id_idx id TYPE minmax GRANULARITY 10;
+ALTER TABLE skip_idx_corr MATERIALIZE INDEX id_idx;
+
+
+SELECT count()
+FROM skip_idx_corr
+WHERE id = 6000000
+
+1 rows in set. Elapsed: 0.017 sec. Processed 6.29 million rows, 25.17 MB
+(359.78 million rows/s., 1.44 GB/s.)
+</div></section><section class="chapter"><h4 id="multiple-date-datetime-columns-can-be-used-in-where-conditions" data-toc="multiple-date-datetime-columns-can-be-used-in-where-conditions"   >Multiple Date/DateTime columns can be used in WHERE conditions</h4><p id="78d1f910_38">Usually it could happen if you have separate Date and DateTime columns and different column being used in PARTITION BY expression and in WHERE condition. Another possible scenario when you have multiple DateTime columns which have pretty the same date or even time.</p><div class="code-block" data-lang="none"         >
+CREATE TABLE skip_idx_multiple
+(
+    `key` UInt32,
+    `date` Date,
+    `time` DateTime,
+    `created_at` DateTime,
+    `inserted_at` DateTime
+)
+ENGINE = MergeTree
+PARTITION BY toYYYYMM(date)
+ORDER BY (key, time);
+
+INSERT INTO skip_idx_multiple SELECT
+    number,
+    toDate(x),
+    now() + intDiv(number, 10) AS x,
+    x - (rand() % 100),
+    x + (rand() % 100)
+FROM numbers(100000000);
+
+
+SELECT count()
+FROM skip_idx_multiple
+WHERE date &gt; (now() + toIntervalDay(105));
+
+1 rows in set. Elapsed: 0.048 sec. Processed 14.02 million rows, 28.04 MB
+(290.96 million rows/s., 581.92 MB/s.)
+
+SELECT count()
+FROM skip_idx_multiple
+WHERE time &gt; (now() + toIntervalDay(105));
+
+1 rows in set. Elapsed: 0.188 sec. Processed 100.00 million rows, 400.00 MB
+(530.58 million rows/s., 2.12 GB/s.)
+
+SELECT count()
+FROM skip_idx_multiple
+WHERE created_at &gt; (now() + toIntervalDay(105));
+
+1 rows in set. Elapsed: 0.400 sec. Processed 100.00 million rows, 400.00 MB
+(250.28 million rows/s., 1.00 GB/s.)
+
+
+ALTER TABLE skip_idx_multiple ADD INDEX time_idx time TYPE minmax GRANULARITY 1000;
+ALTER TABLE skip_idx_multiple MATERIALIZE INDEX time_idx;
+
+SELECT count()
+FROM skip_idx_multiple
+WHERE time &gt; (now() + toIntervalDay(105));
+
+1 rows in set. Elapsed: 0.036 sec. Processed 14.02 million rows, 56.08 MB
+(391.99 million rows/s., 1.57 GB/s.)
+
+
+ALTER TABLE skip_idx_multiple ADD INDEX created_at_idx created_at TYPE minmax GRANULARITY 1000;
+ALTER TABLE skip_idx_multiple MATERIALIZE INDEX created_at_idx;
+
+SELECT count()
+FROM skip_idx_multiple
+WHERE created_at &gt; (now() + toIntervalDay(105));
+
+1 rows in set. Elapsed: 0.076 sec. Processed 14.02 million rows, 56.08 MB
+(184.90 million rows/s., 739.62 MB/s.)
+</div></section><section class="chapter"><h4 id="condition-in-query-trying-to-filter-outlier-value" data-toc="condition-in-query-trying-to-filter-outlier-value"   >Condition in query trying to filter outlier value</h4><div class="code-block" data-lang="none"         >
+CREATE TABLE skip_idx_outlier
+(
+    `key` UInt32,
+    `ts` DateTime,
+    `value` UInt32
+)
+ENGINE = MergeTree
+PARTITION BY toYYYYMM(ts)
+ORDER BY (key, ts);
+
+INSERT INTO skip_idx_outlier SELECT
+    number,
+    now(),
+    rand() % 10
+FROM numbers(10000000);
+
+INSERT INTO skip_idx_outlier SELECT
+    number,
+    now(),
+    20
+FROM numbers(10);
+
+SELECT count()
+FROM skip_idx_outlier
+WHERE value &gt; 15;
+
+1 rows in set. Elapsed: 0.059 sec. Processed 10.00 million rows, 40.00 MB
+(170.64 million rows/s., 682.57 MB/s.)
+
+ALTER TABLE skip_idx_outlier ADD INDEX value_idx value TYPE minmax GRANULARITY 10;
+ALTER TABLE skip_idx_outlier MATERIALIZE INDEX value_idx;
+
+SELECT count()
+FROM skip_idx_outlier
+WHERE value &gt; 15;
+
+1 rows in set. Elapsed: 0.004 sec.
+</div></section></section></section><div class="last-modified"> Last modified: 17 十二月 2023</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom">  <a class="navigation-links__prev" href="skip-index-bloom-filter-for-array-column.html">Skip index bloom_filter Example</a>   <a class="navigation-links__next" href="what-are-my-ttls.html">What are my TTL settings?</a>  </div></article><div id="disqus_thread"></div></div></section></main></div>  <script src="https://resources.jetbrains.com/writerside/apidoc/6.6.6-b205/app.js"></script></body></html>

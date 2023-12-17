@@ -1,0 +1,61 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat"><html lang="en-US" data-colors-preset="contrast" data-primary-color="#307FFF"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="robots" content="noindex">  <meta name="built-on" content="2023-12-17T22:54:23.4936621"><meta name="build-number" content="${buildNumber}">       <title>differential backups using clickhouse-backup | blog</title><script id="virtual-toc-data" type="application/json">[{"id":"differential-backups-using-clickhouse-backup-linktitle-differential-backups-using-clickhouse-backup-description-differential-backups-using-clickhouse-backup","level":0,"title":"#differential backups using clickhouse-backup\nlinkTitle: \"differential backups using clickhouse-backup\"\ndescription: \u003e\ndifferential backups using clickhouse-backup","anchor":"#differential-backups-using-clickhouse-backup-linktitle-differential-backups-using-clickhouse-backup-description-differential-backups-using-clickhouse-backup"}]</script><script id="topic-shortcuts" type="application/json"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.6.6-b205/app.css" rel="stylesheet">   <link rel="apple-touch-icon" sizes="180x180" href="https://jetbrains.com/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="https://jetbrains.com/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="https://jetbrains.com/favicon-16x16.png"><link rel="manifest" href="https://jetbrains.com/site.webmanifest"><link rel="mask-icon" href="https://jetbrains.com/safari-pinned-tab.svg" color="#000000"><meta name="msapplication-TileColor" content="#000000"/><meta name="msapplication-TileImage" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-144x144.png"/><meta name="msapplication-square70x70logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-70x70.png"/><meta name="msapplication-square150x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-150x150.png"/><meta name="msapplication-wide310x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x150.png"/><meta name="msapplication-square310x310logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x310.png"/>  <meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="differential backups using clickhouse-backup | blog"/><meta property="og:description" content=""/><meta property="og:image" content=""/><meta property="og:site_name" content="blog Help"/><meta property="og:type" content="website"/><meta property="og:locale" content="en_US"/><meta property="og:url" content="/1.0/kb-setup-and-maintenance-clickhouse-backup-diff.html"/><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="differential backups using clickhouse-backup | blog"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json"> { "@context": "http://schema.org", "@type": "WebPage", "@id": "/1.0/kb-setup-and-maintenance-clickhouse-backup-diff.html#webpage", "url": "/1.0/kb-setup-and-maintenance-clickhouse-backup-diff.html", "name": "differential backups using clickhouse-backup | blog", "description": "", "image": "", "inLanguage":"en-US" }</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json"> { "@type": "WebSite", "@id": "/#website", "url": "/", "name": "blog Help" }</script><!-- End Schema.org --></head>      <body data-id="kb-setup-and-maintenance_clickhouse-backup-diff" data-main-title="differential backups using clickhouse-backup" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}"  data-template="article"  data-breadcrumbs="Clickhouse///kb-setup-and-maintenance"  >   <div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>blog 1.0 Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="kb-setup-and-maintenance_clickhouse-backup-diff"   id="kb-setup-and-maintenance_clickhouse-backup-diff.md">differential backups using clickhouse-backup</h1>  <section class="chapter"><h2 id="differential-backups-using-clickhouse-backup-linktitle-differential-backups-using-clickhouse-backup-description-differential-backups-using-clickhouse-backup" data-toc="differential-backups-using-clickhouse-backup-linktitle-differential-backups-using-clickhouse-backup-description-differential-backups-using-clickhouse-backup"   >#differential backups using clickhouse-backup
+linkTitle: &quot;differential backups using clickhouse-backup&quot;
+description: &gt;
+differential backups using clickhouse-backup</h2><section class="chapter"><h3 id="differential-backups-using-clickhouse-backup" data-toc="differential-backups-using-clickhouse-backup"   >differential backups using clickhouse-backup</h3><ol class="list _decimal" id="b2bcf16e_153" type="1"><li class="list__item" id="b2bcf16e_154"><p>Download the latest clickhouse-backup for your platform https://github.com/AlexAkulov/clickhouse-backup/releases</p></li></ol><div class="code-block" data-lang="none"         >
+# ubuntu / debian
+
+wget https://github.com/AlexAkulov/clickhouse-backup/releases/download/v1.0.0/clickhouse-backup_1.0.0_amd64.deb 
+sudo dpkg -i clickhouse-backup_1.0.0_amd64.deb 
+
+# centos / redhat / fedora 
+
+sudo yum install https://github.com/AlexAkulov/clickhouse-backup/releases/download/v1.0.0/clickhouse-backup-1.0.0-1.x86_64.rpm
+
+# other platforms
+wget https://github.com/AlexAkulov/clickhouse-backup/releases/download/v1.0.0/clickhouse-backup.tar.gz
+sudo mkdir /etc/clickhouse-backup/
+sudo mv clickhouse-backup/config.yml /etc/clickhouse-backup/config.yml.example
+sudo mv clickhouse-backup/clickhouse-backup /usr/bin/
+rm -rf clickhouse-backup clickhouse-backup.tar.gz
+</div><ol class="list _decimal" id="b2bcf16e_156" type="1" start="2"><li class="list__item" id="b2bcf16e_157"><p>Create a runner script for the crontab</p></li></ol><div class="code-block" data-lang="none"         >
+mkdir /opt/clickhouse-backup-diff/
+
+cat &lt;&lt; 'END' &gt; /opt/clickhouse-backup-diff/clickhouse-backup-cron.sh
+
+#!/bin/bash
+set +x
+command_line_argument=$1
+
+backup_name=$(date +%Y-%M-%d-%H-%M-%S)
+
+echo &quot;Creating local backup '${backup_name}' (full, using hardlinks)...&quot;
+clickhouse-backup create &quot;${backup_name}&quot;
+
+if [[ &quot;run_diff&quot; == &quot;${command_line_argument}&quot; &amp;&amp; &quot;2&quot; -le &quot;$(clickhouse-backup list local | wc -l)&quot; ]]; then
+  prev_backup_name=&quot;$(clickhouse-backup list local | tail -n 2 | head -n 1 | cut -d &quot; &quot; -f 1)&quot;
+  echo &quot;Uploading the backup '${backup_name}' as diff from the previous backup ('${prev_backup_name}')&quot;
+  clickhouse-backup upload --diff-from &quot;${prev_backup_name}&quot; &quot;${backup_name}&quot;
+elif [[ &quot;&quot; == &quot;${command_line_argument}&quot; ]]; then
+  echo &quot;Uploading the backup '${backup_name}, and removing old unneeded backups&quot;
+  KEEP_BACKUPS_LOCAL=1 KEEP_BACKUPS_REMOTE=1 clickhouse-backup upload &quot;${backup_name}&quot;
+fi
+END
+
+chmod +x /opt/clickhouse-backup-diff/clickhouse-backup-cron.sh
+</div><ol class="list _decimal" id="b2bcf16e_159" type="1" start="3"><li class="list__item" id="b2bcf16e_160"><p>Create confuguration for clickhouse-backup</p></li></ol><div class="code-block" data-lang="none"         >
+# Check the example: /etc/clickhouse-backup/config.yml.example 
+vim /etc/clickhouse-backup/config.yml
+</div><ol class="list _decimal" id="b2bcf16e_162" type="1" start="4"><li class="list__item" id="b2bcf16e_163"><p>Edit the crontab</p></li></ol><div class="code-block" data-lang="none"         >
+crontab -e
+
+# full backup at 0:00 Monday
+0 0 * * 1 clickhouse /opt/clickhouse-backup-diff/clickhouse-backup-cron.sh
+# differential backup every hour (except of 00:00) Monday 
+0 1-23 * * 1 clickhouse /opt/clickhouse-backup-diff/clickhouse-backup-cron.sh run_diff
+# differential backup every hour Sunday, Tuesday-Saturday
+0 */1 * * 0,2-6 clickhouse /opt/clickhouse-backup-diff/clickhouse-backup-cron.sh run_diff
+</div><ol class="list _decimal" id="b2bcf16e_165" type="1" start="5"><li class="list__item" id="b2bcf16e_166"><p>Recover the last backup:</p></li></ol><div class="code-block" data-lang="none"         >
+last_remote_backup=&quot;$(clickhouse-backup list remote | tail -n 1 | cut -d &quot; &quot; -f 1)&quot;
+clickhouse-backup download &quot;${last_remote_backup}&quot;
+clickhouse-backup restore --rm &quot;${last_remote_backup}&quot;
+</div></section></section><div class="last-modified"> Last modified: 17 十二月 2023</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom">  <a class="navigation-links__prev" href="kb-setup-and-maintenance-clickhouse-backup.html">clickhouse-backup</a>   <a class="navigation-links__next" href="kb-setup-and-maintenance-change-me.html">Replication: Can not resolve host of another clickhouse server</a>  </div></article><div id="disqus_thread"></div></div></section></main></div>  <script src="https://resources.jetbrains.com/writerside/apidoc/6.6.6-b205/app.js"></script></body></html>

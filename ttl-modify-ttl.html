@@ -1,0 +1,66 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat"><html lang="en-US" data-colors-preset="contrast" data-primary-color="#307FFF"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="robots" content="noindex">  <meta name="built-on" content="2023-12-17T22:54:21.7949767"><meta name="build-number" content="${buildNumber}">       <title>MODIFY (ADD) TTL | blog</title><script id="virtual-toc-data" type="application/json">[{"id":"modify-add-ttl-linktitle-modify-add-ttl-weight-100-description-what-happening-during-modify-or-add-ttl-query","level":0,"title":"#MODIFY (ADD) TTL\nlinkTitle: \"MODIFY (ADD) TTL\"\nweight: 100\ndescription: \u003e-\nWhat happening during MODIFY or ADD TTL query.","anchor":"#modify-add-ttl-linktitle-modify-add-ttl-weight-100-description-what-happening-during-modify-or-add-ttl-query"},{"id":"alter-table-tbl-modify-add-ttl","level":0,"title":"ALTER TABLE tbl MODIFY (ADD) TTL:","anchor":"#alter-table-tbl-modify-add-ttl"}]</script><script id="topic-shortcuts" type="application/json"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.6.6-b205/app.css" rel="stylesheet">   <link rel="apple-touch-icon" sizes="180x180" href="https://jetbrains.com/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="https://jetbrains.com/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="https://jetbrains.com/favicon-16x16.png"><link rel="manifest" href="https://jetbrains.com/site.webmanifest"><link rel="mask-icon" href="https://jetbrains.com/safari-pinned-tab.svg" color="#000000"><meta name="msapplication-TileColor" content="#000000"/><meta name="msapplication-TileImage" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-144x144.png"/><meta name="msapplication-square70x70logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-70x70.png"/><meta name="msapplication-square150x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-150x150.png"/><meta name="msapplication-wide310x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x150.png"/><meta name="msapplication-square310x310logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x310.png"/>  <meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="MODIFY (ADD) TTL | blog"/><meta property="og:description" content=""/><meta property="og:image" content=""/><meta property="og:site_name" content="blog Help"/><meta property="og:type" content="website"/><meta property="og:locale" content="en_US"/><meta property="og:url" content="/1.0/ttl-modify-ttl.html"/><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="MODIFY (ADD) TTL | blog"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json"> { "@context": "http://schema.org", "@type": "WebPage", "@id": "/1.0/ttl-modify-ttl.html#webpage", "url": "/1.0/ttl-modify-ttl.html", "name": "MODIFY (ADD) TTL | blog", "description": "", "image": "", "inLanguage":"en-US" }</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json"> { "@type": "WebSite", "@id": "/#website", "url": "/", "name": "blog Help" }</script><!-- End Schema.org --></head>      <body data-id="ttl_modify-ttl" data-main-title="MODIFY (ADD) TTL" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}"  data-template="article"  data-breadcrumbs="Clickhouse///kb-queries-and-syntax///ttl"  >   <div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>blog 1.0 Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="ttl_modify-ttl"   id="ttl_modify-ttl.md">MODIFY (ADD) TTL</h1>  <section class="chapter"><h2 id="modify-add-ttl-linktitle-modify-add-ttl-weight-100-description-what-happening-during-modify-or-add-ttl-query" data-toc="modify-add-ttl-linktitle-modify-add-ttl-weight-100-description-what-happening-during-modify-or-add-ttl-query"   >#MODIFY (ADD) TTL
+linkTitle: &quot;MODIFY (ADD) TTL&quot;
+weight: 100
+description: &gt;-
+What happening during MODIFY or ADD TTL query.</h2></section><section class="chapter"><h2 id="alter-table-tbl-modify-add-ttl" data-toc="alter-table-tbl-modify-add-ttl"   >ALTER TABLE tbl MODIFY (ADD) TTL:</h2><p id="22b4e1f5_379">It's 2 step process:</p><ol class="list _decimal" id="22b4e1f5_380" type="1"><li class="list__item" id="22b4e1f5_381"><p><code class="code" id="22b4e1f5_382">ALTER TABLE tbl MODIFY (ADD) TTL ...</code></p></li></ol><p id="22b4e1f5_383">Update table metadata: schema .sql &amp; metadata in ZK. It's usually cheap and fast command. And any new INSERT after schema change will calculate TTL according to new rule.</p><ol class="list _decimal" id="22b4e1f5_384" type="1" start="2"><li class="list__item" id="22b4e1f5_385"><p><code class="code" id="22b4e1f5_386">ALTER TABLE tbl MATERIALIZE TTL</code></p></li></ol><p id="22b4e1f5_387">Recalculate TTL for already exist parts. It can be heavy operation, because ClickHouse will read column data &amp; recalculate TTL &amp; apply TTL expression. You can disable this step completely by using <code class="code" id="22b4e1f5_388">materialize_ttl_after_modify</code> user session setting (by default it's 1, so materialization is enabled).</p><div class="code-block" data-lang="none"         >
+ALTER TABLE tbl MODIFY TTL .... SETTINGS materialize_ttl_after_modify=0;
+</div><p id="22b4e1f5_390">If you will disable materialization of TTL, it does mean that all old parts will be transformed according OLD TTL rules. MATERIALIZE TTL:</p><ol class="list _decimal" id="22b4e1f5_391" type="1"><li class="list__item" id="22b4e1f5_392"><p>Recalculate TTL (Kinda cheap, it read only column participate in TTL)</p></li><li class="list__item" id="22b4e1f5_393"><p>Apply TTL (Rewrite of table data for all columns)</p></li></ol><p id="22b4e1f5_394">You also can disable apply TTL substep via <code class="code" id="22b4e1f5_395">materialize_ttl_recalculate_only</code> merge_tree setting (by default it's 0, so clickhouse will apply TTL expression)</p><div class="code-block" data-lang="none"         >
+ALTER TABLE tbl MODIFY SETTINGS materialize_ttl_recalculate_only=1;
+</div><p id="22b4e1f5_397">It does mean, that TTL rule will not be applied during <code class="code" id="22b4e1f5_398">ALTER TABLE tbl MODIFY (ADD) TTL ...</code> query.</p><p id="22b4e1f5_399">MATERIALIZE TTL done via Mutation:</p><ol class="list _decimal" id="22b4e1f5_400" type="1"><li class="list__item" id="22b4e1f5_401"><p>ClickHouse create new parts via hardlinks and write new ttl.txt file</p></li><li class="list__item" id="22b4e1f5_402"><p>ClickHouse remove old(inactive) parts after remove time (default is 8 minutes)</p></li></ol><p id="22b4e1f5_403">To stop materialization of TTL:</p><div class="code-block" data-lang="none"         >
+SELECT * FROM system.mutations WHERE is_done=0 AND table = 'tbl';
+KILL MUTATION WHERE command LIKE '%MATERIALIZE TTL%' AND table = 'tbl'
+</div><section class="chapter"><h3 id="modify-ttl-move" data-toc="modify-ttl-move"   >MODIFY TTL MOVE</h3><p id="22b4e1f5_405">today: 2022-06-02</p><p id="22b4e1f5_406">Table tbl</p><p id="22b4e1f5_407">Daily partitioning by toYYYYMMDD(timestamp) -&gt; 20220602</p><section class="chapter"><h4 id="increase-of-ttl" data-toc="increase-of-ttl"   >Increase of TTL</h4><p id="22b4e1f5_408">TTL timestamp + INTERVAL 30 DAY MOVE TO DISK s3 -&gt; TTL timestamp + INTERVAL 60 DAY MOVE TO DISK s3</p><ul class="list _ul" id="22b4e1f5_409"><li class="list__item" id="22b4e1f5_410"><p>Idea: ClickHouse need to move data from s3 to local disk BACK</p></li><li class="list__item" id="22b4e1f5_411"><p>Actual: There is no rule that data eariler than 60 DAY <span class="control" id="22b4e1f5_412">should be</span> on local disk</p></li></ul><p id="22b4e1f5_413">Table parts:</p><div class="code-block" data-lang="none"         >
+20220401    ttl: 20220501       disk: s3
+20220416    ttl: 20220516       disk: s3
+20220501    ttl: 20220531       disk: s3
+20220502    ttl: 20220601       disk: local
+20220516    ttl: 20220616       disk: local
+20220601    ttl: 20220631       disk: local
+</div><div class="code-block" data-lang="none"         >
+ALTER TABLE tbl MODIFY TTL timestamp + INTERVAL 60 DAY MOVE TO DISK s3;
+</div><p id="22b4e1f5_416">Table parts:</p><div class="code-block" data-lang="none"         >
+20220401    ttl: 20220601       disk: s3
+20220416    ttl: 20220616       disk: s3
+20220501    ttl: 20220631       disk: s3        (ClickHouse will not move this part to local disk, because there is no TTL rule for that)
+20220502    ttl: 20220701       disk: local
+20220516    ttl: 20220716       disk: local
+20220601    ttl: 20220731       disk: local
+</div></section><section class="chapter"><h4 id="decrease-of-ttl" data-toc="decrease-of-ttl"   >Decrease of TTL</h4><p id="22b4e1f5_418">TTL timestamp + INTERVAL 30 DAY MOVE TO DISK s3 -&gt; TTL timestamp + INTERVAL 14 DAY MOVE TO DISK s3</p><p id="22b4e1f5_419">Table parts:</p><div class="code-block" data-lang="none"         >
+20220401    ttl: 20220401       disk: s3
+20220416    ttl: 20220516       disk: s3
+20220501    ttl: 20220531       disk: s3        
+20220502    ttl: 20220601       disk: local     
+20220516    ttl: 20220616       disk: local
+20220601    ttl: 20220631       disk: local
+</div><div class="code-block" data-lang="none"         >
+ALTER TABLE tbl MODIFY TTL timestamp + INTERVAL 14 DAY MOVE TO DISK s3;
+</div><p id="22b4e1f5_422">Table parts:</p><div class="code-block" data-lang="none"         >
+20220401    ttl: 20220415       disk: s3
+20220416    ttl: 20220501       disk: s3
+20220501    ttl: 20220515       disk: s3
+20220502    ttl: 20220517       disk: local     (ClickHouse will move this part to disk s3 in background according to TTL rule)
+20220516    ttl: 20220601       disk: local     (ClickHouse will move this part to disk s3 in background according to TTL rule)
+20220601    ttl: 20220616       disk: local
+</div></section></section><section class="chapter"><h3 id="possible-ttl-rules" data-toc="possible-ttl-rules"   >Possible TTL Rules</h3><p id="22b4e1f5_424">TTL:</p><div class="code-block" data-lang="none"         >
+DELETE          (With enabled `ttl_only_drop_parts`, it's cheap operation, ClickHouse will drop the whole part)
+MOVE
+GROUP BY
+WHERE
+RECOMPRESS
+</div><p id="22b4e1f5_426">Related settings:</p><p id="22b4e1f5_427">Server settings:</p><div class="code-block" data-lang="none"         >
+background_move_processing_pool_thread_sleep_seconds                        |   10      |
+background_move_processing_pool_thread_sleep_seconds_random_part            |   1.0     |
+background_move_processing_pool_thread_sleep_seconds_if_nothing_to_do       |   0.1     |
+background_move_processing_pool_task_sleep_seconds_when_no_work_min         |   10      |
+background_move_processing_pool_task_sleep_seconds_when_no_work_max         |   600     |
+background_move_processing_pool_task_sleep_seconds_when_no_work_multiplier  |   1.1     |
+background_move_processing_pool_task_sleep_seconds_when_no_work_random_part |   1.0     |
+</div><p id="22b4e1f5_429">MergeTree settings:</p><div class="code-block" data-lang="none"         >
+merge_with_ttl_timeout                      │   14400   │       0 │ Minimal time in seconds, when merge with delete TTL can be repeated.
+merge_with_recompression_ttl_timeout        │   14400   │       0 │ Minimal time in seconds, when merge with recompression TTL can be repeated.
+max_replicated_merges_with_ttl_in_queue     │   1       │       0 │ How many tasks of merging parts with TTL are allowed simultaneously in ReplicatedMergeTree queue.
+max_number_of_merges_with_ttl_in_pool       │   2       │       0 │ When there is more than specified number of merges with TTL entries in pool, do not assign new merge with TTL. This is to leave free threads for regular merges and avoid &quot;Too many parts&quot;
+ttl_only_drop_parts                         │   0       │       0 │ Only drop altogether the expired parts and not partially prune them.
+</div><p id="22b4e1f5_431">Session settings:</p><div class="code-block" data-lang="none"         >
+materialize_ttl_after_modify                │   1       │       0 │ Apply TTL for old data, after ALTER MODIFY TTL query 
+</div></section></section><div class="last-modified"> Last modified: 17 十二月 2023</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom">  <a class="navigation-links__prev" href="what-are-my-ttls.html">What are my TTL settings?</a>   <a class="navigation-links__next" href="ttl-index.html">TTL</a>  </div></article><div id="disqus_thread"></div></div></section></main></div>  <script src="https://resources.jetbrains.com/writerside/apidoc/6.6.6-b205/app.js"></script></body></html>

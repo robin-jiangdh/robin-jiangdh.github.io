@@ -1,0 +1,46 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat"><html lang="en-US" data-colors-preset="contrast" data-primary-color="#307FFF"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="robots" content="noindex">  <meta name="built-on" content="2023-12-17T22:54:21.9138023"><meta name="build-number" content="${buildNumber}">       <title>Dictionary on the top of several tables using VIEW | blog</title><script id="virtual-toc-data" type="application/json">[{"id":"dictionary-on-the-top-of-several-tables-using-view-linktitle-dictionary-on-the-top-of-several-tables-using-view-description-dictionary-on-the-top-of-several-tables-using-view","level":0,"title":"#Dictionary on the top of several tables using VIEW\nlinkTitle: \"Dictionary on the top of several tables using VIEW\"\ndescription: \u003e\nDictionary on the top of several tables using VIEW","anchor":"#dictionary-on-the-top-of-several-tables-using-view-linktitle-dictionary-on-the-top-of-several-tables-using-view-description-dictionary-on-the-top-of-several-tables-using-view"}]</script><script id="topic-shortcuts" type="application/json"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.6.6-b205/app.css" rel="stylesheet">   <link rel="apple-touch-icon" sizes="180x180" href="https://jetbrains.com/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="https://jetbrains.com/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="https://jetbrains.com/favicon-16x16.png"><link rel="manifest" href="https://jetbrains.com/site.webmanifest"><link rel="mask-icon" href="https://jetbrains.com/safari-pinned-tab.svg" color="#000000"><meta name="msapplication-TileColor" content="#000000"/><meta name="msapplication-TileImage" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-144x144.png"/><meta name="msapplication-square70x70logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-70x70.png"/><meta name="msapplication-square150x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-150x150.png"/><meta name="msapplication-wide310x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x150.png"/><meta name="msapplication-square310x310logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x310.png"/>  <meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="Dictionary on the top of several tables using VIEW | blog"/><meta property="og:description" content=""/><meta property="og:image" content=""/><meta property="og:site_name" content="blog Help"/><meta property="og:type" content="website"/><meta property="og:locale" content="en_US"/><meta property="og:url" content="/1.0/dictionary-on-top-tables.html"/><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="Dictionary on the top of several tables using VIEW | blog"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json"> { "@context": "http://schema.org", "@type": "WebPage", "@id": "/1.0/dictionary-on-top-tables.html#webpage", "url": "/1.0/dictionary-on-top-tables.html", "name": "Dictionary on the top of several tables using VIEW | blog", "description": "", "image": "", "inLanguage":"en-US" }</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json"> { "@type": "WebSite", "@id": "/#website", "url": "/", "name": "blog Help" }</script><!-- End Schema.org --></head>      <body data-id="dictionary-on-top-tables" data-main-title="Dictionary on the top of several tables using VIEW" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}"  data-template="article"  data-breadcrumbs="Clickhouse///kb-dictionaries"  >   <div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>blog 1.0 Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="dictionary-on-top-tables"   id="dictionary-on-top-tables.md">Dictionary on the top of several tables using VIEW</h1>  <section class="chapter"><h2 id="dictionary-on-the-top-of-several-tables-using-view-linktitle-dictionary-on-the-top-of-several-tables-using-view-description-dictionary-on-the-top-of-several-tables-using-view" data-toc="dictionary-on-the-top-of-several-tables-using-view-linktitle-dictionary-on-the-top-of-several-tables-using-view-description-dictionary-on-the-top-of-several-tables-using-view"   >#Dictionary on the top of several tables using VIEW
+linkTitle: &quot;Dictionary on the top of several tables using VIEW&quot;
+description: &gt;
+Dictionary on the top of several tables using VIEW</h2><div class="code-block" data-lang="none"         >
+
+DROP TABLE IF EXISTS dictionary_source_en;
+DROP TABLE IF EXISTS dictionary_source_ru;
+DROP TABLE IF EXISTS dictionary_source_view;
+DROP DICTIONARY IF EXISTS flat_dictionary;
+
+CREATE TABLE dictionary_source_en
+(
+    id UInt64,
+    value String
+) ENGINE = TinyLog;
+
+INSERT INTO dictionary_source_en VALUES (1, 'One'), (2,'Two'), (3, 'Three');
+
+CREATE TABLE dictionary_source_ru
+(
+    id UInt64,
+    value String
+) ENGINE = TinyLog;
+
+INSERT INTO dictionary_source_ru VALUES (1, 'Один'), (2,'Два'), (3, 'Три');
+
+CREATE VIEW dictionary_source_view AS  SELECT id, dictionary_source_en.value as value_en, dictionary_source_ru.value as value_ru  FROM  dictionary_source_en LEFT JOIN dictionary_source_ru USING (id);
+
+select * from dictionary_source_view;
+
+CREATE DICTIONARY flat_dictionary
+(
+    id UInt64,
+    value_en String,
+    value_ru String
+)
+PRIMARY KEY id
+SOURCE(CLICKHOUSE(HOST 'localhost' PORT 9000 USER 'default' PASSWORD '' TABLE 'dictionary_source_view'))
+LIFETIME(MIN 1 MAX 1000)
+LAYOUT(FLAT());
+
+SELECT
+    dictGet(concat(currentDatabase(), '.flat_dictionary'), 'value_en', number + 1),
+    dictGet(concat(currentDatabase(), '.flat_dictionary'), 'value_ru', number + 1)
+FROM numbers(3);
+</div></section><div class="last-modified"> Last modified: 17 十二月 2023</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom">  <a class="navigation-links__prev" href="example-of-postgresql-dictionary.html">Example of PostgreSQL dictionary</a>   <a class="navigation-links__next" href="dictionaries-and-arrays.html">Dictionaries &amp; arrays</a>  </div></article><div id="disqus_thread"></div></div></section></main></div>  <script src="https://resources.jetbrains.com/writerside/apidoc/6.6.6-b205/app.js"></script></body></html>

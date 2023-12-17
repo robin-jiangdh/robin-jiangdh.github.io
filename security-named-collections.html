@@ -1,0 +1,34 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat"><html lang="en-US" data-colors-preset="contrast" data-primary-color="#307FFF"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="robots" content="noindex">  <meta name="built-on" content="2023-12-17T22:54:23.1286529"><meta name="build-number" content="${buildNumber}">       <title>Security named collections | blog</title><script id="virtual-toc-data" type="application/json">[{"id":"security-named-collections-linktitle-security-named-collections-description-security-named-collections","level":0,"title":"#Security named collections\nlinkTitle: \"Security named collections\"\ndescription: \u003e\nSecurity named collections","anchor":"#security-named-collections-linktitle-security-named-collections-description-security-named-collections"},{"id":"dictionary-with-clickhouse-table-as-a-source-with-named-collections","level":0,"title":"Dictionary with Clickhouse table as a source with named collections","anchor":"#dictionary-with-clickhouse-table-as-a-source-with-named-collections"}]</script><script id="topic-shortcuts" type="application/json"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.6.6-b205/app.css" rel="stylesheet">   <link rel="apple-touch-icon" sizes="180x180" href="https://jetbrains.com/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="https://jetbrains.com/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="https://jetbrains.com/favicon-16x16.png"><link rel="manifest" href="https://jetbrains.com/site.webmanifest"><link rel="mask-icon" href="https://jetbrains.com/safari-pinned-tab.svg" color="#000000"><meta name="msapplication-TileColor" content="#000000"/><meta name="msapplication-TileImage" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-144x144.png"/><meta name="msapplication-square70x70logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-70x70.png"/><meta name="msapplication-square150x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-150x150.png"/><meta name="msapplication-wide310x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x150.png"/><meta name="msapplication-square310x310logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x310.png"/>  <meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="Security named collections | blog"/><meta property="og:description" content=""/><meta property="og:image" content=""/><meta property="og:site_name" content="blog Help"/><meta property="og:type" content="website"/><meta property="og:locale" content="en_US"/><meta property="og:url" content="/1.0/security-named-collections.html"/><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="Security named collections | blog"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json"> { "@context": "http://schema.org", "@type": "WebPage", "@id": "/1.0/security-named-collections.html#webpage", "url": "/1.0/security-named-collections.html", "name": "Security named collections | blog", "description": "", "image": "", "inLanguage":"en-US" }</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json"> { "@type": "WebSite", "@id": "/#website", "url": "/", "name": "blog Help" }</script><!-- End Schema.org --></head>      <body data-id="security-named-collections" data-main-title="Security named collections" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}"  data-template="article"  data-breadcrumbs="Clickhouse///kb-dictionaries"  >   <div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>blog 1.0 Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="security-named-collections"   id="security-named-collections.md">Security named collections</h1>  <section class="chapter"><h2 id="security-named-collections-linktitle-security-named-collections-description-security-named-collections" data-toc="security-named-collections-linktitle-security-named-collections-description-security-named-collections"   >#Security named collections
+linkTitle: &quot;Security named collections&quot;
+description: &gt;
+Security named collections</h2></section><section class="chapter"><h2 id="dictionary-with-clickhouse-table-as-a-source-with-named-collections" data-toc="dictionary-with-clickhouse-table-as-a-source-with-named-collections"   >Dictionary with Clickhouse table as a source with named collections</h2><section class="chapter"><h3 id="data-for-connecting-to-external-sources-can-be-stored-in-named-collections" data-toc="data-for-connecting-to-external-sources-can-be-stored-in-named-collections"   >Data for connecting to external sources can be stored in named collections</h3><div class="code-block" data-lang="none"         >
+&lt;clickhouse&gt;
+    &lt;named_collections&gt;
+        &lt;local_host&gt;
+            &lt;host&gt;localhost&lt;/host&gt;
+            &lt;port&gt;9000&lt;/port&gt;
+            &lt;database&gt;default&lt;/database&gt;
+            &lt;user&gt;ch_dict&lt;/user&gt;
+            &lt;password&gt;mypass&lt;/password&gt;
+        &lt;/local_host&gt;
+    &lt;/named_collections&gt;
+&lt;/clickhouse&gt;
+</div></section><section class="chapter"><h3 id="dictionary" data-toc="dictionary"   >Dictionary</h3><div class="code-block" data-lang="none"         >
+DROP DICTIONARY IF EXISTS named_coll_dict;
+CREATE DICTIONARY named_coll_dict
+(
+    key UInt64,
+    val String
+)
+PRIMARY KEY key
+SOURCE(CLICKHOUSE(NAME local_host TABLE my_table DB default))
+LIFETIME(MIN 1 MAX 2)
+LAYOUT(HASHED());
+
+INSERT INTO my_table(key, val) VALUES(1, 'first row');
+
+SELECT dictGet('named_coll_dict', 'b', 1);
+┌─dictGet('named_coll_dict', 'b', 1)─┐
+│ first row                          │
+└────────────────────────────────────┘
+</div></section></section><div class="last-modified"> Last modified: 17 十二月 2023</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom">  <a class="navigation-links__prev" href="kb-replacingmergetree-does-not-collapse-duplicates.html">ReplacingMergeTree does not collapse duplicates</a>   <a class="navigation-links__next" href="partial-updates.html">Partial updates</a>  </div></article><div id="disqus_thread"></div></div></section></main></div>  <script src="https://resources.jetbrains.com/writerside/apidoc/6.6.6-b205/app.js"></script></body></html>

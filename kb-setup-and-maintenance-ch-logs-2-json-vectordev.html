@@ -1,0 +1,120 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat"><html lang="en-US" data-colors-preset="contrast" data-primary-color="#307FFF"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="robots" content="noindex">  <meta name="built-on" content="2023-12-17T22:54:23.5437839"><meta name="build-number" content="${buildNumber}">       <title>Transformation Clickhouse logs to ndjson using Vector.dev | blog</title><script id="virtual-toc-data" type="application/json">[{"id":"transformation-clickhouse-logs-to-ndjson-using-vector-dev-linktitle-clickhouse-logs-and-vector-dev-weight-100-description-transformation-clickhouse-logs-to-ndjson-using-vector-dev","level":0,"title":"#Transformation Clickhouse logs to ndjson using Vector.dev\nlinkTitle: \"Clickhouse logs and Vector.dev\"\nweight: 100\ndescription: \u003e-\nTransformation Clickhouse logs to ndjson using Vector.dev","anchor":"#transformation-clickhouse-logs-to-ndjson-using-vector-dev-linktitle-clickhouse-logs-and-vector-dev-weight-100-description-transformation-clickhouse-logs-to-ndjson-using-vector-dev"},{"id":"transformation-clickhouse-logs-to-ndjson-using-vector-dev","level":0,"title":"Transformation Clickhouse logs to ndjson using Vector.dev\"","anchor":"#transformation-clickhouse-logs-to-ndjson-using-vector-dev"}]</script><script id="topic-shortcuts" type="application/json"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.6.6-b205/app.css" rel="stylesheet">   <link rel="apple-touch-icon" sizes="180x180" href="https://jetbrains.com/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="https://jetbrains.com/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="https://jetbrains.com/favicon-16x16.png"><link rel="manifest" href="https://jetbrains.com/site.webmanifest"><link rel="mask-icon" href="https://jetbrains.com/safari-pinned-tab.svg" color="#000000"><meta name="msapplication-TileColor" content="#000000"/><meta name="msapplication-TileImage" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-144x144.png"/><meta name="msapplication-square70x70logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-70x70.png"/><meta name="msapplication-square150x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-150x150.png"/><meta name="msapplication-wide310x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x150.png"/><meta name="msapplication-square310x310logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x310.png"/>  <meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="Transformation Clickhouse logs to ndjson using Vector.dev | blog"/><meta property="og:description" content=""/><meta property="og:image" content=""/><meta property="og:site_name" content="blog Help"/><meta property="og:type" content="website"/><meta property="og:locale" content="en_US"/><meta property="og:url" content="/1.0/kb-setup-and-maintenance-ch-logs-2-json-vectordev.html"/><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="Transformation Clickhouse logs to ndjson using Vector.dev | blog"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json"> { "@context": "http://schema.org", "@type": "WebPage", "@id": "/1.0/kb-setup-and-maintenance-ch-logs-2-json-vectordev.html#webpage", "url": "/1.0/kb-setup-and-maintenance-ch-logs-2-json-vectordev.html", "name": "Transformation Clickhouse logs to ndjson using Vector.dev | blog", "description": "", "image": "", "inLanguage":"en-US" }</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json"> { "@type": "WebSite", "@id": "/#website", "url": "/", "name": "blog Help" }</script><!-- End Schema.org --></head>      <body data-id="kb-setup-and-maintenance_ch-logs-2-json-vectordev" data-main-title="Transformation Clickhouse logs to ndjson using Vector.dev" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}"  data-template="article"  data-breadcrumbs="Clickhouse///kb-setup-and-maintenance"  >   <div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>blog 1.0 Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="kb-setup-and-maintenance_ch-logs-2-json-vectordev"   id="kb-setup-and-maintenance_ch-logs-2-json-vectordev.md">Transformation Clickhouse logs to ndjson using Vector.dev</h1>  <section class="chapter"><h2 id="transformation-clickhouse-logs-to-ndjson-using-vector-dev-linktitle-clickhouse-logs-and-vector-dev-weight-100-description-transformation-clickhouse-logs-to-ndjson-using-vector-dev" data-toc="transformation-clickhouse-logs-to-ndjson-using-vector-dev-linktitle-clickhouse-logs-and-vector-dev-weight-100-description-transformation-clickhouse-logs-to-ndjson-using-vector-dev"   >#Transformation Clickhouse logs to ndjson using Vector.dev
+linkTitle: &quot;Clickhouse logs and Vector.dev&quot;
+weight: 100
+description: &gt;-
+Transformation Clickhouse logs to ndjson using Vector.dev</h2><section class="chapter"><h3 id="clickhouse-22-8" data-toc="clickhouse-22-8"   >ClickHouse 22.8</h3><p id="7ec02573_91">Starting from 22.8 version, ClickHouse support writing logs in JSON format:</p><div class="code-block" data-lang="none"         >
+&lt;?xml version=&quot;1.0&quot;?&gt;
+&lt;clickhouse&gt;
+    &lt;logger&gt;
+        &lt;!-- Structured log formatting:
+        You can specify log format(for now, JSON only). In that case, the console log will be printed
+        in specified format like JSON.
+        For example, as below:
+        {&quot;date_time&quot;:&quot;1650918987.180175&quot;,&quot;thread_name&quot;:&quot;#1&quot;,&quot;thread_id&quot;:&quot;254545&quot;,&quot;level&quot;:&quot;Trace&quot;,&quot;query_id&quot;:&quot;&quot;,&quot;logger_name&quot;:&quot;BaseDaemon&quot;,&quot;message&quot;:&quot;Received signal 2&quot;,&quot;source_file&quot;:&quot;../base/daemon/BaseDaemon.cpp; virtual void SignalListener::run()&quot;,&quot;source_line&quot;:&quot;192&quot;}
+        To enable JSON logging support, just uncomment &lt;formatting&gt; tag below.
+        --&gt;
+        &lt;formatting&gt;json&lt;/formatting&gt;
+    &lt;/logger&gt;
+&lt;/clickhouse&gt;
+</div></section></section><section class="chapter"><h2 id="transformation-clickhouse-logs-to-ndjson-using-vector-dev" data-toc="transformation-clickhouse-logs-to-ndjson-using-vector-dev"   >Transformation Clickhouse logs to ndjson using Vector.dev&quot;</h2><section class="chapter"><h3 id="installation-of-vector-dev" data-toc="installation-of-vector-dev"   >Installation of vector.dev</h3><div class="code-block" data-lang="none"         >
+# arm64
+wget https://packages.timber.io/vector/0.15.2/vector_0.15.2-1_arm64.deb
+
+# amd64
+wget https://packages.timber.io/vector/0.15.2/vector_0.15.2-1_amd64.deb
+
+dpkg -i vector_0.15.2-1_*.deb
+
+systemctl stop vector
+
+mkdir /var/log/clickhouse-server-json
+
+chown vector.vector /var/log/clickhouse-server-json
+
+usermod -a -G clickhouse vector
+</div></section><section class="chapter"><h3 id="vector-config" data-toc="vector-config"   >vector config</h3><div class="code-block" data-lang="none"         >
+# cat /etc/vector/vector.toml
+data_dir = &quot;/var/lib/vector&quot;
+
+[sources.clickhouse-log]
+  type                          = &quot;file&quot;
+  include                       = [ &quot;/var/log/clickhouse-server/clickhouse-server.log&quot; ]
+  fingerprinting.strategy       = &quot;device_and_inode&quot;
+  message_start_indicator = '^\d+\.\d+\.\d+ \d+:\d+:\d+'
+  multi_line_timeout = 1000
+
+
+[transforms.clickhouse-log-text]
+  inputs                        = [ &quot;clickhouse-log&quot; ]
+  type                          = &quot;remap&quot;
+  source = '''
+     . |= parse_regex!(.message, r'^(?P&lt;timestamp&gt;\d+\.\d+\.\d+ \d+:\d+:\d+\.\d+) \[\s?(?P&lt;thread_id&gt;\d+)\s?\] \{(?P&lt;query_id&gt;.*)\} &lt;(?P&lt;severity&gt;\w+)&gt; (?s)(?P&lt;message&gt;.*$)')
+  '''
+
+[sinks.emit-clickhouse-log-json]
+  type = &quot;file&quot;
+  inputs = [ &quot;clickhouse-log-text&quot; ]
+  compression = &quot;none&quot;
+  path = &quot;/var/log/clickhouse-server-json/clickhouse-server.%Y-%m-%d.ndjson&quot;
+  encoding.only_fields = [&quot;timestamp&quot;, &quot;thread_id&quot;, &quot;query_id&quot;, &quot;severity&quot;, &quot;message&quot; ]
+  encoding.codec = &quot;ndjson&quot;
+</div></section><section class="chapter"><h3 id="start" data-toc="start"   >start</h3><div class="code-block" data-lang="none"         >
+systemctl start vector
+
+tail /var/log/clickhouse-server-json/clickhouse-server.2022-04-21.ndjson
+{&quot;message&quot;:&quot;DiskLocal: Reserving 1.00 MiB on disk `default`, having unreserved 166.80 GiB.&quot;,&quot;query_id&quot;:&quot;&quot;,&quot;severity&quot;:&quot;Debug&quot;,&quot;thread_id&quot;:&quot;283239&quot;,&quot;timestamp&quot;:&quot;2022.04.21 13:43:21.164660&quot;}
+{&quot;message&quot;:&quot;MergedBlockOutputStream: filled checksums 202204_67118_67118_0 (state Temporary)&quot;,&quot;query_id&quot;:&quot;&quot;,&quot;severity&quot;:&quot;Trace&quot;,&quot;thread_id&quot;:&quot;283239&quot;,&quot;timestamp&quot;:&quot;2022.04.21 13:43:21.166810&quot;}
+{&quot;message&quot;:&quot;system.metric_log (e3365172-4c9b-441b-b803-756ae030e741): Renaming temporary part tmp_insert_202204_67118_67118_0 to 202204_171703_171703_0.&quot;,&quot;query_id&quot;:&quot;&quot;,&quot;severity&quot;:&quot;Trace&quot;,&quot;thread_id&quot;:&quot;283239&quot;,&quot;timestamp&quot;:&quot;2022.04.21 13:43:21.167226&quot;}
+....
+</div></section><section class="chapter"><h3 id="sink-logs-into-clickhouse-table" data-toc="sink-logs-into-clickhouse-table"   >sink logs into ClickHouse table</h3><p id="7ec02573_96">Be carefull with logging ClickHouse messages into the same ClickHouse instance, it will cause endless recursive self-logging.</p><div class="code-block" data-lang="none"         >
+create table default.clickhouse_logs(
+  timestamp DateTime64(3),
+  host LowCardinality(String),
+  thread_id LowCardinality(String),
+  severity LowCardinality(String),
+  query_id String,
+  message String)
+Engine = MergeTree 
+Partition by toYYYYMM(timestamp)
+Order by (toStartOfHour(timestamp), host, severity, query_id);
+
+create user vector identified  by 'vector1234';
+grant insert on default.clickhouse_logs to vector;
+create settings profile or replace profile_vector settings log_queries=0 readonly TO vector;
+</div><div class="code-block" data-lang="none"         >
+[sinks.clickhouse-output-clickhouse]
+    inputs   = [&quot;clickhouse-log-text&quot;]
+    type     = &quot;clickhouse&quot;
+
+    host = &quot;http://localhost:8123&quot;
+    database = &quot;default&quot;
+    auth.strategy = &quot;basic&quot;
+    auth.user = &quot;vector&quot;
+    auth.password = &quot;vector1234&quot;
+    healthcheck = true
+    table = &quot;clickhouse_logs&quot;
+
+    encoding.timestamp_format = &quot;unix&quot;
+
+    buffer.type = &quot;disk&quot;
+    buffer.max_size = 104900000
+    buffer.when_full = &quot;block&quot;
+
+    request.in_flight_limit = 20
+
+    encoding.only_fields =  [&quot;host&quot;, &quot;timestamp&quot;, &quot;thread_id&quot;, &quot;query_id&quot;, &quot;severity&quot;, &quot;message&quot;]
+</div><div class="code-block" data-lang="none"         >
+select * from default.clickhouse_logs limit 10;
+┌───────────────timestamp─┬─host───────┬─thread_id─┬─severity─┬─query_id─┬─message─────────────────────────────────────────────────────
+│ 2022-04-21 19:08:13.443 │ clickhouse │ 283155    │ Debug    │          │ HTTP-Session: 13e87050-7824-46b0-9bd5-29469a1b102f Authentic
+│ 2022-04-21 19:08:13.443 │ clickhouse │ 283155    │ Debug    │          │ HTTP-Session: 13e87050-7824-46b0-9bd5-29469a1b102f Authentic
+│ 2022-04-21 19:08:13.443 │ clickhouse │ 283155    │ Debug    │          │ HTTP-Session: 13e87050-7824-46b0-9bd5-29469a1b102f Creating
+│ 2022-04-21 19:08:13.447 │ clickhouse │ 283155    │ Debug    │          │ MemoryTracker: Peak memory usage (for query): 4.00 MiB.
+│ 2022-04-21 19:08:13.447 │ clickhouse │ 283155    │ Debug    │          │ HTTP-Session: 13e87050-7824-46b0-9bd5-29469a1b102f Destroyin
+│ 2022-04-21 19:08:13.495 │ clickhouse │ 283155    │ Debug    │          │ HTTP-Session: f7eb829f-7b3a-4c43-8a41-a2e6676177fb Authentic
+│ 2022-04-21 19:08:13.495 │ clickhouse │ 283155    │ Debug    │          │ HTTP-Session: f7eb829f-7b3a-4c43-8a41-a2e6676177fb Authentic
+│ 2022-04-21 19:08:13.495 │ clickhouse │ 283155    │ Debug    │          │ HTTP-Session: f7eb829f-7b3a-4c43-8a41-a2e6676177fb Creating
+│ 2022-04-21 19:08:13.496 │ clickhouse │ 283155    │ Debug    │          │ MemoryTracker: Peak memory usage (for query): 4.00 MiB.
+│ 2022-04-21 19:08:13.496 │ clickhouse │ 283155    │ Debug    │          │ HTTP-Session: f7eb829f-7b3a-4c43-8a41-a2e6676177fb Destroyin
+└─────────────────────────┴────────────┴───────────┴──────────┴──────────┴─────────────────────────────────────────────────────────────
+</div></section></section><div class="last-modified"> Last modified: 17 十二月 2023</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom">  <a class="navigation-links__prev" href="kb-setup-and-maintenance-change-me.html">Replication: Can not resolve host of another clickhouse server</a>   <a class="navigation-links__next" href="kb-setup-and-maintenance-cgroups-k8s.html">cgroups and kubernetes cloud providers</a>  </div></article><div id="disqus_thread"></div></div></section></main></div>  <script src="https://resources.jetbrains.com/writerside/apidoc/6.6.6-b205/app.js"></script></body></html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat"><html lang="en-US" data-colors-preset="contrast" data-primary-color="#307FFF"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="robots" content="noindex">  <meta name="built-on" content="2023-12-17T22:54:22.8113634"><meta name="build-number" content="${buildNumber}">       <title>Codecs on array columns | blog</title><script id="virtual-toc-data" type="application/json">[{"id":"codecs-on-array-columns-linktitle-codecs-on-array-columns-description-codecs-on-array-columns","level":0,"title":"#Codecs on array columns\nlinkTitle: \"Codecs on array columns\"\ndescription: \u003e\nCodecs on array columns","anchor":"#codecs-on-array-columns-linktitle-codecs-on-array-columns-description-codecs-on-array-columns"}]</script><script id="topic-shortcuts" type="application/json"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.6.6-b205/app.css" rel="stylesheet">   <link rel="apple-touch-icon" sizes="180x180" href="https://jetbrains.com/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="https://jetbrains.com/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="https://jetbrains.com/favicon-16x16.png"><link rel="manifest" href="https://jetbrains.com/site.webmanifest"><link rel="mask-icon" href="https://jetbrains.com/safari-pinned-tab.svg" color="#000000"><meta name="msapplication-TileColor" content="#000000"/><meta name="msapplication-TileImage" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-144x144.png"/><meta name="msapplication-square70x70logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-70x70.png"/><meta name="msapplication-square150x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-150x150.png"/><meta name="msapplication-wide310x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x150.png"/><meta name="msapplication-square310x310logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x310.png"/>  <meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="Codecs on array columns | blog"/><meta property="og:description" content=""/><meta property="og:image" content=""/><meta property="og:site_name" content="blog Help"/><meta property="og:type" content="website"/><meta property="og:locale" content="en_US"/><meta property="og:url" content="/1.0/codecs-on-array-columns.html"/><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="Codecs on array columns | blog"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json"> { "@context": "http://schema.org", "@type": "WebPage", "@id": "/1.0/codecs-on-array-columns.html#webpage", "url": "/1.0/codecs-on-array-columns.html", "name": "Codecs on array columns | blog", "description": "", "image": "", "inLanguage":"en-US" }</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json"> { "@type": "WebSite", "@id": "/#website", "url": "/", "name": "blog Help" }</script><!-- End Schema.org --></head>      <body data-id="codecs-on-array-columns" data-main-title="Codecs on array columns" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}"  data-template="article"  data-breadcrumbs="Clickhouse///kb-schema-design///codecs"  >   <div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>blog 1.0 Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="codecs-on-array-columns"   id="codecs-on-array-columns.md">Codecs on array columns</h1>  <section class="chapter"><h2 id="codecs-on-array-columns-linktitle-codecs-on-array-columns-description-codecs-on-array-columns" data-toc="codecs-on-array-columns-linktitle-codecs-on-array-columns-description-codecs-on-array-columns"   >#Codecs on array columns
+linkTitle: &quot;Codecs on array columns&quot;
+description: &gt;
+Codecs on array columns</h2><p id="5f80d642_29">Supported since 20.10 (PR <a href="https://github.com/ClickHouse/ClickHouse/pull/15089" id="5f80d642_30"   data-external="true" rel="noopener noreferrer" >#15089</a>). On older versions you will get exception: <code class="code" id="5f80d642_31">DB::Exception: Codec Delta is not applicable for Array(UInt64) because the data type is not of fixed size.</code></p><div class="code-block" data-lang="none"         >
+DROP TABLE IF EXISTS array_codec_test SYNC
+
+create table array_codec_test( number UInt64, arr Array(UInt64) ) Engine=MergeTree ORDER BY number;
+INSERT INTO array_codec_test SELECT number,  arrayMap(i -&gt; number + i, range(100)) from numbers(10000000);
+
+
+/****  Default LZ4  *****/
+
+OPTIMIZE TABLE array_codec_test FINAL;
+--- Elapsed: 3.386 sec.
+
+
+SELECT * FROM system.columns WHERE (table = 'array_codec_test') AND (name = 'arr')
+/*
+Row 1:
+──────
+database:                default
+table:                   array_codec_test
+name:                    arr
+type:                    Array(UInt64)
+position:                2
+default_kind:         
+default_expression:   
+data_compressed_bytes:   173866750
+data_uncompressed_bytes: 8080000000
+marks_bytes:             58656
+comment:              
+is_in_partition_key:     0
+is_in_sorting_key:       0
+is_in_primary_key:       0
+is_in_sampling_key:      0
+compression_codec:    
+*/
+
+
+
+/****** Delta, LZ4 ******/
+
+ALTER TABLE array_codec_test MODIFY COLUMN arr Array(UInt64) CODEC (Delta, LZ4);
+
+OPTIMIZE TABLE array_codec_test FINAL
+--0 rows in set. Elapsed: 4.577 sec.
+
+SELECT * FROM system.columns WHERE (table = 'array_codec_test') AND (name = 'arr')
+
+/*
+Row 1:
+──────
+database:                default
+table:                   array_codec_test
+name:                    arr
+type:                    Array(UInt64)
+position:                2
+default_kind:         
+default_expression:   
+data_compressed_bytes:   32458310
+data_uncompressed_bytes: 8080000000
+marks_bytes:             58656
+comment:              
+is_in_partition_key:     0
+is_in_sorting_key:       0
+is_in_primary_key:       0
+is_in_sampling_key:      0
+compression_codec:       CODEC(Delta(8), LZ4)
+*/
+</div></section><div class="last-modified"> Last modified: 17 十二月 2023</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom">  <a class="navigation-links__prev" href="codecs-speed.html">Codecs speed</a>   <a class="navigation-links__next" href="materialized-views-index.html">MATERIALIZED VIEWS</a>  </div></article><div id="disqus_thread"></div></div></section></main></div>  <script src="https://resources.jetbrains.com/writerside/apidoc/6.6.6-b205/app.js"></script></body></html>

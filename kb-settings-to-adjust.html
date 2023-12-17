@@ -1,0 +1,76 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat"><html lang="en-US" data-colors-preset="contrast" data-primary-color="#307FFF"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="robots" content="noindex">  <meta name="built-on" content="2023-12-17T22:54:21.8200036"><meta name="build-number" content="${buildNumber}">       <title>Settings to adjust | blog</title><script id="virtual-toc-data" type="application/json">[{"id":"settings-to-adjust-linktitle-settings-to-adjust-description-settings-to-adjust","level":0,"title":"#Settings to adjust\nlinkTitle: \"Settings to adjust\"\ndescription: \u003e\nSettings to adjust","anchor":"#settings-to-adjust-linktitle-settings-to-adjust-description-settings-to-adjust"}]</script><script id="topic-shortcuts" type="application/json"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.6.6-b205/app.css" rel="stylesheet">   <link rel="apple-touch-icon" sizes="180x180" href="https://jetbrains.com/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="https://jetbrains.com/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="https://jetbrains.com/favicon-16x16.png"><link rel="manifest" href="https://jetbrains.com/site.webmanifest"><link rel="mask-icon" href="https://jetbrains.com/safari-pinned-tab.svg" color="#000000"><meta name="msapplication-TileColor" content="#000000"/><meta name="msapplication-TileImage" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-144x144.png"/><meta name="msapplication-square70x70logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-70x70.png"/><meta name="msapplication-square150x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-150x150.png"/><meta name="msapplication-wide310x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x150.png"/><meta name="msapplication-square310x310logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x310.png"/>  <meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="Settings to adjust | blog"/><meta property="og:description" content=""/><meta property="og:image" content=""/><meta property="og:site_name" content="blog Help"/><meta property="og:type" content="website"/><meta property="og:locale" content="en_US"/><meta property="og:url" content="/1.0/kb-settings-to-adjust.html"/><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="Settings to adjust | blog"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json"> { "@context": "http://schema.org", "@type": "WebPage", "@id": "/1.0/kb-settings-to-adjust.html#webpage", "url": "/1.0/kb-settings-to-adjust.html", "name": "Settings to adjust | blog", "description": "", "image": "", "inLanguage":"en-US" }</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json"> { "@type": "WebSite", "@id": "/#website", "url": "/", "name": "blog Help" }</script><!-- End Schema.org --></head>      <body data-id="kb-settings-to-adjust" data-main-title="Settings to adjust" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}"  data-template="article"  data-breadcrumbs="Clickhouse///kb-setup-and-maintenance"  >   <div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>blog 1.0 Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="kb-settings-to-adjust"   id="kb-settings-to-adjust.md">Settings to adjust</h1>  <section class="chapter"><h2 id="settings-to-adjust-linktitle-settings-to-adjust-description-settings-to-adjust" data-toc="settings-to-adjust-linktitle-settings-to-adjust-description-settings-to-adjust"   >#Settings to adjust
+linkTitle: &quot;Settings to adjust&quot;
+description: &gt;
+Settings to adjust</h2><ol class="list _decimal" id="998f725e_421" type="1"><li class="list__item" id="998f725e_422"><p id="998f725e_423"><code class="code" id="998f725e_424">query_log</code> and other <code class="code" id="998f725e_425">_log</code> tables - set up TTL, or some other cleanup procedures.</p><div class="code-block" data-lang="markup"         >
+cat /etc/clickhouse-server/config.d/query_log.xml
+&lt;clickhouse&gt;
+    &lt;query_log replace=&quot;1&quot;&gt;
+        &lt;database&gt;system&lt;/database&gt;
+        &lt;table&gt;query_log&lt;/table&gt;
+        &lt;flush_interval_milliseconds&gt;7500&lt;/flush_interval_milliseconds&gt;
+        &lt;engine&gt;
+ENGINE = MergeTree
+PARTITION BY event_date
+ORDER BY (event_time)
+TTL event_date + interval 90 day
+SETTINGS ttl_only_drop_parts=1
+        &lt;/engine&gt;
+    &lt;/query_log&gt;
+&lt;/clickhouse&gt;
+</div></li><li class="list__item" id="998f725e_427"><p id="998f725e_428"><code class="code" id="998f725e_429">query_thread_log</code> - typically is not too useful for end users, you can disable it (or set up TTL). We do not recommend removing this table completely as you might need it for debug one day and the threads' logging can be easily disabled/enabled without a restart through user profiles:</p><div class="code-block" data-lang="markup"         >
+ $ cat /etc/clickhouse-server/users.d/z_log_queries.xml
+ &lt;clickhouse&gt;
+     &lt;profiles&gt;
+         &lt;default&gt;
+             &lt;log_query_threads&gt;0&lt;/log_query_threads&gt;
+         &lt;/default&gt;
+     &lt;/profiles&gt;
+ &lt;/clickhouse&gt;
+</div></li><li class="list__item" id="998f725e_431"><p id="998f725e_432">If you have a good monitoring outside ClickHouse you don't need to store the history of metrics in ClickHouse</p><div class="code-block" data-lang="markup"         >
+cat /etc/clickhouse-server/config.d/disable_metric_logs.xml
+&lt;clickhouse&gt;
+    &lt;metric_log remove=&quot;1&quot; /&gt;
+    &lt;asynchronous_metric_log remove=&quot;1&quot; /&gt;
+&lt;/clickhouse&gt;
+</div></li><li class="list__item" id="998f725e_434"><p id="998f725e_435"><code class="code" id="998f725e_436">part_log</code> - may be nice, especially at the beginning / during system tuning/analyze.</p><div class="code-block" data-lang="markup"         >
+cat /etc/clickhouse-server/config.d/part_log.xml
+&lt;clickhouse&gt;
+    &lt;part_log replace=&quot;1&quot;&gt;
+        &lt;database&gt;system&lt;/database&gt;
+        &lt;table&gt;part_log&lt;/table&gt;
+        &lt;flush_interval_milliseconds&gt;7500&lt;/flush_interval_milliseconds&gt;
+        &lt;engine&gt;
+ENGINE = MergeTree
+PARTITION BY toYYYYMM(event_date)
+ORDER BY (event_time)
+TTL toStartOfMonth(event_date) + INTERVAL 3 MONTH
+SETTINGS ttl_only_drop_parts=1
+        &lt;/engine&gt;
+    &lt;/part_log&gt;
+&lt;/clickhouse&gt;
+</div></li><li class="list__item" id="998f725e_438"><p id="998f725e_439">on older versions <code class="code" id="998f725e_440">log_queries</code> is disabled by default, it's worth having it enabled always.</p><div class="code-block" data-lang="markup"         >
+$ cat /etc/clickhouse-server/users.d/log_queries.xml
+&lt;clickhouse&gt;
+    &lt;profiles&gt;
+        &lt;default&gt;
+            &lt;log_queries&gt;1&lt;/log_queries&gt;
+        &lt;/default&gt;
+    &lt;/profiles&gt;
+&lt;/clickhouse&gt;
+</div></li><li class="list__item" id="998f725e_442"><p id="998f725e_443">quite often you want to have on-disk group by / order by enabled (both disabled by default).</p><div class="code-block" data-lang="markup"         >
+cat /etc/clickhouse-server/users.d/enable_on_disk_operations.xml
+&lt;clickhouse&gt;
+    &lt;profiles&gt;
+        &lt;default&gt;
+           &lt;max_bytes_before_external_group_by&gt;2000000000&lt;/max_bytes_before_external_group_by&gt;
+           &lt;max_bytes_before_external_sort&gt;2000000000&lt;/max_bytes_before_external_sort&gt;
+        &lt;/default&gt;
+    &lt;/profiles&gt;
+&lt;/clickhouse&gt;
+</div></li><li class="list__item" id="998f725e_445"><p id="998f725e_446">quite often you want to create more users with different limitations. The most typical is <code class="code" id="998f725e_447">&lt;max_execution_time&gt;</code> It's actually also not a way to plan/share existing resources better, but it at least disciplines users.</p><p id="998f725e_448">Also introducing some <a href="https://clickhouse.tech/docs/en/operations/settings/query-complexity/" id="998f725e_449"   data-external="true" rel="noopener noreferrer" >restrictions on query complexity</a> can be a good option to discipline users.</p><p id="998f725e_450">You can find the preset example <a href="https://clickhouse.tech/docs/en/operations/settings/settings-profiles/" id="998f725e_451"   data-external="true" rel="noopener noreferrer" >here</a>. Also, force_index_by_date + force_primary_key can be a nice idea to avoid queries that 'accidentally' do full scans, max_concurrent_queries_for_user</p></li><li class="list__item" id="998f725e_452"><p id="998f725e_453">merge_tree settings: <code class="code" id="998f725e_454">max_bytes_to_merge_at_max_space_in_pool</code> (may be reduced in some scenarios), <code class="code" id="998f725e_455">inactive_parts_to_throw_insert</code> - can be enabled, <code class="code" id="998f725e_456">replicated_deduplication_window</code> - can be extended if single insert create lot of parts , <code class="code" id="998f725e_457">merge_with_ttl_timeout</code> - when you use ttl</p></li><li class="list__item" id="998f725e_458"><p id="998f725e_459"><code class="code" id="998f725e_460">insert_distributed_sync</code> - for small clusters you may sometimes want to enable it</p></li><li class="list__item" id="998f725e_461"><p id="998f725e_462">when the durability is the main requirement (or server / storage is not stable) - you may want to enable <code class="code" id="998f725e_463">fsync_*</code> setting (impacts the write performance significantly!!), and <code class="code" id="998f725e_464">insert_quorum</code></p></li><li class="list__item" id="998f725e_465"><p id="998f725e_466">If you use FINAL queries - usually you want to enable <code class="code" id="998f725e_467">do_not_merge_across_partitions_select_final</code></p></li><li class="list__item" id="998f725e_468"><p id="998f725e_469">memory usage per server / query / user: <a href="kb-memory-configuration-settings.html" id="998f725e_470" data-tooltip="max_memory_usage - the maximum amount of memory allowed for a single query to take. By default, it's 10Gb. The default value is good, don't adjust it in advance."  >memory configuration settings</a></p></li><li class="list__item" id="998f725e_471"><p id="998f725e_472">if you use async_inserts - you often may want to increase max_concurrent_queries</p></li></ol><div class="code-block" data-lang="none"         >
+&lt;clickhouse&gt;
+    &lt;max_concurrent_queries&gt;500&lt;/max_concurrent_queries&gt;
+    &lt;max_concurrent_insert_queries&gt;400&lt;/max_concurrent_insert_queries&gt;
+    &lt;max_concurrent_select_queries&gt;100&lt;/max_concurrent_select_queries&gt;
+&lt;/clickhouse&gt;
+</div><ol class="list _decimal" id="998f725e_474" type="1" start="11"><li class="list__item" id="998f725e_475"><p>materialize_ttl_after_modify=0</p></li><li class="list__item" id="998f725e_476"><p>access_management=1</p></li><li class="list__item" id="998f725e_477"><p>secret in &lt;remote_servers&gt;</p></li></ol><p id="998f725e_478">See also:</p><p id="998f725e_479"><a href="https://docs.Robinjiang.com/operationsguide/security/clickhouse-hardening-guide/" id="998f725e_480"   data-external="true" rel="noopener noreferrer" >https://docs.Robinjiang.com/operationsguide/security/clickhouse-hardening-guide/</a></p></section><div class="last-modified"> Last modified: 17 十二月 2023</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom">  <a class="navigation-links__prev" href="kb-setup-and-maintenance-index.html">Setup &amp; maintenance</a>   <a class="navigation-links__next" href="kb-server-config-files.html">Server config files</a>  </div></article><div id="disqus_thread"></div></div></section></main></div>  <script src="https://resources.jetbrains.com/writerside/apidoc/6.6.6-b205/app.js"></script></body></html>

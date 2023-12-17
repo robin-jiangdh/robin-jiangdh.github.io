@@ -1,0 +1,45 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat"><html lang="en-US" data-colors-preset="contrast" data-primary-color="#307FFF"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="robots" content="noindex">  <meta name="built-on" content="2023-12-17T22:54:21.774962"><meta name="build-number" content="${buildNumber}">       <title>Description of asynchronous_metrics | blog</title><script id="virtual-toc-data" type="application/json">[{"id":"description-of-asynchronous-metrics-linktitle-description-of-asynchronous-metrics-weight-100-description-description-of-asynchronous-metrics","level":0,"title":"#Description of asynchronous_metrics\nlinkTitle: \"Description of asynchronous_metrics\"\nweight: 100\ndescription: \u003e-\nDescription of asynchronous_metrics","anchor":"#description-of-asynchronous-metrics-linktitle-description-of-asynchronous-metrics-weight-100-description-description-of-asynchronous-metrics"}]</script><script id="topic-shortcuts" type="application/json"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.6.6-b205/app.css" rel="stylesheet">   <link rel="apple-touch-icon" sizes="180x180" href="https://jetbrains.com/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="https://jetbrains.com/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="https://jetbrains.com/favicon-16x16.png"><link rel="manifest" href="https://jetbrains.com/site.webmanifest"><link rel="mask-icon" href="https://jetbrains.com/safari-pinned-tab.svg" color="#000000"><meta name="msapplication-TileColor" content="#000000"/><meta name="msapplication-TileImage" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-144x144.png"/><meta name="msapplication-square70x70logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-70x70.png"/><meta name="msapplication-square150x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-150x150.png"/><meta name="msapplication-wide310x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x150.png"/><meta name="msapplication-square310x310logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x310.png"/>  <meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="Description of asynchronous_metrics | blog"/><meta property="og:description" content=""/><meta property="og:image" content=""/><meta property="og:site_name" content="blog Help"/><meta property="og:type" content="website"/><meta property="og:locale" content="en_US"/><meta property="og:url" content="/1.0/kb-setup-and-maintenance-asynchronous-metrics-descr.html"/><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="Description of asynchronous_metrics | blog"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json"> { "@context": "http://schema.org", "@type": "WebPage", "@id": "/1.0/kb-setup-and-maintenance-asynchronous-metrics-descr.html#webpage", "url": "/1.0/kb-setup-and-maintenance-asynchronous-metrics-descr.html", "name": "Description of asynchronous_metrics | blog", "description": "", "image": "", "inLanguage":"en-US" }</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json"> { "@type": "WebSite", "@id": "/#website", "url": "/", "name": "blog Help" }</script><!-- End Schema.org --></head>      <body data-id="kb-setup-and-maintenance_asynchronous_metrics_descr" data-main-title="Description of asynchronous_metrics" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}"  data-template="article"  data-breadcrumbs="Clickhouse///kb-setup-and-maintenance"  >   <div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>blog 1.0 Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="kb-setup-and-maintenance_asynchronous_metrics_descr"   id="kb-setup-and-maintenance_asynchronous_metrics_descr.md">Description of asynchronous_metrics</h1>  <section class="chapter"><h2 id="description-of-asynchronous-metrics-linktitle-description-of-asynchronous-metrics-weight-100-description-description-of-asynchronous-metrics" data-toc="description-of-asynchronous-metrics-linktitle-description-of-asynchronous-metrics-weight-100-description-description-of-asynchronous-metrics"   >#Description of asynchronous_metrics
+linkTitle: &quot;Description of asynchronous_metrics&quot;
+weight: 100
+description: &gt;-
+Description of asynchronous_metrics</h2><div class="code-block" data-lang="none"         >
+CompiledExpressionCacheCount    -- number or compiled cached expression (if CompiledExpressionCache is enabled)
+
+jemalloc -- parameters of jemalloc allocator, they are not very useful, and not interesting
+
+MarkCacheBytes / MarkCacheFiles  -- there are cache for .mrk files (default size is 5GB), you can see is it use all 5GB or not
+
+MemoryCode  -- how much memory allocated for ClickHouse executable 
+
+MemoryDataAndStack -- virtual memory allocated for data and stack
+
+MemoryResident  -- real memory used by ClickHouse ( the same as top RES/RSS)
+
+MemoryShared   -- shared memory used by ClickHouse
+
+MemoryVirtual  -- virtual memory used by ClickHouse ( the same as top VIRT)
+
+NumberOfDatabases
+
+NumberOfTables
+
+ReplicasMaxAbsoluteDelay -- important parameter - replica max absolute delay in seconds
+
+ReplicasMaxRelativeDelay -- replica max relative delay (from other replicas) in seconds
+
+ReplicasMaxInsertsInQueue  -- max number of parts to fetch for a single Replicated table
+
+ReplicasSumInsertsInQueue  -- sum of parts to fetch for all Replicated tables
+
+ReplicasMaxMergesInQueue  -- max number of merges in queue for a single Replicated table
+
+ReplicasSumMergesInQueue  -- total number of merges in queue for all Replicated tables
+
+ReplicasMaxQueueSize -- max number of tasks  for a single Replicated table 
+
+ReplicasSumQueueSize -- total number of tasks in replication queue
+
+UncompressedCacheBytes/UncompressedCacheCells  -- allocated memory for uncompressed cache (disabled by default)
+
+Uptime     -- uptime seconds
+</div></section><div class="last-modified"> Last modified: 17 十二月 2023</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom">  <a class="navigation-links__prev" href="kb-setup-and-maintenance-aws-ec2-storage.html">AWS EC2 Storage</a>   <a class="navigation-links__next" href="kb-setup-and-maintenance-alters.html">How ALTER's works in ClickHouse</a>  </div></article><div id="disqus_thread"></div></div></section></main></div>  <script src="https://resources.jetbrains.com/writerside/apidoc/6.6.6-b205/app.js"></script></body></html>
