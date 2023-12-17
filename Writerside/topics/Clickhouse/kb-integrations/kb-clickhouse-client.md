@@ -1,2 +1,0 @@
-#kb-clickhouse-client
-TODO: 

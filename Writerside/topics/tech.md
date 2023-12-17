@@ -1,3 +1,0 @@
-# tech
-
-Start typing here...
