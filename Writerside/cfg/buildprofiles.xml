@@ -1,0 +1,13 @@
+<buildprofiles xsi:noNamespaceSchemaLocation="https://resources.jetbrains.com/writerside/1.0/build-profiles.xsd"
+               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <variables>
+
+    </variables>
+    <build-profile instance="blog"/>
+    <build-profile instance="clickhouse"></build-profile>
+    <footer>
+        <copyright>Company 2000-2023</copyright>
+        <link href="https://doc.robinjiang.com/blog/">Blog</link>
+        <link href="https://doc.robinjiang.com/clickhouse/">Clickhouse Doc</link>
+    </footer>
+</buildprofiles>

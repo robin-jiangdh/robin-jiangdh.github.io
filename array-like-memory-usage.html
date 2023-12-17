@@ -1,7 +1,7 @@
-<!DOCTYPE html SYSTEM "about:legacy-compat"><html lang="en-US" data-colors-preset="contrast" data-primary-color="#307FFF"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="robots" content="noindex">  <meta name="built-on" content="2023-12-17T22:54:22.2086071"><meta name="build-number" content="${buildNumber}">       <title>arrayMap, arrayJoin or ARRAY JOIN memory usage | blog</title><script id="virtual-toc-data" type="application/json">[{"id":"arraymap-arrayjoin-or-array-join-memory-usage-linktitle-arraymap-arrayjoin-or-array-join-memory-usage-description-why-arraymap-arrayfilter-arrayjoin-use-so-much-memory","level":0,"title":"#arrayMap, arrayJoin or ARRAY JOIN memory usage\nlinkTitle: \"arrayMap, arrayJoin or ARRAY JOIN memory usage\"\ndescription: \u003e\nWhy arrayMap, arrayFilter, arrayJoin use so much memory?","anchor":"#arraymap-arrayjoin-or-array-join-memory-usage-linktitle-arraymap-arrayjoin-or-array-join-memory-usage-description-why-arraymap-arrayfilter-arrayjoin-use-so-much-memory"},{"id":"arraymap-like-functions-memory-usage-calculation","level":0,"title":"arrayMap-like functions memory usage calculation.","anchor":"#arraymap-like-functions-memory-usage-calculation"},{"id":"examples-with-bigger-arrays","level":0,"title":"Examples with bigger arrays:","anchor":"#examples-with-bigger-arrays"}]</script><script id="topic-shortcuts" type="application/json"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.6.6-b205/app.css" rel="stylesheet">   <link rel="apple-touch-icon" sizes="180x180" href="https://jetbrains.com/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="https://jetbrains.com/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="https://jetbrains.com/favicon-16x16.png"><link rel="manifest" href="https://jetbrains.com/site.webmanifest"><link rel="mask-icon" href="https://jetbrains.com/safari-pinned-tab.svg" color="#000000"><meta name="msapplication-TileColor" content="#000000"/><meta name="msapplication-TileImage" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-144x144.png"/><meta name="msapplication-square70x70logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-70x70.png"/><meta name="msapplication-square150x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-150x150.png"/><meta name="msapplication-wide310x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x150.png"/><meta name="msapplication-square310x310logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x310.png"/>  <meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="arrayMap, arrayJoin or ARRAY JOIN memory usage | blog"/><meta property="og:description" content=""/><meta property="og:image" content=""/><meta property="og:site_name" content="blog Help"/><meta property="og:type" content="website"/><meta property="og:locale" content="en_US"/><meta property="og:url" content="/1.0/array-like-memory-usage.html"/><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="arrayMap, arrayJoin or ARRAY JOIN memory usage | blog"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json"> { "@context": "http://schema.org", "@type": "WebPage", "@id": "/1.0/array-like-memory-usage.html#webpage", "url": "/1.0/array-like-memory-usage.html", "name": "arrayMap, arrayJoin or ARRAY JOIN memory usage | blog", "description": "", "image": "", "inLanguage":"en-US" }</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json"> { "@type": "WebSite", "@id": "/#website", "url": "/", "name": "blog Help" }</script><!-- End Schema.org --></head>      <body data-id="array-like-memory-usage" data-main-title="arrayMap, arrayJoin or ARRAY JOIN memory usage" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}"  data-template="article"  data-breadcrumbs="Clickhouse///kb-functions"  >   <div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>blog 1.0 Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="array-like-memory-usage"   id="array-like-memory-usage.md">arrayMap, arrayJoin or ARRAY JOIN memory usage</h1>  <section class="chapter"><h2 id="arraymap-arrayjoin-or-array-join-memory-usage-linktitle-arraymap-arrayjoin-or-array-join-memory-usage-description-why-arraymap-arrayfilter-arrayjoin-use-so-much-memory" data-toc="arraymap-arrayjoin-or-array-join-memory-usage-linktitle-arraymap-arrayjoin-or-array-join-memory-usage-description-why-arraymap-arrayfilter-arrayjoin-use-so-much-memory"   >#arrayMap, arrayJoin or ARRAY JOIN memory usage
+<!DOCTYPE html SYSTEM "about:legacy-compat"><html lang="en-US" data-colors-preset="contrast" data-primary-color="#307FFF"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="robots" content="noindex">  <meta name="built-on" content="2023-12-17T23:19:46.9334202"><meta name="build-number" content="${buildNumber}">       <title>arrayMap, arrayJoin or ARRAY JOIN memory usage | blog</title><script id="virtual-toc-data" type="application/json">[{"id":"arraymap-arrayjoin-or-array-join-memory-usage-linktitle-arraymap-arrayjoin-or-array-join-memory-usage-description-why-arraymap-arrayfilter-arrayjoin-use-so-much-memory","level":0,"title":"#arrayMap, arrayJoin or ARRAY JOIN memory usage\nlinkTitle: \"arrayMap, arrayJoin or ARRAY JOIN memory usage\"\ndescription: \u003e\nWhy arrayMap, arrayFilter, arrayJoin use so much memory?","anchor":"#arraymap-arrayjoin-or-array-join-memory-usage-linktitle-arraymap-arrayjoin-or-array-join-memory-usage-description-why-arraymap-arrayfilter-arrayjoin-use-so-much-memory"},{"id":"arraymap-like-functions-memory-usage-calculation","level":0,"title":"arrayMap-like functions memory usage calculation.","anchor":"#arraymap-like-functions-memory-usage-calculation"},{"id":"examples-with-bigger-arrays","level":0,"title":"Examples with bigger arrays:","anchor":"#examples-with-bigger-arrays"}]</script><script id="topic-shortcuts" type="application/json"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.6.6-b205/app.css" rel="stylesheet">   <link rel="apple-touch-icon" sizes="180x180" href="https://jetbrains.com/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="https://jetbrains.com/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="https://jetbrains.com/favicon-16x16.png"><link rel="manifest" href="https://jetbrains.com/site.webmanifest"><link rel="mask-icon" href="https://jetbrains.com/safari-pinned-tab.svg" color="#000000"><meta name="msapplication-TileColor" content="#000000"/><meta name="msapplication-TileImage" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-144x144.png"/><meta name="msapplication-square70x70logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-70x70.png"/><meta name="msapplication-square150x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-150x150.png"/><meta name="msapplication-wide310x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x150.png"/><meta name="msapplication-square310x310logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x310.png"/>  <meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="arrayMap, arrayJoin or ARRAY JOIN memory usage | blog"/><meta property="og:description" content=""/><meta property="og:image" content=""/><meta property="og:site_name" content="blog Help"/><meta property="og:type" content="website"/><meta property="og:locale" content="en_US"/><meta property="og:url" content="/blog/1.0/array-like-memory-usage.html"/><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="arrayMap, arrayJoin or ARRAY JOIN memory usage | blog"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json"> { "@context": "http://schema.org", "@type": "WebPage", "@id": "/blog/1.0/array-like-memory-usage.html#webpage", "url": "/blog/1.0/array-like-memory-usage.html", "name": "arrayMap, arrayJoin or ARRAY JOIN memory usage | blog", "description": "", "image": "", "inLanguage":"en-US" }</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json"> { "@type": "WebSite", "@id": "/blog/#website", "url": "/blog/", "name": "blog Help" }</script><!-- End Schema.org --></head>      <body data-id="array-like-memory-usage" data-main-title="arrayMap, arrayJoin or ARRAY JOIN memory usage" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}"  data-template="article"  data-breadcrumbs="Clickhouse///kb-functions"  >   <div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>blog 1.0 Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="array-like-memory-usage"   id="array-like-memory-usage.md">arrayMap, arrayJoin or ARRAY JOIN memory usage</h1>  <section class="chapter"><h2 id="arraymap-arrayjoin-or-array-join-memory-usage-linktitle-arraymap-arrayjoin-or-array-join-memory-usage-description-why-arraymap-arrayfilter-arrayjoin-use-so-much-memory" data-toc="arraymap-arrayjoin-or-array-join-memory-usage-linktitle-arraymap-arrayjoin-or-array-join-memory-usage-description-why-arraymap-arrayfilter-arrayjoin-use-so-much-memory"   >#arrayMap, arrayJoin or ARRAY JOIN memory usage
 linkTitle: &quot;arrayMap, arrayJoin or ARRAY JOIN memory usage&quot;
 description: &gt;
-Why arrayMap, arrayFilter, arrayJoin use so much memory?</h2></section><section class="chapter"><h2 id="arraymap-like-functions-memory-usage-calculation" data-toc="arraymap-like-functions-memory-usage-calculation"   >arrayMap-like functions memory usage calculation.</h2><p id="5333b578_218">In order to calculate arrayMap or similar array* functions ClickHouse temporarily does arrayJoin-like operation, which in certain conditions can lead to huge memory usage for big arrays.</p><p id="5333b578_219">So for example, you have 2 columns:</p><div class="code-block" data-lang="none"         >
+Why arrayMap, arrayFilter, arrayJoin use so much memory?</h2></section><section class="chapter"><h2 id="arraymap-like-functions-memory-usage-calculation" data-toc="arraymap-like-functions-memory-usage-calculation"   >arrayMap-like functions memory usage calculation.</h2><p id="5333b578_280">In order to calculate arrayMap or similar array* functions ClickHouse temporarily does arrayJoin-like operation, which in certain conditions can lead to huge memory usage for big arrays.</p><p id="5333b578_281">So for example, you have 2 columns:</p><div class="code-block" data-lang="none"         >
 SELECT *
 FROM
 (
@@ -13,7 +13,7 @@ FROM
 ┌─array_1─────┬─array_2─────┐
 │ [1,2,3,4,5] │ [1,2,3,4,5] │
 └─────────────┴─────────────┘
-</div><p id="5333b578_221">Let's say we want to multiply array elements at corresponding positions.</p><div class="code-block" data-lang="none"         >
+</div><p id="5333b578_283">Let's say we want to multiply array elements at corresponding positions.</p><div class="code-block" data-lang="none"         >
 SELECT arrayMap(x -&gt; ((array_1[x]) * (array_2[x])), arrayEnumerate(array_1)) AS multi
 FROM
 (
@@ -25,7 +25,7 @@ FROM
 ┌─multi─────────┐
 │ [1,4,9,16,25] │
 └───────────────┘
-</div><p id="5333b578_223">ClickHouse create temporary structure in memory like this:</p><div class="code-block" data-lang="none"         >
+</div><p id="5333b578_285">ClickHouse create temporary structure in memory like this:</p><div class="code-block" data-lang="none"         >
 SELECT
     array_1,
 	array_2,
@@ -45,7 +45,7 @@ ARRAY JOIN arrayEnumerate(array_1) AS x
 │ [1,2,3,4,5] │ [1,2,3,4,5] │ 4 │
 │ [1,2,3,4,5] │ [1,2,3,4,5] │ 5 │
 └─────────────┴─────────────┴───┘
-</div><p id="5333b578_225">We can roughly estimate memory usage by multiplying the size of columns participating in the lambda function by the size of the unnested array.</p><p id="5333b578_226">And total memory usage will be 55 values (5(array size)*2(array count)*5(row count) + 5(unnested array size)), which is 5.5 times more than initial array size.</p><div class="code-block" data-lang="none"         >
+</div><p id="5333b578_287">We can roughly estimate memory usage by multiplying the size of columns participating in the lambda function by the size of the unnested array.</p><p id="5333b578_288">And total memory usage will be 55 values (5(array size)*2(array count)*5(row count) + 5(unnested array size)), which is 5.5 times more than initial array size.</p><div class="code-block" data-lang="none"         >
 SELECT groupArray((array_1[x]) * (array_2[x])) AS multi
 FROM
 (
@@ -65,7 +65,7 @@ ARRAY JOIN arrayEnumerate(array_1) AS x
 ┌─multi─────────┐
 │ [1,4,9,16,25] │
 └───────────────┘
-</div><p id="5333b578_228">But what if we write this function in a more logical way, so we wouldn't use any unnested arrays in lambda.</p><div class="code-block" data-lang="none"         >
+</div><p id="5333b578_290">But what if we write this function in a more logical way, so we wouldn't use any unnested arrays in lambda.</p><div class="code-block" data-lang="none"         >
 SELECT arrayMap((x, y) -&gt; (x * y), array_1, array_2) AS multi
 FROM
 (
@@ -77,7 +77,7 @@ FROM
 ┌─multi─────────┐
 │ [1,4,9,16,25] │
 └───────────────┘
-</div><p id="5333b578_230">ClickHouse create temporary structure in memory like this:</p><div class="code-block" data-lang="none"         >
+</div><p id="5333b578_292">ClickHouse create temporary structure in memory like this:</p><div class="code-block" data-lang="none"         >
 SELECT
     x,
     y
@@ -98,7 +98,7 @@ ARRAY JOIN
 │ 4 │ 4 │
 │ 5 │ 5 │
 └───┴───┘
-</div><p id="5333b578_232">We have only 10 values, which is no more than what we have in initial arrays.</p><div class="code-block" data-lang="none"         >
+</div><p id="5333b578_294">We have only 10 values, which is no more than what we have in initial arrays.</p><div class="code-block" data-lang="none"         >
 SELECT groupArray(x * y) AS multi
 FROM
 (
@@ -119,7 +119,7 @@ ARRAY JOIN
 ┌─multi─────────┐
 │ [1,4,9,16,25] │
 └───────────────┘
-</div><p id="5333b578_234">The same approach can be applied to other array* function with arrayMap-like capabilities to use lambda functions and ARRAY JOIN (arrayJoin).</p></section><section class="chapter"><h2 id="examples-with-bigger-arrays" data-toc="examples-with-bigger-arrays"   >Examples with bigger arrays:</h2><div class="code-block" data-lang="none"         >
+</div><p id="5333b578_296">The same approach can be applied to other array* function with arrayMap-like capabilities to use lambda functions and ARRAY JOIN (arrayJoin).</p></section><section class="chapter"><h2 id="examples-with-bigger-arrays" data-toc="examples-with-bigger-arrays"   >Examples with bigger arrays:</h2><div class="code-block" data-lang="none"         >
 SET max_threads=1;
 SET send_logs_level='trace';
 
@@ -175,7 +175,7 @@ FORMAT `Null`
 size=100, (3*size)*size = 3*(size^2)
 
 Elapsed: 36.777 sec. Processed 524.04 thousand rows, 4.19 MB (14.25 thousand rows/s., 113.99 KB/s.)
-</div><p id="5333b578_236">Which data types we have in those arrays?</p><div class="code-block" data-lang="none"         >
+</div><p id="5333b578_298">Which data types we have in those arrays?</p><div class="code-block" data-lang="none"         >
 WITH 100 AS size
 SELECT
     toTypeName(materialize(CAST(range(size), 'Array(UInt32)'))) AS array_1,
@@ -185,7 +185,7 @@ SELECT
 ┌─array_1───────┬─array_2───────┬─x─────────────┐
 │ Array(UInt32) │ Array(UInt32) │ Array(UInt32) │
 └───────────────┴───────────────┴───────────────┘
-</div><p id="5333b578_238">So each value use 4 bytes.</p><p id="5333b578_239">By default ClickHouse execute query by blocks of 65515 rows (<code class="code" id="5333b578_240">max_block_size</code> setting value)</p><p id="5333b578_241">Lets estimate query total memory usage given previous calculations.</p><div class="code-block" data-lang="none"         >
+</div><p id="5333b578_300">So each value use 4 bytes.</p><p id="5333b578_301">By default ClickHouse execute query by blocks of 65515 rows (<code class="code" id="5333b578_302">max_block_size</code> setting value)</p><p id="5333b578_303">Lets estimate query total memory usage given previous calculations.</p><div class="code-block" data-lang="none"         >
 WITH
     100 AS size,
     4 AS value_size,
@@ -210,7 +210,7 @@ FROM
 │                  2 │                  1 │ 14.64 GiB              │             24.28 │   0.6 │
 │                  1 │                  2 │ 7.32 GiB               │             12.19 │   0.6 │
 └────────────────────┴────────────────────┴────────────────────────┴───────────────────┴───────┘
-</div><p id="5333b578_243">Correlation is pretty clear.</p><p id="5333b578_244">What if we will reduce size of blocks used for query execution?</p><div class="code-block" data-lang="none"         >
+</div><p id="5333b578_305">Correlation is pretty clear.</p><p id="5333b578_306">What if we will reduce size of blocks used for query execution?</p><div class="code-block" data-lang="none"         >
 SET max_block_size = '16k';
 
 SELECT arrayMap(x -&gt; ((array_1[x]) * (array_2[x])), arrayEnumerate(array_1)) AS multi
@@ -227,7 +227,7 @@ FORMAT `Null`
 &lt;Debug&gt; MemoryTracker: Current memory usage (for query): 3.05 GiB.
 
 Elapsed: 35.935 sec. Processed 512.00 thousand rows, 4.10 MB (14.25 thousand rows/s., 113.98 KB/s.)
-</div><p id="5333b578_246">Memory usage down in 4 times, which has strong correlation with our change: 65k -&gt; 16k ~ 4 times.</p><div class="code-block" data-lang="none"         >
+</div><p id="5333b578_308">Memory usage down in 4 times, which has strong correlation with our change: 65k -&gt; 16k ~ 4 times.</p><div class="code-block" data-lang="none"         >
 SELECT arrayMap((x, y) -&gt; (x * y), array_1, array_2) AS multi
 FROM
 (
@@ -242,4 +242,4 @@ FORMAT `Null`
 &lt;Debug&gt; MemoryTracker: Peak memory usage (for query): 226.04 MiB.
 
 Elapsed: 5.700 sec. Processed 11.53 million rows, 92.23 MB (2.02 million rows/s., 16.18 MB/s.)
-</div><p id="5333b578_248">Almost 100 times faster than first query!</p></section><div class="last-modified"> Last modified: 17 十二月 2023</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom">  <a class="navigation-links__prev" href="assumenotnull-and-friends.html">assumeNotNull and friends</a>   <a class="navigation-links__next" href="spark.html">ClickHouse + Spark</a>  </div></article><div id="disqus_thread"></div></div></section></main></div>  <script src="https://resources.jetbrains.com/writerside/apidoc/6.6.6-b205/app.js"></script></body></html>
+</div><p id="5333b578_310">Almost 100 times faster than first query!</p></section><div class="last-modified"> Last modified: 17 十二月 2023</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom">  <a class="navigation-links__prev" href="assumenotnull-and-friends.html">assumeNotNull and friends</a>   <a class="navigation-links__next" href="spark.html">ClickHouse + Spark</a>  </div></article><div id="disqus_thread"></div></div></section></main></div>  <script src="https://resources.jetbrains.com/writerside/apidoc/6.6.6-b205/app.js"></script></body></html>
